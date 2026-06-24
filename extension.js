@@ -1,10 +1,22 @@
 import { lib, game, ui, get, ai, _status } from '../../noname.js';
-if (!lib.characterCopyright) lib.characterCopyright = {};
-if (!lib.characterCitetext) lib.characterCitetext = {};
-if (!lib.characterLightext) lib.characterLightext = {};
-if (!lib.characterLightextParent) lib.characterLightextParent = {};
-if (!lib.characterUndertext) lib.characterUndertext = {};
-if (!lib.accessoryPacket) lib.accessoryPacket = {};
+if (!lib.characterCopyright) {
+	lib.characterCopyright = {};
+}
+if (!lib.characterCitetext) {
+	lib.characterCitetext = {};
+}
+if (!lib.characterLightext) {
+	lib.characterLightext = {};
+}
+if (!lib.characterLightextParent) {
+	lib.characterLightextParent = {};
+}
+if (!lib.characterUndertext) {
+	lib.characterUndertext = {};
+}
+if (!lib.accessoryPacket) {
+	lib.accessoryPacket = {};
+}
 // import { characterIntro , nodeintro } from './source/packages/function.js'
 // get.characterIntro = characterIntro;
 // get.nodeintro = nodeintro;

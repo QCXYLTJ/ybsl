@@ -1,0 +1,28 @@
+{
+  "name": "ybsl",
+  "version": "1.0.0",
+  "description": "无名杀扩展 - 夜白神略",
+  "homepage": "https://github.com/QCXYLTJ/ybsl#readme",
+  "bugs": {
+    "url": "https://github.com/QCXYLTJ/ybsl/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QCXYLTJ/ybsl.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "extension.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/generator": "^8.0.0",
+    "@babel/parser": "^8.0.0",
+    "@babel/traverse": "^8.0.0",
+    "@babel/types": "^8.0.0",
+    "eslint": "^10.5.0",
+    "prettier": "^3.8.4"
+  }
+}
