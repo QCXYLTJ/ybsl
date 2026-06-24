@@ -1096,7 +1096,6 @@ const card = {
 				target: 1,
 			},
 		},
-		selectTarget: -1,
 	},
 	//-----------------------毒箭
 	// rewrite_du:{
@@ -2811,12 +2810,12 @@ const card = {
 								player.hp <= 1 &&
 								player !== target &&
 								taos + player.countCards('hs', 'jiu') <=
-									Math.min(
-										dis,
-										game.countPlayer((current) => {
-											return current.identity === 'fan';
-										}),
-									)
+								Math.min(
+									dis,
+									game.countPlayer((current) => {
+										return current.identity === 'fan';
+									}),
+								)
 							) {
 								return 0;
 							}
@@ -3267,7 +3266,6 @@ const card = {
 		// yingbian:function(event){
 		// 	event.yingbian_addTarget=true;
 		// },
-		toself: true,
 		addinfo: '霸天',
 		content() {
 			event.baseDamage = target.isDamaged() ? 3 - target.hp : 0;

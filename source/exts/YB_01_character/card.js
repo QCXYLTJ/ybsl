@@ -365,10 +365,11 @@ const card = {
 				});
 			}
 			('step 1');
+			let list;
 			if (result.bool) {
-				const list = [result.links[0]];
+				list = [result.links[0]];
 			} else {
-				const list = [];
+				list = [];
 				const cards = ['ybsl_meihua', 'ybsl_lanhua', 'ybsl_zhuzi', 'ybsl_juhua'];
 				for (const i of cards) {
 					list.add(['花朵', '', i]);
@@ -518,9 +519,7 @@ const card = {
 			} else {
 				return target.hp != target.maxHp || target.countDiscardableCards(player, get.is.single() ? 'he' : 'hej');
 			}
-			return target.countDiscardableCards(player, get.is.single() ? 'he' : 'hej');
 		},
-		selectTarget: 1,
 		global: 'ybsl_cu_discard',
 		savable: true,
 		// filterTarget:function (card,player,target){
@@ -654,8 +653,8 @@ const card = {
 						return 2 / (1 + i);
 					}
 					let fs = game.filterPlayer((current) => {
-							return get.attitude(player, current) > 0 && current.hp <= 2;
-						}),
+						return get.attitude(player, current) > 0 && current.hp <= 2;
+					}),
 						damaged = 0,
 						needs = 0;
 					fs.forEach((f) => {
@@ -687,8 +686,8 @@ const card = {
 				},
 				value(card, player) {
 					let fs = game.filterPlayer((current) => {
-							return get.attitude(_status.event.player, current) > 0;
-						}),
+						return get.attitude(_status.event.player, current) > 0;
+					}),
 						damaged = 0,
 						needs = 0;
 					fs.forEach((f) => {
@@ -832,12 +831,12 @@ const card = {
 								player.hp <= 1 &&
 								player !== target &&
 								taos + player.countCards('hs', 'jiu') <=
-									Math.min(
-										dis,
-										game.countPlayer((current) => {
-											return current.identity === 'fan';
-										}),
-									)
+								Math.min(
+									dis,
+									game.countPlayer((current) => {
+										return current.identity === 'fan';
+									}),
+								)
 							) {
 								return 0;
 							}
@@ -1024,7 +1023,7 @@ const card = {
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
 			} else {
-				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, tag]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, event.tag]);
 			}
 		},
 	},
@@ -1042,7 +1041,7 @@ const card = {
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
 			} else {
-				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, tag]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, event.tag]);
 			}
 		},
 	},
@@ -1063,7 +1062,7 @@ const card = {
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
 			} else {
-				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, tag]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, event.tag]);
 			}
 		},
 	},
@@ -1084,7 +1083,7 @@ const card = {
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
 			} else {
-				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, tag]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, event.tag]);
 			}
 		},
 	},
@@ -1102,7 +1101,7 @@ const card = {
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
 			} else {
-				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, tag]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, event.tag]);
 			}
 		},
 	},
@@ -1124,7 +1123,7 @@ const card = {
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
 			} else {
-				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, tag]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, event.tag]);
 			}
 		},
 	},
@@ -1147,7 +1146,7 @@ const card = {
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
 			} else {
-				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, tag]);
+				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, event.tag]);
 			}
 		},
 		content() {
@@ -1156,7 +1155,7 @@ const card = {
 				event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
 				player.chooseControl(event.list1).set('prompt', '请选择将【小狐】当做哪种装备');
 			} else {
-				(event, finish());
+				event.finish();
 			}
 			('step 1');
 			if (result.control) {

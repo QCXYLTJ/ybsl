@@ -1252,7 +1252,7 @@ const skill = {
 			if (player && player == cardx.player) {
 				return true;
 			}
-			let player = _status.event.player;
+			player = _status.event.player;
 			const shas = player.getCards('hs', function (card) {
 				return card != cardx && card.name == 'sha';
 			});
@@ -1396,9 +1396,9 @@ const skill = {
 			event.cards = trigger.num;
 			const suits = [];
 			if (Array.isArray(trigger.cards))
-				for (const i of trigger.cards) {
+				{for (const i of trigger.cards) {
 					suits.add(i.suit);
-				}
+				}}
 			event.suits = suits.length;
 			player
 				.chooseTarget(get.prompt('ybsl_qingming'), '选择一名其他角色,弃置其的' + get.cnNumber(event.num) + '张牌或对其造成' + get.cnNumber(event.suits) + '点伤害', function (card, player, target) {
@@ -1694,11 +1694,11 @@ const skill = {
 				const tag = get.YB_tag(card);
 				card.YB_init([event.card.suit, event.card.number, 'ybsl_tianleiyubi', tag]);
 			}, card);
-			const bool = get.position(card) == 'e';
-			if (bool) {
+			const bool1 = get.position(card) == 'e';
+			if (bool1) {
 				player.removeEquipTrigger(card);
 			}
-			if (bool) {
+			if (bool1) {
 				const info = get.info(card);
 				if (info.skills) {
 					for (let i = 0; i < info.skills.length; i++) {
@@ -1735,11 +1735,11 @@ const skill = {
 				const tag = get.YB_tag(card);
 				card.YB_init([event.card.suit, event.card.number, 'ybsl_tianleiyubi', tag]);
 			}, card);
-			const bool = get.position(card) == 'e';
-			if (bool) {
+			const bool1 = get.position(card) == 'e';
+			if (bool1) {
 				player.removeEquipTrigger(card);
 			}
-			if (bool) {
+			if (bool1) {
 				const info = get.info(card);
 				if (info.skills) {
 					for (let i = 0; i < info.skills.length; i++) {

@@ -1,4 +1,4 @@
-﻿'use strict';
+﻿import { lib, game, ui, get, ai, _status } from '../../noname.js';
 const extname = '夜白神略';
 game.import('character', function (lib, game, ui, get, ai, _status) {
 	const YB_one = {
@@ -269,10 +269,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								'是否弃置任意张点数之和为' + get.cnNumber(num) + '的牌,否则跳过下个出牌阶段',
 								function (card) {
 									let num = 0;
-									if (Array.isArray(ui.selected.cards))
+									if (Array.isArray(ui.selected.cards)) {
 										for (const i of ui.selected.cards) {
 											num += i.number;
 										}
+									}
 									return card.number + num <= _status.event.num;
 								},
 								'he',
@@ -281,10 +282,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							next.set('complexCard', true);
 							next.set('selectCard', function () {
 								let num = 0;
-								if (Array.isArray(ui.selected.cards))
+								if (Array.isArray(ui.selected.cards)) {
 									for (const i of ui.selected.cards) {
 										num += i.number;
 									}
+								}
 								if (num == _status.event.num) {
 									return ui.selected.cards.length;
 								}
@@ -397,10 +399,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								'是否弃置任意张点数之和为' + get.cnNumber(num) + '的牌,否则跳过下个出牌阶段',
 								function (card) {
 									let num = 0;
-									if (Array.isArray(ui.selected.cards))
+									if (Array.isArray(ui.selected.cards)) {
 										for (const i of ui.selected.cards) {
 											num += i.number;
 										}
+									}
 									return card.number + num <= _status.event.num;
 								},
 								'he',
@@ -409,10 +412,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							next.set('complexCard', true);
 							next.set('selectCard', function () {
 								let num = 0;
-								if (Array.isArray(ui.selected.cards))
+								if (Array.isArray(ui.selected.cards)) {
 									for (const i of ui.selected.cards) {
 										num += i.number;
 									}
+								}
 								if (num == _status.event.num) {
 									return ui.selected.cards.length;
 								}
@@ -530,15 +534,16 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								}
 								const list = player.storage.yb_wan_jiqiao_mark;
 								let num = Math.min(list[2], 2), a = get.translation(list[0]), b = get.translation(list[1]);
+								let str;
 								switch (num) {
 									case 0:
-										let str = `${b}下回合准备阶段亮出牌堆顶一张牌,${b}需任意选择自己手牌(最少一张)点数相加等于牌堆顶这张牌点数,否则${b}跳过下个出牌阶段.`;
+										str = `${b}下回合准备阶段亮出牌堆顶一张牌,${b}需任意选择自己手牌(最少一张)点数相加等于牌堆顶这张牌点数,否则${b}跳过下个出牌阶段.`;
 										break;
 									case 1:
-										let str = `${b}下回合准备阶段亮出牌堆顶牌堆底各一张牌,${a}可令${b}摸或者弃置亮出的牌的颜色数的牌(此法摸的牌不计入手牌上限),然后${b}需任意选择自己手牌(最少一张)点数相加大于亮出的两张牌点数之和,否则${b}跳过下个出牌阶段.`;
+										str = `${b}下回合准备阶段亮出牌堆顶牌堆底各一张牌,${a}可令${b}摸或者弃置亮出的牌的颜色数的牌(此法摸的牌不计入手牌上限),然后${b}需任意选择自己手牌(最少一张)点数相加大于亮出的两张牌点数之和,否则${b}跳过下个出牌阶段.`;
 										break;
 									case 2:
-										let str = `${b}跳过下个出牌阶段.`;
+										str = `${b}跳过下个出牌阶段.`;
 										break;
 								}
 								if (str) {
@@ -633,7 +638,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					('step 2');
 					game.broadcastAll('closeDialog', event.videoId);
 					const top = result.moved[0], list = [];
-					for (let k = 0; k > top.length; k++) {
+					for (let k = 0; k < top.length; k++) {
 						list.push(top[k]);
 					}
 					top.reverse();
@@ -1355,7 +1360,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					// ];
 					const qiangxia = lib.skill.yb_wan_qiangxia.getQiangxia();
 					let num = player.countEquipableSlot(1) > 1 ? 2 : 1;
-					player.countEmptySlot(i);
 					const dialog = [`选择${num}张装备牌`];
 					for (const i of qiangxia) {
 						const cardx = [i[1], i[2], i[0]];
@@ -1890,24 +1894,15 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					},
 				},
 			},
+			// 出牌阶段限一次,你可先选择一名角色a
+			// 再选择两名角色,并与这两名角色依次拼点
+			// 你将赢了的拼点牌收回
+			// 你和输了的角色,对a角色各造成一点伤害
 			yb_wan_yijie: {
 				//义结
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				usable: 1,
-				filter(event, player) {
-					// if(!ui.selected.targets)return false;
-					// var target = ui.selected.targets[0];
-					// game.log(get.translation(target));
-					// // var target = targets[0];
-					// return game.filterPlayer(
-					// 	function(current){
-					// 		return current!=player
-					// 		&&current!=target&&player.canCompare(current)
-					// 	}
-					// ).length>0;
-					return true;
-				},
 				multitarget: true,
 				selectTarget: 1,
 				filterTarget(card, player, target) {
@@ -1917,43 +1912,17 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					// return player!=target;
 				},
 				async content(event, trigger, player) {
+					const taarget = event.target;
 					const list = [player];
-					const relu = await player
-						.chooseTarget(
-							get.prompt2('yb_wan_yijie'),
-							function (card, player, target) {
-								//选1个目标
-								return player != target && taarget != target && player.canCompare(target); //限制条件:你不是目标
-							},
-							function (target) {
-								//ai:
-								const player = get.player(); //定义变量player为选目标的发起者(不懂可以先不写)
-								return target.countCards('h') - get.attitude(player, target); //选敌人
-							},
-							true,
-						)
-						.forResult();
-					if (relu.bool) {
-						const target1 = relu.targets[0];
-						const relu1 = await player.chooseToCompare(target1).forResult();
-						if (relu1.bool) {
-							await list.push(target1);
-							await player.gain([relu1.player], 'gain2', 'log');
-						} else if (relu1.tie) {
-							await list.push(target2);
-						}
-					}
-					if (
-						game.countPlayer(function (current) {
-							return player != current && taarget != current && player.canCompare(current) && current != target1;
-						})
-					) {
-						const relux = await player
+					const list1 = [player, taarget];
+					let num = 2;
+					while (num-- > 0) {
+						const { targets } = await player
 							.chooseTarget(
 								get.prompt2('yb_wan_yijie'),
 								function (card, player, target) {
 									//选1个目标
-									return player != target && taarget != target && player.canCompare(target) && target != target1; //限制条件:你不是目标
+									return !list1.includes(target) && player.canCompare(target); //限制条件:你不是目标
 								},
 								function (target) {
 									//ai:
@@ -1963,22 +1932,20 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								true,
 							)
 							.forResult();
-						if (relux.bool) {
-							const target2 = relux.targets[0];
-							const relu2 = await player.chooseToCompare(target2).forResult();
-							if (relu2.bool) {
-								await list.push(target2);
-								await player.gain([relu2.player], 'gain2', 'log');
-							} else if (relu2.tie) {
-								await list.push(target2);
+						if (targets?.length) {
+							list1.push(targets[0]);
+							const relu1 = await player.chooseToCompare(targets[0]).forResult();
+							if (relu1.bool) {
+								list.push(targets[0]);
+								await player.gain([relu1.player], 'gain2');
+							} else if (relu1.tie) {
+								list.push(targets[0]);
 							}
 						}
 					}
 					for (const i of list) {
-						if (i.isIn() && taarget.isIn()) {
-							i.line(taarget);
-							await taarget.damage(i);
-						}
+						i.line(taarget);
+						taarget.damage(i);
 					}
 				},
 			},
@@ -2197,30 +2164,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 											return false;
 										})
 										.forResult();
-								}
-								// var result = await player.chooseCardTarget({
-								// 	filterCard (card, player) {
-								// 		return cards.includes(card);
-								// 	},
-								// 	filterTarget: lib.filter.notMe,
-								// 	selectCard: [1, event.num],
-								// 	prompt: "请选择要分配的卡牌和目标",
-								// 	ai1 (card) {
-								// 		if (!ui.selected.cards.length) return 1;
-								// 		return 0;
-								// 	},
-								// 	ai2 (target) {
-								// 		var player = _status.event.player,
-								// 			card = ui.selected.cards[0];
-								// 		var val = target.getUseValue(card);
-								// 		if (val > 0) return val * get.attitude(player, target) * 2;
-								// 		return get.value(card, target) * get.attitude(player, target);
-								// 	},
-								// }).forResult();;
-								if (relu3.bool) {
-									relu3.targets[0].gain(cards);
-									// var res = result.cards,
-									// 	target = result.targets[0].playerid;
+									if (relu3.bool) {
+										relu3.targets[0].gain(cards);
+									}
 								}
 							}
 						},
@@ -2280,12 +2226,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					if (player.countCards('h')) {
 						return false;
 					}
-					if (Array.isArray(event.cards))
+					if (Array.isArray(event.cards)) {
 						for (const i of event.cards) {
 							if (i.original == 'h' && get.position(i, true) == 'h' && get.owner(i) != player) {
 								return true;
 							}
 						}
+					}
 					return false;
 				},
 				content() {
@@ -3021,7 +2968,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			yb_wan_linzuo: {
 				//麟佐
 				audio: 'ext:无名扩展/audio/character:2',
-				// forced:true,
 				trigger: {
 					global: 'phaseBefore',
 					player: 'enterGame',
@@ -3029,7 +2975,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				filter(event, player) {
 					return game.hasPlayer((current) => current != player) && (event.name != 'phase' || game.phaseNumber == 0);
 				},
-				audio: 6,
 				async cost(event, trigger, player) {
 					const result = await player
 						.chooseTarget('请选择【麟佐】的目标', lib.translate.yb_wan_linzuo_info, true, function (card, player, target) {
@@ -3103,7 +3048,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return content.length;
 							},
 							mark(dialog, content, player) {
-								const content = player.getExpansions('yb_wan_linzuo_mark1');
+								content = player.getExpansions('yb_wan_linzuo_mark1');
 								if (content && content.length) {
 									if (player == game.me || player.isUnderControl()) {
 										dialog.addAuto(content);
@@ -3113,7 +3058,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								}
 							},
 							content(content, player) {
-								const content = player.getExpansions('yb_wan_linzuo_mark1');
+								content = player.getExpansions('yb_wan_linzuo_mark1');
 								if (content && content.length) {
 									if (player == game.me || player.isUnderControl()) {
 										return get.translation(content);
@@ -3134,7 +3079,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return content.length;
 							},
 							mark(dialog, content, player) {
-								const content = player.getExpansions('yb_wan_linzuo_mark2');
+								content = player.getExpansions('yb_wan_linzuo_mark2');
 								if (content && content.length) {
 									if (player == game.me || player.isUnderControl()) {
 										dialog.addAuto(content);
@@ -3144,7 +3089,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								}
 							},
 							content(content, player) {
-								const content = player.getExpansions('yb_wan_linzuo_mark2');
+								content = player.getExpansions('yb_wan_linzuo_mark2');
 								if (content && content.length) {
 									if (player == game.me || player.isUnderControl()) {
 										return get.translation(content);

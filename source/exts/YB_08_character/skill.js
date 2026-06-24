@@ -1205,10 +1205,10 @@ const skill = {
 						return get.useful(button.link) > 3;
 					})
 					.forResult();
-			}
-			if (relu2 && relu2.bool) {
-				await player.gain(relu2.links, 'gain2');
-				trigger.num -= relu2.links.length;
+				if (relu2 && relu2.bool) {
+					await player.gain(relu2.links, 'gain2');
+					trigger.num -= relu2.links.length;
+				}
 			}
 		},
 		ai: {
@@ -1580,7 +1580,7 @@ const skill = {
 					evt.set('norestore', true);
 					evt.set('custom', {
 						add: {},
-						replace: { window() {} },
+						replace: { window() { } },
 					});
 					evt.goto(0);
 				},
@@ -1785,7 +1785,7 @@ const skill = {
 								next.set('custom', {
 									add: {},
 									replace: {
-										window() {},
+										window() { },
 									},
 								});
 								// next.set('addCount',false);
@@ -2882,8 +2882,8 @@ const skill = {
 					return 1;
 				})
 				.set('callback', lib.skill.ybmjz_reshuishi.callback).judge2 = function (result) {
-				return result.bool ? true : false;
-			};
+					return result.bool ? true : false;
+				};
 			('step 2');
 			let cards = cards.filterInD();
 			if (cards.length) {

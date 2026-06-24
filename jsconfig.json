@@ -2,8 +2,10 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "lib": ["ESNext", "DOM"],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
     "allowJs": true,
     "checkJs": false,
     "jsx": "preserve",
@@ -14,9 +16,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["../../*"]
+      "@/*": [
+        "../../*"
+      ]
     },
     "typeRoots": [
       "./typings",
@@ -33,6 +36,15 @@
     //     "player2"
     //   ]
   },
-  "include": ["source/**/*", "*.js", "typings/**/*"],
-  "exclude": ["node_modules", "audio", "image", "skin"]
+  "include": [
+    "source/**/*",
+    "*.js",
+    "typings/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "audio",
+    "image",
+    "skin"
+  ]
 }

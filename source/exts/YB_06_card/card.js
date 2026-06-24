@@ -666,7 +666,7 @@ const card = {
 				}
 			} else {
 				if (cards && cards.length) {
-					card = cards[0];
+					event.card = cards[0];
 				}
 				game.broadcastAll(
 					function (target, card, gain2) {
@@ -689,12 +689,12 @@ const card = {
 						}
 					},
 					target,
-					card,
+					event.card,
 					target == targets[0],
 				);
 				if (target == targets[0]) {
-					if (card.clone && (card.clone.parentNode == target.parentNode || card.clone.parentNode == ui.arena)) {
-						game.addVideo('gain2', target, get.cardsInfo([card]));
+					if (event.card.clone && (event.card.clone.parentNode == target.parentNode || event.card.clone.parentNode == ui.arena)) {
+						game.addVideo('gain2', target, get.cardsInfo([event.card]));
 					}
 				}
 			}

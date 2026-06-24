@@ -272,7 +272,7 @@ const skill = {
 			player
 				.chooseTarget('是否为' + get.translation(trigger.card) + '增加一个目标？', function (card, player, target) {
 					const trigger = _status.event.getTrigger();
-					const card = trigger.card;
+					card = trigger.card;
 					return !trigger.targets.includes(target) && lib.filter.targetEnabled2(card, player, target) && lib.filter.targetInRange(card, player, target);
 				})
 				.set('ai', function (target) {

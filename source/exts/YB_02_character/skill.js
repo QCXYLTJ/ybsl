@@ -270,7 +270,7 @@ const skill = {
 			return true;
 		},
 		prompt(player) {
-			const player = _status.event.player;
+			player = _status.event.player;
 			let str = '是否将一张手牌当【鹿鸣千转】使用？';
 			if (!player.storage.yb017_luming_block == []) {
 				str += '<br>不能使用以下花色:';
@@ -310,7 +310,6 @@ const skill = {
 				silent: true,
 				filter(event, player) {
 					return event.skill == 'yb017_luming' /*&&Array.isArray(event.respondTo)*/;
-					game.log(Array.isArray(event.respondTo));
 				},
 				content() {
 					player.storage.yb017_luming_block.push(trigger.card.suit);
@@ -400,10 +399,6 @@ const skill = {
 		filterCard: true,
 		filterTarget(card, player, target) {
 			return target != player && target.countCards('he') > 0;
-		},
-		check(card) {
-			//主动技选牌ai,括号里参数是card
-			return 7 - get.value(card); //弃置价值小于4的牌
 		},
 		ai: {
 			threaten: 1.1, //嘲讽值
@@ -560,10 +555,11 @@ const skill = {
 			('step 13');
 			if (result.bool) {
 				game.log(result.targets[0], event.cards, event.cards.length);
-				if (Array.isArray(event.cards))
+				if (Array.isArray(event.cards)) {
 					for (const i of event.cards) {
 						result.targets[0].gain(i, 'gain2');
 					}
+				}
 			}
 		},
 		check(event, player) {
