@@ -22,10 +22,14 @@ const YBSL_update = function () {
 			// delete window.ybslb_update;
 			// var update = window.ybslb_update;
 			var update = ybslb_update;
-			if (!update) return false;
+			if (!update) {
+				return false;
+			}
 			lib.extensionPack['夜白神略'].version = update.version;
 			var gengxing = update[update.version];
-			if (!gengxing) return false;
+			if (!gengxing) {
+				return false;
+			}
 			if (lib.extensionPack['夜白神略'] && lib.extensionPack['夜白神略'].version != lib.config[cfg]) {
 				game.saveConfig(cfg, lib.extensionPack['夜白神略'].version);
 			} else {
@@ -105,7 +109,9 @@ const YBSL_update = function () {
 			var control = ui.create.control('确定', function () {
 				dialog.close();
 				control.close();
-				if (hidden) ui.auto.show();
+				if (hidden) {
+					ui.auto.show();
+				}
 				game.resume();
 			});
 			lib.init.onfree();

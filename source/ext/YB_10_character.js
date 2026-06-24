@@ -55,7 +55,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	};
 	typeimage(ybMagic, 'ybsl010');
 	for (var i in ybMagic.card) {
-		if (!ybMagic.card[i].image) ybMagic.card[i].image = 'ext:夜白神略/image/ybMagic/' + i + '.png';
+		if (!ybMagic.card[i].image) {
+			ybMagic.card[i].image = 'ext:夜白神略/image/ybMagic/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('ybMagic');
 	lib.translate['ybMagic_character_config'] = "<span style='color:#e1ff00'>符咒世界</span>";

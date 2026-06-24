@@ -57,7 +57,9 @@ const YBSL_ybtf = function () {
 					player2.style.transform = 'scale(0.5)';
 
 					setTimeout(function () {
-						if (!player2) return;
+						if (!player2) {
+							return;
+						}
 						game.linexy(
 							[
 								//线条
@@ -99,7 +101,9 @@ const YBSL_ybtf = function () {
 					}, 600); //决定从何时开始
 
 					setTimeout(function () {
-						if (!player2) return;
+						if (!player2) {
+							return;
+						}
 						player2.style.transition = 'all 0.5s'; //player2受伤动画
 						player2.style.transform = 'scale(0.7)';
 						player2.delete();

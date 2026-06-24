@@ -18,7 +18,9 @@ const YBSL_dialogx = function () {
 	//-------------云端弹窗公告(已放弃)
 	if (config.ybslb) {
 		for (var i in lib.characterPack['ybslb']) {
-			if (lib.character[i][4].indexOf('forbidai') < 0) lib.character[i][4].push('forbidai');
+			if (lib.character[i][4].indexOf('forbidai') < 0) {
+				lib.character[i][4].push('forbidai');
+			}
 		}
 	} //选项触发内容，原因见config
 };

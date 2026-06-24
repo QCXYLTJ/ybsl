@@ -108,7 +108,9 @@ const YBSL_trigger = function () {
 			popup: false,
 			forced: true,
 			filter: function (event, player) {
-				if (event.skill && event.skill == 'yb014_lvxin') event.trigger('YB_lvxindraw');
+				if (event.skill && event.skill == 'yb014_lvxin') {
+					event.trigger('YB_lvxindraw');
+				}
 				return false;
 			},
 			// content:function(){
@@ -431,9 +433,13 @@ const YBSL_trigger = function () {
 					YB_shenguiCharacter[i].img = `image/mode/boss/character/${i}.jpg`;
 					lib.character[i] = YB_shenguiCharacter[i];
 				}
-				if (!lib.characterPack) lib.characterPack = {};
+				if (!lib.characterPack) {
+					lib.characterPack = {};
+				}
 				lib.characterPack.YB_boss = YB_shenguiCharacter;
-				if (!lib.characterSort) lib.characterSort = {};
+				if (!lib.characterSort) {
+					lib.characterSort = {};
+				}
 				lib.characterSort.YB_boss = {
 					boss_xiaogui: ['boss_zhuyin', 'boss_chi', 'boss_mo', 'boss_wang', 'boss_liang'],
 					boss_dagui: ['boss_baiwuchang', 'boss_heiwuchang', 'boss_luocha', 'boss_yecha', 'boss_niutou', 'boss_mamian', 'boss_mengpo'],
@@ -457,7 +463,9 @@ const YBSL_trigger = function () {
 						var char = list[Math.floor(Math.random() * list.length)];
 						var skills = lib.character[char][3];
 						skills.filter((item) => !player.skills.includes(item));
-						if (skills.length) var skill = skills[Math.floor(Math.random() * skills.length)];
+						if (skills.length) {
+							var skill = skills[Math.floor(Math.random() * skills.length)];
+						}
 
 						function shuffleArray(array) {
 							for (let i = array.length - 1; i > 0; i--) {
@@ -477,7 +485,9 @@ const YBSL_trigger = function () {
 						var list_cifu = [];
 						list_cifu.push(get.translation(suit[0]) + '增加一点体力上限并回复一点体力');
 						list_cifu.push(get.translation(suit[1]) + '变为鬼势力');
-						if (skill) list_cifu.push(get.translation(suit[2]) + '获得技能' + get.translation(skill));
+						if (skill) {
+							list_cifu.push(get.translation(suit[2]) + '获得技能' + get.translation(skill));
+						}
 						list_cifu.push(get.translation(suit[3]) + '摸两张牌');
 						event.list_cifu = list_cifu;
 						event.skillx = skill;
@@ -543,7 +553,9 @@ const YBSL_trigger = function () {
 					},
 					forceDie: true,
 					filter(event, player, name) {
-						if (name == 'phaseBefore') return game.phaseNumber == 0;
+						if (name == 'phaseBefore') {
+							return game.phaseNumber == 0;
+						}
 						if (name == 'phaseBegin') {
 							return true;
 						}
@@ -557,8 +569,11 @@ const YBSL_trigger = function () {
 					async content(event, trigger, player) {
 						if (event.triggername == 'die') {
 							var str;
-							if (trigger.source) str = '你被' + get.translation(trigger.source) + '杀害';
-							else str = '你死于非命';
+							if (trigger.source) {
+								str = '你被' + get.translation(trigger.source) + '杀害';
+							} else {
+								str = '你死于非命';
+							}
 							var result = await player
 								.chooseBool(str + '，这时地府鬼神向你伸出了手，是否接受鬼神赐福？')
 								.set('ai', function () {
@@ -567,7 +582,9 @@ const YBSL_trigger = function () {
 								.forResult();
 							if (result.bool) {
 								game.log(player, '获得了', '#y鬼神赐福');
-								if (!lib.translate['commoner']) lib.translate['commoner'] = '民';
+								if (!lib.translate['commoner']) {
+									lib.translate['commoner'] = '民';
+								}
 								player.identity = 'commoner';
 								player.special_identity = 'identity_YB_canhun';
 								await player.setIdentity('identity_YB_canhun_bg');
@@ -576,12 +593,16 @@ const YBSL_trigger = function () {
 									await player.addSkill('YB_xiegui_chouhen');
 									player.ai.modAttitudeFrom = function (from, to) {
 										var player = from;
-										if (to == player.storage.identity_YB_canhun) return -20;
+										if (to == player.storage.identity_YB_canhun) {
+											return -20;
+										}
 										return get.attitude(from, to);
 									};
 									player.ai.modAttitudeTo = function (from, to, att) {
 										var player = to;
-										if (from == player.storage.identity_YB_canhun) return -20;
+										if (from == player.storage.identity_YB_canhun) {
+											return -20;
+										}
 										return get.attitude(from, to);
 									};
 								}
@@ -643,36 +664,59 @@ const YBSL_trigger = function () {
 								game.countPlayer2(function (current) {
 									switch (current.identity) {
 										case 'rZhu':
-											if (ye.length == 0 && game.bZhu.isDead()) winner.push(current);
-											if (current.isDead()) loser.push(current);
+											if (ye.length == 0 && game.bZhu.isDead()) {
+												winner.push(current);
+											}
+											if (current.isDead()) {
+												loser.push(current);
+											}
 											break;
 										case 'rZhong':
 										case 'bNei':
-											if (ye.length == 0 && game.bZhu.isDead()) winner.push(current);
-											if (game.rZhu.isDead()) loser.push(current);
+											if (ye.length == 0 && game.bZhu.isDead()) {
+												winner.push(current);
+											}
+											if (game.rZhu.isDead()) {
+												loser.push(current);
+											}
 											break;
 										case 'bZhu':
-											if (ye.length == 0 && game.rZhu.isDead()) winner.push(current);
-											if (current.isDead()) loser.push(current);
+											if (ye.length == 0 && game.rZhu.isDead()) {
+												winner.push(current);
+											}
+											if (current.isDead()) {
+												loser.push(current);
+											}
 											break;
 										case 'bZhong':
 										case 'rNei':
-											if (ye.length == 0 && game.rZhu.isDead()) winner.push(current);
-											if (game.bZhu.isDead()) loser.push(current);
+											if (ye.length == 0 && game.rZhu.isDead()) {
+												winner.push(current);
+											}
+											if (game.bZhu.isDead()) {
+												loser.push(current);
+											}
 											break;
 										default:
-											if (red.length + blue.length == 0) winner.push(current);
-											else if (game.rZhu.isDead() && game.bZhu.isDead()) loser.push(current);
+											if (red.length + blue.length == 0) {
+												winner.push(current);
+											} else if (game.rZhu.isDead() && game.bZhu.isDead()) {
+												loser.push(current);
+											}
 											break;
 									}
 								}, true);
 								var winner2 = winner.slice(0);
 								var loser2 = loser.slice(0);
 								for (var i = 0; i < winner.length; i++) {
-									if (winner[i].isDead()) winner.splice(i--, 1);
+									if (winner[i].isDead()) {
+										winner.splice(i--, 1);
+									}
 								}
 								for (var i = 0; i < loser.length; i++) {
-									if (loser[i].isDead()) loser.splice(i--, 1);
+									if (loser[i].isDead()) {
+										loser.splice(i--, 1);
+									}
 								}
 								if (winner.length > 0 || loser.length == game.players.length) {
 									game.broadcastAll(
@@ -688,8 +732,11 @@ const YBSL_trigger = function () {
 										game.over('游戏平局');
 									} else if (winner2.includes(me)) {
 										game.showIdentity();
-										if (loser2.includes(me)) game.over(false);
-										else game.over(true);
+										if (loser2.includes(me)) {
+											game.over(false);
+										} else {
+											game.over(true);
+										}
 									} else {
 										game.showIdentity();
 										game.over(false);
@@ -708,8 +755,11 @@ const YBSL_trigger = function () {
 											break;
 										case 'commoner':
 											if (me.storage.identity_YB_canhun) {
-												if (me.storage.identity_YB_canhun.isAlive()) game.over(false);
-												else game.over(true);
+												if (me.storage.identity_YB_canhun.isAlive()) {
+													game.over(false);
+												} else {
+													game.over(true);
+												}
 											}
 											game.over(true);
 											break;
@@ -727,8 +777,11 @@ const YBSL_trigger = function () {
 											break;
 										case 'commoner':
 											if (me.storage.identity_YB_canhun) {
-												if (me.storage.identity_YB_canhun.isAlive()) game.over(false);
-												else game.over(true);
+												if (me.storage.identity_YB_canhun.isAlive()) {
+													game.over(false);
+												} else {
+													game.over(true);
+												}
 											}
 											game.over(true);
 											break;
@@ -739,7 +792,9 @@ const YBSL_trigger = function () {
 								}
 								return;
 							}
-							if (game.zhu.isAlive() && get.population('fan') + get.population('nei') > 0) return;
+							if (game.zhu.isAlive() && get.population('fan') + get.population('nei') > 0) {
+								return;
+							}
 							if (game.zhong) {
 								game.zhong.identity = 'zhong';
 							}
@@ -764,8 +819,11 @@ const YBSL_trigger = function () {
 								}
 							} else if (me.identity == 'commoner') {
 								if (me.storage.identity_YB_canhun) {
-									if (me.storage.identity_YB_canhun.isAlive()) game.over(false);
-									else game.over(true);
+									if (me.storage.identity_YB_canhun.isAlive()) {
+										game.over(false);
+									} else {
+										game.over(true);
+									}
 								}
 								game.over(true);
 							}

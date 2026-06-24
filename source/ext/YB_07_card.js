@@ -46,7 +46,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 	// } //由于以此法加入的武将包武将图片是用源文件的，所以要用此法改变路径
 
 	for (var i in ybnew2.card) {
-		if (!ybnew2.card[i].image) ybnew2.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybnew2.card[i].image) {
+			ybnew2.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	} //以此法批量添加卡牌贴图
 
 	// lib.config.all.cards.push('ybnew2');

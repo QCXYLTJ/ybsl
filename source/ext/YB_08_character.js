@@ -59,7 +59,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	// }
 	typeimage(ybmjz, 'ybsl008');
 	for (var i in ybmjz.card) {
-		if (!ybmjz.card[i].image) ybmjz.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybmjz.card[i].image) {
+			ybmjz.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('ybmjz');
 	lib.translate['ybmjz_character_config'] = "<span style='color:#28e3ce'>名将传</span>";

@@ -44,7 +44,9 @@ const YBSL_special = function () {
 		// if(typeof objects=='')
 		objects.forEach((currentObj, index) => {
 			// if(!lib.skill[currentObj[0]])continue;
-			if (!lib.skill[currentObj[0]].audioname2) lib.skill[currentObj[0]].audioname2 = {};
+			if (!lib.skill[currentObj[0]].audioname2) {
+				lib.skill[currentObj[0]].audioname2 = {};
+			}
 			for (var i in currentObj[1]) {
 				lib.skill[currentObj[0]].audioname2[i] = currentObj[1][i];
 				if (!lib.skill[currentObj[1][i]]) {
@@ -75,18 +77,26 @@ const YBSL_special = function () {
 		//吴郡陆氏角色添加宗族
 		lib.arenaReady.push(function () {
 			//天妒
-			if (!lib.skill.tiandu.audioname2) lib.skill.tiandu.audioname2 = {};
+			if (!lib.skill.tiandu.audioname2) {
+				lib.skill.tiandu.audioname2 = {};
+			}
 			lib.skill.tiandu.audioname2.ybslclan_luyan = 'ybsl_lytiandu';
 			// lib.skill.tiandu.audioname2.ybsl_121tujing = 'yb121_tiandu';
 			//诈降
-			if (!lib.skill.zhaxiang.audioname2) lib.skill.zhaxiang.audioname2 = {};
+			if (!lib.skill.zhaxiang.audioname2) {
+				lib.skill.zhaxiang.audioname2 = {};
+			}
 			lib.skill.zhaxiang.audioname2.ybsl_yinfan = 'ybsl_zhaxiang';
 			//倾国
-			if (!lib.skill.reqingguo.audioname2) lib.skill.reqingguo.audioname2 = {};
+			if (!lib.skill.reqingguo.audioname2) {
+				lib.skill.reqingguo.audioname2 = {};
+			}
 			lib.skill.reqingguo.audioname2.ybsl_wangbi = 'ybsl_qingguo';
 			lib.skill.reqingguo.audioname2.ybnb_wangbi = 'ybsl_qingguo';
 			//失路
-			if (!lib.skill.olshilu.audioname2) lib.skill.olshilu.audioname2 = {};
+			if (!lib.skill.olshilu.audioname2) {
+				lib.skill.olshilu.audioname2 = {};
+			}
 			lib.skill.olshilu.audioname2.ybsl_wangbi = 'ybsl_shilu';
 			lib.skill.olshilu.audioname2.ybnb_wangbi = 'ybsl_shilu';
 			// var listx=clan_list;
@@ -115,7 +125,9 @@ const YBSL_special = function () {
 			ai: {
 				effect: {
 					target: function (card, player, target) {
-						if (get.type(card) == 'delay' && target.hasJudge('yanxiao_card')) return [0, 0, 0, 0.1];
+						if (get.type(card) == 'delay' && target.hasJudge('yanxiao_card')) {
+							return [0, 0, 0, 0.1];
+						}
 					},
 				},
 			},
@@ -270,7 +282,9 @@ const YBSL_special = function () {
 			filter: function (event, player) {
 				var cs = event.cards;
 				for (var i = 0; i < cs.length; i++) {
-					if (cs[i].storage._yb054_caijin && get.position(cs[i], true) == 'd') return true;
+					if (cs[i].storage._yb054_caijin && get.position(cs[i], true) == 'd') {
+						return true;
+					}
 				}
 				return false;
 			},
@@ -298,7 +312,9 @@ const YBSL_special = function () {
 							// if (get.cardtag(card, 'gifts')) var tag = ['gifts'];
 							var tag = get.YB_tag(card);
 							cards.YB_init([card.suit, card.number + 1, card.name, card.nature, tag]);
-							if (card.cardtag) cards.cardtag = card.cardtag;
+							if (card.cardtag) {
+								cards.cardtag = card.cardtag;
+							}
 							// j.number++;
 							game.countPlayer(function (current) {
 								// if(current.getEquip(j)) {
@@ -347,11 +363,15 @@ const YBSL_special = function () {
 			mod: {
 				cardname: function (card, player) {
 					var map = _status.kagari_ybzongsi;
-					if (map && map[card.cardid] && get.itemtype(card) == 'card') return map[card.cardid];
+					if (map && map[card.cardid] && get.itemtype(card) == 'card') {
+						return map[card.cardid];
+					}
 				},
 				cardnature: function (card, player) {
 					var map = _status.kagari_ybzongsi_nature;
-					if (map && map[card.cardid] && get.itemtype(card) == 'card') return map[card.cardid];
+					if (map && map[card.cardid] && get.itemtype(card) == 'card') {
+						return map[card.cardid];
+					}
 				},
 			},
 		};
@@ -368,10 +388,14 @@ const YBSL_special = function () {
 			character: true,
 			filter: function (event, player) {
 				var cards = event.cards;
-				if (cards.length != 1) return false;
+				if (cards.length != 1) {
+					return false;
+				}
 				// for(var i of cards){
 				// if(get.name(cards[0]).slice(-1)=='ybsl_107xiaohu')return true;
-				if (get.name(cards[0]) == 'ybsl_107xiaohu0') return true;
+				if (get.name(cards[0]) == 'ybsl_107xiaohu0') {
+					return true;
+				}
 				// }
 				return false;
 			},
@@ -403,7 +427,9 @@ const YBSL_special = function () {
 			filter: function (event, player) {
 				var cs = event.cards;
 				for (var i = 0; i < cs.length; i++) {
-					if (get.name(cs[i]) == 'ybsl_zhezhiqiang' && get.position(cs[i], true) == 'd') return true;
+					if (get.name(cs[i]) == 'ybsl_zhezhiqiang' && get.position(cs[i], true) == 'd') {
+						return true;
+					}
 				}
 				return false;
 			},
@@ -471,14 +497,23 @@ const YBSL_special = function () {
 				var str = '';
 				for (var i = 0; i < list.length; i++) {
 					if (typeof list[i][1] === 'object') {
-						if (i >= 1) str += '<br>';
-						if (!player) str += list[i][0];
-						else if (player && list[i][1].YB_filterOk(player)) str += `<span class=thundertext>${list[i][0]}</span>`;
-						else str += list[i][0];
+						if (i >= 1) {
+							str += '<br>';
+						}
+						if (!player) {
+							str += list[i][0];
+						} else if (player && list[i][1].YB_filterOk(player)) {
+							str += `<span class=thundertext>${list[i][0]}</span>`;
+						} else {
+							str += list[i][0];
+						}
 					}
 				}
-				if (typeof list[list.length - 1] !== 'string') list.push(str);
-				else list[list.length - 1] = str;
+				if (typeof list[list.length - 1] !== 'string') {
+					list.push(str);
+				} else {
+					list[list.length - 1] = str;
+				}
 				return list;
 			};
 			if (Object.keys(lib.characterLightextParent)) {
@@ -530,8 +565,12 @@ const YBSL_special = function () {
 		lib.element.player.YB_maxBaoshi = function () {
 			var num = 2;
 			var player = this;
-			if (game.checkMod(event, player, 0, 'YB_maxBaoshi', player)) num = game.checkMod(event, player, 0, 'YB_maxBaoshi', player);
-			if (game.checkMod(event, player, 0, 'YB_maxBaoshiAdd', player)) num += game.checkMod(event, player, 0, 'YB_maxBaoshiAdd', player);
+			if (game.checkMod(event, player, 0, 'YB_maxBaoshi', player)) {
+				num = game.checkMod(event, player, 0, 'YB_maxBaoshi', player);
+			}
+			if (game.checkMod(event, player, 0, 'YB_maxBaoshiAdd', player)) {
+				num += game.checkMod(event, player, 0, 'YB_maxBaoshiAdd', player);
+			}
 			return num;
 		};
 		/**
@@ -624,21 +663,28 @@ const YBSL_special = function () {
 		//名神曹丕
 		lib.dynamicTranslate.chuyuan = function (player) {
 			var str = '一名角色受到伤害后，若你武将牌上「储」的数量小于体力上限，你可以令其摸一张牌。然后其将一张手牌置于你的武将牌上，称为「储」。';
-			if (player.storage.ybmjz_chuyuan == true) str += '准备阶段，若你的“储”不小于你的体力上限，你获得所有“储”，然后增加一点体力上限。';
+			if (player.storage.ybmjz_chuyuan == true) {
+				str += '准备阶段，若你的“储”不小于你的体力上限，你获得所有“储”，然后增加一点体力上限。';
+			}
 			return str;
 		};
 		lib.dynamicTranslate.ybmjz_chuyuan = function (player) {
 			var str = '一名角色受到伤害后，若你武将牌上「储」的数量小于体力上限，你可以令其摸一张牌。然后其将一张手牌置于你的武将牌上，称为「储」。';
-			if (player.storage.ybmjz_chuyuan == true) str += '准备阶段，若你的“储”不小于你的体力上限，你获得所有“储”，然后增加一点体力上限。';
+			if (player.storage.ybmjz_chuyuan == true) {
+				str += '准备阶段，若你的“储”不小于你的体力上限，你获得所有“储”，然后增加一点体力上限。';
+			}
 			return str;
 		};
 		lib.arenaReady.push(function () {
-			if (!lib.skill.chuyuan.group) lib.skill.chuyuan.group = [];
+			if (!lib.skill.chuyuan.group) {
+				lib.skill.chuyuan.group = [];
+			}
 			lib.skill.chuyuan.group.push('ybmjz_chuyuan_wenji');
-			if (!lib.skill.rejianxiong_shen_caopi)
+			if (!lib.skill.rejianxiong_shen_caopi) {
 				lib.skill.rejianxiong_shen_caopi = {
 					audio: 2,
 				};
+			}
 			game.YB_addAudio(
 				// ['new_rejianxiong',{ybmjz_shen_caopi:'rejianxiong_shen_caopi'}],
 				// ['rerende',{ybmjz_shen_caopi:'rerende_shen_caopi'}],
@@ -679,8 +725,12 @@ const YBSL_special = function () {
 		lib.element.player.YB_yzdel_maxMana = function () {
 			var num = 15;
 			var player = this;
-			if (game.checkMod(event, player, 0, 'YB_yzdel_maxMana', player)) num = game.checkMod(event, player, 0, 'YB_yzdel_maxMana', player);
-			if (game.checkMod(event, player, 0, 'YB_yzdel_maxManaAdd', player)) num += game.checkMod(event, player, 0, 'YB_yzdel_maxManaAdd', player);
+			if (game.checkMod(event, player, 0, 'YB_yzdel_maxMana', player)) {
+				num = game.checkMod(event, player, 0, 'YB_yzdel_maxMana', player);
+			}
+			if (game.checkMod(event, player, 0, 'YB_yzdel_maxManaAdd', player)) {
+				num += game.checkMod(event, player, 0, 'YB_yzdel_maxManaAdd', player);
+			}
 			return num;
 		};
 		lib.element.player.YB_yzdel_noneMana = function () {
@@ -689,15 +739,23 @@ const YBSL_special = function () {
 		};
 		lib.element.player.YB_gainMana = function (num) {
 			const player = this;
-			if (num == 0) return;
-			if (num > player.YB_yzdel_noneMana()) return player.YB_gainMana(player.YB_yzdel_noneMana());
+			if (num == 0) {
+				return;
+			}
+			if (num > player.YB_yzdel_noneMana()) {
+				return player.YB_gainMana(player.YB_yzdel_noneMana());
+			}
 			player.addMark('_yzdel_mana', num);
 			player.YB_updateMana();
 		};
 		lib.element.player.YB_loseMana = function (num) {
 			const player = this;
-			if (num == 0) return;
-			if (num > player.countMark('_yzdel_mana')) return player.YB_loseMana(player.countMark('_yzdel_mana'));
+			if (num == 0) {
+				return;
+			}
+			if (num > player.countMark('_yzdel_mana')) {
+				return player.YB_loseMana(player.countMark('_yzdel_mana'));
+			}
 			player.removeMark('_yzdel_mana', num);
 			player.YB_updateMana();
 		};
@@ -728,17 +786,33 @@ const YBSL_special = function () {
 	{
 		//久岛鸥
 		get.kamome_ybyangfan = function (card) {
-			if (card.hasGaintag('kamome_ybyangfan_ying')) return 'kamome_ybyangfan_ying';
-			if (card.hasGaintag('kamome_ybyangfan_yan')) return 'kamome_ybyangfan_yan';
-			if (card.hasGaintag('kamome_ybyangfan_sun')) return 'kamome_ybyangfan_sun';
-			if (card.hasGaintag('kamome_ybyangfan_que')) return 'kamome_ybyangfan_que';
+			if (card.hasGaintag('kamome_ybyangfan_ying')) {
+				return 'kamome_ybyangfan_ying';
+			}
+			if (card.hasGaintag('kamome_ybyangfan_yan')) {
+				return 'kamome_ybyangfan_yan';
+			}
+			if (card.hasGaintag('kamome_ybyangfan_sun')) {
+				return 'kamome_ybyangfan_sun';
+			}
+			if (card.hasGaintag('kamome_ybyangfan_que')) {
+				return 'kamome_ybyangfan_que';
+			}
 			return false;
 		};
 		get.kamome_ybyangfan_map = function (card) {
-			if (card.hasGaintag('kamome_ybyangfan_ying')) return 'kamome_ybyangfan_ying';
-			if (card.hasGaintag('kamome_ybyangfan_yan')) return 'kamome_ybyangfan_yan';
-			if (card.hasGaintag('kamome_ybyangfan_sun')) return 'kamome_ybyangfan_sun';
-			if (card.hasGaintag('kamome_ybyangfan_que')) return 'kamome_ybyangfan_que';
+			if (card.hasGaintag('kamome_ybyangfan_ying')) {
+				return 'kamome_ybyangfan_ying';
+			}
+			if (card.hasGaintag('kamome_ybyangfan_yan')) {
+				return 'kamome_ybyangfan_yan';
+			}
+			if (card.hasGaintag('kamome_ybyangfan_sun')) {
+				return 'kamome_ybyangfan_sun';
+			}
+			if (card.hasGaintag('kamome_ybyangfan_que')) {
+				return 'kamome_ybyangfan_que';
+			}
 			return false;
 		};
 		lib.arenaReady.push(function () {
@@ -862,7 +936,9 @@ const YBSL_special = function () {
 			mod: {
 				cardname: function (card, player) {
 					var map = _status.YB_cardname;
-					if (map && map[card.cardid] && get.itemtype(card) == 'card') return map[card.cardid];
+					if (map && map[card.cardid] && get.itemtype(card) == 'card') {
+						return map[card.cardid];
+					}
 				},
 			},
 		};
@@ -898,9 +974,13 @@ const YBSL_special = function () {
 			popup: false,
 			lastDo: true,
 			filter: function (event, player) {
-				if (event.parent._yingbian_doubleBlow == player && event.targets.length == event.parent.triggeredTargets4.length) return true;
-				else if (event.parent._yingbian_Cunzhi == player && event.targets.length == event.parent.triggeredTargets4.length) return true;
-				else if (event.parent._yingbian_luLi == player && event.targets.length == event.parent.triggeredTargets4.length) return true;
+				if (event.parent._yingbian_doubleBlow == player && event.targets.length == event.parent.triggeredTargets4.length) {
+					return true;
+				} else if (event.parent._yingbian_Cunzhi == player && event.targets.length == event.parent.triggeredTargets4.length) {
+					return true;
+				} else if (event.parent._yingbian_luLi == player && event.targets.length == event.parent.triggeredTargets4.length) {
+					return true;
+				}
 				return false;
 			},
 			content: function () {
@@ -1034,7 +1114,9 @@ const YBSL_special = function () {
 							card.cards[0].storage.zhuanhuanNum = 0;
 						}
 						var num = card.cards[0].storage.zhuanhuanNum;
-						if (event.card.storage.zhuanhuanNum == num) return true;
+						if (event.card.storage.zhuanhuanNum == num) {
+							return true;
+						}
 						// if(event.card.isCard&&card.cards[0].storage.zhuanhuanList[num]&&card.cards[0].storage.zhuanhuanList[num]!=null&&card.cards[0].storage.zhuanhuanList[num]==card.name)return true;
 					}
 				}
@@ -1230,8 +1312,9 @@ const YBSL_special = function () {
 								player,
 								evt,
 							)
-						)
+						) {
 							list.push([get.translation(get.type(i)), '', i]);
+						}
 					}
 					return ui.create.dialog('转换卡', [list, 'vcard'], 'hidden');
 				},
@@ -1269,7 +1352,9 @@ const YBSL_special = function () {
 					return false;
 				},
 				check(button) {
-					if (_status.event.getParent().type != 'phase') return 1;
+					if (_status.event.getParent().type != 'phase') {
+						return 1;
+					}
 					var player = _status.event.player;
 					return player.getUseValue({
 						name: button.link[2],
@@ -1293,7 +1378,9 @@ const YBSL_special = function () {
 									card.storage.zhuanhuanNum = 0;
 								}
 								var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-								if (lib.card[name2]?.zhuanhuanList && card.storage?.zhuanhuanList[num] == null) return true;
+								if (lib.card[name2]?.zhuanhuanList && card.storage?.zhuanhuanList[num] == null) {
+									return true;
+								}
 							}
 						},
 						precontent: function () {
@@ -1390,12 +1477,18 @@ const YBSL_special = function () {
 			usable: 1,
 			filterCard: true,
 			check: function (card) {
-				if (card.name == 'du') return 20;
+				if (card.name == 'du') {
+					return 20;
+				}
 				var player = _status.event.player;
 				var nh = player.countCards('h');
 				if (!player.needsToDiscard()) {
-					if (nh < 3) return 0;
-					if (nh == 3) return 5 - get.value(card);
+					if (nh < 3) {
+						return 0;
+					}
+					if (nh == 3) {
+						return 5 - get.value(card);
+					}
 					return 7 - get.value(card);
 				}
 				return 10 - get.useful(card);
@@ -1405,7 +1498,9 @@ const YBSL_special = function () {
 			delay: false,
 			selectCard: function () {
 				var player = _status.event.player;
-				if (!player.hasSkillTag('sixartSkill')) return false;
+				if (!player.hasSkillTag('sixartSkill')) {
+					return false;
+				}
 				var max = 6;
 				var num =
 					max -
@@ -1435,7 +1530,9 @@ const YBSL_special = function () {
 				}
 			},
 			filter: function (event, player) {
-				if (!player.hasSkillTag('sixartSkill')) return false;
+				if (!player.hasSkillTag('sixartSkill')) {
+					return false;
+				}
 				var max = 6;
 				return (
 					player.countCards('h') > 0 &&
@@ -1454,7 +1551,9 @@ const YBSL_special = function () {
 			ai: {
 				order: function () {
 					var player = _status.event.player;
-					if (player.hasSkillTag('sixartSkill')) return 8;
+					if (player.hasSkillTag('sixartSkill')) {
+						return 8;
+					}
 					return 2;
 				},
 				expose: 0.1,

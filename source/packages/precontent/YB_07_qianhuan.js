@@ -47,7 +47,9 @@ const YBSL_qianhuan = function () {
 					// for(var i=0;i<qianzhui.length;i++){
 					// 	if(name.indexOf(qianzhui[i])==0) return true;
 					// }
-					if (lib.characterPack[i][name]) return true;
+					if (lib.characterPack[i][name]) {
+						return true;
+					}
 					//判断此ID的武将是否属于此皮肤包。推荐用前缀判断。
 					//在这里不判断直接返回true是很没有武德的行为，可能覆盖别人的扩展配置。
 				},

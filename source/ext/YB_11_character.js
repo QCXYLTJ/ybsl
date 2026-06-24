@@ -59,7 +59,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	};
 	typeimage(yhky, 'ybsl011');
 	for (var i in yhky.card) {
-		if (!yhky.card[i].image) yhky.card[i].image = 'ext:夜白神略/image/yhky/' + i + '.png';
+		if (!yhky.card[i].image) {
+			yhky.card[i].image = 'ext:夜白神略/image/yhky/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('yhky');
 	lib.translate['yhky_character_config'] = "<span style='color:#e1ff00'>永恒刻印</span>";

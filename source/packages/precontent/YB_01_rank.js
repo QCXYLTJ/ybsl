@@ -56,18 +56,26 @@ const YBSL_rank = function () {
 					for (var infox of infoy) {
 						if (infox.startsWith('rankAdd:')) {
 							var rarity = infox.slice(8);
-							if (lib.rank.rarity[rarity]) lib.rank.rarity[rarity].add(name);
+							if (lib.rank.rarity[rarity]) {
+								lib.rank.rarity[rarity].add(name);
+							}
 						}
 						if (infox.startsWith('rankS:')) {
 							var infoz = infox.slice(6);
-							if (lib.rank[infoz]) lib.rank[infoz].add(name);
+							if (lib.rank[infoz]) {
+								lib.rank[infoz].add(name);
+							}
 						}
 					}
 					if (lib.characterPack[pack][name]['rankAdd']) {
 						var rarity = lib.characterPack[pack][name]['rankAdd'];
-						if (lib.rank.rarity[rarity]) lib.rank.rarity[rarity].add(name);
+						if (lib.rank.rarity[rarity]) {
+							lib.rank.rarity[rarity].add(name);
+						}
 						var rarityS = lib.characterPack[pack][name]['rankS'];
-						if (lib.rank[rarityS]) lib.rank[rarityS].add(name);
+						if (lib.rank[rarityS]) {
+							lib.rank[rarityS].add(name);
+						}
 					}
 				}
 			}
@@ -90,16 +98,24 @@ const YBSL_rank = function () {
 							var char = infox.slice(7);
 							// get.YB_linkTo(name,char)
 							var char2 = get.sourceCharacter(char);
-							if (!lib.characterReplace[char2]) lib.characterReplace[char2] = [char2];
-							if (!lib.characterReplace[char2].includes(name)) lib.characterReplace[char2].push(name);
+							if (!lib.characterReplace[char2]) {
+								lib.characterReplace[char2] = [char2];
+							}
+							if (!lib.characterReplace[char2].includes(name)) {
+								lib.characterReplace[char2].push(name);
+							}
 						}
 					}
 					if (lib.characterPack[pack][name]['linkTo']) {
 						var linkTo = lib.characterPack[pack][name]['linkTo'];
 						// get.YB_linkTo(name,linkTo)
 						var char2 = get.sourceCharacter(linkTo);
-						if (!lib.characterReplace[char2]) lib.characterReplace[char2] = [char2];
-						if (!lib.characterReplace[char2].includes(name)) lib.characterReplace[char2].push(name);
+						if (!lib.characterReplace[char2]) {
+							lib.characterReplace[char2] = [char2];
+						}
+						if (!lib.characterReplace[char2].includes(name)) {
+							lib.characterReplace[char2].push(name);
+						}
 					}
 				}
 			}

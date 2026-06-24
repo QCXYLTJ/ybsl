@@ -55,7 +55,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	};
 	typeimage(ybxh, 'ybsl003');
 	for (var i in ybxh.card) {
-		if (!ybxh.card[i].image) ybxh.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybxh.card[i].image) {
+			ybxh.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('ybxh');
 	lib.translate['ybxh_character_config'] = "<span style='color:#28e3ce'>校花</span>";

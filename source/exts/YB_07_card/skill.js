@@ -9,7 +9,9 @@ const skill = {
 		trigger: { player: 'useCard1' },
 		//priority:7,
 		filter(event, player) {
-			if (event.card.name == 'sha' && !game.hasNature(event.card, 'YB_wind')) return true;
+			if (event.card.name == 'sha' && !game.hasNature(event.card, 'YB_wind')) {
+				return true;
+			}
 		},
 		audio: true,
 		check(event, player) {
@@ -76,16 +78,21 @@ const skill = {
 		},
 		forced: true,
 		filter(event, player) {
-			if (player.hasSkillTag('unequip2')) return false;
+			if (player.hasSkillTag('unequip2')) {
+				return false;
+			}
 			if (
 				event.player.hasSkillTag('unequip', false, {
 					name: event.card ? event.card.name : null,
 					target: player,
 					card: event.card,
 				})
-			)
+			) {
 				return false;
-			if (event.card.name == 'sha' && !game.hasNature(event.card)) return true;
+			}
+			if (event.card.name == 'sha' && !game.hasNature(event.card)) {
+				return true;
+			}
 			return false;
 		},
 		content() {
@@ -94,7 +101,9 @@ const skill = {
 		ai: {
 			effect: {
 				target(card, player, target, current) {
-					if (target.hasSkillTag('unequip2')) return;
+					if (target.hasSkillTag('unequip2')) {
+						return;
+					}
 					if (
 						player.hasSkillTag('unequip', false, {
 							name: card ? card.name : null,
@@ -106,10 +115,13 @@ const skill = {
 							target: target,
 							card: card,
 						})
-					)
+					) {
 						return;
+					}
 					if (card.name == 'sha') {
-						if (!game.hasNature(card)) return 'zeroplayertarget';
+						if (!game.hasNature(card)) {
+							return 'zeroplayertarget';
+						}
 					}
 				},
 			},
@@ -119,8 +131,12 @@ const skill = {
 		equipSkill: true,
 		trigger: { player: 'damageBegin3' },
 		filter(event, player) {
-			if (!event.hasNature('YB_wind') && !event.windLinked2) return false;
-			if (player.hasSkillTag('unequip2')) return false;
+			if (!event.hasNature('YB_wind') && !event.windLinked2) {
+				return false;
+			}
+			if (player.hasSkillTag('unequip2')) {
+				return false;
+			}
 			if (
 				event.source &&
 				event.source.hasSkillTag('unequip', false, {
@@ -128,8 +144,9 @@ const skill = {
 					target: player,
 					card: event.card,
 				})
-			)
+			) {
 				return false;
+			}
 			return true;
 		},
 		audio: true,
@@ -141,9 +158,13 @@ const skill = {
 			effect: {
 				target(card, player, target, current) {
 					if (card.name == 'sha') {
-						if (game.hasNature(card, 'YB_wind')) return 0;
+						if (game.hasNature(card, 'YB_wind')) {
+							return 0;
+						}
 					}
-					if (get.tag(card, 'YB_windDamage') && current < 0) return 0;
+					if (get.tag(card, 'YB_windDamage') && current < 0) {
+						return 0;
+					}
 				},
 			},
 		},
@@ -153,17 +174,24 @@ const skill = {
 		forced: true,
 		audio: true,
 		filter(event, player) {
-			if (event.targets.length < 2) return false;
-			if (!get.tag(event.card, 'damage') > 0.5) return false;
-			if (player.hasSkillTag('unequip2')) return false;
+			if (event.targets.length < 2) {
+				return false;
+			}
+			if (!get.tag(event.card, 'damage') > 0.5) {
+				return false;
+			}
+			if (player.hasSkillTag('unequip2')) {
+				return false;
+			}
 			if (
 				event.player.hasSkillTag('unequip', false, {
 					name: event.card ? event.card.name : null,
 					target: player,
 					card: event.card,
 				})
-			)
+			) {
 				return false;
+			}
 			return true;
 		},
 		content() {
@@ -175,8 +203,12 @@ const skill = {
 		equipSkill: true,
 		trigger: { player: 'damageBegin3' },
 		filter(event, player) {
-			if (!event.hasNature('YB_wind') && !event.windLinked2) return false;
-			if (player.hasSkillTag('unequip2')) return false;
+			if (!event.hasNature('YB_wind') && !event.windLinked2) {
+				return false;
+			}
+			if (player.hasSkillTag('unequip2')) {
+				return false;
+			}
 			if (
 				event.source &&
 				event.source.hasSkillTag('unequip', false, {
@@ -184,8 +216,9 @@ const skill = {
 					target: player,
 					card: event.card,
 				})
-			)
+			) {
 				return false;
+			}
 			return true;
 		},
 		audio: true,
@@ -197,9 +230,13 @@ const skill = {
 			effect: {
 				target(card, player, target, current) {
 					if (card.name == 'sha') {
-						if (game.hasNature(card, 'YB_wind')) return 0;
+						if (game.hasNature(card, 'YB_wind')) {
+							return 0;
+						}
 					}
-					if (get.tag(card, 'YB_windDamage') && current < 0) return 0;
+					if (get.tag(card, 'YB_windDamage') && current < 0) {
+						return 0;
+					}
 				},
 			},
 		},
@@ -212,9 +249,13 @@ const skill = {
 		// forced:true,
 		audio: 'ext:夜白神略/audio/card:true',
 		filter: (event, player, _name) => {
-			if (!['trick'].includes(get.type(event.card))) return false;
+			if (!['trick'].includes(get.type(event.card))) {
+				return false;
+			}
 			var info = get.info(event.card);
-			if (info.allowMultiple == false) return false;
+			if (info.allowMultiple == false) {
+				return false;
+			}
 			if (event.targets && !info.multitarget) {
 				if (
 					game.hasPlayer(function (current) {
@@ -251,7 +292,9 @@ const skill = {
 		ai: {
 			effect: {
 				player: function (card, player, target) {
-					if (get.type(card) == 'trick') return 2;
+					if (get.type(card) == 'trick') {
+						return 2;
+					}
 					return 1;
 				},
 				// player:function(card,player,target){
@@ -283,7 +326,9 @@ const skill = {
 		ai: {
 			effect: {
 				player(card, player, target) {
-					if (typeof card !== 'object' || !target || (get.name(card) !== 'sha' && (get.type(card) !== 'trick' || (get.color(card) !== 'black' && !get.tag(card, 'damage'))))) return;
+					if (typeof card !== 'object' || !target || (get.name(card) !== 'sha' && (get.type(card) !== 'trick' || (get.color(card) !== 'black' && !get.tag(card, 'damage'))))) {
+						return;
+					}
 					if (
 						!target.hasSkill('ybsl_jinyinrukai_1') ||
 						target.hasSkillTag('unequip2') ||
@@ -297,38 +342,59 @@ const skill = {
 							target: target,
 							card: card,
 						})
-					)
+					) {
 						return;
+					}
 					let targets = [],
 						evt = _status.event.getParent('useCard');
 					targets.addArray(ui.selected.targets);
-					if (evt && evt.card == card) targets.addArray(evt.targets);
+					if (evt && evt.card == card) {
+						targets.addArray(evt.targets);
+					}
 					if (targets.length) {
-						if (targets.length > 1 || !targets.includes(target)) return 'zeroplayertarget';
+						if (targets.length > 1 || !targets.includes(target)) {
+							return 'zeroplayertarget';
+						}
 						return;
 					}
 					let info = get.info(card);
-					if (!info || info.notarget || !info.filterTarget) return;
+					if (!info || info.notarget || !info.filterTarget) {
+						return;
+					}
 					let range,
 						select = get.copy(info.selectTarget),
 						filter;
-					if (select === undefined) range = [1, 1];
-					else if (typeof select === 'number') range = [select, select];
-					else if (get.itemtype(select) === 'select') range = select;
-					else if (typeof select === 'function') range = select(card, player);
-					if (info.singleCard) range = [1, 1];
+					if (select === undefined) {
+						range = [1, 1];
+					} else if (typeof select === 'number') {
+						range = [select, select];
+					} else if (get.itemtype(select) === 'select') {
+						range = select;
+					} else if (typeof select === 'function') {
+						range = select(card, player);
+					}
+					if (info.singleCard) {
+						range = [1, 1];
+					}
 					game.checkMod(card, player, range, 'selectTarget', player);
-					if (range[1] < -1) range = [1, 1];
-					else if (range[0] < 0) {
-						if (info.filterTarget === true) filter = game.players.length;
-						else
+					if (range[1] < -1) {
+						range = [1, 1];
+					} else if (range[0] < 0) {
+						if (info.filterTarget === true) {
+							filter = game.players.length;
+						} else {
 							filter = game.countPlayer((current) => {
 								return info.filterTarget(card, player, current);
 							});
+						}
 						range = [filter, filter];
 					}
-					if (!range) return;
-					if (range[0] > 1 && range[1] > 1) return 'zeroplayertarget';
+					if (!range) {
+						return;
+					}
+					if (range[0] > 1 && range[1] > 1) {
+						return 'zeroplayertarget';
+					}
 					return [1, 0, 0.7, 0];
 				},
 			},

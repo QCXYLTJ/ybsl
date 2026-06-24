@@ -15,8 +15,12 @@ export async function cyyydsgs() {
 			 * @returns 获取技能的等级
 			 */
 			get.YB_skill_lv = function (skill, player) {
-				if (!lib.skill[skill].cyyydsgs) return 0;
-				if (!player.YB_skill_lv || !player.YB_skill_lv[skill]) return 1;
+				if (!lib.skill[skill].cyyydsgs) {
+					return 0;
+				}
+				if (!player.YB_skill_lv || !player.YB_skill_lv[skill]) {
+					return 1;
+				}
 				return player.YB_skill_lv[skill] - 0;
 			};
 			// get.YB_source_character = function(target){
@@ -55,19 +59,25 @@ export async function cyyydsgs() {
 			 * @returns 增加标记
 			 */
 			lib.element.player.YB_addMark = function (mark, num, type) {
-				if (!num) var num = 1;
+				if (!num) {
+					var num = 1;
+				}
 				var next = game.createEvent('YB_addMark', false);
 				next.player = this;
 				next.mark = mark;
 				next.number = num;
-				if (!type) var type = null;
+				if (!type) {
+					var type = null;
+				}
 				next.YB_type = type;
 				next.setContent('YB_addMark');
 				// next.trigger('YB_addMark_'+mark)
 				return next;
 			};
 			lib.element.content.YB_addMark = function () {
-				if (num == 0) return;
+				if (num == 0) {
+					return;
+				}
 				if (!player.hasSkill(event.mark)) {
 					player.addSkill(event.mark);
 				}
@@ -83,19 +93,25 @@ export async function cyyydsgs() {
 			 * @returns 失去标记
 			 */
 			lib.element.player.YB_removeMark = function (mark, num, type) {
-				if (!num) var num = 1;
+				if (!num) {
+					var num = 1;
+				}
 				var next = game.createEvent('YB_removeMark', false);
 				next.player = this;
 				next.mark = mark;
 				next.number = num;
-				if (!type) var type = null;
+				if (!type) {
+					var type = null;
+				}
 				next.YB_type = type;
 				next.setContent('YB_removeMark');
 				// next.trigger('YB_removeMark_'+mark)
 				return next;
 			};
 			lib.element.content.YB_removeMark = function () {
-				if (num == 0) return;
+				if (num == 0) {
+					return;
+				}
 				player.removeMark(event.mark, event.number);
 				event.trigger('YB_removeMark_' + event.mark);
 				// next;
@@ -134,7 +150,9 @@ export async function cyyydsgs() {
 				ai: {
 					result: {
 						target: function (player, target) {
-							if (!target.countCards('e')) return -3;
+							if (!target.countCards('e')) {
+								return -3;
+							}
 							return -1.5;
 						},
 					},
@@ -162,10 +180,14 @@ export async function cyyydsgs() {
 				silent: true,
 				content() {
 					console.log(trigger.addSkill);
-					if (!player.YB_skill_lv) player.YB_skill_lv = {};
+					if (!player.YB_skill_lv) {
+						player.YB_skill_lv = {};
+					}
 					trigger.addSkill.some(function (skill) {
 						if (lib.skill[skill].cyyydsgs) {
-							if (!player.YB_skill_lv[skill]) player.YB_skill_lv[skill] = 1;
+							if (!player.YB_skill_lv[skill]) {
+								player.YB_skill_lv[skill] = 1;
+							}
 						}
 					});
 				},
@@ -218,7 +240,9 @@ export async function cyyydsgs() {
 					cyyydsgs: true,
 					audio: 'ext:夜白神略/audio/character:1',
 					usable(skill, player) {
-						if (player.YB_skill_lv[skill] < 5) return 1;
+						if (player.YB_skill_lv[skill] < 5) {
+							return 1;
+						}
 						return 2;
 					},
 					enable: 'phaseUse',
@@ -229,16 +253,23 @@ export async function cyyydsgs() {
 					selectCard() {
 						var player = _status.event.player;
 						var num = get.YB_skill_lv('cyyydsgs_leishan', player);
-						if (num < 2) return 1;
-						else if (num < 4) return [1, 2];
-						else return [1, 3];
+						if (num < 2) {
+							return 1;
+						} else if (num < 4) {
+							return [1, 2];
+						} else {
+							return [1, 3];
+						}
 					},
 					filterCard: true,
 					selectTarget() {
 						var player = _status.event.player;
 						var num = get.YB_skill_lv('cyyydsgs_leishan', player);
-						if (num < 3) return ui.selected.cards.length;
-						else return [1, ui.selected.cards.length];
+						if (num < 3) {
+							return ui.selected.cards.length;
+						} else {
+							return [1, ui.selected.cards.length];
+						}
 					},
 					filterTarget(card, player, target) {
 						return target != player;
@@ -259,7 +290,9 @@ export async function cyyydsgs() {
 							player: 1,
 							target: function (player, target) {
 								var num = ui.selected.cards.length;
-								if (num == ui.selected.targets.length) return -2;
+								if (num == ui.selected.targets.length) {
+									return -2;
+								}
 								return -num * 2;
 							},
 						},
@@ -274,17 +307,26 @@ export async function cyyydsgs() {
 					},
 					filter(event, player, name) {
 						var num = get.YB_skill_lv('cyyydsgs_jilei', player);
-						if (!event.hasNature('thunder')) return false;
-						if (name == 'damageBegin3') return num < 5;
-						else if (num < 3) return player.isDamaged();
+						if (!event.hasNature('thunder')) {
+							return false;
+						}
+						if (name == 'damageBegin3') {
+							return num < 5;
+						} else if (num < 3) {
+							return player.isDamaged();
+						}
 						return true;
 					},
 					getIndex(event, player, name) {
-						if (name == 'damageBegin3') return 1;
-						else {
+						if (name == 'damageBegin3') {
+							return 1;
+						} else {
 							var num = get.YB_skill_lv('cyyydsgs_jilei', player);
-							if (num < 2) return 1;
-							else return event.num;
+							if (num < 2) {
+								return 1;
+							} else {
+								return event.num;
+							}
 						}
 					},
 					async cost(event, trigger, player) {
@@ -372,7 +414,9 @@ export async function cyyydsgs() {
 										//	 return "cancel2";
 										// }
 										// return choices.randomGet();
-										if (eff1 + eff2 > 0) return true;
+										if (eff1 + eff2 > 0) {
+											return true;
+										}
 										return false;
 									})
 									.set('prompt', get.prompt('cyyydsgs_jilei'))
@@ -394,8 +438,12 @@ export async function cyyydsgs() {
 							trigger.cancel();
 							await player.draw(num);
 						} else {
-							if (event.cost_data.recover_hp) await player.recover();
-							if (event.cost_data.draw_card) await player.draw();
+							if (event.cost_data.recover_hp) {
+								await player.recover();
+							}
+							if (event.cost_data.draw_card) {
+								await player.draw();
+							}
 						}
 					},
 				},
@@ -408,7 +456,9 @@ export async function cyyydsgs() {
 						global: 'phaseJieshuBegin',
 					},
 					filter(event, player, name) {
-						if (name == 'phaseJieshuBegin' && _status.currentPhase != player) return get.YB_skill_lv('cyyydsgs_shengzhang', player) == 5;
+						if (name == 'phaseJieshuBegin' && _status.currentPhase != player) {
+							return get.YB_skill_lv('cyyydsgs_shengzhang', player) == 5;
+						}
 						return true;
 					},
 					async content(event, trigger, player) {
@@ -428,9 +478,13 @@ export async function cyyydsgs() {
 					selectTarget() {
 						var player = get.player();
 						var num = get.YB_skill_lv('cyyydsgs_huakai', player);
-						if (num <= 2) return 1;
-						else if (num <= 4) return [1, 2];
-						else return [1, 3];
+						if (num <= 2) {
+							return 1;
+						} else if (num <= 4) {
+							return [1, 2];
+						} else {
+							return [1, 3];
+						}
 					},
 					filterTarget(card, player, target) {
 						return target != player && target.isIn();
@@ -454,7 +508,9 @@ export async function cyyydsgs() {
 							},
 							filter(event, player) {
 								var num = get.YB_skill_lv('cyyydsgs_huakai', player);
-								if (event.player == player || !event.player.isIn()) return false;
+								if (event.player == player || !event.player.isIn()) {
+									return false;
+								}
 								return num >= 2;
 							},
 							prompt2: '当你对其他角色造成伤害时，你可以令其获得一枚“花粉”。',
@@ -504,7 +560,9 @@ export async function cyyydsgs() {
 								var players = game.countPlayer(function (c) {
 									return !c.countMark('buff_cyyydsgs_huafen') && c.isIn();
 								});
-								if (players.length == 0) return false;
+								if (players.length == 0) {
+									return false;
+								}
 								var num = get.YB_skill_lv('cyyydsgs_huakai', player);
 								return num >= 3;
 							},
@@ -569,16 +627,21 @@ export async function cyyydsgs() {
 					},
 					filter(event, player, name) {
 						var num = get.YB_skill_lv('cyyydsgs_fengxing', player);
-						if (name == 'phaseDrawBegin') return true;
-						else if (name == 'loseAfter') {
-							if (event.type == 'discard') return num >= 3;
+						if (name == 'phaseDrawBegin') {
+							return true;
+						} else if (name == 'loseAfter') {
+							if (event.type == 'discard') {
+								return num >= 3;
+							}
 						} else {
 							// var evt = event.getParent();
 							// if(evt.skill =='buff_cyyydsgs_fengdun')return num==5;
 							// console.log(event)
 							// console.log(event.YB_type)
 							// console.log(event.getParent())
-							if (event.YB_type == 'buff_cyyydsgs_water') return num == 5;
+							if (event.YB_type == 'buff_cyyydsgs_water') {
+								return num == 5;
+							}
 						}
 					},
 					async content(event, trigger, player) {
@@ -603,8 +666,11 @@ export async function cyyydsgs() {
 						player: ['damageBegin3', 'YB_addMark_buff_cyyydsgs_fengdun'],
 					},
 					filter(event, player, name) {
-						if (name == 'damageBegin3') return event.hasNature('fire');
-						else if (player.countMark('buff_cyyydsgs_fengdun') > Math.max(player.maxHp, 1)) return true;
+						if (name == 'damageBegin3') {
+							return event.hasNature('fire');
+						} else if (player.countMark('buff_cyyydsgs_fengdun') > Math.max(player.maxHp, 1)) {
+							return true;
+						}
 					},
 					forced: true,
 					async content(event, trigger, player) {
@@ -728,7 +794,9 @@ export async function cyyydsgs() {
 									await target.damage('YB_wind');
 									if (num >= 2) {
 										var numx = Math.ceil((num - 1) / 2);
-										if (numx > 1) numx = [1, numx];
+										if (numx > 1) {
+											numx = [1, numx];
+										}
 										await player.discardPlayerCard('he', target, numx);
 									}
 								}
@@ -747,8 +815,12 @@ export async function cyyydsgs() {
 							},
 							filter(event, player, name) {
 								var num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
-								if (num < 5) return false;
-								if (player.countMark('buff_cyyydsgs_fengdun') <= 0) return false;
+								if (num < 5) {
+									return false;
+								}
+								if (player.countMark('buff_cyyydsgs_fengdun') <= 0) {
+									return false;
+								}
 								if (name == 'useCard1') {
 									return !game.hasNature(event.card, 'YB_wind');
 								} else {
@@ -954,9 +1026,14 @@ export async function cyyydsgs() {
 				if (!cyyydsgs.skill[i].init) {
 					cyyydsgs.skill[i].init = (function (iVal) {
 						return function (player, iVal) {
-							if (!player.YB_skill_lv) player.YB_skill_lv = {};
-							if (!get.YB_character_lv(player.name)) player.YB_skill_lv[iVal] = 1;
-							else return (player.YB_skill_lv[iVal] = get.YB_character_lv(player.name));
+							if (!player.YB_skill_lv) {
+								player.YB_skill_lv = {};
+							}
+							if (!get.YB_character_lv(player.name)) {
+								player.YB_skill_lv[iVal] = 1;
+							} else {
+								return (player.YB_skill_lv[iVal] = get.YB_character_lv(player.name));
+							}
 						};
 					})(i);
 				}
@@ -986,7 +1063,9 @@ export async function cyyydsgs() {
 		// }
 		typeimage(cyyydsgs, 'cyyydsgs');
 		for (var i in cyyydsgs.card) {
-			if (!cyyydsgs.card[i].image) cyyydsgs.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+			if (!cyyydsgs.card[i].image) {
+				cyyydsgs.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+			}
 		}
 
 		// lib.config.all.characters.add('cyyydsgs');
@@ -1086,13 +1165,17 @@ export async function cyyydsgs() {
 							player: function (player, target) {
 								var num = ui.selected.cards.length;
 								var num2 = get.damageEffect(player, player, player, 'thunder');
-								if (num == ui.selected.targets.length) return num2;
+								if (num == ui.selected.targets.length) {
+									return num2;
+								}
 								return num * num2;
 							},
 							target: function (player, target) {
 								var num = ui.selected.cards.length;
 								var num2 = get.damageEffect(player, player, target, 'thunder');
-								if (num == ui.selected.targets.length) return num2;
+								if (num == ui.selected.targets.length) {
+									return num2;
+								}
 								return num * num2;
 							},
 						},
@@ -1106,7 +1189,9 @@ export async function cyyydsgs() {
 						// player:'damageBegin3',
 					},
 					filter(event, player, name) {
-						if (!event.hasNature('thunder')) return false;
+						if (!event.hasNature('thunder')) {
+							return false;
+						}
 						return true;
 					},
 					getIndex(event, player, name) {
@@ -1158,8 +1243,12 @@ export async function cyyydsgs() {
 						}
 					},
 					async content(event, trigger, player) {
-						if (event.cost_data.recover_hp) await player.recover();
-						if (event.cost_data.draw_card) await player.draw();
+						if (event.cost_data.recover_hp) {
+							await player.recover();
+						}
+						if (event.cost_data.draw_card) {
+							await player.draw();
+						}
 					},
 				},
 				//魇魔花
@@ -1258,7 +1347,9 @@ export async function cyyydsgs() {
 								var players = game.countPlayer(function (c) {
 									return !c.countMark('buff_jhjx_huafen') && c.isIn();
 								});
-								if (players.length == 0) return false;
+								if (players.length == 0) {
+									return false;
+								}
 								return true;
 							},
 							async cost(event, trigger, player) {
@@ -1328,9 +1419,12 @@ export async function cyyydsgs() {
 					},
 					filter(event, player, name) {
 						// var num = get.YB_skill_lv('cyyydsgs_fengxing',player);
-						if (name == 'phaseDrawBegin') return true;
-						else {
-							if (event.type == 'discard' && event.getd(player)) return true;
+						if (name == 'phaseDrawBegin') {
+							return true;
+						} else {
+							if (event.type == 'discard' && event.getd(player)) {
+								return true;
+							}
 						}
 						// else {
 						// 	// var evt = event.getParent();
@@ -1366,8 +1460,11 @@ export async function cyyydsgs() {
 						player: ['damageBegin3', 'YB_addMark_buff_jhjx_fengdun'],
 					},
 					filter(event, player, name) {
-						if (name == 'damageBegin3') return event.hasNature();
-						else if (player.countMark('buff_jhjx_fengdun') > Math.max(player.maxHp, 1)) return true;
+						if (name == 'damageBegin3') {
+							return event.hasNature();
+						} else if (player.countMark('buff_jhjx_fengdun') > Math.max(player.maxHp, 1)) {
+							return true;
+						}
 					},
 					forced: true,
 					async content(event, trigger, player) {
@@ -1437,7 +1534,9 @@ export async function cyyydsgs() {
 								source: ['damageBegin1'],
 							},
 							filter(event, player, name) {
-								if (player.countMark('buff_jhjx_fengdun') <= 0) return false;
+								if (player.countMark('buff_jhjx_fengdun') <= 0) {
+									return false;
+								}
 								if (name == 'useCard1') {
 									return !game.hasNature(event.card, 'YB_wind');
 								} else {
@@ -1482,7 +1581,9 @@ export async function cyyydsgs() {
 						// player:'changeHujiaAfter',
 					},
 					filter(event, player, name) {
-						if (name == 'phaseJieshuBegin') return true;
+						if (name == 'phaseJieshuBegin') {
+							return true;
+						}
 						return event.num < 0;
 					},
 					async content(event, trigger, player) {
@@ -1557,19 +1658,26 @@ export async function cyyydsgs() {
 						var player = _status.event.player;
 						if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
 							return -1;
-						} else return [1, 2];
+						} else {
+							return [1, 2];
+						}
 					},
 					filterTarget(card, player, target) {
 						var str = [];
 						if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
-							if (!player.storage.jhjx_shejiao.includes(target)) return false;
-							else str.push('蛇绞');
+							if (!player.storage.jhjx_shejiao.includes(target)) {
+								return false;
+							} else {
+								str.push('蛇绞');
+							}
 							// else target.prompt('蛇绞');
 						} else if (ui.selected.targets.length) {
-							if (ui.selected.targets[0].hp >= player) return false;
-							else {
-								if (target.hp >= player.hp) return false;
-								else {
+							if (ui.selected.targets[0].hp >= player) {
+								return false;
+							} else {
+								if (target.hp >= player.hp) {
+									return false;
+								} else {
 									str.push('可压制');
 								}
 							}
@@ -1631,7 +1739,9 @@ export async function cyyydsgs() {
 						lib.skill.jhjx_shejiao.YB_shejiao(player, target);
 					},
 					YB_shejiao(player, target) {
-						if (!player.storage.jhjx_shejiao) player.storage.jhjx_shejiao = [];
+						if (!player.storage.jhjx_shejiao) {
+							player.storage.jhjx_shejiao = [];
+						}
 						player.storage.jhjx_shejiao.push(target);
 						target.addAdditionalSkills('jhjx_shejiao', 'jhjx_shejiao_mark', true);
 						// target.addMark('jhjx_shejiao',1,true)
@@ -1748,7 +1858,9 @@ export async function cyyydsgs() {
 					},
 					selectCard() {
 						var player = _status.event.player;
-						if (player.countMark('buff_jhjx_fengdun') > 0) return [0, 1];
+						if (player.countMark('buff_jhjx_fengdun') > 0) {
+							return [0, 1];
+						}
 						return 1;
 					},
 					position: 'hes',
@@ -1882,7 +1994,9 @@ export async function cyyydsgs() {
 						global: 'damageBegin3',
 					},
 					filter(event, player) {
-						if (!event.source) return true;
+						if (!event.source) {
+							return true;
+						}
 					},
 					forced: true,
 					async content(event, trigger, player) {
@@ -1927,7 +2041,9 @@ export async function cyyydsgs() {
 									if (cards.length && get.position(cards[0], true) == 'o') {
 										event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
 										player.chooseControl(event.list1).set('prompt', '请选择将【' + get.translation(event.skill) + '】当做哪种装备');
-									} else (event, finish());
+									} else {
+										(event, finish());
+									}
 									('step 1');
 									if (result.control) {
 										var num = result.index + 1;
@@ -2336,7 +2452,9 @@ export async function cyyydsgs() {
 		};
 		typeimage(jhjx, 'jhjx');
 		for (var i in jhjx.card) {
-			if (!jhjx.card[i].image) jhjx.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+			if (!jhjx.card[i].image) {
+				jhjx.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+			}
 		}
 		lib.translate['jhjx_character_config'] = '<span class="yellowtext">将魂觉醒</span>';
 		game.import('character', jhjx);

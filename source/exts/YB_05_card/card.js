@@ -64,7 +64,9 @@ const card = {
 				},
 				useful: 2,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -76,13 +78,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -196,7 +208,9 @@ const card = {
 			order: 6,
 			result: {
 				target: function (player, target, card, isLink) {
-					if (get.effect(target, { name: 'sha' }, player, target) == 0) return 0;
+					if (get.effect(target, { name: 'sha' }, player, target) == 0) {
+						return 0;
+					}
 					return -2.5;
 				},
 			},
@@ -234,7 +248,9 @@ const card = {
 			};
 			var type = {};
 			for (var i of lib.inpile) {
-				if (!type[get.type2(i)] || type[get.type2(i)] == undefined) type[get.type2(i)] = get.translation(get.type2(i));
+				if (!type[get.type2(i)] || type[get.type2(i)] == undefined) {
+					type[get.type2(i)] = get.translation(get.type2(i));
+				}
 			}
 			/*
 			var list = [
@@ -292,13 +308,19 @@ const card = {
 					suit: suita[0],
 					type: typea[0],
 				};
-				if (event.dialog) event.dialog.close();
-				if (event.control) event.control.close();
+				if (event.dialog) {
+					event.dialog.close();
+				}
+				if (event.control) {
+					event.control.close();
+				}
 			};
 			var chooseButton = function (player) {
 				var event = _status.event;
 				player = target || event.player;
-				if (!event._result) event._result = {};
+				if (!event._result) {
+					event._result = {};
+				}
 				var dialog = ui.create.dialog('<font size=6><b>求贤若渴</b></font>', 'forcebutton', 'hidden');
 				dialog.add('你声明一个花色和类型，然后亮出牌堆顶三张牌，获得与你描述相符的牌。<br>若有两项皆满足的牌，你回复一点体力。');
 				// var dialog=ui.create.dialog('你声明一个花色和类型，然后亮出牌堆顶三张牌，获得与你描述相符的牌。<br>若有两项皆满足的牌，你回复一点体力。','forcebutton','hidden');
@@ -323,8 +345,12 @@ const card = {
 					table.appendChild(td);
 					td.innerHTML = '<span>' + suit[listi[i]] + '</span>';
 					td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
-						if (_status.dragged) return;
-						if (_status.justdragged) return;
+						if (_status.dragged) {
+							return;
+						}
+						if (_status.justdragged) {
+							return;
+						}
 						_status.tempNoButton = true;
 						setTimeout(function () {
 							_status.tempNoButton = false;
@@ -353,8 +379,12 @@ const card = {
 					table2.appendChild(td);
 					td.innerHTML = '<span>' + type[nature] + '</span>';
 					td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', function () {
-						if (_status.dragged) return;
-						if (_status.justdragged) return;
+						if (_status.dragged) {
+							return;
+						}
+						if (_status.justdragged) {
+							return;
+						}
 						_status.tempNoButton = true;
 						setTimeout(function () {
 							_status.tempNoButton = false;
@@ -385,8 +415,9 @@ const card = {
 				};
 				event.control = ui.create.control('ok', function (link) {
 					var result = event._result;
-					if (!result.type || !result.suit) return;
-					else {
+					if (!result.type || !result.suit) {
+						return;
+					} else {
 						result.bool = true;
 					}
 					event.dialog.close();
@@ -435,11 +466,15 @@ const card = {
 				}
 				event.list = list;
 				game.log(target, '声明了', '#g' + get.translation(suit + 2), '和', '#g' + get.translation(type), '，', list, '满足条件');
-			} else event.finish();
+			} else {
+				event.finish();
+			}
 			('step 2');
 			('step 3');
 			target.gain(event.list, 'gain2');
-			if (event.recover == true) target.recover();
+			if (event.recover == true) {
+				target.recover();
+			}
 		},
 		ai: {
 			basic: {
@@ -472,7 +507,9 @@ const card = {
 			var cardxs = target.getCards('h').filter((card) => card.name == 'du');
 			if (cardxs.length) {
 				target.discard(cardxs);
-			} else if (target.countDiscardableCards(target, 'h')) target.chooseToDiscard('h', true);
+			} else if (target.countDiscardableCards(target, 'h')) {
+				target.chooseToDiscard('h', true);
+			}
 		},
 		ai: {
 			basic: {
@@ -481,18 +518,23 @@ const card = {
 				value: 4,
 			},
 			yingbian: function (card, player, targets, viewer) {
-				if (get.attitude(viewer, player) <= 0) return 0;
+				if (get.attitude(viewer, player) <= 0) {
+					return 0;
+				}
 				if (
 					game.hasPlayer(function (current) {
 						return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
 					})
-				)
+				) {
 					return 6;
+				}
 				return 0;
 			},
 			result: {
 				target: function (player, target, cardx) {
-					if (target.getCards('h')?.filter((card) => card.name == 'du')) return -5;
+					if (target.getCards('h')?.filter((card) => card.name == 'du')) {
+						return -5;
+					}
 					return -1;
 				},
 			},
@@ -522,7 +564,9 @@ const card = {
 		// },
 		contentBefore() {
 			'step 0';
-			if (player.hp > 1) player.loseHp();
+			if (player.hp > 1) {
+				player.loseHp();
+			}
 			('step 1');
 			event.getParent().baseDamage = Math.max(player.maxHp - player.hp || 1);
 		},
@@ -536,23 +580,27 @@ const card = {
 				value: 8,
 			},
 			yingbian: function (card, player, targets, viewer) {
-				if (get.attitude(viewer, player) <= 0) return 0;
+				if (get.attitude(viewer, player) <= 0) {
+					return 0;
+				}
 				if (
 					game.hasPlayer(function (current) {
 						return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
 					})
-				)
+				) {
 					return 6;
+				}
 				return 0;
 			},
 			result: {
 				target: function (player, target, cardx) {
-					if (player.hasSkillTag('viewHandcard', null, target, true))
+					if (player.hasSkillTag('viewHandcard', null, target, true)) {
 						return target.countCards('h', function (card) {
 							return get.suit(card) != get.suit(cardx);
 						}) > 0
 							? -1.5
 							: 0;
+					}
 					return -1.4;
 				},
 			},
@@ -570,7 +618,9 @@ const card = {
 		// chongzhu:true,
 		recastable: true,
 		filterTarget: function (card, player, target) {
-			if (player == target) return false;
+			if (player == target) {
+				return false;
+			}
 			return target.countCards('h') || target.isUnseen(2);
 		},
 		content: function () {
@@ -583,20 +633,30 @@ const card = {
 			}
 			player.storage.zhibi.add(target);
 			var controls = [];
-			if (target.countCards('h')) controls.push('手牌');
+			if (target.countCards('h')) {
+				controls.push('手牌');
+			}
 			if (get.mode() == 'guozhan') {
-				if (target.isUnseen(0)) controls.push('主将');
-				if (target.isUnseen(1)) controls.push('副将');
+				if (target.isUnseen(0)) {
+					controls.push('主将');
+				}
+				if (target.isUnseen(1)) {
+					controls.push('副将');
+				}
 			}
 			if (get.mode() == 'identity') {
-				if (!target.identityShown && !player.storage.ybsl_zhijizhibi.includes(target)) controls.push('身份');
+				if (!target.identityShown && !player.storage.ybsl_zhijizhibi.includes(target)) {
+					controls.push('身份');
+				}
 			}
 			if (controls.length > 1) {
 				player.chooseControl(controls).set('ai', function () {
 					return 1;
 				});
 			}
-			if (controls.length == 0) event.finish();
+			if (controls.length == 0) {
+				event.finish();
+			}
 			('step 1');
 			var content;
 			var str = get.translation(target) + '的';
@@ -631,8 +691,11 @@ const card = {
 				var func = function () {
 					target.setIdentity();
 				};
-				if (player == game.me) func();
-				else if (player.isOnline()) player.send(func);
+				if (player == game.me) {
+					func();
+				} else if (player.isOnline()) {
+					player.send(func);
+				}
 				player.storage.ybsl_zhijizhibi.push(target);
 			} else {
 				player.chooseControl('ok').set('dialog', content);
@@ -645,8 +708,12 @@ const card = {
 			},
 			result: {
 				player: function (player, target) {
-					if (player.countCards('h') <= player.hp) return 0;
-					if (player.storage.zhibi && player.storage.zhibi.includes(target)) return 0;
+					if (player.countCards('h') <= player.hp) {
+						return 0;
+					}
+					if (player.storage.zhibi && player.storage.zhibi.includes(target)) {
+						return 0;
+					}
 					return target.isUnseen() ? 1 : 0;
 				},
 			},
@@ -698,7 +765,9 @@ const card = {
 			if (get.is.versus()) {
 				player
 					.chooseControl('顺时针', '逆时针', function (event, player) {
-						if (player.next.side == player.side) return '逆时针';
+						if (player.next.side == player.side) {
+							return '逆时针';
+						}
 						return '顺时针';
 					})
 					.set('prompt', '选择' + get.translation(card) + '的结算方向');
@@ -777,7 +846,9 @@ const card = {
 						break;
 					}
 				}
-				if (!card) card = event.dialog.buttons[0].link;
+				if (!card) {
+					card = event.dialog.buttons[0].link;
+				}
 			}
 
 			var button;
@@ -785,9 +856,13 @@ const card = {
 				if (dialog.buttons[i].link == card) {
 					button = dialog.buttons[i];
 					button.querySelector('.info').innerHTML = (function (target) {
-						if (target._tempTranslate) return target._tempTranslate;
+						if (target._tempTranslate) {
+							return target._tempTranslate;
+						}
 						var name = target.name;
-						if (lib.translate[name + '_ab']) return lib.translate[name + '_ab'];
+						if (lib.translate[name + '_ab']) {
+							return lib.translate[name + '_ab'];
+						}
 						return get.translation(name);
 					})(target);
 					dialog.buttons.remove(button);
@@ -815,9 +890,13 @@ const card = {
 					card,
 					dialog.videoId,
 					(function (target) {
-						if (target._tempTranslate) return target._tempTranslate;
+						if (target._tempTranslate) {
+							return target._tempTranslate;
+						}
 						var name = target.name;
-						if (lib.translate[name + '_ab']) return lib.translate[name + '_ab'];
+						if (lib.translate[name + '_ab']) {
+							return lib.translate[name + '_ab'];
+						}
 						return get.translation(name);
 					})(target),
 					capt,
@@ -855,7 +934,9 @@ const card = {
 		},
 		ai: {
 			wuxie: function () {
-				if (Math.random() < 0.5) return 0;
+				if (Math.random() < 0.5) {
+					return 0;
+				}
 			},
 			basic: {
 				order: 3,
@@ -865,7 +946,9 @@ const card = {
 				target: function (player, target) {
 					var sorter = _status.currentPhase || player;
 					if (get.is.versus()) {
-						if (target == sorter) return 1.5;
+						if (target == sorter) {
+							return 1.5;
+						}
 						return 1;
 					}
 					if (player.hasUnknown(2)) {
@@ -892,7 +975,9 @@ const card = {
 			var he = player.getCards('he');
 			var list = _status.YB_jingxieList;
 			for (var i = 0; i < he.length; i++) {
-				if (list.includes(he[i].name)) return true;
+				if (list.includes(he[i].name)) {
+					return true;
+				}
 			}
 			return false;
 		},
@@ -904,7 +989,9 @@ const card = {
 			var he = target.getCards('he');
 			var list = _status.YB_jingxieList;
 			for (var i = 0; i < he.length; i++) {
-				if (list.includes(he[i].name)) return target == player;
+				if (list.includes(he[i].name)) {
+					return target == player;
+				}
 			}
 			return false;
 		},
@@ -946,7 +1033,9 @@ const card = {
 			// for(var i of _status.cardtag){
 			// 	if(get.cardtag(card,i)){tag.push(i);}
 			// }
-			if (bool) player.removeEquipTrigger(card);
+			if (bool) {
+				player.removeEquipTrigger(card);
+			}
 			game.addVideo('skill', player, ['xinfu_ybjingxie', [bool, get.cardInfo(card)]]);
 			game.broadcastAll(
 				function (card, bool) {
@@ -983,7 +1072,9 @@ const card = {
 				card,
 				bool,
 			); //bool
-			if (bool) player.addEquipTrigger(card.card || card);
+			if (bool) {
+				player.addEquipTrigger(card.card || card);
+			}
 			// game.broadcastAll(function(card){
 			// 	if(card.name=='wuxinghelingshan'){card.name='zhuque'}
 			// 	if(card.name=='chiyanzhenhunqin'){card.name='zhuque'}
@@ -1062,8 +1153,12 @@ const card = {
 			if (typeof event.shanRequired != 'number' || !event.shanRequired || event.shanRequired < 0) {
 				event.shanRequired = 1;
 			}
-			if (typeof event.baseDamage != 'number') event.baseDamage = 1;
-			if (typeof event.extraDamage != 'number') event.extraDamage = 0;
+			if (typeof event.baseDamage != 'number') {
+				event.baseDamage = 1;
+			}
+			if (typeof event.extraDamage != 'number') {
+				event.extraDamage = 0;
+			}
 			('step 1');
 			if (event.directHit || event.directHit2 || (!_status.connectMode && lib.config.skip_shan && !target.hasShan())) {
 				event._result = { bool: false };
@@ -1073,7 +1168,9 @@ const card = {
 				var next = target.chooseToUse('请使用一张闪响应毒箭');
 				next.set('type', 'respondShan');
 				next.set('filterCard', function (card, player) {
-					if (get.name(card) != 'shan') return false;
+					if (get.name(card) != 'shan') {
+						return false;
+					}
 					return lib.filter.cardEnabled(card, player, 'forceEnable');
 				});
 				if (event.shanRequired > 1) {
@@ -1089,7 +1186,9 @@ const card = {
 						bool = true;
 					} else if (target.hasSkillTag('noShan')) {
 						bool = false;
-					} else if (get.damageEffect(target, evt.player, target, evt.card.nature) >= 0) bool = false;
+					} else if (get.damageEffect(target, evt.player, target, evt.card.nature) >= 0) {
+						bool = false;
+					}
 					if (bool) {
 						return get.order(card);
 					}
@@ -1120,23 +1219,27 @@ const card = {
 				value: 8,
 			},
 			yingbian: function (card, player, targets, viewer) {
-				if (get.attitude(viewer, player) <= 0) return 0;
+				if (get.attitude(viewer, player) <= 0) {
+					return 0;
+				}
 				if (
 					game.hasPlayer(function (current) {
 						return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
 					})
-				)
+				) {
 					return 6;
+				}
 				return 0;
 			},
 			result: {
 				target: function (player, target, cardx) {
-					if (player.hasSkillTag('viewHandcard', null, target, true))
+					if (player.hasSkillTag('viewHandcard', null, target, true)) {
 						return target.countCards('h', function (card) {
 							return get.suit(card) != get.suit(cardx);
 						}) > 0
 							? -1.5
 							: 0;
+					}
 					return -1.4;
 				},
 			},
@@ -1228,7 +1331,9 @@ const card = {
 				useful: 2,
 				equipValue: 7,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1240,13 +1345,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1278,7 +1393,9 @@ const card = {
 				useful: 2,
 				equipValue: 7,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1290,13 +1407,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1328,7 +1455,9 @@ const card = {
 				useful: 2,
 				equipValue: 4,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1340,13 +1469,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1378,7 +1517,9 @@ const card = {
 				useful: 2,
 				equipValue: 4,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1390,13 +1531,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1440,7 +1591,9 @@ const card = {
 				useful: 2,
 				equipValue: 9,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1452,13 +1605,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1491,7 +1654,9 @@ const card = {
 				useful: 2,
 				equipValue: 7,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1503,13 +1668,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1543,7 +1718,9 @@ const card = {
 				useful: 2,
 				equipValue: 7.1,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1555,13 +1732,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1595,7 +1782,9 @@ const card = {
 				useful: 2,
 				equipValue: 8.1,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1607,13 +1796,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1648,7 +1847,9 @@ const card = {
 				useful: 2,
 				equipValue: 9.5,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1660,13 +1861,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1701,7 +1912,9 @@ const card = {
 				useful: 2,
 				equipValue: 9.1,
 				value: function (card, player, index, method) {
-					if (player.isDisabled(get.subtype(card))) return 0.01;
+					if (player.isDisabled(get.subtype(card))) {
+						return 0.01;
+					}
 					var value = 0;
 					var info = get.info(card);
 					var current = player.getEquip(info.subtype);
@@ -1713,13 +1926,23 @@ const card = {
 						equipValue = info.ai.basic.equipValue;
 					}
 					if (typeof equipValue == 'function') {
-						if (method == 'raw') return equipValue(card, player);
-						if (method == 'raw2') return equipValue(card, player) - value;
+						if (method == 'raw') {
+							return equipValue(card, player);
+						}
+						if (method == 'raw2') {
+							return equipValue(card, player) - value;
+						}
 						return Math.max(0.1, equipValue(card, player) - value);
 					}
-					if (typeof equipValue != 'number') equipValue = 0;
-					if (method == 'raw') return equipValue;
-					if (method == 'raw2') return equipValue - value;
+					if (typeof equipValue != 'number') {
+						equipValue = 0;
+					}
+					if (method == 'raw') {
+						return equipValue;
+					}
+					if (method == 'raw2') {
+						return equipValue - value;
+					}
 					return Math.max(0.1, equipValue - value);
 				},
 			},
@@ -1763,7 +1986,9 @@ const card = {
 		// return target==player;
 		// },
 		filterTarget: function (card, player, target) {
-			if (get.mode() == 'guozhan' && player != target) return false;
+			if (get.mode() == 'guozhan' && player != target) {
+				return false;
+			}
 			return target.canEquip(card, true);
 		},
 		selectTarget: function () {
@@ -1773,7 +1998,9 @@ const card = {
 		modTarget: true,
 		allowMultiple: false,
 		content: function () {
-			if (cards.length && get.position(cards[0], true) == 'o') target.equip(cards[0]);
+			if (cards.length && get.position(cards[0], true) == 'o') {
+				target.equip(cards[0]);
+			}
 		},
 		// toself:true,
 	},
@@ -1905,16 +2132,27 @@ const card = {
 		defaultYingbianEffect: 'add',
 		content: function () {
 			'step 0';
-			if (typeof event.baseDamage != 'number') event.baseDamage = 1;
-			if (typeof event.extraDamage != 'number') event.extraDamage = 0;
-			if (event.directHit) event._result = { bool: false };
-			else {
+			if (typeof event.baseDamage != 'number') {
+				event.baseDamage = 1;
+			}
+			if (typeof event.extraDamage != 'number') {
+				event.extraDamage = 0;
+			}
+			if (event.directHit) {
+				event._result = { bool: false };
+			} else {
 				var next = target.chooseToDiscard('h', { type: 'basic' }, '请弃置一张基本牌，否则受到一点伤害');
 				next.set('ai', function (card) {
 					var evt = _status.event.getParent();
-					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) return 0;
-					if (evt.player.hasSkillTag('notricksource')) return 0;
-					if (evt.target.hasSkillTag('notrick')) return 0;
+					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
+						return 0;
+					}
+					if (evt.player.hasSkillTag('notricksource')) {
+						return 0;
+					}
+					if (evt.target.hasSkillTag('notrick')) {
+						return 0;
+					}
 					return get.order(card);
 				});
 			}
@@ -1930,23 +2168,27 @@ const card = {
 				value: 4.1,
 			},
 			yingbian: function (card, player, targets, viewer) {
-				if (get.attitude(viewer, player) <= 0) return 0;
+				if (get.attitude(viewer, player) <= 0) {
+					return 0;
+				}
 				if (
 					game.hasPlayer(function (current) {
 						return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
 					})
-				)
+				) {
 					return 6;
+				}
 				return 0;
 			},
 			result: {
 				target: function (player, target, cardx) {
-					if (player.hasSkillTag('viewHandcard', null, target, true))
+					if (player.hasSkillTag('viewHandcard', null, target, true)) {
 						return target.countCards('h', function (card) {
 							return get.suit(card) != get.suit(cardx);
 						}) > 0
 							? -1.5
 							: 0;
+					}
 					return -1.4;
 				},
 			},
@@ -1969,17 +2211,30 @@ const card = {
 		defaultYingbianEffect: 'add',
 		content: function () {
 			'step 0';
-			if (typeof event.baseDamage != 'number') event.baseDamage = 1;
-			if (typeof event.extraDamage != 'number') event.extraDamage = 0;
-			if (event.directHit) event._result = { bool: false };
-			else {
+			if (typeof event.baseDamage != 'number') {
+				event.baseDamage = 1;
+			}
+			if (typeof event.extraDamage != 'number') {
+				event.extraDamage = 0;
+			}
+			if (event.directHit) {
+				event._result = { bool: false };
+			} else {
 				var next = target.chooseToDiscard('he', { type: 'equip' }, '请弃置一张装备牌，否则受到一点雷电伤害');
 				next.set('ai', function (card) {
 					var evt = _status.event.getParent();
-					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) return 0;
-					if (evt.player.hasSkillTag('notricksource')) return 0;
-					if (evt.target.hasSkillTag('notrick')) return 0;
-					if (evt.target.hasSkillTag('nothunder')) return 0;
+					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
+						return 0;
+					}
+					if (evt.player.hasSkillTag('notricksource')) {
+						return 0;
+					}
+					if (evt.target.hasSkillTag('notrick')) {
+						return 0;
+					}
+					if (evt.target.hasSkillTag('nothunder')) {
+						return 0;
+					}
 					return get.order(card);
 				});
 			}
@@ -1995,23 +2250,27 @@ const card = {
 				value: 4.1,
 			},
 			yingbian: function (card, player, targets, viewer) {
-				if (get.attitude(viewer, player) <= 0) return 0;
+				if (get.attitude(viewer, player) <= 0) {
+					return 0;
+				}
 				if (
 					game.hasPlayer(function (current) {
 						return !targets.includes(current) && lib.filter.targetEnabled2(card, player, current) && get.effect(current, card, player, player) > 0;
 					})
-				)
+				) {
 					return 6;
+				}
 				return 0;
 			},
 			result: {
 				target: function (player, target, cardx) {
-					if (player.hasSkillTag('viewHandcard', null, target, true))
+					if (player.hasSkillTag('viewHandcard', null, target, true)) {
 						return target.countCards('h', function (card) {
 							return get.suit(card) != get.suit(cardx);
 						}) > 0
 							? -1.5
 							: 0;
+					}
 					return -1.4;
 				},
 			},
@@ -2035,8 +2294,9 @@ const card = {
 		content: function () {
 			'step 0';
 			var suit1 = get.suit(card);
-			if (event.directHit) event._result = { bool: false };
-			else {
+			if (event.directHit) {
+				event._result = { bool: false };
+			} else {
 				var next = target
 					.chooseToUse(
 						function (card, player, event) {
@@ -2045,7 +2305,9 @@ const card = {
 						'选择使用一张' + get.translation(suit1 + '2') + '手牌，' + (event.card.yingbian_all ? '然后' : '或') + '受到' + get.translation(player) + '造成的一点火焰伤害',
 					)
 					.set('addCount', false);
-				if (!event.card.yingbian_all) next.set('respondTo', [player, card]);
+				if (!event.card.yingbian_all) {
+					next.set('respondTo', [player, card]);
+				}
 			}
 			('step 1');
 			if (!result.bool || event.card.yingbian_all) {
@@ -2064,7 +2326,9 @@ const card = {
 				target: function (player, target, card, isLink) {
 					let hs = target.getCards('h'),
 						eff = 2 * get.sgn(get.damageEffect(target, player, target, 'fire'));
-					if (isLink || !hs.length) return eff;
+					if (isLink || !hs.length) {
+						return eff;
+					}
 				},
 			},
 		},
@@ -2083,16 +2347,27 @@ const card = {
 		},
 		content: function () {
 			'step 0';
-			if (typeof event.baseDamage != 'number') event.baseDamage = 1;
-			if (typeof event.extraDamage != 'number') event.extraDamage = 0;
-			if (event.directHit) event._result = { bool: false };
-			else {
+			if (typeof event.baseDamage != 'number') {
+				event.baseDamage = 1;
+			}
+			if (typeof event.extraDamage != 'number') {
+				event.extraDamage = 0;
+			}
+			if (event.directHit) {
+				event._result = { bool: false };
+			} else {
 				var next = target.chooseToRespond({ name: 'shan' });
 				next.set('ai', function (card) {
 					var evt = _status.event.getParent();
-					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) return 0;
-					if (evt.player.hasSkillTag('notricksource')) return 0;
-					if (evt.target.hasSkillTag('notrick')) return 0;
+					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
+						return 0;
+					}
+					if (evt.player.hasSkillTag('notricksource')) {
+						return 0;
+					}
+					if (evt.target.hasSkillTag('notrick')) {
+						return 0;
+					}
 					if (evt.target.hasSkillTag('noShan')) {
 						return -1;
 					}
@@ -2108,7 +2383,9 @@ const card = {
 		ai: {
 			wuxie: function (target, card, player, viewer) {
 				if (get.attitude(viewer, target) > 0 && target.countCards('h', 'shan')) {
-					if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
+					if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) {
+						return 0;
+					}
 				}
 			},
 			basic: {
@@ -2118,22 +2395,36 @@ const card = {
 			},
 			result: {
 				target_use: function (player, target) {
-					if (player.hasUnknown(2) && get.mode() != 'guozhan') return 0;
+					if (player.hasUnknown(2) && get.mode() != 'guozhan') {
+						return 0;
+					}
 					var nh = target.countCards('h');
 					if (get.mode() == 'identity') {
-						if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
+						if (target.isZhu && nh <= 2 && target.hp <= 1) {
+							return -100;
+						}
 					}
-					if (nh == 0) return -2;
-					if (nh == 1) return -1.7;
+					if (nh == 0) {
+						return -2;
+					}
+					if (nh == 1) {
+						return -1.7;
+					}
 					return -1.5;
 				},
 				target: function (player, target) {
 					var nh = target.countCards('h');
 					if (get.mode() == 'identity') {
-						if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
+						if (target.isZhu && nh <= 2 && target.hp <= 1) {
+							return -100;
+						}
 					}
-					if (nh == 0) return -2;
-					if (nh == 1) return -1.7;
+					if (nh == 0) {
+						return -2;
+					}
+					if (nh == 1) {
+						return -1.7;
+					}
 					return -1.5;
 				},
 			},
@@ -2163,16 +2454,27 @@ const card = {
 		reverseOrder: true,
 		content: function () {
 			'step 0';
-			if (typeof event.baseDamage != 'number') event.baseDamage = 1;
-			if (typeof event.extraDamage != 'number') event.extraDamage = 0;
-			if (event.directHit) event._result = { bool: false };
-			else {
+			if (typeof event.baseDamage != 'number') {
+				event.baseDamage = 1;
+			}
+			if (typeof event.extraDamage != 'number') {
+				event.extraDamage = 0;
+			}
+			if (event.directHit) {
+				event._result = { bool: false };
+			} else {
 				var next = target.chooseToRespond({ name: 'sha' });
 				next.set('ai', function (card) {
 					var evt = _status.event.getParent();
-					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) return 0;
-					if (evt.player.hasSkillTag('notricksource')) return 0;
-					if (evt.target.hasSkillTag('notrick')) return 0;
+					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
+						return 0;
+					}
+					if (evt.player.hasSkillTag('notricksource')) {
+						return 0;
+					}
+					if (evt.target.hasSkillTag('notrick')) {
+						return 0;
+					}
 					return get.order(card);
 				});
 				next.autochoose = lib.filter.autoRespondSha;
@@ -2185,7 +2487,9 @@ const card = {
 					var target = _status.event.player;
 					var evt = _status.event.getParent();
 					var bool = true;
-					if (get.damageEffect(target, evt.player, target, evt.card.nature) >= 0) bool = false;
+					if (get.damageEffect(target, evt.player, target, evt.card.nature) >= 0) {
+						bool = false;
+					}
 					if (bool) {
 						return 8 - get.useful(card);
 					}
@@ -2204,7 +2508,9 @@ const card = {
 		ai: {
 			wuxie: function (target, card, player, viewer) {
 				if (get.attitude(viewer, target) > 0 && target.countCards('h', 'sha')) {
-					if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) return 0;
+					if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) {
+						return 0;
+					}
 				}
 			},
 			basic: {
@@ -2214,22 +2520,36 @@ const card = {
 			},
 			result: {
 				target_use: function (player, target) {
-					if (player.hasUnknown(2) && get.mode() != 'guozhan') return 0;
+					if (player.hasUnknown(2) && get.mode() != 'guozhan') {
+						return 0;
+					}
 					var nh = target.countCards('h');
 					if (get.mode() == 'identity') {
-						if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
+						if (target.isZhu && nh <= 2 && target.hp <= 1) {
+							return -100;
+						}
 					}
-					if (nh == 0) return -2;
-					if (nh == 1) return -1.7;
+					if (nh == 0) {
+						return -2;
+					}
+					if (nh == 1) {
+						return -1.7;
+					}
 					return -1.5;
 				},
 				target: function (player, target) {
 					var nh = target.countCards('h');
 					if (get.mode() == 'identity') {
-						if (target.isZhu && nh <= 2 && target.hp <= 1) return -100;
+						if (target.isZhu && nh <= 2 && target.hp <= 1) {
+							return -100;
+						}
 					}
-					if (nh == 0) return -2;
-					if (nh == 1) return -1.7;
+					if (nh == 0) {
+						return -2;
+					}
+					if (nh == 1) {
+						return -1.7;
+					}
 					return -1.5;
 				},
 			},
@@ -2385,7 +2705,9 @@ const card = {
 			},
 			result: {
 				target: (player, target) => {
-					if (target.hasSkillTag('maixie')) return 3;
+					if (target.hasSkillTag('maixie')) {
+						return 3;
+					}
 					return 2;
 				},
 				target_use: (player, target, card) => {
@@ -2406,24 +2728,35 @@ const card = {
 								},
 								true,
 							)
-						)
+						) {
 							return 2;
+						}
 						let min = 8.1 - (4.5 * player.hp) / player.maxHp,
 							nd = player.needsToDiscard(0, (i, player) => {
 								return !player.canIgnoreHandcard(i) && (taos.includes(i) || get.value(i) >= min);
 							}),
 							keep = nd ? 0 : 2;
-						if (nd > 2 || (taos.length > 1 && (nd > 1 || (nd && player.hp < 1 + taos.length))) || (target.identity === 'zhu' && (nd || target.hp < 3) && (mode === 'identity' || mode === 'versus' || mode === 'chess')) || !player.hasFriend()) return 2;
+						if (nd > 2 || (taos.length > 1 && (nd > 1 || (nd && player.hp < 1 + taos.length))) || (target.identity === 'zhu' && (nd || target.hp < 3) && (mode === 'identity' || mode === 'versus' || mode === 'chess')) || !player.hasFriend()) {
+							return 2;
+						}
 						if (
 							game.hasPlayer((current) => {
 								return player !== current && current.identity === 'zhu' && current.hp < 3 && (mode === 'identity' || mode === 'versus' || mode === 'chess') && get.attitude(player, current) > 0;
 							})
-						)
+						) {
 							keep = 3;
-						else if (nd === 2 || player.hp < 2) return 2;
-						if (nd === 2 && player.hp <= 1) return 2;
-						if (keep === 3) return 0;
-						if (taos.length <= player.hp / 2) keep = 1;
+						} else if (nd === 2 || player.hp < 2) {
+							return 2;
+						}
+						if (nd === 2 && player.hp <= 1) {
+							return 2;
+						}
+						if (keep === 3) {
+							return 0;
+						}
+						if (taos.length <= player.hp / 2) {
+							keep = 1;
+						}
 						if (
 							keep &&
 							game.countPlayer((current) => {
@@ -2434,36 +2767,55 @@ const card = {
 								return false;
 							})
 						) {
-							if (keep > 2) return 0;
+							if (keep > 2) {
+								return 0;
+							}
 						}
 						return 2;
 					}
-					if (target.isZhu2() || target === game.boss) return 2;
-					if (player !== target) {
-						if (target.hp < 0 && taos.length + target.hp <= 0) return 0;
-						if (Math.abs(get.attitude(player, target)) < 1) return 0;
+					if (target.isZhu2() || target === game.boss) {
+						return 2;
 					}
-					if (!player.getFriends().length) return 2;
+					if (player !== target) {
+						if (target.hp < 0 && taos.length + target.hp <= 0) {
+							return 0;
+						}
+						if (Math.abs(get.attitude(player, target)) < 1) {
+							return 0;
+						}
+					}
+					if (!player.getFriends().length) {
+						return 2;
+					}
 					let tri = _status.event.getTrigger(),
 						num = game.countPlayer((current) => {
-							if (get.attitude(current, target) > 0) return current.countCards('hs', (i) => get.name(i) === 'tao' && lib.filter.cardEnabled(i, target, 'forceEnable'));
+							if (get.attitude(current, target) > 0) {
+								return current.countCards('hs', (i) => get.name(i) === 'tao' && lib.filter.cardEnabled(i, target, 'forceEnable'));
+							}
 						}),
 						dis = 1,
 						t = _status.currentPhase || game.me;
 					while (t !== target) {
 						let att = get.attitude(player, t);
-						if (att < -2) dis++;
-						else if (att < 1) dis += 0.45;
+						if (att < -2) {
+							dis++;
+						} else if (att < 1) {
+							dis += 0.45;
+						}
 						t = t.next;
 					}
 					if (mode === 'identity') {
 						if (tri && tri.name === 'dying') {
 							if (target.identity === 'fan') {
 								if ((!tri.source && player !== target) || (tri.source && tri.source !== target && player.getFriends().includes(tri.source.identity))) {
-									if (num > dis || (player === target && player.countCards('hs', { type: 'basic' }) > 1.6 * dis)) return 2;
+									if (num > dis || (player === target && player.countCards('hs', { type: 'basic' }) > 1.6 * dis)) {
+										return 2;
+									}
 									return 0;
 								}
-							} else if (tri.source && tri.source.isZhu && (target.identity === 'zhong' || target.identity === 'mingzhong') && (tri.source.countCards('he') > 2 || (player === tri.source && player.hasCard((i) => i.name !== 'tao', 'he')))) return 2;
+							} else if (tri.source && tri.source.isZhu && (target.identity === 'zhong' || target.identity === 'mingzhong') && (tri.source.countCards('he') > 2 || (player === tri.source && player.hasCard((i) => i.name !== 'tao', 'he')))) {
+								return 2;
+							}
 							//if(player!==target&&!target.isZhu&&target.countCards('hs')<dis) return 0;
 						}
 						if (player.identity === 'zhu') {
@@ -2477,10 +2829,13 @@ const card = {
 											return current.identity === 'fan';
 										}),
 									)
-							)
+							) {
 								return 0;
+							}
 						}
-					} else if (mode === 'stone' && target.isMin() && player !== target && tri && tri.name === 'dying' && player.side === target.side && tri.source !== target.getEnemy()) return 0;
+					} else if (mode === 'stone' && target.isMin() && player !== target && tri && tri.name === 'dying' && player.side === target.side && tri.source !== target.getEnemy()) {
+						return 0;
+					}
 					return 2;
 				},
 			},
@@ -2583,7 +2938,9 @@ const card = {
 		ai: {
 			order: 9.5,
 			equipValue: function (card, player) {
-				if (player.hp < player.maxHp) return 6;
+				if (player.hp < player.maxHp) {
+					return 6;
+				}
 				return 0;
 			},
 			basic: {
@@ -2897,7 +3254,9 @@ const card = {
 			order: 7,
 			result: {
 				target: function (player, target) {
-					if (target.hasSha() && _status.event.getRand() < 0.5) return 1;
+					if (target.hasSha() && _status.event.getRand() < 0.5) {
+						return 1;
+					}
 					return -2;
 				},
 			},
@@ -2926,9 +3285,13 @@ const card = {
 		addinfo: '霸天',
 		content: function () {
 			event.baseDamage = target.isDamaged() ? 3 - target.hp : 0;
-			if (event.baseDamage > 0) target.recover(event.baseDamage);
+			if (event.baseDamage > 0) {
+				target.recover(event.baseDamage);
+			}
 			var num = 3 - event.baseDamage;
-			if (num > 0) target.draw(Math.min(num, 3));
+			if (num > 0) {
+				target.draw(Math.min(num, 3));
+			}
 		},
 		ai: {
 			basic: {
@@ -2937,7 +3300,9 @@ const card = {
 						return (3 - player.hp) * 2;
 					} else if (player && player.countCards('h') < 3) {
 						return 6 - player.countCards('h');
-					} else return 0;
+					} else {
+						return 0;
+					}
 				},
 				useful: 2,
 				value: 8,
@@ -2969,9 +3334,14 @@ const card = {
 						.sortBySeat();
 					for (var k of game.filterPlayer()) {
 						if (targets.length > 0) {
-							if (targets.includes(k)) k.prompt('被火杀');
-							else k.prompt('');
-						} else k.prompt('');
+							if (targets.includes(k)) {
+								k.prompt('被火杀');
+							} else {
+								k.prompt('');
+							}
+						} else {
+							k.prompt('');
+						}
 					}
 				}
 			}
@@ -2986,7 +3356,9 @@ const card = {
 					return target.inRange(current);
 				})
 				.sortBySeat();
-			if (targets.length > 0) target.useCard({ name: 'sha', nature: 'fire' }, targets);
+			if (targets.length > 0) {
+				target.useCard({ name: 'sha', nature: 'fire' }, targets);
+			}
 		},
 		ai: {
 			order: 7,
@@ -2997,10 +3369,16 @@ const card = {
 						if (target.inRange(current)) {
 							var att = get.attitude(player, current);
 							var eff = get.effect(current, { name: 'sha', nature: 'fire' }, target, player);
-							if (att > 0) num++;
-							else num--;
-							if (eff > 0) num -= 2;
-							else num += 2;
+							if (att > 0) {
+								num++;
+							} else {
+								num--;
+							}
+							if (eff > 0) {
+								num -= 2;
+							} else {
+								num += 2;
+							}
 						}
 					});
 					return num;

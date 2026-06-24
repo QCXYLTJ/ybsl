@@ -34,7 +34,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	};
 	typeimage(ybart, 'ybsl001');
 	for (var i in ybart.card) {
-		if (!ybart.card[i].image) ybart.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybart.card[i].image) {
+			ybart.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('ybart');
 	lib.translate['ybart_character_config'] = "<span style='color:#28e3ce'>六艺篇</span>";

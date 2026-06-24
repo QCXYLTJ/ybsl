@@ -22,8 +22,11 @@ const card = {
 				.chooseControl(list)
 				.set('prompt', '请选择摸三弃四，还是弃三摸四')
 				.set('ai', function (control) {
-					if (target.countCards('h') > 6) return 0;
-					else return 1;
+					if (target.countCards('h') > 6) {
+						return 0;
+					} else {
+						return 1;
+					}
 				});
 			('step 1');
 			if (result.control == '摸三弃四') {
@@ -32,11 +35,16 @@ const card = {
 			('step 2');
 			('step 3');
 			target.chooseCard('h', 3).set('ai', function (card) {
-				if (target.isPhaseUsing()) return -get.useful(card);
-				else return -get.value(card);
+				if (target.isPhaseUsing()) {
+					return -get.useful(card);
+				} else {
+					return -get.value(card);
+				}
 			});
 			('step 4');
-			if (result.cards) target.discard(result.cards);
+			if (result.cards) {
+				target.discard(result.cards);
+			}
 			('step 5');
 			target.draw(4);
 			event.finish();
@@ -44,11 +52,16 @@ const card = {
 			target.draw(3);
 			('step 7');
 			target.chooseCard('h', 4).set('ai', function (card) {
-				if (target.isPhaseUsing()) return -get.useful(card);
-				else return -get.value(card);
+				if (target.isPhaseUsing()) {
+					return -get.useful(card);
+				} else {
+					return -get.value(card);
+				}
 			});
 			('step 8');
-			if (result.cards) target.discard(result.cards);
+			if (result.cards) {
+				target.discard(result.cards);
+			}
 		},
 		ai: {
 			basic: {

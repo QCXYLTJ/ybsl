@@ -45,7 +45,9 @@ const card = {
 			target.addTempSkill('gubuzifeng_disable', { player: 'phaseAfter' });
 			var skills = target.getSkills(null, false);
 			for (var i = 0; i < skills.length; i++) {
-				if (get.info(skills[i]).charlotte) skills.splice(i--, 1);
+				if (get.info(skills[i]).charlotte) {
+					skills.splice(i--, 1);
+				}
 			}
 			if (skills.length) {
 				target.storage.gubuzifeng_disable.push(skills.randomGet());
@@ -242,7 +244,9 @@ const card = {
 			order: 7,
 			result: {
 				target: function (player, target) {
-					if (target.hasSha() && _status.event.getRand() < 0.5) return 1;
+					if (target.hasSha() && _status.event.getRand() < 0.5) {
+						return 1;
+					}
 					return -2;
 				},
 			},
@@ -342,10 +346,14 @@ const card = {
 			result: {
 				target: function (player, target) {
 					if (target.group == 'shen') {
-						if (target.countCards('he')) return -2;
+						if (target.countCards('he')) {
+							return -2;
+						}
 						return 0;
 					} else {
-						if (target.isTurnedOver()) return 4;
+						if (target.isTurnedOver()) {
+							return 4;
+						}
 						return -3;
 					}
 				},
@@ -357,12 +365,16 @@ const card = {
 		audio: true,
 		type: 'trick',
 		enable: function (card, player) {
-			if (get.mode() == 'guozhan') return !player.isUnseen();
+			if (get.mode() == 'guozhan') {
+				return !player.isUnseen();
+			}
 			return true;
 		},
 		image: 'ext:夜白神略/image/card/lianjunshengyan_gai.png',
 		filterTarget: function (card, player, target) {
-			if (get.mode() == 'guozhan') return target != player && target.identity != 'unknown' && !target.isFriendOf(player);
+			if (get.mode() == 'guozhan') {
+				return target != player && target.identity != 'unknown' && !target.isFriendOf(player);
+			}
 			return true;
 		},
 		selectTarget: function () {
@@ -393,8 +405,11 @@ const card = {
 		content: function () {
 			'step 0';
 			if (get.mode() != 'guozhan') {
-				if (player == target) target.draw(game.filterPlayer().length);
-				else target.chooseDrawRecover(true);
+				if (player == target) {
+					target.draw(game.filterPlayer().length);
+				} else {
+					target.chooseDrawRecover(true);
+				}
 				event.finish();
 			} else {
 				if (target == player) {
@@ -410,8 +425,12 @@ const card = {
 							list.push('摸' + (num - i) + '回' + i);
 						}
 						target.chooseControl(list).set('prompt', '请分配自己的摸牌数和回复量').ai = function () {
-							if (player.hasSkill('diaohulishan')) return 0;
-							if (_status._aozhan) return list.length - 1;
+							if (player.hasSkill('diaohulishan')) {
+								return 0;
+							}
+							if (_status._aozhan) {
+								return list.length - 1;
+							}
 							return list.randomGet();
 						};
 					}
@@ -420,13 +439,18 @@ const card = {
 				}
 			}
 			('step 1');
-			if (target != player) target.link(false);
-			else if (typeof result.control == 'string') {
+			if (target != player) {
+				target.link(false);
+			} else if (typeof result.control == 'string') {
 				var index = result.control.indexOf('回');
 				var draw = parseInt(result.control.slice(1, index));
 				var recover = parseInt(result.control.slice(index + 1));
-				if (draw) target.draw(draw);
-				if (recover) target.recover(recover);
+				if (draw) {
+					target.draw(draw);
+				}
+				if (recover) {
+					target.recover(recover);
+				}
 			}
 		},
 		ai: {
@@ -435,7 +459,9 @@ const card = {
 			useful: 2,
 			result: {
 				target: function (player, target) {
-					if (player == target) return 2;
+					if (player == target) {
+						return 2;
+					}
 					return 1;
 				},
 			},

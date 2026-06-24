@@ -55,7 +55,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	};
 	typeimage(ybdd, 'ybsl009');
 	for (var i in ybdd.card) {
-		if (!ybdd.card[i].image) ybdd.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybdd.card[i].image) {
+			ybdd.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('ybdd');
 	lib.translate['ybdd_character_config'] = "<span style='color:#e1ff00'>夜白接单</span>";

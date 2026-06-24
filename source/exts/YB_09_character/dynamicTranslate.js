@@ -11,7 +11,9 @@ const dynamicTranslate = {
 		// if(player.getAttackRange()>=4)list[3]='<span class=yellowtext>'+list[3]+'</span>';
 		// if(player.getAttackRange()>=5)list[4]='<span class=yellowtext>'+list[4]+'</span>';
 		for (var i = 0; i < list.length; i++) {
-			if (i != 0) str += '/';
+			if (i != 0) {
+				str += '/';
+			}
 			if (player.getAttackRange() > i) {
 				str += '<span class=yellowtext>' + list[i] + '</span>';
 			} else {
@@ -22,7 +24,9 @@ const dynamicTranslate = {
 		return str;
 	},
 	North_bmh_huanchao: function (player) {
-		if (player.storage.North_bmh_huanchao_ben == true) return '限定技。转换技。出牌阶段，你可弃置三张不同类型的牌，并执行，<span class=thundertext>阳：令拥有“献”的角色依次回复X点体力</span>；阴：令拥有“率”的角色依次失去X点体力。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
+		if (player.storage.North_bmh_huanchao_ben == true) {
+			return '限定技。转换技。出牌阶段，你可弃置三张不同类型的牌，并执行，<span class=thundertext>阳：令拥有“献”的角色依次回复X点体力</span>；阴：令拥有“率”的角色依次失去X点体力。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
+		}
 		return '限定技。转换技。出牌阶段，你可弃置三张不同类型的牌，并执行，阳：令拥有“献”的角色依次回复X点体力；<span class=thundertext>阴：令拥有“率”的角色依次失去X点体力</span>。执行结束后，相关角色弃置“巫治”标记（X为此技能发动次数）。';
 	},
 	North_zx_ningao: function (player) {
@@ -34,7 +38,9 @@ const dynamicTranslate = {
 		// if(player.getAttackRange()>=4)list[3]='<span class=yellowtext>'+list[3]+'</span>';
 		// if(player.getAttackRange()>=5)list[4]='<span class=yellowtext>'+list[4]+'</span>';
 		for (var i = 0; i < list.length; i++) {
-			if (i != 0) str += '/';
+			if (i != 0) {
+				str += '/';
+			}
 			if (player.maxHp - player.hp >= i) {
 				str += '<span class=yellowtext>' + list[i] + '</span>';
 			} else {
@@ -48,7 +54,10 @@ const dynamicTranslate = {
 		var players = game.filterPlayer(function (current) {
 			return current != player && current.inRange(player);
 		});
-		if (players.length != 1) return '锁定技，若攻击范围内包含你的角色数量为1，则其获得牌时你摸等量的牌，<span class=thundertext>否则你使用基本牌或普通锦囊牌时结算两次且可以额外指定任意名角色为目标。</span>';
-		else return '锁定技，若攻击范围内包含你的角色数量为1，<span class=thundertext>则其（' + get.translation(players[0]) + '）获得牌时你摸等量的牌</span>，否则你使用基本牌或普通锦囊牌时结算两次且可以额外指定任意名角色为目标。';
+		if (players.length != 1) {
+			return '锁定技，若攻击范围内包含你的角色数量为1，则其获得牌时你摸等量的牌，<span class=thundertext>否则你使用基本牌或普通锦囊牌时结算两次且可以额外指定任意名角色为目标。</span>';
+		} else {
+			return '锁定技，若攻击范围内包含你的角色数量为1，<span class=thundertext>则其（' + get.translation(players[0]) + '）获得牌时你摸等量的牌</span>，否则你使用基本牌或普通锦囊牌时结算两次且可以额外指定任意名角色为目标。';
+		}
 	},
 };

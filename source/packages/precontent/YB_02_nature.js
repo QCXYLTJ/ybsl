@@ -16,18 +16,24 @@ const YBSL_nature = function () {
 		 * @returns
 		 */
 		get.YB_nature = function (card) {
-			if (typeof card == 'object' && !Array.isArray(card)) return get.YB_nature(card.nature);
+			if (typeof card == 'object' && !Array.isArray(card)) {
+				return get.YB_nature(card.nature);
+			}
 			var nature = card;
 			if (nature != '' && nature != null && nature != undefined && !Array.isArray(nature)) {
 				if (typeof nature == 'string') {
-					if (nature.includes('|')) nature = nature.split('|').filter((item) => item !== '');
+					if (nature.includes('|')) {
+						nature = nature.split('|').filter((item) => item !== '');
+					}
 				}
 			}
 			if (Array.isArray(nature)) {
 				nature = nature.sort((a, b) => lib.nature.get(b) - lib.nature.get(a)).join('|');
 			}
 			// if(nature=='')nature = null;
-			if (nature != undefined) return nature;
+			if (nature != undefined) {
+				return nature;
+			}
 		};
 		/**
 		 *
@@ -93,7 +99,9 @@ const YBSL_nature = function () {
 				trigger.player.turnOver();
 			},
 			check: function (event, player) {
-				if (event.player.isTurnedOver()) return get.attitude(player, event.player) > 0;
+				if (event.player.isTurnedOver()) {
+					return get.attitude(player, event.player) > 0;
+				}
 				if (event.player.hp < 3) {
 					return get.attitude(player, event.player) < 0;
 				}
@@ -166,8 +174,11 @@ const YBSL_nature = function () {
 				event.targets.sort(lib.sort.seat);
 				delete lib.tempSortSeat;
 				event._args = [trigger.num, trigger.nature, trigger.cards, trigger.card];
-				if (trigger.source) event._args.push(trigger.source);
-				else event._args.push('nosource');
+				if (trigger.source) {
+					event._args.push(trigger.source);
+				} else {
+					event._args.push('nosource');
+				}
 				('step 2');
 				if (event.targets.length) {
 					var target = event.targets.shift();

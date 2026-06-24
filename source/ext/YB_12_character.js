@@ -130,7 +130,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	// 	}
 	// }
 	for (var i in sgstrxs.card) {
-		if (!sgstrxs.card[i].image) sgstrxs.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!sgstrxs.card[i].image) {
+			sgstrxs.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('sgstrxs');
 	lib.translate['sgstrxs_character_config'] = "<span style='color:#28e3ce'>三国杀同人小说</span>";

@@ -172,7 +172,9 @@ const skill = {
 				},
 				viewAs: { name: 'sha' },
 				viewAsFilter: function (player) {
-					if (!player.countCards('s')) return false;
+					if (!player.countCards('s')) {
+						return false;
+					}
 				},
 				position: 's',
 				prompt: '将一张六艺牌当杀使用或打出',
@@ -182,13 +184,17 @@ const skill = {
 				ai: {
 					effect: {
 						target: function (card, player, target, current) {
-							if (get.tag(card, 'respondSha') && current < 0) return 0.6;
+							if (get.tag(card, 'respondSha') && current < 0) {
+								return 0.6;
+							}
 						},
 					},
 					respondSha: true,
 					sixartSkill: true,
 					skillTagFilter: function (player) {
-						if (!player.countCards('s')) return false;
+						if (!player.countCards('s')) {
+							return false;
+						}
 					},
 					order: function () {
 						return get.order({ name: 'sha' }) + 0.1;
@@ -218,17 +224,23 @@ const skill = {
 				},
 				position: 's',
 				viewAsFilter: function (player) {
-					if (!player.countCards('s')) return false;
+					if (!player.countCards('s')) {
+						return false;
+					}
 				},
 				ai: {
 					sixartSkill: true,
 					respondShan: true,
 					skillTagFilter: function (player) {
-						if (!player.countCards('s')) return false;
+						if (!player.countCards('s')) {
+							return false;
+						}
 					},
 					effect: {
 						target: function (card, player, target, current) {
-							if (get.tag(card, 'respondShan') && current < 0) return 0.6;
+							if (get.tag(card, 'respondShan') && current < 0) {
+								return 0.6;
+							}
 						},
 					},
 					order: 4,
@@ -422,7 +434,9 @@ const skill = {
 		},
 		selectCard: function () {
 			var player = _status.event.player;
-			if (!player.hasSkillTag('sixartSkill')) return 1;
+			if (!player.hasSkillTag('sixartSkill')) {
+				return 1;
+			}
 			var max = 6;
 			var num =
 				max -
@@ -445,7 +459,9 @@ const skill = {
 			'step 0';
 			if (target.countCards('he') >= 1) {
 				player.choosePlayerCard(target, 'he', true);
-			} else event.goto(4);
+			} else {
+				event.goto(4);
+			}
 			('step 1');
 			player.showCards(result.cards);
 			event.cards2 = result.cards;
@@ -494,16 +510,23 @@ const skill = {
 				player.draw(event.num);
 			}
 			('step 2');
-			if (event.num >= 1) player.draw();
+			if (event.num >= 1) {
+				player.draw();
+			}
 			('step 3');
-			if (event.num >= 2) player.recover();
+			if (event.num >= 2) {
+				player.recover();
+			}
 			('step 4');
-			if (event.num >= 3) player.gainMaxHp();
+			if (event.num >= 3) {
+				player.gainMaxHp();
+			}
 			('step 5');
-			if (event.num >= 4)
+			if (event.num >= 4) {
 				player.chooseTarget([1, 3], lib.filter.notMe, '选择至多三名其他角色，依次弃置其各一张牌。').set('ai', function (target) {
 					return -get.attitude(_status.event.player, target);
 				});
+			}
 			('step 6');
 			if (result.targets) {
 				event.targets = result.targets;
@@ -553,9 +576,12 @@ const skill = {
 		},
 		check: function (event, player) {
 			//触发技ai，括号里参数是event,plater
-			if (player.hasSkill('ybsl_master'))
-				return true; //如果你有精艺就发动
-			else return false; //否则不发动
+			if (player.hasSkill('ybsl_master')) {
+				return true;
+			} //如果你有精艺就发动
+			else {
+				return false;
+			} //否则不发动
 		},
 		ai: {
 			sixartSkill: true,
@@ -585,7 +611,9 @@ const skill = {
 			);
 		},
 		init: function (player) {
-			if (!player.storage.yb014_shifu_block) player.storage.yb014_shifu_block = [];
+			if (!player.storage.yb014_shifu_block) {
+				player.storage.yb014_shifu_block = [];
+			}
 		},
 		onremove: true,
 		chooseButton: {
@@ -593,8 +621,12 @@ const skill = {
 				var list = [];
 				for (var i = 0; i < lib.inpile.length; i++) {
 					var name = lib.inpile[i];
-					if (player.storage.yb014_shifu_block && player.storage.yb014_shifu_block.includes(name)) continue;
-					if (get.type(name) == 'trick') list.push(['锦囊', '', name]);
+					if (player.storage.yb014_shifu_block && player.storage.yb014_shifu_block.includes(name)) {
+						continue;
+					}
+					if (get.type(name) == 'trick') {
+						list.push(['锦囊', '', name]);
+					}
 				}
 				if (list.length == 0) {
 					return ui.create.dialog('诗赋已无可用牌');
@@ -606,9 +638,13 @@ const skill = {
 			},
 			check: function (button) {
 				var player = _status.event.player;
-				if (button.link[2] == 'wugu') return 0;
+				if (button.link[2] == 'wugu') {
+					return 0;
+				}
 				var effect = player.getUseValue(button.link[2]);
-				if (effect > 0) return effect;
+				if (effect > 0) {
+					return effect;
+				}
 				return 0;
 			},
 			backup: function (links, player) {
@@ -648,7 +684,9 @@ const skill = {
 							return 1;
 						}
 					}
-					if (allshown) return 1;
+					if (allshown) {
+						return 1;
+					}
 					return 0;
 				},
 			},
@@ -696,7 +734,9 @@ const skill = {
 					event.num = 7;
 				}
 			}
-			if (event.triggername == 'phaseBegin') event.num = 6;
+			if (event.triggername == 'phaseBegin') {
+				event.num = 6;
+			}
 			('step 1');
 			player.addMark('yb014_shifu2', event.num);
 			var list = ['moon', 'clam', 'lightning', 'wind', 'flame'];
@@ -877,14 +917,21 @@ const skill = {
 		mod: {
 			ybslmoonMod: function (event, player, num) {
 				var str = Infinity;
-				if (player.storage.ybsl_moon.includes('key')) str = 50;
-				if (player.storage.ybsl_moon.includes('sec')) str = 35;
+				if (player.storage.ybsl_moon.includes('key')) {
+					str = 50;
+				}
+				if (player.storage.ybsl_moon.includes('sec')) {
+					str = 35;
+				}
 				return num + str;
 			},
 			ybslmoonlvMod: function (event, player, num) {
 				var str = 0;
-				if (player.storage.ybsl_moon.includes('key')) str = 8;
-				else if (player.storage.ybsl_moon.includes('sec')) str = 5;
+				if (player.storage.ybsl_moon.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_moon.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
@@ -1014,14 +1061,21 @@ const skill = {
 		mod: {
 			ybslclamMod: function (event, player, num) {
 				var str = Infinity;
-				if (player.storage.ybsl_clam.includes('key')) str = 40;
-				if (player.storage.ybsl_clam.includes('sec')) str = 28;
+				if (player.storage.ybsl_clam.includes('key')) {
+					str = 40;
+				}
+				if (player.storage.ybsl_clam.includes('sec')) {
+					str = 28;
+				}
 				return num + str;
 			},
 			ybslclamlvMod: function (event, player, num) {
 				var str = 0;
-				if (player.storage.ybsl_clam.includes('key')) str = 8;
-				else if (player.storage.ybsl_clam.includes('sec')) str = 5;
+				if (player.storage.ybsl_clam.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_clam.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
@@ -1079,14 +1133,21 @@ const skill = {
 		mod: {
 			ybsllightningMod: function (event, player, num) {
 				var str = Infinity;
-				if (player.storage.ybsl_lightning.includes('key')) str = 40;
-				if (player.storage.ybsl_lightning.includes('sec')) str = 28;
+				if (player.storage.ybsl_lightning.includes('key')) {
+					str = 40;
+				}
+				if (player.storage.ybsl_lightning.includes('sec')) {
+					str = 28;
+				}
 				return num + str;
 			},
 			ybsllightninglvMod: function (event, player, num) {
 				var str = 0;
-				if (player.storage.ybsl_lightning.includes('key')) str = 8;
-				else if (player.storage.ybsl_lightning.includes('sec')) str = 5;
+				if (player.storage.ybsl_lightning.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_lightning.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
@@ -1144,14 +1205,21 @@ const skill = {
 		mod: {
 			ybslwindMod: function (event, player, num) {
 				var str = Infinity;
-				if (player.storage.ybsl_wind.includes('key')) str = 50;
-				if (player.storage.ybsl_wind.includes('sec')) str = 35;
+				if (player.storage.ybsl_wind.includes('key')) {
+					str = 50;
+				}
+				if (player.storage.ybsl_wind.includes('sec')) {
+					str = 35;
+				}
 				return num + str;
 			},
 			ybslwindlvMod: function (event, player, num) {
 				var str = 0;
-				if (player.storage.ybsl_wind.includes('key')) str = 8;
-				else if (player.storage.ybsl_wind.includes('sec')) str = 5;
+				if (player.storage.ybsl_wind.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_wind.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
@@ -1282,14 +1350,21 @@ const skill = {
 		mod: {
 			ybslflameMod: function (event, player, num) {
 				var str = Infinity;
-				if (player.storage.ybsl_flame.includes('key')) str = 20;
-				if (player.storage.ybsl_flame.includes('sec')) str = 14;
+				if (player.storage.ybsl_flame.includes('key')) {
+					str = 20;
+				}
+				if (player.storage.ybsl_flame.includes('sec')) {
+					str = 14;
+				}
 				return num + str;
 			},
 			ybslflamelvMod: function (event, player, num) {
 				var str = 0;
-				if (player.storage.ybsl_flame.includes('key')) str = 8;
-				else if (player.storage.ybsl_flame.includes('sec')) str = 5;
+				if (player.storage.ybsl_flame.includes('key')) {
+					str = 8;
+				} else if (player.storage.ybsl_flame.includes('sec')) {
+					str = 5;
+				}
 				return num + str;
 			},
 		},
@@ -1488,7 +1563,9 @@ const skill = {
 				var str = '#g';
 				for (var j = 0; j < x; j++) {
 					str += get.translation(list2[j]);
-					if (j < x - 1) str += '/';
+					if (j < x - 1) {
+						str += '/';
+					}
 				}
 				game.log(player, '#g【还酹】', '主、支流派依次为', str);
 			}

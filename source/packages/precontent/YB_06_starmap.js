@@ -8,7 +8,7 @@ const YBSL_starmap = function () {
 	{
 		//流云乱入
 		lib.arenaReady.push(function () {
-			if (lib.zxlyrelationship)
+			if (lib.zxlyrelationship) {
 				lib.zxlyrelationship.YB_memory = {
 					ybsl_001sunlisong: {
 						friendly: {
@@ -35,6 +35,7 @@ const YBSL_starmap = function () {
 						neutral: {},
 					},
 				};
+			}
 			// relationship
 			// YB_memory:{
 			// 	ybsl_001sunlisong:{

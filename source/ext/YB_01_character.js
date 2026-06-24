@@ -86,7 +86,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	};
 	typeimage(ybslj, 'ybsl001');
 	for (var i in ybslj.card) {
-		if (!ybslj.card[i].image) ybslj.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybslj.card[i].image) {
+			ybslj.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('ybslj');
 	lib.translate['ybslj_character_config'] = "<span style='color:#28e3ce'>夜白将包</span>";

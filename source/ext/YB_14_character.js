@@ -72,7 +72,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	};
 	typeimage(ybnew3, 'ybsl004');
 	for (var i in ybnew3.card) {
-		if (!ybnew3.card[i].image) ybnew3.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybnew3.card[i].image) {
+			ybnew3.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('ybnew3');
 	lib.translate['ybnew3_character_config'] = "<span style='color:#28e3ce'>夜白杂设新包</span>";

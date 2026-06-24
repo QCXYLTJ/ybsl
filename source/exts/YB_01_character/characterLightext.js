@@ -12,8 +12,11 @@ const characterLightextParent = {
 				},
 				mod: {
 					maxHandcard: function (player, num) {
-						if (player.name2 && player.name2 == 'ybsl_043fangjiayu') return num + 1;
-						else return num;
+						if (player.name2 && player.name2 == 'ybsl_043fangjiayu') {
+							return num + 1;
+						} else {
+							return num;
+						}
 					},
 				},
 			},

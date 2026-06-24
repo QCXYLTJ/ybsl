@@ -55,7 +55,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	};
 	typeimage(ybwhjx, 'ybsl013');
 	for (var i in ybwhjx.card) {
-		if (!ybwhjx.card[i].image) ybwhjx.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybwhjx.card[i].image) {
+			ybwhjx.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.characters.add('ybwhjx');
 	lib.translate['ybwhjx_character_config'] = "<span style='color:rgba(255, 237, 123,1)'>武魂觉醒</span>";

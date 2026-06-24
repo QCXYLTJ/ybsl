@@ -247,7 +247,9 @@ export async function precontent() {
 					//版权信息
 					//判断是否为对象、字符串、数组
 					var strx = lib.characterCopyright[name];
-					if (macg) strx = macg;
+					if (macg) {
+						strx = macg;
+					}
 					if (typeof strx == 'object' && !Array.isArray(strx)) {
 						var str = '';
 						var list = {
@@ -262,21 +264,35 @@ export async function precontent() {
 						if (lib.characterTitle[name]) {
 							var { startTag, endTag, content } = get.extractFirstTag(lib.characterTitle[name]);
 						}
-						if (startTag) str += startTag;
+						if (startTag) {
+							str += startTag;
+						}
 						// if(strx['pack'])str+=strx['pack'];
 						// if(strx['pack']&&strx['num'])str+='-';
 						// if(strx['num'])str+=strx['num'];
 						// if(strx['num']&&lib.characterTitle[name])str+='-';
 						var strlist = [];
-						if (strx['pack']) strlist.push(strx['pack']);
-						if (strx['num']) strlist.push(strx['num']);
-						if (content) strlist.push(content);
-						if (strlist.length > 0) str += strlist.join('-');
+						if (strx['pack']) {
+							strlist.push(strx['pack']);
+						}
+						if (strx['num']) {
+							strlist.push(strx['num']);
+						}
+						if (content) {
+							strlist.push(content);
+						}
+						if (strlist.length > 0) {
+							str += strlist.join('-');
+						}
 						// if(content)str+=content;
 						// if(lib.characterTitle[name])str+=lib.characterTitle[name];
-						if (endTag) str += endTag;
+						if (endTag) {
+							str += endTag;
+						}
 						str += '<br>';
-						if (!strx['icon']) strx['icon'] = '◈';
+						if (!strx['icon']) {
+							strx['icon'] = '◈';
+						}
 						if (strx['skill']) {
 							str += strx['icon'] + list['skill'] + '：' + strx['skill'];
 							str += '<br>';
@@ -376,7 +392,9 @@ export async function precontent() {
 					return YB_intro;
 				}
 				var i, translation, intro, str;
-				if (node._nointro) return;
+				if (node._nointro) {
+					return;
+				}
 				if (node.classList.contains('player') && node.linkplayer && (lib.characterTitle[node.name] || lib.characterCitetext[node.name] || (lib.characterLightext[node.name1] && lib.characterLightext[node.name1](node)) || lib.characterUndertext[node.name])) {
 					if (node.linkplayer) {
 						node = node.link;
@@ -384,9 +402,13 @@ export async function precontent() {
 					let capt = get.translation(node.name);
 					const characterInfo = get.character(node.name),
 						sex = node.sex || characterInfo[0];
-					if (sex && sex != 'unknown' && lib.config.show_sex) capt += `&nbsp;&nbsp;${sex == 'none' ? '无' : get.translation(sex)}`;
+					if (sex && sex != 'unknown' && lib.config.show_sex) {
+						capt += `&nbsp;&nbsp;${sex == 'none' ? '无' : get.translation(sex)}`;
+					}
 					const group = node.group;
-					if (group && group != 'unknown' && lib.config.show_group) capt += `&nbsp;&nbsp;${get.translation(group)}`;
+					if (group && group != 'unknown' && lib.config.show_group) {
+						capt += `&nbsp;&nbsp;${get.translation(group)}`;
+					}
 					YB_intro.add(capt);
 
 					if (lib.characterTitle[node.name]) {
@@ -430,7 +452,9 @@ export async function precontent() {
 					}
 					if (get.characterInitFilter(node.name)) {
 						const initFilters = get.characterInitFilter(node.name).filter((tag) => {
-							if (!lib.characterInitFilter[node.name]) return true;
+							if (!lib.characterInitFilter[node.name]) {
+								return true;
+							}
 							return lib.characterInitFilter[node.name](tag) !== false;
 						});
 						if (initFilters.length) {
@@ -473,12 +497,17 @@ export async function precontent() {
 						}
 					}
 					for (i = 0; i < skills.length; i++) {
-						if (lib.skill[skills[i]] && (lib.skill[skills[i]].nopop || lib.skill[skills[i]].equipSkill)) continue;
+						if (lib.skill[skills[i]] && (lib.skill[skills[i]].nopop || lib.skill[skills[i]].equipSkill)) {
+							continue;
+						}
 						if (lib.translate[skills[i] + '_info']) {
-							if (lib.translate[skills[i] + '_ab']) translation = lib.translate[skills[i] + '_ab'];
-							else {
+							if (lib.translate[skills[i] + '_ab']) {
+								translation = lib.translate[skills[i] + '_ab'];
+							} else {
 								translation = get.translation(skills[i]);
-								if (!lib.skill[skills[i]].nobracket) translation = `【${translation.slice(0, 2)}】`;
+								if (!lib.skill[skills[i]].nobracket) {
+									translation = `【${translation.slice(0, 2)}】`;
+								}
 							}
 
 							if (node.forbiddenSkills[skills[i]]) {
@@ -499,7 +528,9 @@ export async function precontent() {
 									}
 									underlinenode.link = skills[i];
 									underlinenode.listen(ui.click.hiddenskill);
-								} else YB_intro.add('<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '</div></div>');
+								} else {
+									YB_intro.add('<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '</div></div>');
+								}
 							} else if (lib.skill[skills[i]].temp || !node.skills.includes(skills[i]) || lib.skill[skills[i]].thundertext) {
 								if (lib.skill[skills[i]].frequent || lib.skill[skills[i]].subfrequent) {
 									YB_intro.add('<div><div class="skill thundertext thunderauto">' + translation + '</div><div class="thundertext thunderauto">' + get.skillInfoTranslation(skills[i], node) + '<br><div class="underlinenode on gray" style="position:relative;padding-left:0;padding-top:7px">自动发动</div></div></div>');
@@ -632,7 +663,9 @@ export async function precontent() {
 						(function () {
 							num = 0;
 							for (var j = 0; j < node.stat.length; j++) {
-								if (typeof node.stat[j].damage == 'number') num += node.stat[j].damage;
+								if (typeof node.stat[j].damage == 'number') {
+									num += node.stat[j].damage;
+								}
 							}
 							td.innerHTML = num;
 						})();
@@ -665,7 +698,9 @@ export async function precontent() {
 									showCardIntro = true;
 								if (cardInfo.blankCard) {
 									var cardOwner = get.owner(js[i]);
-									if (cardOwner && !cardOwner.isUnderControl(true)) showCardIntro = false;
+									if (cardOwner && !cardOwner.isUnderControl(true)) {
+										showCardIntro = false;
+									}
 								}
 								if (!showCardIntro) {
 									html = ui.create.button(js[i], 'blank').outerHTML;
@@ -706,20 +741,30 @@ export async function precontent() {
 						ui.throwEmotion = [];
 						YB_intro.addText('发送交互表情');
 						var click = function () {
-							if (_status.dragged) return;
-							if (_status.justdragged) return;
-							if (_status.throwEmotionWait) return;
+							if (_status.dragged) {
+								return;
+							}
+							if (_status.justdragged) {
+								return;
+							}
+							if (_status.throwEmotionWait) {
+								return;
+							}
 							var emotion = this.link;
 							if (game.online) {
 								game.send('throwEmotion', node, emotion);
-							} else game.me.throwEmotion(node, emotion);
+							} else {
+								game.me.throwEmotion(node, emotion);
+							}
 							YB_intro._close();
 							_status.throwEmotionWait = true;
 							setTimeout(
 								function () {
 									_status.throwEmotionWait = false;
 									if (ui.throwEmotion) {
-										for (var i of ui.throwEmotion) i.classList.remove('exclude');
+										for (var i of ui.throwEmotion) {
+											i.classList.remove('exclude');
+										}
 									}
 								},
 								emotion == 'flower' || emotion == 'egg' ? 500 : 5000,
@@ -735,7 +780,9 @@ export async function precontent() {
 						for (var i = 0; i < listi.length; i++) {
 							td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 							ui.throwEmotion.add(td);
-							if (_status.throwEmotionWait) td.classList.add('exclude');
+							if (_status.throwEmotionWait) {
+								td.classList.add('exclude');
+							}
 							td.link = listi[i];
 							table.appendChild(td);
 							td.innerHTML = '<span>' + get.translation(listi[i]) + '</span>';
@@ -748,11 +795,15 @@ export async function precontent() {
 						table.style.width = '100%';
 						table.style.position = 'relative';
 						var listi = ['wine', 'shoe'];
-						if (game.me.storage.zhuSkill_shanli) listi = ['yuxisx', 'jiasuo'];
+						if (game.me.storage.zhuSkill_shanli) {
+							listi = ['yuxisx', 'jiasuo'];
+						}
 						for (var i = 0; i < listi.length; i++) {
 							td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 							ui.throwEmotion.add(td);
-							if (_status.throwEmotionWait) td.classList.add('exclude');
+							if (_status.throwEmotionWait) {
+								td.classList.add('exclude');
+							}
 							td.link = listi[i];
 							table.appendChild(td);
 							td.innerHTML = '<span>' + get.translation(listi[i]) + '</span>';
@@ -897,12 +948,17 @@ export async function precontent() {
 					let capt = get.translation(character);
 					if (characterInfo) {
 						const infoSex = characterInfo[0];
-						if (infoSex && lib.config.show_sex) capt += `&nbsp;&nbsp;${infoSex == 'none' ? '无' : lib.translate[infoSex]}`;
+						if (infoSex && lib.config.show_sex) {
+							capt += `&nbsp;&nbsp;${infoSex == 'none' ? '无' : lib.translate[infoSex]}`;
+						}
 						const infoGroup = characterInfo[1];
 						if (infoGroup && lib.config.show_group) {
 							const group = get.is.double(character, true);
-							if (group) capt += `&nbsp;&nbsp;${group.map((value) => get.translation(value)).join('/')}`;
-							else capt += `&nbsp;&nbsp;${lib.translate[infoGroup]}`;
+							if (group) {
+								capt += `&nbsp;&nbsp;${group.map((value) => get.translation(value)).join('/')}`;
+							} else {
+								capt += `&nbsp;&nbsp;${lib.translate[infoGroup]}`;
+							}
 						}
 					}
 					YB_intro.add(capt);
@@ -945,7 +1001,9 @@ export async function precontent() {
 
 					if (get.characterInitFilter(node.link)) {
 						const initFilters = get.characterInitFilter(node.link).filter((tag) => {
-							if (!lib.characterInitFilter[node.link]) return true;
+							if (!lib.characterInitFilter[node.link]) {
+								return true;
+							}
 							return lib.characterInitFilter[node.link](tag) !== false;
 						});
 						if (initFilters.length) {
@@ -979,7 +1037,9 @@ export async function precontent() {
 						});
 						for (var i = 0; i < modeorder.length; i++) {
 							if (node._banning == 'online') {
-								if (!lib.mode[modeorder[i]].connect) continue;
+								if (!lib.mode[modeorder[i]].connect) {
+									continue;
+								}
 								if (!lib.config['connect_' + modeorder[i] + '_banned']) {
 									lib.config['connect_' + modeorder[i] + '_banned'] = [];
 								}
@@ -1047,10 +1107,13 @@ export async function precontent() {
 						var skills = get.character(character, 3);
 						for (i = 0; i < skills.length; i++) {
 							if (lib.translate[skills[i] + '_info']) {
-								if (lib.translate[skills[i] + '_ab']) translation = lib.translate[skills[i] + '_ab'];
-								else {
+								if (lib.translate[skills[i] + '_ab']) {
+									translation = lib.translate[skills[i] + '_ab'];
+								} else {
 									translation = get.translation(skills[i]);
-									if (!lib.skill[skills[i]].nobracket) translation = `【${translation.slice(0, 2)}】`;
+									if (!lib.skill[skills[i]].nobracket) {
+										translation = `【${translation.slice(0, 2)}】`;
+									}
 								}
 
 								YB_intro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], null, false) + '</div></div>');
@@ -1173,7 +1236,9 @@ export async function precontent() {
 				if (!lib.translate[skill + '_info'] && !lib.translate[skill + '_info']) {
 					return str;
 				}
-				if (lib.dynamicTranslate[skill] && lib.dynamicTranslate[skill] != undefined) return '###' + str + '###' + '<br>' + lib.dynamicTranslate[skill](player);
+				if (lib.dynamicTranslate[skill] && lib.dynamicTranslate[skill] != undefined) {
+					return '###' + str + '###' + '<br>' + lib.dynamicTranslate[skill](player);
+				}
 				return '###' + str + '###' + '<br>' + lib.translate[skill + '_info'];
 			};
 		}
@@ -1262,8 +1327,12 @@ export async function precontent() {
 						// for(var i=0;i<qianzhui.length;i++){
 						// 	if(name.indexOf(qianzhui[i])==0) return true;
 						// }
-						if (!lib.characterPack[i]) return;
-						if (lib.characterPack[i][name]) return true;
+						if (!lib.characterPack[i]) {
+							return;
+						}
+						if (lib.characterPack[i][name]) {
+							return true;
+						}
 						//判断此ID的武将是否属于此皮肤包。推荐用前缀判断。
 						//在这里不判断直接返回true是很没有武德的行为，可能覆盖别人的扩展配置。
 					},
@@ -1422,8 +1491,12 @@ export async function precontent() {
 
 	lib.arenaReady.push(function () {
 		if (lib.config.extension_云中守望_enable == true) {
-			if (lib.character['dzsl_014liutianyu']) lib.character['dzsl_014liutianyu'].isUnseen = true;
-			if (lib.character['ybmjz_shen_caopi']) lib.character['ybmjz_shen_caopi'].isUnseen = true;
+			if (lib.character['dzsl_014liutianyu']) {
+				lib.character['dzsl_014liutianyu'].isUnseen = true;
+			}
+			if (lib.character['ybmjz_shen_caopi']) {
+				lib.character['ybmjz_shen_caopi'].isUnseen = true;
+			}
 		}
 	});
 	get.typeimage = typeimage;

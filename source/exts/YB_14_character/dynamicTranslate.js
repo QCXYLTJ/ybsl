@@ -64,7 +64,9 @@ const dynamicTranslate = {
 	},
 	ybsl_luanming: function (player) {
 		//鸾鸣
-		if (player.storage.ybsl_luanming == true) return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：阳：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阴：视为使用其中的红色牌并额外执行一次</span>。';
+		if (player.storage.ybsl_luanming == true) {
+			return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：阳：视为使用其中的黑色牌并额外执行一次；<span class="bluetext">阴：视为使用其中的红色牌并额外执行一次</span>。';
+		}
 		return '转换技，每回合限一次，你可以弃置一黑一红共两张牌：<span class="bluetext">阳：视为使用其中的黑色牌并额外执行一次；</span>阴：视为使用其中的红色牌并额外执行一次。';
 	},
 
@@ -106,7 +108,9 @@ const dynamicTranslate = {
 		const items = player.storage.zxunnamed_huaiyi_items;
 		let str = `转换技，出牌阶段限一次，你可以<span class=${storage ? '' : 'bluetext'}>1.弃置两张牌并获得或重置${get.poptip('zxunnamed_shixian')}</span>`;
 		let list = [...get.skillInfoTranslation('zxunnamed_shixian', player).matchAll(/(?<=\d\.).*?(?=，\d\.|；)/g)];
-		for (const i in items) str += `，<span class=${storage == Number(i) + 1 ? 'bluetext' : ''}>${Number(i) + 2}.${list[items[i]]}</span>`;
+		for (const i in items) {
+			str += `，<span class=${storage == Number(i) + 1 ? 'bluetext' : ''}>${Number(i) + 2}.${list[items[i]]}</span>`;
+		}
 		return str + '。';
 	},
 	Fe3O4_chichi: (player, skill) => `转换技，你可以以<span class=${player.storage[skill] ? '' : 'bluetext'}>阳：明置</span><span class=${player.storage[skill] ? 'bluetext' : ''}>阴：重铸</span>方式使用手牌。`,

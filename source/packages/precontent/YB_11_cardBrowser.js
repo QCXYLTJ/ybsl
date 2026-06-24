@@ -120,7 +120,7 @@ const YB_11_cardBrowser = function () {
 			}
 		}
 		if (lib.config.YB_look == 1) {
-			if (!lib.config.extension_文武英杰_enable)
+			if (!lib.config.extension_文武英杰_enable) {
 				game.wwyj_showNewtujian = function () {
 					var dialog = ui.create.dialog('hidden');
 					dialog.style.height = 'calc(70%)';
@@ -138,7 +138,9 @@ const YB_11_cardBrowser = function () {
 					}
 					var interval = setInterval(function () {
 						var num = 20;
-						if (num > list_newtujian.length) num = list_newtujian.length;
+						if (num > list_newtujian.length) {
+							num = list_newtujian.length;
+						}
 						for (var i = 0; i < num; i++) {
 							var data = list_newtujian[0].data;
 							var info = list_newtujian[0].info;
@@ -146,18 +148,26 @@ const YB_11_cardBrowser = function () {
 							var list1 = [];
 							if (info.players.length) {
 								for (var j = 0; j < info.players.length; j++) {
-									if (lib.character[info.players[j]] != undefined) list.push(info.players[j]);
+									if (lib.character[info.players[j]] != undefined) {
+										list.push(info.players[j]);
+									}
 								}
 							}
-							if (list.length) dialog.addSmall([list, 'character']);
+							if (list.length) {
+								dialog.addSmall([list, 'character']);
+							}
 							dialog.addText(data + '   (' + info.version + ')<br>', false);
 							dialog.addText('<li>' + info.info, false);
 							if (info.cards.length) {
 								for (var j = 0; j < info.cards.length; j++) {
-									if (lib.card[info.cards[j]] != undefined) list1.push(info.cards[j]);
+									if (lib.card[info.cards[j]] != undefined) {
+										list1.push(info.cards[j]);
+									}
 								}
 							}
-							if (list1.length) dialog.addSmall([list1, 'vcard']);
+							if (list1.length) {
+								dialog.addSmall([list1, 'vcard']);
+							}
 							list_newtujian.remove(list_newtujian[0]);
 							if (list_newtujian.length == 0) {
 								clearInterval(interval);
@@ -176,6 +186,7 @@ const YB_11_cardBrowser = function () {
 					div.style.zIndex = 1000;
 					ui.window.appendChild(div);
 				};
+			}
 			if (config.wwyj_newtujianicon) {
 				lib.skill._wwyj_newtujianicon = {
 					trigger: { global: 'gameStart' },
@@ -209,7 +220,7 @@ const YB_11_cardBrowser = function () {
 		}
 	}
 	if (false) {
-		if (lib.brawl)
+		if (lib.brawl) {
 			lib.brawl.YB_wuhunjuexing = {
 				name: '武魂觉醒',
 				mode: 'identity',
@@ -282,7 +293,9 @@ const YB_11_cardBrowser = function () {
 						return list[num];
 					};
 					lib.element.player.YB_hunliLevelUp = function () {
-						if (!player.YB_hunliLevel) player.YB_hunliLevel = 0;
+						if (!player.YB_hunliLevel) {
+							player.YB_hunliLevel = 0;
+						}
 						player.YB_hunliLevel++;
 					};
 					lib.skill._YB_hunli = {
@@ -1140,5 +1153,6 @@ const YB_11_cardBrowser = function () {
 					},
 				},
 			};
+		}
 	}
 };

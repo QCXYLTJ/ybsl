@@ -101,7 +101,9 @@ const YBSL_characterIntro = function (name) {
 	while (name.includes('_') && !lib.characterIntro[name]) {
 		name = name.slice(name.indexOf('_') + 1);
 	}
-	if (lib.characterIntro[name]) return lib.characterIntro[name];
+	if (lib.characterIntro[name]) {
+		return lib.characterIntro[name];
+	}
 	return '暂无武将介绍';
 };
 {
@@ -148,7 +150,9 @@ const characterIntro = function (name) {
 	while (name.includes('_') && !lib.characterIntro[name]) {
 		name = name.slice(name.indexOf('_') + 1);
 	}
-	if (lib.characterIntro[name]) return str + lib.characterIntro[name];
+	if (lib.characterIntro[name]) {
+		return str + lib.characterIntro[name];
+	}
 	return str + '暂无武将介绍';
 };
 const nodeintro = function (node, simple, evt) {
@@ -157,10 +161,16 @@ const nodeintro = function (node, simple, evt) {
 		return uiintro;
 	}
 	var i, translation, intro, str;
-	if (node._nointro) return;
+	if (node._nointro) {
+		return;
+	}
 	if (typeof node._customintro == 'function') {
-		if (node._customintro(uiintro, evt) === false) return;
-		if (evt) lib.placePoppedDialog(uiintro, evt);
+		if (node._customintro(uiintro, evt) === false) {
+			return;
+		}
+		if (evt) {
+			lib.placePoppedDialog(uiintro, evt);
+		}
 	} else if (Array.isArray(node._customintro)) {
 		var caption = node._customintro[0];
 		var content = node._customintro[1];
@@ -179,9 +189,13 @@ const nodeintro = function (node, simple, evt) {
 		let capt = get.translation(node.name);
 		const characterInfo = get.character(node.name),
 			sex = node.sex || characterInfo[0];
-		if (sex && sex != 'unknown' && lib.config.show_sex) capt += `&nbsp;&nbsp;${sex == 'none' ? '无' : get.translation(sex)}`;
+		if (sex && sex != 'unknown' && lib.config.show_sex) {
+			capt += `&nbsp;&nbsp;${sex == 'none' ? '无' : get.translation(sex)}`;
+		}
 		const group = node.group;
-		if (group && group != 'unknown' && lib.config.show_group) capt += `&nbsp;&nbsp;${get.translation(group)}`;
+		if (group && group != 'unknown' && lib.config.show_group) {
+			capt += `&nbsp;&nbsp;${get.translation(group)}`;
+		}
 		uiintro.add(capt);
 
 		if (lib.characterTitle[node.name]) {
@@ -202,7 +216,9 @@ const nodeintro = function (node, simple, evt) {
 		// }
 		if (get.characterInitFilter(node.name)) {
 			const initFilters = get.characterInitFilter(node.name).filter((tag) => {
-				if (!lib.characterInitFilter[node.name]) return true;
+				if (!lib.characterInitFilter[node.name]) {
+					return true;
+				}
 				return lib.characterInitFilter[node.name](tag) !== false;
 			});
 			if (initFilters.length) {
@@ -245,12 +261,17 @@ const nodeintro = function (node, simple, evt) {
 			}
 		}
 		for (i = 0; i < skills.length; i++) {
-			if (lib.skill[skills[i]] && (lib.skill[skills[i]].nopop || lib.skill[skills[i]].equipSkill)) continue;
+			if (lib.skill[skills[i]] && (lib.skill[skills[i]].nopop || lib.skill[skills[i]].equipSkill)) {
+				continue;
+			}
 			if (lib.translate[skills[i] + '_info']) {
-				if (lib.translate[skills[i] + '_ab']) translation = lib.translate[skills[i] + '_ab'];
-				else {
+				if (lib.translate[skills[i] + '_ab']) {
+					translation = lib.translate[skills[i] + '_ab'];
+				} else {
 					translation = get.translation(skills[i]);
-					if (!lib.skill[skills[i]].nobracket) translation = `【${translation.slice(0, 2)}】`;
+					if (!lib.skill[skills[i]].nobracket) {
+						translation = `【${translation.slice(0, 2)}】`;
+					}
 				}
 
 				if (node.forbiddenSkills[skills[i]]) {
@@ -271,7 +292,9 @@ const nodeintro = function (node, simple, evt) {
 						}
 						underlinenode.link = skills[i];
 						underlinenode.listen(ui.click.hiddenskill);
-					} else uiintro.add('<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '</div></div>');
+					} else {
+						uiintro.add('<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '</div></div>');
+					}
 				} else if (lib.skill[skills[i]].temp || !node.skills.includes(skills[i]) || lib.skill[skills[i]].thundertext) {
 					if (lib.skill[skills[i]].frequent || lib.skill[skills[i]].subfrequent) {
 						uiintro.add('<div><div class="skill thundertext thunderauto">' + translation + '</div><div class="thundertext thunderauto">' + get.skillInfoTranslation(skills[i], node) + '<br><div class="underlinenode on gray" style="position:relative;padding-left:0;padding-top:7px">自动发动</div></div></div>');
@@ -404,7 +427,9 @@ const nodeintro = function (node, simple, evt) {
 			(function () {
 				num = 0;
 				for (var j = 0; j < node.stat.length; j++) {
-					if (typeof node.stat[j].damage == 'number') num += node.stat[j].damage;
+					if (typeof node.stat[j].damage == 'number') {
+						num += node.stat[j].damage;
+					}
 				}
 				td.innerHTML = num;
 			})();
@@ -437,7 +462,9 @@ const nodeintro = function (node, simple, evt) {
 						showCardIntro = true;
 					if (cardInfo.blankCard) {
 						var cardOwner = get.owner(js[i]);
-						if (cardOwner && !cardOwner.isUnderControl(true)) showCardIntro = false;
+						if (cardOwner && !cardOwner.isUnderControl(true)) {
+							showCardIntro = false;
+						}
 					}
 					if (!showCardIntro) {
 						html = ui.create.button(js[i], 'blank').outerHTML;
@@ -478,20 +505,30 @@ const nodeintro = function (node, simple, evt) {
 			ui.throwEmotion = [];
 			uiintro.addText('发送交互表情');
 			var click = function () {
-				if (_status.dragged) return;
-				if (_status.justdragged) return;
-				if (_status.throwEmotionWait) return;
+				if (_status.dragged) {
+					return;
+				}
+				if (_status.justdragged) {
+					return;
+				}
+				if (_status.throwEmotionWait) {
+					return;
+				}
 				var emotion = this.link;
 				if (game.online) {
 					game.send('throwEmotion', node, emotion);
-				} else game.me.throwEmotion(node, emotion);
+				} else {
+					game.me.throwEmotion(node, emotion);
+				}
 				uiintro._close();
 				_status.throwEmotionWait = true;
 				setTimeout(
 					function () {
 						_status.throwEmotionWait = false;
 						if (ui.throwEmotion) {
-							for (var i of ui.throwEmotion) i.classList.remove('exclude');
+							for (var i of ui.throwEmotion) {
+								i.classList.remove('exclude');
+							}
 						}
 					},
 					emotion == 'flower' || emotion == 'egg' ? 500 : 5000,
@@ -507,7 +544,9 @@ const nodeintro = function (node, simple, evt) {
 			for (var i = 0; i < listi.length; i++) {
 				td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 				ui.throwEmotion.add(td);
-				if (_status.throwEmotionWait) td.classList.add('exclude');
+				if (_status.throwEmotionWait) {
+					td.classList.add('exclude');
+				}
 				td.link = listi[i];
 				table.appendChild(td);
 				td.innerHTML = '<span>' + get.translation(listi[i]) + '</span>';
@@ -520,11 +559,15 @@ const nodeintro = function (node, simple, evt) {
 			table.style.width = '100%';
 			table.style.position = 'relative';
 			var listi = ['wine', 'shoe'];
-			if (game.me.storage.zhuSkill_shanli) listi = ['yuxisx', 'jiasuo'];
+			if (game.me.storage.zhuSkill_shanli) {
+				listi = ['yuxisx', 'jiasuo'];
+			}
 			for (var i = 0; i < listi.length; i++) {
 				td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 				ui.throwEmotion.add(td);
-				if (_status.throwEmotionWait) td.classList.add('exclude');
+				if (_status.throwEmotionWait) {
+					td.classList.add('exclude');
+				}
 				td.link = listi[i];
 				table.appendChild(td);
 				td.innerHTML = '<span>' + get.translation(listi[i]) + '</span>';
@@ -577,11 +620,17 @@ const nodeintro = function (node, simple, evt) {
 							} else {
 								delete lib.config.skin[nameskin];
 								if (avatar2) {
-									if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.node.avatar2.setBackground(nameskin2, 'character');
-									else node.node.avatar2.setBackground(nameskin, 'character');
+									if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) {
+										node.node.avatar2.setBackground(nameskin2, 'character');
+									} else {
+										node.node.avatar2.setBackground(nameskin, 'character');
+									}
 								} else {
-									if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.node.avatar.setBackground(nameskin2, 'character');
-									else node.node.avatar.setBackground(nameskin, 'character');
+									if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) {
+										node.node.avatar.setBackground(nameskin2, 'character');
+									} else {
+										node.node.avatar.setBackground(nameskin, 'character');
+									}
 								}
 							}
 							game.saveConfig('skin', lib.config.skin);
@@ -590,8 +639,11 @@ const nodeintro = function (node, simple, evt) {
 						if (i) {
 							button.setBackgroundImage('image/skin/' + nameskin + '/' + i + '.jpg');
 						} else {
-							if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) button.setBackground(nameskin2, 'character', 'noskin');
-							else button.setBackground(nameskin, 'character', 'noskin');
+							if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) {
+								button.setBackground(nameskin2, 'character', 'noskin');
+							} else {
+								button.setBackground(nameskin, 'character', 'noskin');
+							}
 						}
 					}
 					uiintro.add(buttons);
@@ -730,7 +782,9 @@ const nodeintro = function (node, simple, evt) {
 					uiintro._place_text = uiintro.add('<div class="text" style="display:inline">' + item[1] + '</div>');
 				}
 			}
-			if (moded) return uiintro;
+			if (moded) {
+				return uiintro;
+			}
 		}
 		if (node.link && node.link.name && lib.card[node.link.name]) {
 			name = node.link.name;
@@ -742,11 +796,15 @@ const nodeintro = function (node, simple, evt) {
 				showCardIntro = true;
 			var cardOwner = get.owner(node);
 			if (cardInfo.blankCard) {
-				if (cardOwner && !cardOwner.isUnderControl(true)) showCardIntro = false;
+				if (cardOwner && !cardOwner.isUnderControl(true)) {
+					showCardIntro = false;
+				}
 			}
 			if (cardOwner) {
 				var sourceVCard = cardOwner.getVCards(cardPosition).find((card) => card.cards?.includes(node));
-				if (showCardIntro && sourceVCard) uiintro.add('<div class="text center">（' + get.translation(get.translation(sourceVCard.cards)) + '）</div>');
+				if (showCardIntro && sourceVCard) {
+					uiintro.add('<div class="text center">（' + get.translation(get.translation(sourceVCard.cards)) + '）</div>');
+				}
 			}
 			// uiintro.add(get.translation(node.viewAs)+'<br><div class="text center" style="padding-top:5px;">（'+get.translation(node)+'）</div>');
 			uiintro.nosub = true;
@@ -779,7 +837,9 @@ const nodeintro = function (node, simple, evt) {
 			});
 			for (var i = 0; i < modeorder.length; i++) {
 				if (node._banning == 'online') {
-					if (!lib.mode[modeorder[i]].connect) continue;
+					if (!lib.mode[modeorder[i]].connect) {
+						continue;
+					}
 				} else if (modeorder[i] == 'connect' || modeorder[i] == 'brawl') {
 					continue;
 				}
@@ -787,7 +847,9 @@ const nodeintro = function (node, simple, evt) {
 					list.push(modeorder[i]);
 				}
 			}
-			if (lib.card[name] && lib.card[name].type == 'trick') list.push('zhinang_tricks');
+			if (lib.card[name] && lib.card[name].type == 'trick') {
+				list.push('zhinang_tricks');
+			}
 			var page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
 			var banall = false;
 			for (var i = 0; i < list.length; i++) {
@@ -897,9 +959,13 @@ const nodeintro = function (node, simple, evt) {
 					const yingbianEffects = get.yingbianEffects(node.link || node);
 					if (!yingbianEffects.length) {
 						const defaultYingbianEffect = get.defaultYingbianEffect(node.link || node);
-						if (lib.yingbian.prompt.has(defaultYingbianEffect)) yingbianEffects.push(defaultYingbianEffect);
+						if (lib.yingbian.prompt.has(defaultYingbianEffect)) {
+							yingbianEffects.push(defaultYingbianEffect);
+						}
 					}
-					if (yingbianEffects.length && showCardIntro) uiintro.add(`<div class="text" style="font-family: yuanli">应变：${yingbianEffects.map((value) => lib.yingbian.prompt.get(value)).join('；')}</div>`);
+					if (yingbianEffects.length && showCardIntro) {
+						uiintro.add(`<div class="text" style="font-family: yuanli">应变：${yingbianEffects.map((value) => lib.yingbian.prompt.get(value)).join('；')}</div>`);
+					}
 				}
 				if (lib.translate[name + '_append']) {
 					uiintro.add('<div class="text" style="display:inline">' + lib.translate[name + '_append'] + '</div>');
@@ -913,12 +979,17 @@ const nodeintro = function (node, simple, evt) {
 		let capt = get.translation(character);
 		if (characterInfo) {
 			const infoSex = characterInfo[0];
-			if (infoSex && lib.config.show_sex) capt += `&nbsp;&nbsp;${infoSex == 'none' ? '无' : lib.translate[infoSex]}`;
+			if (infoSex && lib.config.show_sex) {
+				capt += `&nbsp;&nbsp;${infoSex == 'none' ? '无' : lib.translate[infoSex]}`;
+			}
 			const infoGroup = characterInfo[1];
 			if (infoGroup && lib.config.show_group) {
 				const group = get.is.double(character, true);
-				if (group) capt += `&nbsp;&nbsp;${group.map((value) => get.translation(value)).join('/')}`;
-				else capt += `&nbsp;&nbsp;${lib.translate[infoGroup]}`;
+				if (group) {
+					capt += `&nbsp;&nbsp;${group.map((value) => get.translation(value)).join('/')}`;
+				} else {
+					capt += `&nbsp;&nbsp;${lib.translate[infoGroup]}`;
+				}
 			}
 		}
 		uiintro.add(capt);
@@ -938,7 +1009,9 @@ const nodeintro = function (node, simple, evt) {
 
 		if (get.characterInitFilter(node.link)) {
 			const initFilters = get.characterInitFilter(node.link).filter((tag) => {
-				if (!lib.characterInitFilter[node.link]) return true;
+				if (!lib.characterInitFilter[node.link]) {
+					return true;
+				}
 				return lib.characterInitFilter[node.link](tag) !== false;
 			});
 			if (initFilters.length) {
@@ -972,7 +1045,9 @@ const nodeintro = function (node, simple, evt) {
 			});
 			for (var i = 0; i < modeorder.length; i++) {
 				if (node._banning == 'online') {
-					if (!lib.mode[modeorder[i]].connect) continue;
+					if (!lib.mode[modeorder[i]].connect) {
+						continue;
+					}
 					if (!lib.config['connect_' + modeorder[i] + '_banned']) {
 						lib.config['connect_' + modeorder[i] + '_banned'] = [];
 					}
@@ -1040,10 +1115,13 @@ const nodeintro = function (node, simple, evt) {
 			var skills = get.character(character, 3);
 			for (i = 0; i < skills.length; i++) {
 				if (lib.translate[skills[i] + '_info']) {
-					if (lib.translate[skills[i] + '_ab']) translation = lib.translate[skills[i] + '_ab'];
-					else {
+					if (lib.translate[skills[i] + '_ab']) {
+						translation = lib.translate[skills[i] + '_ab'];
+					} else {
 						translation = get.translation(skills[i]);
-						if (!lib.skill[skills[i]].nobracket) translation = `【${translation.slice(0, 2)}】`;
+						if (!lib.skill[skills[i]].nobracket) {
+							translation = `【${translation.slice(0, 2)}】`;
+						}
 					}
 
 					uiintro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i]) + '</div></div>');
@@ -1087,7 +1165,9 @@ const nodeintro = function (node, simple, evt) {
 					gzbool = true;
 				}
 				var createButtons = function (num) {
-					if (!num) return;
+					if (!num) {
+						return;
+					}
 					if (!introadded) {
 						introadded = true;
 						uiintro.add('<div class="text center">更改皮肤</div>');
@@ -1102,8 +1182,11 @@ const nodeintro = function (node, simple, evt) {
 								game.saveConfig('skin', lib.config.skin);
 							} else {
 								delete lib.config.skin[nameskin];
-								if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.setBackground(nameskin2, 'character');
-								else node.setBackground(nameskin, 'character');
+								if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) {
+									node.setBackground(nameskin2, 'character');
+								} else {
+									node.setBackground(nameskin, 'character');
+								}
 								game.saveConfig('skin', lib.config.skin);
 							}
 						});
@@ -1111,8 +1194,11 @@ const nodeintro = function (node, simple, evt) {
 						if (i) {
 							button.setBackgroundImage('image/skin/' + nameskin + '/' + i + '.jpg');
 						} else {
-							if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) button.setBackground(nameskin2, 'character', 'noskin');
-							else button.setBackground(nameskin, 'character', 'noskin');
+							if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) {
+								button.setBackground(nameskin2, 'character', 'noskin');
+							} else {
+								button.setBackground(nameskin, 'character', 'noskin');
+							}
 						}
 					}
 					uiintro.add(buttons);
@@ -1245,7 +1331,9 @@ const nodeintro = function (node, simple, evt) {
 			uiintro.content.firstChild.style.paddingTop = '3px';
 		}
 	} else if (node.classList.contains('nodeintro')) {
-		if (node.nodeTitle) uiintro.add(node.nodeTitle);
+		if (node.nodeTitle) {
+			uiintro.add(node.nodeTitle);
+		}
 		uiintro._place_text = uiintro.add('<div class="text">' + node.nodeContent + '</div>');
 	}
 	if (lib.config.touchscreen) {

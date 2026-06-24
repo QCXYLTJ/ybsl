@@ -18,7 +18,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 		list: list, //牌堆添加
 	};
 	for (var i in ybslc.card) {
-		if (!ybslc.card[i].image && !ybslc.card[i].modeimage) ybslc.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		if (!ybslc.card[i].image && !ybslc.card[i].modeimage) {
+			ybslc.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
+		}
 	}
 	// lib.config.all.cards.push('ybslc');//包名翻译
 	lib.translate['ybslc_card_config'] = "<span style='color:#ff00cc'>夜白牌堆</span>";

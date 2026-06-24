@@ -8,12 +8,18 @@ export { YBSL_brawl };
  */
 const YBSL_brawl = function () {
 	if (lib.config.mode == 'brawl') {
-		if (!lib.storage.stage) lib.storage.stage = {};
+		if (!lib.storage.stage) {
+			lib.storage.stage = {};
+		}
 
 		if (lib.config.extension_夜白神略_ybsl_wujinshilian == 'lc') {
-			if (YB_yebailvcheng) YB_yebailvcheng();
+			if (YB_yebailvcheng) {
+				YB_yebailvcheng();
+			}
 		} else if (lib.config.extension_夜白神略_ybsl_wujinshilian == 'qbd') {
-			if (YB_xnqbd) YB_xnqbd();
+			if (YB_xnqbd) {
+				YB_xnqbd();
+			}
 		}
 		if (!lib.storage.stage['夜白旅程（二）']) {
 			lib.storage.stage['夜白旅程（二）'] = {
@@ -476,7 +482,9 @@ const YBSL_brawl = function () {
 			};
 			_status.extensionstage = true;
 		}
-		if (!_status.extensionmade) _status.extensionmade = [];
+		if (!_status.extensionmade) {
+			_status.extensionmade = [];
+		}
 		_status.extensionmade.push('夜白旅程（二）');
 		// lib.brawl.YB_寻你千百度={
 		// 	name: "寻你千百度",
