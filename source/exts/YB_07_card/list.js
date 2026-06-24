@@ -1,6 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { list };
-
 const list = [
 	['spade', 1, 'ybsl_feijingsanjian'],
 	['spade', 2, 'ybsl_fengshendun'],
@@ -15,7 +14,6 @@ const list = [
 	['spade', 11, 'wuxie'],
 	['spade', 12, 'ybsl_frostnova', 'ice', ['yingbian_fujia', 'yingbian_luLi']],
 	['spade', 13, 'ybsl_frostnova', 'ice', ['yingbian_fujia', 'yingbian_luLi']],
-
 	['heart', 1, 'ybsl_windstorm', 'YB_wind', ['yingbian_fujia', 'yingbian_luLi']],
 	['heart', 2, 'sha', 'YB_wind'],
 	['heart', 3, 'shan'],
@@ -29,7 +27,6 @@ const list = [
 	['heart', 11, 'sha', 'YB_wind'],
 	['heart', 12, 'tao'],
 	['heart', 13, 'wuxie'],
-
 	['club', 1, 'ybsl_qingfengshan'],
 	['club', 2, 'ybsl_zhijizhibi'],
 	['club', 3, 'ybsl_zhijizhibi'],
@@ -43,7 +40,6 @@ const list = [
 	['club', 11, 'tiesuo'],
 	['club', 12, 'tiesuo', null, ['yingbian_fujia', 'yingbian_add']],
 	['club', 13, 'tiesuo', null, ['yingbian_fujia', 'yingbian_add']],
-
 	['diamond', 1, 'ybsl_windstorm'],
 	['diamond', 2, 'shan'],
 	['diamond', 3, 'sha', 'YB_wind|fire', ['yingbian_canqu', 'yingbian_add']],
@@ -57,7 +53,6 @@ const list = [
 	['diamond', 11, 'shan'],
 	['diamond', 12, 'sha', 'YB_wind|fire'],
 	['diamond', 13, 'ybsl_jizhiguan'],
-
 	//转换卡
 	['spade', 1, 'ybsl_ji'],
 	['spade', 2, 'ybsl_yi'],
@@ -72,7 +67,6 @@ const list = [
 	['spade', 11, 'ybsl_ji'],
 	['spade', 12, 'ybsl_yi'],
 	['spade', 13, 'ybsl_cai'],
-
 	['heart', 1, 'ybsl_xiang'],
 	['heart', 2, 'ybsl_hua'],
 	['heart', 3, 'ybsl_ji'],
@@ -86,7 +80,6 @@ const list = [
 	['heart', 11, 'ybsl_xiang'],
 	['heart', 12, 'ybsl_hua'],
 	['heart', 13, 'ybsl_ji'],
-
 	['club', 1, 'ybsl_yi'],
 	['club', 2, 'ybsl_cai'],
 	['club', 3, 'ybsl_xiang'],
@@ -100,7 +93,6 @@ const list = [
 	['club', 11, 'ybsl_yi'],
 	['club', 12, 'ybsl_cai'],
 	['club', 13, 'ybsl_xiang'],
-
 	['diamond', 1, 'ybsl_hua'],
 	['diamond', 2, 'ybsl_ji'],
 	['diamond', 3, 'ybsl_yi'],

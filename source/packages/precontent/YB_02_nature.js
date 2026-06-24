@@ -1,11 +1,11 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_nature };
 /**
  * 掌管如下
  * 自建属性相关
  * 自建势力相关
  * 前缀收纳
- * 穿越也要打三国杀（曾有
+ * 穿越也要打三国杀(曾有
  */
 const YBSL_nature = function () {
 	{
@@ -37,7 +37,7 @@ const YBSL_nature = function () {
 		};
 		/**
 		 *
-		 * @returns 输出所有属性（按顺序排列
+		 * @returns 输出所有属性(按顺序排列
 		 */
 		get.YB_natureList = function () {
 			var listxx = [];
@@ -50,7 +50,6 @@ const YBSL_nature = function () {
 			return listxx;
 		};
 	}
-
 	{
 		//自建属性相关
 		game.addNature('YB_snow', '雪', {
@@ -73,13 +72,13 @@ const YBSL_nature = function () {
 		});
 		{
 			//此处为属性杀的专属翻译
-			// lib.translate.sha_nature_YB_snow_info='出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点雪属性伤害，此属性可传导（当你造成雪属性伤害时，你可以令目标摸X张牌，然后其武将牌翻面，X为目标当前体力值且至多为5。）'
-			// lib.translate.sha_nature_YB_blood_info='出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点血属性伤害，此属性不可传导（锁定技，造成血属性伤害时，恢复等同伤害值的体力值。）'
-			// lib.translate.sha_nature_YB_wind_info='出牌阶段，对你攻击范围内的一名角色使用。其须使用一张【闪】，否则你对其造成1点风属性伤害，原则上可传导，但实际上不可能传导。（锁定技，当你即将造成风属性伤害时，你移除伤害属性中包含的风，然后在铁索结算之后（如有），令此伤害传递给所有除该角色外其他横置角色。）'
+			// lib.translate.sha_nature_YB_snow_info='出牌阶段,对你攻击范围内的一名角色使用.其须使用一张【闪】,否则你对其造成1点雪属性伤害,此属性可传导(当你造成雪属性伤害时,你可以令目标摸X张牌,然后其武将牌翻面,X为目标当前体力值且至多为5.)'
+			// lib.translate.sha_nature_YB_blood_info='出牌阶段,对你攻击范围内的一名角色使用.其须使用一张【闪】,否则你对其造成1点血属性伤害,此属性不可传导(锁定技,造成血属性伤害时,回复等同伤害值的体力值.)'
+			// lib.translate.sha_nature_YB_wind_info='出牌阶段,对你攻击范围内的一名角色使用.其须使用一张【闪】,否则你对其造成1点风属性伤害,原则上可传导,但实际上不可能传导.(锁定技,当你即将造成风属性伤害时,你移除伤害属性中包含的风,然后在铁索结算之后(如有),令此伤害传递给所有除该角色外其他横置角色.)'
 		}
 		// 其实这段貌似没用了↓↓
-		lib.translate.YB_snowsha_info = '当你造成雪属性伤害时，你可以令目标摸X张牌，然后其武将牌翻面（X为目标当前体力值且至多为5）。';
-		lib.translate.YB_bloodsha_info = '锁定技，造成血属性伤害时，恢复等同伤害值的体力值。';
+		lib.translate.YB_snowsha_info = '当你造成雪属性伤害时,你可以令目标摸X张牌,然后其武将牌翻面(X为目标当前体力值且至多为5)';
+		lib.translate.YB_bloodsha_info = '锁定技,造成血属性伤害时,回复等同伤害值的体力值';
 		// 其实这段貌似没用了↑↑
 		lib.skill._YB_snowsha = {
 			//------雪杀
@@ -89,16 +88,16 @@ const YBSL_nature = function () {
 			equipSkill: false,
 			ruleSkill: true,
 			shaRelated: true,
-			filter: function (event, player) {
+			filter(event, player) {
 				return event.hasNature('YB_snow') && event.num > 0 && event.player.isAlive();
 			},
-			content: function () {
+			content() {
 				'step 0';
 				trigger.player.draw(Math.min(5, trigger.player.hp));
 				('step 1');
 				trigger.player.turnOver();
 			},
-			check: function (event, player) {
+			check(event, player) {
 				if (event.player.isTurnedOver()) {
 					return get.attitude(player, event.player) > 0;
 				}
@@ -114,14 +113,13 @@ const YBSL_nature = function () {
 				source: 'damageSource',
 			},
 			equipSkill: false,
-			direct: true,
 			forced: true,
 			ruleSkill: true,
 			shaRelated: true,
-			filter: function (event, player) {
+			filter(event, player) {
 				return event.hasNature('YB_blood') && event.num > 0;
 			},
-			content: function () {
+			content() {
 				player.recover(trigger.num);
 			},
 		};
@@ -131,21 +129,20 @@ const YBSL_nature = function () {
 				player: 'damageBegin4',
 			},
 			equipSkill: false,
-			direct: true,
 			forced: true,
 			ruleSkill: true,
 			shaRelated: true,
-			filter: function (event, player) {
+			filter(event, player) {
 				return event.hasNature('YB_wind') && event.num > 0 /*&&game.countPlayer(c=>c.isLinked()&&c!=player)>0*/;
 			},
-			content: function () {
+			content() {
 				if (game.countPlayer((c) => c.isLinked() && c != player) > 0) {
 					var targets = game.filterPlayer((c) => c.isLinked() && c != player);
 					trigger.windLinked = targets;
 				}
 				// trigger.nature.remove('YB_wind');
 				function removeField(input, field) {
-					// 动态构造正则表达式，匹配 |field、field| 或单独的 field
+					// 动态构造正则表达式,匹配 |field、field| 或单独的 field
 					const regex = new RegExp(`(\\|${field}|${field}\\|)|${field}`, 'g');
 					return input.replace(regex, '');
 				}
@@ -155,8 +152,8 @@ const YBSL_nature = function () {
 		lib.skill._YB_windsha2 = {
 			//------风杀
 			trigger: { player: 'damageAfter' },
-			filter: function (event, player) {
-				return event.windLinked && event.windLinked.length > 0;
+			filter(event, player) {
+				return event.windLinked && event.windLinked.length;
 			},
 			forced: true,
 			popup: false,
@@ -164,8 +161,8 @@ const YBSL_nature = function () {
 			forceDie: true,
 			silent: true,
 			forceOut: true,
-			//priority:-5,
-			content: function () {
+			//_priority:-5,
+			content() {
 				'step 0';
 				event.logvid = trigger.getLogv();
 				('step 1');
@@ -212,7 +209,7 @@ const YBSL_nature = function () {
 	{
 		//此处收纳前缀
 		lib.namePrefix.set('YB', {
-			getSpan: () => {
+			getSpan() {
 				const span = document.createElement('span'),
 					style = span.style;
 				style.writingMode = style.webkitWritingMode = 'horizontal-tb';
@@ -228,12 +225,12 @@ const YBSL_nature = function () {
 			nature: 'black',
 		});
 		lib.namePrefix.set('废案神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('废案')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('废案SP', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('废案')}${get.prefixSpan('SP')}`;
 			},
 		});
@@ -252,14 +249,13 @@ const YBSL_nature = function () {
 			color: '#2abcff',
 			nature: 'thunder',
 		});
-
 		lib.namePrefix.set('名将', {
 			showName: '名',
 			color: '#28e3ce',
 			nature: 'black',
 		});
 		lib.namePrefix.set('名将神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('名将')}${get.prefixSpan('神')}`;
 			},
 		});
@@ -279,7 +275,7 @@ const YBSL_nature = function () {
 			showName: '新',
 		});
 		lib.namePrefix.set('新版神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('新版')}${get.prefixSpan('神')}`;
 			},
 		});
@@ -289,21 +285,20 @@ const YBSL_nature = function () {
 			nature: 'black',
 		});
 		lib.namePrefix.set('界神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('界')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('缝神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('缝')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('魂神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('魂')}${get.prefixSpan('神')}`;
 			},
 		});
-
 		// lib.namePrefix.set('界势',{
 		// 	getSpan:(prefix,name)=>{
 		// 		return `${get.prefixSpan('界')}${get.prefixSpan('势')}`
@@ -325,7 +320,7 @@ const YBSL_nature = function () {
 			nature: 'YB_dream',
 		});
 		lib.namePrefix.set('白无常赐福界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('白无常赐福')}${get.prefixSpan('界')}`;
 			},
 		});
@@ -335,7 +330,7 @@ const YBSL_nature = function () {
 			nature: 'YB_dream',
 		});
 		lib.namePrefix.set('黑无常赐福界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('黑无常赐福')}${get.prefixSpan('界')}`;
 			},
 		});
@@ -345,29 +340,27 @@ const YBSL_nature = function () {
 			nature: 'black',
 		});
 		lib.namePrefix.set('旧应天神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('旧')}${get.prefixSpan('应天')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('界缝神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('界')}${get.prefixSpan('缝')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('缝手杀神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('缝')}${get.prefixSpan('手杀')}${get.prefixSpan('神')}`;
 			},
 		});
-
 		lib.namePrefix.set('界势', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('界')}${get.prefixSpan('势')}`;
 			},
 		});
-
 		lib.namePrefix.set('界书', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('界')}${get.prefixSpan('书')}`;
 			},
 		});
@@ -377,174 +370,170 @@ const YBSL_nature = function () {
 			nature: 'black',
 		});
 		lib.namePrefix.set('神赐武', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('神赐')}${get.prefixSpan('武')}`;
 			},
 		});
 		lib.namePrefix.set('神赐界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('神赐')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('神赐谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('神赐')}${get.prefixSpan('谋')}`;
 			},
 		});
-
 		lib.namePrefix.set('星月', {
 			showName: '☪️',
 			// color:'#28ffff',
 			// nature:'black',
 		});
 		lib.namePrefix.set('星月手杀', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('手杀')}`;
 			},
 		});
 		lib.namePrefix.set('星月手杀界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月手杀')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('星月手杀谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月手杀')}${get.prefixSpan('谋')}`;
 			},
 		});
 		lib.namePrefix.set('星月手杀神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月手杀')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('星月新杀', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('新杀')}`;
 			},
 		});
 		lib.namePrefix.set('星月新杀界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月新杀')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('星月新杀谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月新杀')}${get.prefixSpan('谋')}`;
 			},
 		});
 		lib.namePrefix.set('星月新杀神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月新杀')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('星月OL', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('OL')}`;
 			},
 		});
 		lib.namePrefix.set('星月OL界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月OL')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('星月OL谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月OL')}${get.prefixSpan('谋')}`;
 			},
 		});
-
 		lib.namePrefix.set('星月OL神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月OL')}${get.prefixSpan('神')}`;
 			},
 		});
-
 		lib.namePrefix.set('星月界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('星月SP', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('SP')}`;
 			},
 		});
 		lib.namePrefix.set('星月谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('谋')}`;
 			},
 		});
 		lib.namePrefix.set('星月神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('星月界神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('星月界势', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('势')}`;
 			},
 		});
 		lib.namePrefix.set('星月界书', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('书')}`;
 			},
 		});
 		lib.namePrefix.set('星月神赐', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}`;
 			},
 		});
 		lib.namePrefix.set('星月神赐武', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}${get.prefixSpan('武')}`;
 			},
 		});
 		lib.namePrefix.set('星月神赐界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('星月神赐谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}${get.prefixSpan('谋')}`;
 			},
 		});
 		lib.namePrefix.set('星月神赐神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('神赐')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('星月应天神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('应天')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('星月界新杀', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('新杀')}`;
 			},
 		});
 		lib.namePrefix.set('星月界星', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('星')}`;
 			},
 		});
 		lib.namePrefix.set('星月神赐界势', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月神赐界')}${get.prefixSpan('势')}`;
 			},
 		});
 		lib.namePrefix.set('星月界乐', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('星月')}${get.prefixSpan('界')}${get.prefixSpan('乐')}`;
 			},
 		});
-
 		lib.namePrefix.set('魂', {
 			showName: '魂',
 			color: '#28ffff',
@@ -566,22 +555,22 @@ const YBSL_nature = function () {
 			nature: 'black',
 		});
 		lib.namePrefix.set('仙界界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('仙界')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('仙界谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('仙界')}${get.prefixSpan('谋')}`;
 			},
 		});
 		lib.namePrefix.set('仙界神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('仙界')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('仙界魔', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('仙界')}${get.prefixSpan('魔')}`;
 			},
 		});
@@ -591,88 +580,87 @@ const YBSL_nature = function () {
 			nature: 'black',
 		});
 		lib.namePrefix.set('阴间界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('阴间谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('谋')}`;
 			},
 		});
 		lib.namePrefix.set('阴间神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('神')}`;
 			},
 		});
 		lib.namePrefix.set('阴间魔', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('魔')}`;
 			},
 		});
 		lib.namePrefix.set('阴间乐', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('乐')}`;
 			},
 		});
 		lib.namePrefix.set('阴间武', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('武')}`;
 			},
 		});
 		lib.namePrefix.set('阴间谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('谋')}`;
 			},
 		});
 		lib.namePrefix.set('阴间手杀', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('手杀')}`;
 			},
 		});
 		lib.namePrefix.set('阴间新杀', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('新杀')}`;
 			},
 		});
 		lib.namePrefix.set('阴间OL', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('OL')}`;
 			},
 		});
 		lib.namePrefix.set('阴间新杀谋', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('新杀')}${get.prefixSpan('谋')}`;
 			},
 		});
 		lib.namePrefix.set('阴间威', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('威')}`;
 			},
 		});
 		lib.namePrefix.set('阴间SP', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('SP')}`;
 			},
 		});
 		lib.namePrefix.set('阴间玄', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('阴间')}${get.prefixSpan('玄')}`;
 			},
 		});
-
 		lib.namePrefix.set('氪', {
 			showName: '氪',
 			color: '#ff0',
 			nature: 'black',
 		});
 		lib.namePrefix.set('氪界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('氪')}${get.prefixSpan('界')}`;
 			},
 		});
 		lib.namePrefix.set('氪神', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('氪')}${get.prefixSpan('神')}`;
 			},
 		});
@@ -682,7 +670,7 @@ const YBSL_nature = function () {
 			nature: 'YB_dark',
 		});
 		lib.namePrefix.set('氪妖', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('氪')}${get.prefixSpan('妖')}`;
 			},
 		});
@@ -692,7 +680,7 @@ const YBSL_nature = function () {
 			nature: 'YB_dream',
 		});
 		lib.namePrefix.set('氪异', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('氪')}${get.prefixSpan('异')}`;
 			},
 		});
@@ -702,7 +690,7 @@ const YBSL_nature = function () {
 			nature: 'YB_dream',
 		});
 		lib.namePrefix.set('鈺界', {
-			getSpan: (prefix, name) => {
+			getSpan(prefix, name) {
 				return `${get.prefixSpan('鈺')}${get.prefixSpan('界')}`;
 			},
 		});
@@ -841,7 +829,7 @@ const YBSL_nature = function () {
 	// 	}
 	// 	//创建岩属性
 	// 	{
-	// 		//（岩属性释义：非官方概念；受到岩属性伤害时，若受伤者装备区内没有牌，此伤害+1。)
+	// 		//(岩属性释义:非官方概念;受到岩属性伤害时,若受伤者装备区内没有牌,此伤害+1.)
 	// 		game.addNature('YB_rock',)
 	// 		game.addNature('YB_rock','岩',{
 	// 			linked:true,
@@ -903,6 +891,5 @@ const YBSL_nature = function () {
 	// 			})
 	// 		},
 	// 	}
-
 	// }
 };

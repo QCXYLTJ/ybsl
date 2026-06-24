@@ -1,6 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { card };
-/** @type { importCharacterConfig['card'] } */
+/** @type { importCharacterConfig.card } */
 const card = {
 	sgsxjxfzmnl_taipingyaoshu: {
 		audio: true,
@@ -10,7 +10,6 @@ const card = {
 		cardcolor: 'heart',
 		nomod: true,
 		nopower: true,
-		unique: true,
 		global: ['g_sgsxjxfzmnl_taipingyaoshu_ai'],
 		skills: ['sgsxjxfzmnl_taipingyaoshu'],
 		ai: {
@@ -42,7 +41,6 @@ const card = {
 			player.addTempSkill('sgsxjxfzmnl_taipingyaoshu_lose');
 		},
 	},
-
 	sgsxjxfzmnl_pilitoushiche: {
 		fullskin: true,
 		derivation: 'sgsxjxfzmnl_dc_liuye',
@@ -51,14 +49,12 @@ const card = {
 		type: 'equip',
 		subtype: 'equip5',
 		skills: ['sgsxjxfzmnl_pilitoushiche'],
-		destroy: true,
 		ai: {
 			basic: {
 				equipValue: 3,
 			},
 		},
 	},
-
 	sgsxjxfzmnl_pyzhuren_heart: {
 		cardimage: 'pyzhuren_heart',
 		fullskin: true,
@@ -190,7 +186,6 @@ const card = {
 		},
 		skills: ['sgsxjxfzmnl_dagongche_defend_skill', 'sgsxjxfzmnl_mbquchong_effect'],
 	},
-
 	// qmsgswkjsgj_chuanguoyuxi:{
 	//     audio: true,
 	//     fullskin: true,
@@ -201,7 +196,6 @@ const card = {
 	//     ai: {
 	//         equipValue: 9,
 	//     },
-
 	// },
 	//神肘不疑的五灵卡牌
 	qmsgswkjsgj_wuqinxi_hu: {

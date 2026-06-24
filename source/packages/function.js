@@ -1,14 +1,14 @@
-import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 export { YB_characterIntro, YBSL_characterIntro, mergeObjects, characterIntro, nodeintro, typeimage };
 // export { typeimage }
 /**
- * 合并多个对象的键值对。
- * - 如果目标对象中已经存在某个键，则将源对象的值拼接到目标对象的值上。
- * - 如果目标对象中不存在某个键，则将源对象的键值对搬运到目标对象中。
- * - 跳过没有键值对的对象。
+ * 合并多个对象的键值对.
+ * - 如果目标对象中已经存在某个键,则将源对象的值拼接到目标对象的值上.
+ * - 如果目标对象中不存在某个键,则将源对象的键值对搬运到目标对象中.
+ * - 跳过没有键值对的对象.
  *
- * @param {...Object} objects - 需要合并的多个对象（支持任意数量）。
- * @returns {Object} - 返回合并后的结果对象。
+ * @param {...Object} objects - 需要合并的多个对象(支持任意数量).
+ * @returns {Object} - 返回合并后的结果对象.
  *
  * @example
  * const str1 = { a: '曹操', b: '吕布' };
@@ -20,56 +20,53 @@ export { YB_characterIntro, YBSL_characterIntro, mergeObjects, characterIntro, n
  * // 输出: { a: '曹操 字孟德', b: '吕布 字奉先', c: '字玄德 刘备', d: '关羽 字云长' }
  */
 const mergeObjects = function (...objects) {
-	// 目标对象，用于存储合并后的结果
+	// 目标对象,用于存储合并后的结果
 	const result = {};
-
 	// 遍历所有对象
 	objects.forEach((currentObj, index) => {
 		// 检查当前对象是否有键值对
-		if (currentObj && Object.keys(currentObj).length > 0) {
+		if (currentObj && Object.keys(currentObj).length) {
 			// 遍历当前对象的键值对
 			for (const subKey in currentObj) {
 				if (result.hasOwnProperty(subKey)) {
-					// 如果目标对象中已经存在该键，则拼接值
+					// 如果目标对象中已经存在该键,则拼接值
 					result[subKey] = result[subKey] + '<br>' + currentObj[subKey];
 				} else {
-					// 如果目标对象中不存在该键，则搬运键值对
+					// 如果目标对象中不存在该键,则搬运键值对
 					result[subKey] = currentObj[subKey];
 				}
 			}
 		}
 		// else {
-		// 	console.log(`第 ${index + 1} 个对象没有键值对，跳过处理`);
+		// 	console.log(`第 ${index + 1} 个对象没有键值对,跳过处理`);
 		// }
 	});
-
 	return result;
 };
 const YB_characterIntro = function (str1, str2, str3, str4) {
-	// 目标对象，用于存储合并后的结果
+	// 目标对象,用于存储合并后的结果
 	const result = {};
 	// 将所有对象放入一个数组中
 	const objects = [str1, str2, str3, str4];
 	// 遍历所有对象
 	objects.forEach((currentObj, index) => {
 		// 检查当前对象是否有键值对
-		if (Object.keys(currentObj).length > 0) {
+		if (Object.keys(currentObj).length) {
 			// 遍历当前对象的键值对
 			for (const subKey in currentObj) {
 				if (result.hasOwnProperty(subKey)) {
-					// 如果目标对象中已经存在该键，则拼接值
+					// 如果目标对象中已经存在该键,则拼接值
 					result[subKey] = result[subKey] + '<br>' + currentObj[subKey];
 				} else {
-					// 如果目标对象中不存在该键，则搬运键值对
+					// 如果目标对象中不存在该键,则搬运键值对
 					result[subKey] = currentObj[subKey];
 				}
 			}
 		}
 		// else {
-		// 	console.log(`str${index + 1} 没有键值对，跳过处理`);
+		// 	console.log(`str${index + 1} 没有键值对,跳过处理`);
 		// }
 	});
-
 	// 处理 str4 中没有对应键的情况
 	for (const key in result) {
 		if (!str4.hasOwnProperty(key)) {
@@ -83,7 +80,6 @@ const YB_characterIntro = function (str1, str2, str3, str4) {
 			}
 		}
 	}
-
 	return result;
 };
 const YBSL_characterIntro = function (name) {
@@ -92,7 +88,7 @@ const YBSL_characterIntro = function (name) {
 	// }
 	var tags = get.character(name, 4);
 	if (tags) {
-		for (var i = 0; i < tags.length; i++) {
+		for (let i = 0; i < tags.length; i++) {
 			if (tags[i].startsWith('des:')) {
 				return tags[i].slice(4);
 			}
@@ -141,7 +137,7 @@ const characterIntro = function (name) {
 	}
 	var tags = get.character(name, 4);
 	if (tags) {
-		for (var i = 0; i < tags.length; i++) {
+		for (let i = 0; i < tags.length; i++) {
 			if (tags[i].startsWith('des:')) {
 				return tags[i].slice(4);
 			}
@@ -197,14 +193,12 @@ const nodeintro = function (node, simple, evt) {
 			capt += `&nbsp;&nbsp;${get.translation(group)}`;
 		}
 		uiintro.add(capt);
-
 		if (lib.characterTitle[node.name]) {
 			uiintro.addText(get.colorspan(lib.characterTitle[node.name]));
 		}
 		if (lib.characterAppend[node.name]) {
 			uiintro.addText(get.colorspan(lib.characterAppend[node.name]));
 		}
-
 		if (lib.characterCitetext[node.name]) {
 			uiintro.addText(get.colorspan(lib.characterCitetext[node.name]));
 		}
@@ -226,7 +220,6 @@ const nodeintro = function (node, simple, evt) {
 				uiintro.addText(str);
 			}
 		}
-
 		if (!node.noclick) {
 			const allShown = node.isUnderControl() || (!game.observe && game.me && game.me.hasSkillTag('viewHandcard', null, node, true));
 			const shownHs = node.getShownCards();
@@ -249,7 +242,6 @@ const nodeintro = function (node, simple, evt) {
 				}
 			}
 		}
-
 		var skills = node.getSkills(null, false, false).slice(0);
 		var skills2 = game.filterSkills(skills, node);
 		if (node == game.me && node.hiddenSkills.length) {
@@ -260,7 +252,7 @@ const nodeintro = function (node, simple, evt) {
 				skills.add(i);
 			}
 		}
-		for (i = 0; i < skills.length; i++) {
+		for (let i = 0; i < skills.length; i++) {
 			if (lib.skill[skills[i]] && (lib.skill[skills[i]].nopop || lib.skill[skills[i]].equipSkill)) {
 				continue;
 			}
@@ -273,13 +265,12 @@ const nodeintro = function (node, simple, evt) {
 						translation = `【${translation.slice(0, 2)}】`;
 					}
 				}
-
 				if (node.forbiddenSkills[skills[i]]) {
 					var forbidstr = '<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>';
 					if (node.forbiddenSkills[skills[i]].length) {
-						forbidstr += '（与' + get.translation(node.forbiddenSkills[skills[i]]) + '冲突）<br>';
+						forbidstr += '(与' + get.translation(node.forbiddenSkills[skills[i]]) + '冲突)<br>';
 					} else {
-						forbidstr += '（双将禁用）<br>';
+						forbidstr += '(双将禁用)<br>';
 					}
 					forbidstr += get.skillInfoTranslation(skills[i], node) + '</div></div>';
 					uiintro.add(forbidstr);
@@ -380,7 +371,6 @@ const nodeintro = function (node, simple, evt) {
 		if (lib.characterUndertext[node.name]) {
 			uiintro.addText(get.colorspan(lib.characterUndertext[node.name]));
 		}
-
 		if (lib.config.right_range && _status.gameStarted) {
 			uiintro.add(ui.create.div('.placeholder'));
 			var table, tr, td;
@@ -399,7 +389,6 @@ const nodeintro = function (node, simple, evt) {
 			td = document.createElement('td');
 			td.innerHTML = '伤害';
 			tr.appendChild(td);
-
 			tr = document.createElement('tr');
 			table.appendChild(tr);
 			td = document.createElement('td');
@@ -417,13 +406,12 @@ const nodeintro = function (node, simple, evt) {
 			tr.appendChild(td);
 			td = document.createElement('td');
 			let handcardLimit = node.getHandcardLimit();
-			td.innerHTML = `${node.countCards('h')}/${handcardLimit >= 114514 ? '∞' : handcardLimit}`;
+			td.innerHTML = `${node.countCards('h')}/${handcardLimit >= 999 ? '∞' : handcardLimit}`;
 			tr.appendChild(td);
 			td = document.createElement('td');
 			td.innerHTML = node.phaseNumber;
 			tr.appendChild(td);
 			td = document.createElement('td');
-
 			(function () {
 				num = 0;
 				for (var j = 0; j < node.stat.length; j++) {
@@ -436,7 +424,6 @@ const nodeintro = function (node, simple, evt) {
 			tr.appendChild(td);
 			table.style.width = 'calc(100% - 20px)';
 			table.style.marginLeft = '10px';
-
 			uiintro.content.appendChild(table);
 			if (!lib.config.show_favourite) {
 				table.style.paddingBottom = '5px';
@@ -444,18 +431,17 @@ const nodeintro = function (node, simple, evt) {
 		}
 		if (!simple || get.is.phoneLayout()) {
 			var es = node.getCards('e');
-			for (var i = 0; i < es.length; i++) {
+			for (let i = 0; i < es.length; i++) {
 				const special = [es[i]].concat(es[i].cards || []).find((j) => j.name == es[i].name && lib.card[j.name]?.cardPrompt);
 				var str = special ? lib.card[special.name].cardPrompt(special) : lib.translate[es[i].name + '_info'];
 				uiintro.add('<div><div class="skill">' + es[i].outerHTML + '</div><div>' + str + '</div></div>');
 				uiintro.content.lastChild.querySelector('.skill>.card').style.transform = '';
-
 				if (lib.translate[es[i].name + '_append']) {
 					uiintro.add('<div class="text">' + lib.translate[es[i].name + '_append'] + '</div>');
 				}
 			}
 			var js = node.getCards('j');
-			for (var i = 0; i < js.length; i++) {
+			for (let i = 0; i < js.length; i++) {
 				if (js[i].viewAs && js[i].viewAs != js[i].name) {
 					let html = js[i].outerHTML;
 					let cardInfo = lib.card[js[i].viewAs],
@@ -469,7 +455,7 @@ const nodeintro = function (node, simple, evt) {
 					if (!showCardIntro) {
 						html = ui.create.button(js[i], 'blank').outerHTML;
 					}
-					uiintro.add('<div><div class="skill">' + html + '</div><div>' + lib.translate[js[i].viewAs] + '：' + lib.translate[js[i].viewAs + '_info'] + '</div></div>');
+					uiintro.add('<div><div class="skill">' + html + '</div><div>' + lib.translate[js[i].viewAs] + ':' + lib.translate[js[i].viewAs + '_info'] + '</div></div>');
 				} else {
 					uiintro.add('<div><div class="skill">' + js[i].outerHTML + '</div><div>' + lib.translate[js[i].name + '_info'] + '</div></div>');
 				}
@@ -526,7 +512,7 @@ const nodeintro = function (node, simple, evt) {
 					function () {
 						_status.throwEmotionWait = false;
 						if (ui.throwEmotion) {
-							for (var i of ui.throwEmotion) {
+							for (const i of ui.throwEmotion) {
 								i.classList.remove('exclude');
 							}
 						}
@@ -541,7 +527,7 @@ const nodeintro = function (node, simple, evt) {
 			table.style.width = '100%';
 			table.style.position = 'relative';
 			var listi = ['flower', 'egg'];
-			for (var i = 0; i < listi.length; i++) {
+			for (let i = 0; i < listi.length; i++) {
 				td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 				ui.throwEmotion.add(td);
 				if (_status.throwEmotionWait) {
@@ -562,7 +548,7 @@ const nodeintro = function (node, simple, evt) {
 			if (game.me.storage.zhuSkill_shanli) {
 				listi = ['yuxisx', 'jiasuo'];
 			}
-			for (var i = 0; i < listi.length; i++) {
+			for (let i = 0; i < listi.length; i++) {
 				td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 				ui.throwEmotion.add(td);
 				if (_status.throwEmotionWait) {
@@ -607,7 +593,7 @@ const nodeintro = function (node, simple, evt) {
 						nameskin = nameskin.slice(3);
 						gzbool = true;
 					}
-					for (var i = 0; i <= num; i++) {
+					for (let i = 0; i <= num; i++) {
 						var button = ui.create.div('.button.character.pointerdiv', buttons, function () {
 							if (this._link) {
 								if (avatar2) {
@@ -656,7 +642,7 @@ const nodeintro = function (node, simple, evt) {
 					};
 					img.onerror = function () {
 						num--;
-						if (num) {
+						if (num > 0) {
 							createButtons(num, avatar2);
 						}
 						if (!avatar2) {
@@ -703,7 +689,6 @@ const nodeintro = function (node, simple, evt) {
 				}
 			}
 		}
-
 		uiintro.add(ui.create.div('.placeholder.slim'));
 	} else if (node.classList.contains('mark') && node.info && node.parentNode && node.parentNode.parentNode && node.parentNode.parentNode.classList.contains('player')) {
 		var info = node.info;
@@ -722,7 +707,7 @@ const nodeintro = function (node, simple, evt) {
 		}
 		if (typeof info.id == 'string' && info.id.startsWith('subplayer') && player.isUnderControl(true) && player.storage[info.id] && !_status.video) {
 			var storage = player.storage[info.id];
-			uiintro.addText('当前体力：' + storage.hp + '/' + storage.maxHp);
+			uiintro.addText('当前体力:' + storage.hp + '/' + storage.maxHp);
 			if (storage.hs.length) {
 				uiintro.addText('手牌区');
 				uiintro.addSmall(storage.hs);
@@ -803,10 +788,10 @@ const nodeintro = function (node, simple, evt) {
 			if (cardOwner) {
 				var sourceVCard = cardOwner.getVCards(cardPosition).find((card) => card.cards?.includes(node));
 				if (showCardIntro && sourceVCard) {
-					uiintro.add('<div class="text center">（' + get.translation(get.translation(sourceVCard.cards)) + '）</div>');
+					uiintro.add('<div class="text center">(' + get.translation(get.translation(sourceVCard.cards)) + ')</div>');
 				}
 			}
-			// uiintro.add(get.translation(node.viewAs)+'<br><div class="text center" style="padding-top:5px;">（'+get.translation(node)+'）</div>');
+			// uiintro.add(get.translation(node.viewAs)+'<br><div class="text center" style="padding-top:5px;">('+get.translation(node)+')</div>');
 			uiintro.nosub = true;
 			name = node.viewAs;
 		} else {
@@ -835,7 +820,7 @@ const nodeintro = function (node, simple, evt) {
 				ui.click.touchpop();
 				e.stopPropagation();
 			});
-			for (var i = 0; i < modeorder.length; i++) {
+			for (let i = 0; i < modeorder.length; i++) {
 				if (node._banning == 'online') {
 					if (!lib.mode[modeorder[i]].connect) {
 						continue;
@@ -852,7 +837,7 @@ const nodeintro = function (node, simple, evt) {
 			}
 			var page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
 			var banall = false;
-			for (var i = 0; i < list.length; i++) {
+			for (let i = 0; i < list.length; i++) {
 				var cfg = ui.create.div('.config', list[i] == 'zhinang_tricks' ? '设为智囊' : lib.translate[list[i]] + '模式', page);
 				cfg.classList.add('toggle');
 				if (list[i] == 'zhinang_tricks') {
@@ -872,14 +857,14 @@ const nodeintro = function (node, simple, evt) {
 			}
 			ui.create.div('.menubutton.pointerdiv', banall ? '全部禁用' : '全部启用', uiintro.content, function () {
 				if (this.innerHTML == '全部禁用') {
-					for (var i = 0; i < page.childElementCount; i++) {
+					for (let i = 0; i < page.childElementCount; i++) {
 						if (page.childNodes[i].bannedname.indexOf('zhinang_tricks') == -1 && page.childNodes[i].bannedname && page.childNodes[i].classList.contains('on')) {
 							clickBanned.call(page.childNodes[i]);
 						}
 					}
 					this.innerHTML = '全部启用';
 				} else {
-					for (var i = 0; i < page.childElementCount; i++) {
+					for (let i = 0; i < page.childElementCount; i++) {
 						if (page.childNodes[i].bannedname.indexOf('zhinang_tricks') == -1 && page.childNodes[i].bannedname && !page.childNodes[i].classList.contains('on')) {
 							clickBanned.call(page.childNodes[i]);
 						}
@@ -893,9 +878,9 @@ const nodeintro = function (node, simple, evt) {
 				if (!uiintro.nosub) {
 					if (lib.card[name] && lib.card[name].derivation) {
 						if (typeof lib.card[name].derivation == 'string') {
-							uiintro.add('<div class="text center">来源：' + get.translation(lib.card[name].derivation) + '</div>');
+							uiintro.add('<div class="text center">来源:' + get.translation(lib.card[name].derivation) + '</div>');
 						} else if (lib.card[name].derivationpack) {
-							uiintro.add('<div class="text center">来源：' + get.translation(lib.card[name].derivationpack + '_card_config') + '包</div>');
+							uiintro.add('<div class="text center">来源:' + get.translation(lib.card[name].derivationpack + '_card_config') + '包</div>');
 						}
 					}
 					let typeinfo = '';
@@ -935,11 +920,11 @@ const nodeintro = function (node, simple, evt) {
 							var dist = lib.card[node.name].distance;
 							if (dist.attackFrom) {
 								added = true;
-								uiintro.add('<div class="text center">攻击范围：' + (-dist.attackFrom + 1) + '</div>');
+								uiintro.add('<div class="text center">攻击范围:' + (-dist.attackFrom + 1) + '</div>');
 							}
 						}
 						if (!added) {
-							uiintro.add('<div class="text center">攻击范围：1</div>');
+							uiintro.add('<div class="text center">攻击范围:1</div>');
 						}
 					}
 				}
@@ -964,7 +949,7 @@ const nodeintro = function (node, simple, evt) {
 						}
 					}
 					if (yingbianEffects.length && showCardIntro) {
-						uiintro.add(`<div class="text" style="font-family: yuanli">应变：${yingbianEffects.map((value) => lib.yingbian.prompt.get(value)).join('；')}</div>`);
+						uiintro.add(`<div class="text" style="font-family: yuanli">应变:${yingbianEffects.map((value) => lib.yingbian.prompt.get(value)).join(';')}</div>`);
 					}
 				}
 				if (lib.translate[name + '_append']) {
@@ -993,7 +978,6 @@ const nodeintro = function (node, simple, evt) {
 			}
 		}
 		uiintro.add(capt);
-
 		if (lib.characterTitle[node.link]) {
 			uiintro.addText(get.colorspan(lib.characterTitle[node.link]));
 		}
@@ -1006,7 +990,6 @@ const nodeintro = function (node, simple, evt) {
 		if (lib.characterLightext[node.link] && lib.characterLightext[node.link](node.link)) {
 			uiintro.addText(get.colorspan(lib.characterLightext[node.link](node.link)[lib.characterLightext[node.link](node.link).length - 1]));
 		}
-
 		if (get.characterInitFilter(node.link)) {
 			const initFilters = get.characterInitFilter(node.link).filter((tag) => {
 				if (!lib.characterInitFilter[node.link]) {
@@ -1019,7 +1002,6 @@ const nodeintro = function (node, simple, evt) {
 				uiintro.addText(str);
 			}
 		}
-
 		if (node._banning) {
 			var clickBanned = function () {
 				var banned = lib.config[this.bannedname] || [];
@@ -1043,7 +1025,7 @@ const nodeintro = function (node, simple, evt) {
 				ui.click.touchpop();
 				e.stopPropagation();
 			});
-			for (var i = 0; i < modeorder.length; i++) {
+			for (let i = 0; i < modeorder.length; i++) {
 				if (node._banning == 'online') {
 					if (!lib.mode[modeorder[i]].connect) {
 						continue;
@@ -1060,7 +1042,7 @@ const nodeintro = function (node, simple, evt) {
 			}
 			var page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
 			var banall = false;
-			for (var i = 0; i < list.length; i++) {
+			for (let i = 0; i < list.length; i++) {
 				var cfg = ui.create.div('.config', lib.translate[list[i]] + '模式', page);
 				cfg.classList.add('toggle');
 				if (node._banning == 'offline') {
@@ -1095,14 +1077,14 @@ const nodeintro = function (node, simple, evt) {
 			}
 			ui.create.div('.menubutton.pointerdiv', banall ? '全部禁用' : '全部启用', uiintro.content, function () {
 				if (this.innerHTML == '全部禁用') {
-					for (var i = 0; i < page.childElementCount; i++) {
+					for (let i = 0; i < page.childElementCount; i++) {
 						if (page.childNodes[i].bannedname && page.childNodes[i].classList.contains('on')) {
 							clickBanned.call(page.childNodes[i]);
 						}
 					}
 					this.innerHTML = '全部启用';
 				} else {
-					for (var i = 0; i < page.childElementCount; i++) {
+					for (let i = 0; i < page.childElementCount; i++) {
 						if (page.childNodes[i].bannedname && !page.childNodes[i].classList.contains('on')) {
 							clickBanned.call(page.childNodes[i]);
 						}
@@ -1113,7 +1095,7 @@ const nodeintro = function (node, simple, evt) {
 			ui.create.div('.placeholder.slim', uiintro.content);
 		} else {
 			var skills = get.character(character, 3);
-			for (i = 0; i < skills.length; i++) {
+			for (let i = 0; i < skills.length; i++) {
 				if (lib.translate[skills[i] + '_info']) {
 					if (lib.translate[skills[i] + '_ab']) {
 						translation = lib.translate[skills[i] + '_ab'];
@@ -1123,9 +1105,7 @@ const nodeintro = function (node, simple, evt) {
 							translation = `【${translation.slice(0, 2)}】`;
 						}
 					}
-
 					uiintro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i]) + '</div></div>');
-
 					if (lib.translate[skills[i] + '_append']) {
 						uiintro._place_text = uiintro.add('<div class="text">' + lib.translate[skills[i] + '_append'] + '</div>');
 					}
@@ -1174,7 +1154,7 @@ const nodeintro = function (node, simple, evt) {
 					}
 					var buttons = ui.create.div('.buttons.smallzoom.scrollbuttons');
 					lib.setMousewheel(buttons);
-					for (var i = 0; i <= num; i++) {
+					for (let i = 0; i <= num; i++) {
 						var button = ui.create.div('.button.character.pointerdiv', buttons, function () {
 							if (this._link) {
 								lib.config.skin[nameskin] = this._link;
@@ -1240,7 +1220,7 @@ const nodeintro = function (node, simple, evt) {
 				ui.control.show();
 			};
 			var confirmbutton;
-			for (var i = 0; i < uiintro.buttons.length; i++) {
+			for (let i = 0; i < uiintro.buttons.length; i++) {
 				var button = uiintro.buttons[i];
 				button.classList.add('pointerdiv');
 				if (button.link.classList.contains('selected')) {
@@ -1321,7 +1301,7 @@ const nodeintro = function (node, simple, evt) {
 			uiintro.add('<div class="text center">卡牌</div>');
 			uiintro.addSmall(node.cards);
 		}
-		for (var i = 0; i < node.added.length; i++) {
+		for (let i = 0; i < node.added.length; i++) {
 			uiintro.add(node.added[i]);
 		}
 		if (node.added.length) {
@@ -1344,7 +1324,6 @@ const nodeintro = function (node, simple, evt) {
 const typeimage = function (pagename, filename) {
 	for (var i in pagename.character) {
 		if (pagename.character[i].YB_mjz) {
-			console.log(pagename.character[i].YB_mjz);
 			// return ;
 			var infoy = pagename.character[i].YB_mjz;
 			pagename.character[i].img = `image/character/${infoy}.jpg`;
@@ -1358,20 +1337,17 @@ const typeimage = function (pagename, filename) {
 				for (var infox of infoy) {
 					if (infox.startsWith('YB_mjz:')) {
 						// return ;
-
 						var char = infox.slice(7);
 						pagename.character[i][4].push(`img:image/character/${char}.jpg`);
 						pagename.character[i][4].push(`die:${char}`);
 						// if(!infox.startsWith('dieAudios:')){
-
 						// }
 					}
 				}
 			}
 		}
 	}
-
-	if (pagename.characterSubstitute && Object.keys(pagename.characterSubstitute).length > 0) {
+	if (pagename.characterSubstitute && Object.keys(pagename.characterSubstitute).length) {
 		var substitute = pagename.characterSubstitute;
 		for (var i in substitute) {
 			for (var k = 0; k < substitute[i].length; k++) {
@@ -1380,7 +1356,6 @@ const typeimage = function (pagename, filename) {
 					for (var infox of infoy) {
 						if (infox.startsWith('YB_mjz:')) {
 							// return ;
-
 							var char = infox.slice(7);
 							pagename.characterSubstitute[i][k][1].push(`img:image/character/${char}.jpg`);
 							// if(noneStartWithPrefix(pagename.characterSubstitute[i][k][1],'die:')){
@@ -1396,12 +1371,11 @@ const typeimage = function (pagename, filename) {
 	 * 检查数组中所有字符串是否均不以指定前缀开头
 	 * @param {Array} arr - 要检查的数组
 	 * @param {string} prefix - 需要判断的前缀
-	 * @returns {boolean} - 如果所有字符串都不以指定前缀开头则返回true，否则返回false
+	 * @returns {boolean} - 如果所有字符串都不以指定前缀开头则返回true,否则返回false
 	 */
 	function noneStartWithPrefix(arr, prefix) {
 		// 确保prefix是字符串
 		const checkPrefix = String(prefix);
-
 		return arr.every((item) => {
 			// 检查元素是否为字符串且不以指定前缀开头
 			return typeof item === 'string' && !item.startsWith(checkPrefix);
@@ -1411,7 +1385,6 @@ const typeimage = function (pagename, filename) {
 	// const testArray1 = ['abc', 'def', 'ghi'];
 	// const testArray2 = ['ext:abc', 'def', 'ghi'];
 	// const testArray3 = ['ext:123', 'ext:456'];
-
 	// console.log(noneStartWithExt(testArray1)); // true
 	// console.log(noneStartWithExt(testArray2)); // false
 	// console.log(noneStartWithExt(testArray3)); // false
@@ -1437,7 +1410,7 @@ const typeimage = function (pagename, filename) {
 			}
 		}
 	}
-	if (pagename.characterSubstitute && Object.keys(pagename.characterSubstitute).length > 0) {
+	if (pagename.characterSubstitute && Object.keys(pagename.characterSubstitute).length) {
 		var substitute = pagename.characterSubstitute;
 		for (var i in substitute) {
 			for (var k = 0; k < substitute[i].length; k++) {

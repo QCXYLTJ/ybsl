@@ -1,7 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { card };
-
-/** @type { importCharacterConfig['card'] } */
+/** @type { importCharacterConfig.card } */
 const card = {
 	ybsl_fengmingjiuxiao: {
 		audio: true,
@@ -9,11 +8,11 @@ const card = {
 		type: 'trick',
 		enable: true,
 		selectTarget: [1, 3],
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			return target != player;
 		},
 		derivation: 'ybsl_080phoenix',
-		content: function () {
+		content() {
 			'step 0';
 			if (typeof event.baseDamage != 'number') {
 				event.baseDamage = 1;
@@ -23,7 +22,7 @@ const card = {
 			} else {
 				var next = target.chooseToRespond({ name: 'shan' });
 				next.set('ai', function (card) {
-					var evt = _status.event.getParent();
+					var evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
 						return 0;
 					}
@@ -46,7 +45,7 @@ const card = {
 			}
 		},
 		ai: {
-			wuxie: function (target, card, player, viewer) {
+			wuxie(target, card, player, viewer) {
 				if (get.attitude(viewer, target) > 0 && target.countCards('h', 'shan')) {
 					if (!target.countCards('h') || target.hp == 1 || Math.random() < 0.7) {
 						return 0;
@@ -59,7 +58,7 @@ const card = {
 				value: 5,
 			},
 			result: {
-				target: function (player, target, card, isLink) {
+				target(player, target, card, isLink) {
 					var eff = (function () {
 						return -1.5;
 					})();
@@ -87,7 +86,7 @@ const card = {
 				damage: 1,
 				multitarget: 1,
 				multineg: 1,
-				fireDamage: function (card, nature) {
+				fireDamage(card, nature) {
 					return 1;
 				},
 			},
@@ -115,7 +114,7 @@ const card = {
 	// 	ai:{
 	// 		order:2,
 	// 		useful:0,
-	// 		value:function(card,player,index,method){//不知道哪个参数有用，全写了
+	// 		value:function(card,player,index,method){//不知道哪个参数有用,全写了
 	// 			if(player.group!='shen'){
 	// 				return 7;
 	// 			}
@@ -134,10 +133,10 @@ const card = {
 		type: 'trick',
 		fullskin: true,
 		derivation: 'ybslshen_017xiaohong',
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			return player != target;
 		},
-		content: function () {
+		content() {
 			'step 0';
 			if (!event.ybsl_luming_name) {
 				if (player.isAlive()) {
@@ -158,7 +157,7 @@ const card = {
 										e2,
 										(function () {
 											var max = 0;
-											for (var i of es) {
+											for (const i of es) {
 												max = Math.max(max, get.value(i, target));
 											}
 											return -max / 4;
@@ -190,7 +189,7 @@ const card = {
 			} else {
 				target
 					.chooseToRespond('请打出一张【杀】或【闪】响应【鹿鸣千转】', function (card, player) {
-						var name = get.name(card);
+						var name = card.name;
 						return name == 'sha' || name == 'shan';
 					})
 					.set('ai', function (card) {
@@ -201,7 +200,7 @@ const card = {
 							}
 							return 1 + Math.random();
 						}
-						if (get.name(card) == _status.event.choice) {
+						if (card.name == _status.event.choice) {
 							return get.order(card);
 						}
 						return 0;
@@ -239,7 +238,7 @@ const card = {
 									e2,
 									(function () {
 										var max = 0;
-										for (var i of es) {
+										for (const i of es) {
 											max = Math.max(max, get.value(i, target));
 										}
 										return -max / 4;
@@ -275,7 +274,7 @@ const card = {
 				respondSha: 1,
 			},
 			result: {
-				target: function (player, target) {
+				target(player, target) {
 					var e1 = 1.5 * get.sgn(get.damageEffect(target, player, target));
 					var e2 = 0;
 					if (target.countGainableCards(player, 'h') > 0 && !target.hasSkillTag('noh')) {
@@ -287,7 +286,7 @@ const card = {
 							e2,
 							(function () {
 								var max = 0;
-								for (var i of es) {
+								for (const i of es) {
 									max = Math.max(max, get.value(i, target));
 								}
 								return -max / 4;
@@ -322,12 +321,12 @@ const card = {
 		},
 		enable: true,
 		selectTarget: -1,
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			return target == player;
 		},
 		modTarget: true,
 		allowMultiple: false,
-		content: function () {
+		content() {
 			if (cards.length && get.position(cards[0], true) == 'o') {
 				target.equip(cards[0]);
 			}
@@ -341,7 +340,7 @@ const card = {
 		enable: true,
 		savable: true,
 		defaultYingbianEffect: 'all',
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			if (get.is.versus()) {
 				return player.side == target.side;
 			} else {
@@ -349,12 +348,12 @@ const card = {
 			}
 		},
 		selectTarget: [1, 2],
-		content: function () {
+		content() {
 			'step 0';
 			if (!event.card.yingbian_all) {
 				var list = [];
 				var cards = ['ybsl_meihua', 'ybsl_lanhua', 'ybsl_zhuzi', 'ybsl_juhua'];
-				for (var i of cards) {
+				for (const i of cards) {
 					list.add(['花朵', '', i]);
 				}
 				var dialog = ui.create.dialog('请选择一种花朵的效果结算');
@@ -373,7 +372,7 @@ const card = {
 			} else {
 				var list = [];
 				var cards = ['ybsl_meihua', 'ybsl_lanhua', 'ybsl_zhuzi', 'ybsl_juhua'];
-				for (var i of cards) {
+				for (const i of cards) {
 					list.add(['花朵', '', i]);
 				}
 			}
@@ -421,7 +420,7 @@ const card = {
 				order: 4,
 			},
 			result: {
-				target: function (player, target) {
+				target(player, target) {
 					var hs = target.getCards('h');
 					if (hs.length <= 1) {
 						return 0.3;
@@ -454,22 +453,22 @@ const card = {
 		// 		target:0
 		// 	},
 		// },
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			return lib.filter.judge(card, player, target);
 		},
-		judge: function (card) {
-			if (!get.suit(card)) {
+		judge(card) {
+			if (!card.suit) {
 				return 1;
 			}
 			return -2;
 		},
-		judge2: function (result) {
+		judge2(result) {
 			if (result.bool == false) {
 				return true;
 			}
 			return false;
 		},
-		effect: function () {
+		effect() {
 			'step 0';
 			var jud = true;
 			if (player.storage.ybsl_lingyu) {
@@ -480,9 +479,9 @@ const card = {
 				if (player.countDiscardableCards(player, 'h')) {
 					player
 						.chooseToDiscard('h', jud)
-						.set('prompt', '请弃置一张手牌，若此牌花色为' + get.translation(result.suit) + '你回复1点体力，否则失去1点体力。')
+						.set('prompt', '请弃置一张手牌,若此牌花色为' + get.translation(result.suit) + '你回复1点体力,否则失去1点体力')
 						.set('ai', function (card) {
-							if (get.suit(card) == result.suit) {
+							if (card.suit == result.suit) {
 								return 16 - get.value(card);
 							}
 							return 6 - get.value(card);
@@ -493,7 +492,7 @@ const card = {
 			}
 			('step 1');
 			if (result.cards || player.storage.ybsl_lingyu) {
-				if (event.suit == get.suit(result.cards[0]) || player.storage.ybsl_lingyu) {
+				if (event.suit == result.cards[0].suit || player.storage.ybsl_lingyu) {
 					player.recover();
 					event.finish();
 				}
@@ -502,7 +501,7 @@ const card = {
 			player.loseHp();
 		},
 	},
-	// ybsl_lingyu_info:'出牌阶段，对一名场上角色使用。判定后，该角色需弃置一张手牌，若弃置了牌且此牌与判定结果花色相同，该角色回复1点体力，否则该角色失去1点体力。',
+	// ybsl_lingyu_info:'出牌阶段,对一名场上角色使用.判定后,该角色需弃置一张手牌,若弃置了牌且此牌与判定结果花色相同,该角色回复1点体力,否则该角色失去1点体力',
 	//-----------------------醋
 	ybsl_cu: {
 		//直接复制的过河
@@ -512,10 +511,10 @@ const card = {
 		derivation: 'ybsl_019shengyan',
 		enable: true,
 		selectTarget: 1,
-		postAi: function (targets) {
+		postAi(targets) {
 			return targets.length == 1 && (targets[0].countCards('j') || targets[0].isDamaged());
 		},
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			if (get.is.versus()) {
 				return player.side == target.side && target.hp != target.maxHp;
 			} else {
@@ -531,7 +530,7 @@ const card = {
 		// return target.countDiscardableCards(player,get.is.single()?'he':'hej');
 		// },
 		defaultYingbianEffect: 'add',
-		content: function () {
+		content() {
 			'step 0';
 			if (cards.length) {
 				target.recover();
@@ -560,7 +559,7 @@ const card = {
 			// 	save:1,
 			// },
 			// save:true,
-			yingbian: function (card, player, targets, viewer) {
+			yingbian(card, player, targets, viewer) {
 				if (get.attitude(viewer, player) <= 0) {
 					return 0;
 				}
@@ -574,7 +573,7 @@ const card = {
 				return 0;
 			},
 			result: {
-				target: function (player, target) {
+				target(player, target) {
 					var att = get.attitude(player, target);
 					var nh = target.countCards('h');
 					if (att > 0) {
@@ -632,7 +631,7 @@ const card = {
 		type: 'basic',
 		savable: true,
 		selectTarget: 1,
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			// if(get.is.versus()){
 			// 	return player.side==target.side&&target.hp!=target.maxHp;
 			// }
@@ -640,18 +639,18 @@ const card = {
 			return target.hp != target.maxHp;
 			// }
 		},
-		content: function () {
+		content() {
 			target.recover();
 		},
 		ai: {
 			basic: {
-				order: (card, player) => {
+				order(card, player) {
 					if (player.hasSkillTag('pretao')) {
 						return 9;
 					}
 					return 2;
 				},
-				useful: (card, i) => {
+				useful(card, i) {
 					let player = _status.event.player;
 					if (!game.checkMod(card, player, 'unchanged', 'cardEnabled2', player)) {
 						return 2 / (1 + i);
@@ -688,7 +687,7 @@ const card = {
 					}
 					return Math.max(1, 7.2 - i);
 				},
-				value: (card, player) => {
+				value(card, player) {
 					let fs = game.filterPlayer((current) => {
 							return get.attitude(_status.event.player, current) > 0;
 						}),
@@ -717,15 +716,15 @@ const card = {
 				},
 			},
 			result: {
-				target: (player, target) => {
+				target(player, target) {
 					if (target.hasSkillTag('maixie')) {
 						return 3;
 					}
 					return 2;
 				},
-				target_use: (player, target, card) => {
+				target_use(player, target, card) {
 					let mode = get.mode(),
-						taos = player.getCards('hs', (i) => get.name(i) === 'tao' && lib.filter.cardEnabled(i, target, 'forceEnable'));
+						taos = player.getCards('hs', (i) => i.name === 'tao' && lib.filter.cardEnabled(i, target, 'forceEnable'));
 					if (target !== _status.event.dying) {
 						if (
 							!player.isPhaseUsing() ||
@@ -803,7 +802,7 @@ const card = {
 					let tri = _status.event.getTrigger(),
 						num = game.countPlayer((current) => {
 							if (get.attitude(current, target) > 0) {
-								return current.countCards('hs', (i) => get.name(i) === 'tao' && lib.filter.cardEnabled(i, target, 'forceEnable'));
+								return current.countCards('hs', (i) => i.name === 'tao' && lib.filter.cardEnabled(i, target, 'forceEnable'));
 							}
 						}),
 						dis = 1,
@@ -1023,7 +1022,7 @@ const card = {
 		ai: {
 			equipValue: 9,
 		},
-		onLose: function () {
+		onLose() {
 			var card = event.cards[0];
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
@@ -1041,7 +1040,7 @@ const card = {
 		ai: {
 			equipValue: 9,
 		},
-		onLose: function () {
+		onLose() {
 			var card = event.cards[0];
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
@@ -1062,7 +1061,7 @@ const card = {
 		ai: {
 			equipValue: 9,
 		},
-		onLose: function () {
+		onLose() {
 			var card = event.cards[0];
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
@@ -1083,7 +1082,7 @@ const card = {
 		ai: {
 			equipValue: 9,
 		},
-		onLose: function () {
+		onLose() {
 			var card = event.cards[0];
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
@@ -1101,7 +1100,7 @@ const card = {
 		ai: {
 			equipValue: 9,
 		},
-		onLose: function () {
+		onLose() {
 			var card = event.cards[0];
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
@@ -1123,7 +1122,7 @@ const card = {
 		ai: {
 			equipValue: 9,
 		},
-		onLose: function () {
+		onLose() {
 			var card = event.cards[0];
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
@@ -1146,7 +1145,7 @@ const card = {
 		ai: {
 			equipValue: 9,
 		},
-		onLose: function () {
+		onLose() {
 			var card = event.cards[0];
 			if (!card || card.name.slice(-1) == 'ybsl_107xiaohu') {
 				return;
@@ -1154,7 +1153,7 @@ const card = {
 				card.YB_init([card.suit, card.number, 'ybsl_107xiaohu0', card.nature, tag]);
 			}
 		},
-		content: function () {
+		content() {
 			'step 0';
 			if (cards.length && get.position(cards[0], true) == 'o') {
 				event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
@@ -1174,7 +1173,6 @@ const card = {
 	},
 	group_YB_dream: { fullskin: true },
 	group_YB_memory: { fullskin: true },
-
 	ybsl_048liuzhiguan: {
 		// bingzhu:['吴爽'],
 		derivation: 'ybsl_048wushuang',

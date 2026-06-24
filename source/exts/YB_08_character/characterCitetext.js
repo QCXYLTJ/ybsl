@@ -1,6 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterCitetext };
-
 const characterCitetext = {
 	// ybmjz_caocao:'',
 	// ybmjz_simayi:'',

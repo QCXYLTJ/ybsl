@@ -1,7 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { card };
-
-/** @type { importCharacterConfig['card'] } */
+/** @type { importCharacterConfig.card } */
 const card = {
 	ybsl_zhaosanmusi: {
 		audio: 'ext:夜白神略/audio/card:true',
@@ -11,16 +10,16 @@ const card = {
 		selectTarget: -1,
 		// cardcolor:'red',
 		toself: true,
-		filterTarget: function (card, player, target) {
+		filterTarget(card, player, target) {
 			return target == player;
 		},
 		modTarget: true,
-		content: function () {
+		content() {
 			'step 0';
 			var list = ['摸三弃四', '弃三摸四'];
 			target
 				.chooseControl(list)
-				.set('prompt', '请选择摸三弃四，还是弃三摸四')
+				.set('prompt', '请选择摸三弃四,还是弃三摸四')
 				.set('ai', function (control) {
 					if (target.countCards('h') > 6) {
 						return 0;
@@ -78,7 +77,6 @@ const card = {
 			},
 		},
 	},
-
 	ybsl_ptchiling1: {
 		// cardimage:'ybsl_ptchiling3',
 		ai: {
@@ -132,7 +130,7 @@ const card = {
 		selectTarget: [-1, -1],
 		toself: true,
 		judge(card) {
-			if (get.suit(card) == 'diamond') {
+			if (card.suit == 'diamond') {
 				return 0;
 			}
 			return 2;

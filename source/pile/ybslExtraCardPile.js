@@ -1,6 +1,5 @@
-window.extracardPile = [
+﻿window.extracardPile = [
 	//--------------原属标准A牌堆--------------//
-
 	['spade', 7, 'sha'],
 	['spade', 8, 'sha'],
 	['spade', 8, 'sha'],
@@ -54,7 +53,6 @@ window.extracardPile = [
 	['heart', 9, 'tao'],
 	['heart', 12, 'tao'],
 	['diamond', 12, 'tao'],
-
 	['spade', 2, 'bagua'],
 	['club', 2, 'bagua'],
 	['spade', 5, 'jueying'],
@@ -72,7 +70,6 @@ window.extracardPile = [
 	['diamond', 5, 'guanshi'],
 	['diamond', 12, 'fangtian'],
 	['heart', 5, 'qilin'],
-
 	['heart', 3, 'wugu'],
 	['heart', 4, 'wugu'],
 	['heart', 1, 'taoyuan'],
@@ -111,7 +108,6 @@ window.extracardPile = [
 	['club', 2, 'renwang'],
 	['heart', 12, 'shandian'],
 	['diamond', 12, 'wuxie'],
-
 	['heart', 4, 'sha', 'fire'],
 	['heart', 7, 'sha', 'fire'],
 	['heart', 10, 'sha', 'fire'],
@@ -144,14 +140,12 @@ window.extracardPile = [
 	['spade', 9, 'jiu'],
 	['club', 3, 'jiu'],
 	['club', 9, 'jiu'],
-
 	['diamond', 13, 'hualiu'],
 	['club', 1, 'baiyin'],
 	['spade', 2, 'tengjia'],
 	['club', 2, 'tengjia'],
 	['spade', 1, 'guding'],
 	['diamond', 1, 'zhuque'],
-
 	['heart', 2, 'huogong'],
 	['heart', 3, 'huogong'],
 	['diamond', 12, 'huogong'],
@@ -166,7 +160,6 @@ window.extracardPile = [
 	['spade', 13, 'wuxie'],
 	['spade', 10, 'bingliang'],
 	['club', 4, 'bingliang'],
-
 	['diamond', 5, 'muniu'],
 	// ['heart','1','llfx_shanfengdianhuo'],
 	// ['heart','2','llfx_shanfengdianhuo'],

@@ -1,6 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { perfectPair };
-
 const perfectPair = {
 	//珠联璧合
 	'014liutianyu': ['002chenailin', '008wuyuxin', '009liyushan', '010zhouyue', '015wanghairu', '016manchengqi', '017xiaohong', '018zhangqing', '025shiqingyu', '038tengwu', '047shan', '038bianqiuwen', '067snake', '027rain', '079xiaoxin', '121tujing', '123xuelang', '085DGY', '086GJ'],

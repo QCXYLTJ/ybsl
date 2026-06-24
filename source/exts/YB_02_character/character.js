@@ -1,7 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { character };
-
-/** @type { importCharacterConfig['character'] } */
+/** @type { importCharacterConfig.character } */
 const character = {
 	//武将格式 :
 	ybart_013yinji: ['female', 'YB_memory', 3, ['yb017_shanwu', 'dz013_qingling'], ['rankAdd:epic', 'name:尹|姬', 'linkTo:ybsl_013yinji']], //尹姬
@@ -10,5 +9,5 @@ const character = {
 	ybart_017xiaohong: ['female', 'YB_memory', 3, ['yb017_luming', 'yb017_zhengxiong', 'yb017_shanwu'], ['rankAdd:legend', 'rankS:s', 'name:涂山|小红', 'linkTo:ybsl_017xiaohong']], //涂山小红
 	// 'ybart_020jiayutong':['female','YB_memory',3,['yb020_shange','yb020_wanyue','yb020_yuyun'],['unseen','rankAdd:epic','rankS:a','name:贾|雨桐']],
 	ybart_041mmuqin: ['female', 'YB_memory', 3, ['yb041_juxin', 'yb041_sange'], ['rankAdd:epic', 'name:慕|琴' /*,'name:崔|妍'*/, 'linkTo:ybsl_041mmuqin']], //慕琴
-	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少，否则无法导入该武将包及其以下内容
+	//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少,否则无法导入该武将包及其以下内容
 };

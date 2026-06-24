@@ -1,9 +1,9 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 import { config } from '../config.js';
 export { YBSL_rewrite };
 /**
  * 本体技能加强按钮
- * 没用了，已经套给了名将传
+ * 没用了,已经套给了名将传
  */
 const YBSL_rewrite = function () {
 	//这里用来测试无名获得晖光不能用的bug
@@ -13,7 +13,7 @@ const YBSL_rewrite = function () {
 			global: "phaseBefore",
 			player: "enterGame",
 		},
-		filter: function(event, player) {
+		filter(event, player) {
 			return event.name != "phase" || game.phaseNumber == 0;
 		},
 		forced: true,
@@ -30,14 +30,14 @@ const YBSL_rewrite = function () {
 			for (let i of last) skills2.push(get.character(i, 3).randomGet());
 			const result1 = await player
 				.chooseControl(skills1)
-				.set("dialog", ["无名：请选择姓氏", [first, "character"]])
+				.set("dialog", ["无名:请选择姓氏", [first, "character"]])
 				.forResult();
 			const gains = [];
 			let surname = first[skills1.indexOf(result1.control)];
 			gains.add(result1.control);
 			const result2 = await player
 				.chooseControl(skills2)
-				.set("dialog", ["无名：请选择名字", [last, "character"]])
+				.set("dialog", ["无名:请选择名字", [last, "character"]])
 				.forResult();
 			let name = last[skills2.indexOf(result2.control)];
 			gains.add(result2.control);
@@ -52,7 +52,7 @@ const YBSL_rewrite = function () {
 					if (player.name2 == "dc_noname") player.node.name2.innerHTML = name;
 					player.tempname.addArray(
 						list.map(name => {
-							while (get.character(name).tempname.length > 0) {
+							while (get.character(name).tempname.length) {
 								name = get.character(name).tempname[0];
 							}
 							return name;
@@ -68,24 +68,20 @@ const YBSL_rewrite = function () {
 		"_priority": 0,
 	}
 	*/
-
 	//-----------------------------------//
 	if (config.ybsl_skillstrengthen == true) {
 		//--------------------佐藤雏
-		// lib.character['db_key_hina']=['female','key',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen']]
-
+		// lib.character.db_key_hina=['female','key',3,['hina_ybshenshi','hina_xingzhi'],['doublegroup:key:shen']]
 		//-------------神户小鸟
-		// lib.character['key_kotori']=['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],[]]
-
+		// lib.character.key_kotori=['female','key',3,['kotori_ybyumo','kotori_ybhuazhan'],[]]
 		/*
-		<span style=\'color:#28e3ce\'>忆</span>
-		<span style=\'color:#e328b7\'>梦</span>
+		<span style=\'color: #28e3ce\'>忆</span>
+		<span style=\'color: #e328b7\'>梦</span>
 		*/
 		//-------------------张琪瑛改
 		// lib.character.zhangqiying=["female","qun",3,["xinfu_ybfalu","xinfu_ybdianhua","xinfu_ybzhenyi"],[]],
 		//-------------------篝
 		// lib.character.key_kagari=["female","shen",3,["kagari_ybzongsi"],[]],
-
 		//-------------------马均
 		{
 			// lib.skill.xinfu_jingxie1={
@@ -153,9 +149,8 @@ const YBSL_rewrite = function () {
 			// 		},
 			// 	},
 			// }
-			// lib.translate.xinfu_jingxie1_info='出牌阶段，你可以展示一张未强化过的【诸葛连弩】或标准包/军争包/SP包中的防具牌，<span class=yellowtext>赤兔，王追，闪电及其变种牌，洪水，火山，朱雀扇及其变种牌，倚天剑，毒，青龙刀，铜雀，护心镜</span>，然后对其进行强化。当你处于濒死状态时，你可以重铸一张防具牌，然后将体力回复至1点。'
+			// lib.translate.xinfu_jingxie1_info='出牌阶段,你可以展示一张未强化过的【诸葛连弩】或标准包/军争包/SP包中的防具牌,<span class=yellowtext>赤兔,王追,闪电及其变种牌,洪水,火山,朱雀扇及其变种牌,倚天剑,毒,青龙刀,铜雀,护心镜</span>,然后对其进行强化.当你处于濒死状态时,你可以重铸一张防具牌,然后将体力回复至1点'
 		}
-
 		//----------------------曹金玉
 		{
 			// lib.skill.yuqi={
@@ -181,11 +176,11 @@ const YBSL_rewrite = function () {
 			// 		var cards=get.cards(event.list[1]);
 			// 		event.cards=cards;
 			// 		game.cardsGotoOrdering(cards);
-			// 		var next=player.chooseToMove(true,'隅泣（若对话框显示不完整，可下滑操作）');
+			// 		var next=player.chooseToMove(true,'隅泣(若对话框显示不完整,可下滑操作)');
 			// 		next.set('list',[
 			// 			['牌堆顶的牌',cards],
-			// 			['交给'+get.translation(trigger.player)+'（至少一张'+(event.list[2]>1?('，至多'+get.cnNumber(event.list[2])+'张'):'')+'）'],
-			// 			['交给自己（至多'+get.cnNumber(event.list[3])+'张）'],
+			// 			['交给'+get.translation(trigger.player)+'(至少一张'+(event.list[2]>1?(',至多'+get.cnNumber(event.list[2])+'张'):'')+')'],
+			// 			['交给自己(至多'+get.cnNumber(event.list[3])+'张)'],
 			// 		]);
 			// 		next.set('filterMove',function(from,to,moved){
 			// 			var info=lib.skill.yuqi.getInfo(_status.event.player);
@@ -230,7 +225,7 @@ const YBSL_rewrite = function () {
 			// 	intro:{
 			// 		content:function(storage,player){
 			// 			var info=lib.skill.yuqi.getInfo(player);
-			// 			return '<div class="text center"><span class=thundertext>蓝色：'+info[0]+'</span>　<span class=firetext>红色：'+info[1]+'</span><br><span class=greentext>绿色：'+info[2]+'</span>　<span class=yellowtext>黄色：'+info[3]+'</span></div>'
+			// 			return '<div class="text center"><span class=thundertext>蓝色:'+info[0]+'</span>　<span class=firetext>红色:'+info[1]+'</span><br><span class=greentext>绿色:'+info[2]+'</span>　<span class=yellowtext>黄色:'+info[3]+'</span></div>'
 			// 		},
 			// 	},
 			// 	ai:{
@@ -269,7 +264,7 @@ const YBSL_rewrite = function () {
 			// 		if(result.control!='cancel2'){
 			// 			if(result.index==1){var k=10}
 			// 			else{var k=5}
-			// 			player.logSkill('shanshen',trigger.player);
+			//
 			// 			var list=lib.skill.yuqi.getInfo(player);
 			// 			list[result.index]=Math.min(k,list[result.index]+2);
 			// 			game.log(player,'将',result.control,'数字改为','#y'+list[result.index])
@@ -306,7 +301,7 @@ const YBSL_rewrite = function () {
 			// 		if(result.control!='cancel2'){
 			// 			if(result.index==1){var k=10}
 			// 			else{var k=5}
-			// 			player.logSkill('xianjing');
+			//
 			// 			var list=lib.skill.yuqi.getInfo(player);
 			// 			list[result.index]=Math.min(k,list[result.index]+1);
 			// 			game.log(player,'将',result.control,'数字改为','#y'+list[result.index])
@@ -344,34 +339,33 @@ const YBSL_rewrite = function () {
 			// 		}
 			// 	},
 			// }
-			// lib.translate.yuqi_info='每回合限<span class=yellowtext>三</span>次。当有角色受到伤害后，若你至其的距离不大于<span class=thundertext>0</span>，则你可以观看牌堆顶的<span class=firetext>3</span>张牌。你将其中至多<span class=greentext>1</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>1</span>张牌，并将其余牌以原顺序放回牌堆顶。<span class=yellowtext>（红色的数字至多为10，其余的数字至多为5）</span>'
+			// lib.translate.yuqi_info='每回合限<span class=yellowtext>三</span>次.当有角色受到伤害后,若你至其的距离不大于<span class=thundertext>0</span>,则你可以观看牌堆顶的<span class=firetext>3</span>张牌.你将其中至多<span class=greentext>1</span>张牌交给受伤角色,然后可以获得剩余牌中的至多<span class=yellowtext>1</span>张牌,并将其余牌以原顺序放回牌堆顶.<span class=yellowtext>(红色的数字至多为10,其余的数字至多为5)</span>'
 			// lib.dynamicTranslate.yuqi=function(player){
 			// 	var info=lib.skill.yuqi.getInfo(player);
-			// 	return '每回合限<span class=yellowtext>三</span>次。当有角色受到伤害后，若你至其的距离不大于<span class=thundertext>'+info[0]+'</span>，则你可以观看牌堆顶的<span class=firetext>'+info[1]+'</span>张牌。你将其中至多<span class=greentext>'+info[2]+'</span>张牌交给受伤角色，然后可以获得剩余牌中的至多<span class=yellowtext>'+info[3]+'</span>张牌，并将其余牌以原顺序放回牌堆顶。<span class=yellowtext>（红色的数字至多为10，其余的数字至多为5）</span>';
+			// 	return '每回合限<span class=yellowtext>三</span>次.当有角色受到伤害后,若你至其的距离不大于<span class=thundertext>'+info[0]+'</span>,则你可以观看牌堆顶的<span class=firetext>'+info[1]+'</span>张牌.你将其中至多<span class=greentext>'+info[2]+'</span>张牌交给受伤角色,然后可以获得剩余牌中的至多<span class=yellowtext>'+info[3]+'</span>张牌,并将其余牌以原顺序放回牌堆顶.<span class=yellowtext>(红色的数字至多为10,其余的数字至多为5)</span>';
 			// }
 		}
 		//----------------------神诸葛
-		// lib.character['shen_zhugeliang']=['male','shen',3,['ybsl_qixing','ybsl_kuangfeng','dawu'],['shu']]
+		// lib.character.shen_zhugeliang=['male','shen',3,['ybsl_qixing','ybsl_kuangfeng','dawu'],['shu']]
 		// lib.skill.qixing2={
 		// 	trigger:{
 		// 		player:'phaseDrawAfter'
 		// 	},
-		// 	prompt:'收回所有星，并将至多7张手牌充入星',
+		// 	prompt:'收回所有星,并将至多7张手牌充入星',
 		// 	content:function(){
 		// 		'step 0'
 		// 		player.gain(player.getExpansions('qixing'),'gain2');
-		// 		player.logSkill('qixing2');
+		//
 		// 		'step 1'
 		// 		player.chooseCard('h',[1,7],'将至多七张手牌置于武将牌上称为星').set('ai',function(card){
 		// 			return 6-get.value(card);
 		// 		});
 		// 		'step 2'
-		// 		game.log(player,'将',result.cards,'作为“星”置于武将牌上');
+		// 		game.log(player,'将',result.cards,'作为<星>置于武将牌上');
 		// 		player.addToExpansion(result.cards,player,'giveAuto').gaintag.add('qixing');
 		// 	},
 		// }
-		// lib.translate.qixing_info='游戏开始时，你将牌堆顶的七张牌置于你的武将牌上，称之为“星”。然后你可用任意数量的手牌等量交换这些“星”；<span class=yellowtext>摸牌阶段结束后，你可以获得武将牌上所有星，然后选择至多七张手牌置于武将牌上称为星。</span>'
-
+		// lib.translate.qixing_info='游戏开始时,你将牌堆顶的七张牌置于你的武将牌上,称之为<星>.然后你可用任意数量的手牌等量交换这些<星>;<span class=yellowtext>摸牌阶段结束后,你可以获得武将牌上所有星,然后选择至多七张手牌置于武将牌上称为星.</span>'
 		// lib.skill.kuangfeng={
 		// 	unique:true,
 		// 	audio:2,
@@ -406,7 +400,7 @@ const YBSL_rewrite = function () {
 		// 			},
 		// 			content:function(){
 		// 				'step 0'
-		// 				player.chooseTarget(get.prompt('kuangfeng'),'令一名角色获得“狂风”标记',function(card,player,target){
+		// 				player.chooseTarget(get.prompt('kuangfeng'),'令一名角色获得<狂风>标记',function(card,player,target){
 		// 					return !target.hasSkill('kuangfeng2');
 		// 				}).ai=function(target){
 		// 					return -1;
@@ -417,7 +411,7 @@ const YBSL_rewrite = function () {
 		// 					for(var i=0;i<length;i++){
 		// 						result.targets[i].addSkill('kuangfeng2');
 		// 					}
-		// 					player.logSkill('kuangfeng',result.targets,'fire');
+		//
 		// 					player.chooseCardButton('弃置'+get.cnNumber(length)+'枚星',length,player.getExpansions('qixing'),true);
 		// 					player.addSkill('dawu3');
 		// 				}
@@ -430,7 +424,7 @@ const YBSL_rewrite = function () {
 		// 		}
 		// 	}
 		// }
-		// lib.translate.kuangfeng_info='<span class=yellowtext>出牌阶段限一次</span>/结束阶段，你可以弃置1张“星”并指定一名角色：直到你的下回合开始，该角色受到火焰伤害时，此伤害+1。'
+		// lib.translate.kuangfeng_info='<span class=yellowtext>出牌阶段限一次</span>/结束阶段,你可以弃置1张<星>并指定一名角色:直到你的下回合开始,该角色受到火焰伤害时,此伤害+1'
 		//-----------------------铜雀
 		/*
 		//因为原版铜雀被作者加入了天火煅升级公式因此移除
@@ -460,7 +454,7 @@ const YBSL_rewrite = function () {
 				player.addTempSkill('yingbian_changeTarget');
 			},
 		}
-		lib.translate.tongque_info='锁定技，你使用的带有【应变】效果的牌无视条件直接生效。'
+		lib.translate.tongque_info='锁定技,你使用的带有【应变】效果的牌无视条件直接生效'
 		*/
 		//-------------------------------卡牌修改
 	}

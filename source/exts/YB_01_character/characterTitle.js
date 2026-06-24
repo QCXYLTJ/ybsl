@@ -1,6 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterTitle };
-
 const characterTitle = {
 	//称号
 	//---------------------------------//上古神话
@@ -41,7 +40,6 @@ const characterTitle = {
 	ybsl_028crystal: '<font color=cyan>巡梦回响</font>',
 	ybsl_029dawn: '<font color=cyan>巡梦长息</font>',
 	ybsl_030book: '<font color=cyan>巡梦道演</font>',
-
 	ybsl_032baiyichen: '<font color=cyan>旅者</font>',
 	ybsl_033xiaohui: '<font color=cyan>断肠人在天涯</font>',
 	ybsl_034zhoulianyuan: '<font color=cyan>庄子的执剑人</font>',
@@ -87,7 +85,6 @@ const characterTitle = {
 	ybsl_068qingyue: '<font color=cyan>似水流年</font>',
 	ybsl_069xiangzi: '<font color=cyan>似水流年</font>',
 	ybsl_070lvyanqiu: '<font color=cyan>似水流年</font>',
-
 	ybsl_075dogcard: '<font color=cyan>似水流年</font>',
 	ybsl_076zhujun: '<font color=cyan>似水流年</font>',
 	ybsl_077yangqixu: '<font color=cyan>似水流年</font>',
@@ -96,7 +93,6 @@ const characterTitle = {
 	ybsl_080phoenix: '<font color=cyan>凤鸣九天</font>',
 	ybsl_081chenli: '<font color=cyan>巡梦迷失者</font>',
 	ybsl_081chensi: '<font color=cyan>巡梦迷失者</font>',
-
 	ybsl_083xiaozhu: '<font color=cyan>巡梦天合</font>',
 	//047
 	ybsl_085DGY: '<font color=cyan>雨漫孤城</font>',
@@ -114,11 +110,9 @@ const characterTitle = {
 	ybsp_006wanghanzhen: '<font color=cyan>似水流年</font>',
 	ybsp_018zhangqing: '<font color=cyan>一万关的消消乐</font>',
 	ybsp_079xiaoxin: '<font color=cyan>似水流年</font>',
-
-	//---------------------------------//界限突破（什么沙比玩意）
+	//---------------------------------//界限突破(什么沙比玩意)
 	ybnb_034zhoulianyuan: '<font color=cyan>庄子的执剑人</font>',
 	//----------------------六艺篇
-
 	ybart_013yinji: '<font color=cyan>似水流年</font>',
 	ybart_014liutianyu: '<font color=cyan>似水流年</font>',
 	ybart_015wanghairu: '<font color=cyan>似水流年</font>',
@@ -141,7 +135,7 @@ const characterTitle = {
 	ybslshen_073Al: '<span class=yellowtext>天牢令</span>',
 	ybslshen_074piao: '<span class=yellowtext>掌中寰宇</span>',
 	ybslshen_001sunlisong: '<span class=yellowtext>流年易逝</span>',
-	ybslshen_100Cosette: '<span class=yellowtext>Cosette！</span>', //珂赛特
+	ybslshen_100Cosette: '<span class=yellowtext>Cosette!</span>', //珂赛特
 	//---------------------------------//忆包废稿
 	ybold_016manchengqi: '<font color=cyan>清明节限定</font>',
 	yboldshen_002chenailin: '<span class=yellowtext>初见与告别</span>',

@@ -1,6 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterSort };
-
 const characterSort = {
 	sgstrxs: {
 		sgskjdbzjms: ['sgskjdbzjms_zrshenmoyi', 'sgskjdbzjms_zrzhenghao', 'sgskjdbzjms_mo_zhoutai', 'sgskjdbzjms_shen_zhugeliang', 'sgskjdbzjms_leizhenzi', 'sgskjdbzjms_xian_zhugeguo', 'sgskjdbzjms_zhen_zhangfei', 'sgskjdbzjms_zhen_guanyu', 'sgskjdbzjms_shen_liubei', 'sgskjdbzjms_zhen_machao', 'sgskjdbzjms_zhen_liubei'],
@@ -52,7 +51,6 @@ const characterSort = {
 			'qmsgswkjsgj_re_mb_zhangzhi',
 			'qmsgswkjsgj_shen_taishici',
 			'qmsgswkjsgj_yanxiang',
-
 			'qmsgswkjsgj_re_zhangxuan',
 			'qmsgswkjsgj_re_chenshi',
 			'qmsgswkjsgj_re_dc_tengfanglan',
@@ -69,9 +67,7 @@ const characterSort = {
 			'qmsgswkjsgj_re_caofang',
 			'qmsgswkjsgj_re_guozhao',
 			'qmsgswkjsgj_re_caomao',
-
 			'qmsgswkjsgj_mengpo',
-
 			//神赐
 			'qmsgswkjsgj_shenci_wu_zhugeliang',
 			'qmsgswkjsgj_shenci_re_duyu',

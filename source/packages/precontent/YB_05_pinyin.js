@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_pinyin };
 /**
  * 此处掌管夜白神略包的武将名和技能名的拼音
@@ -10,14 +10,14 @@ const YBSL_pinyin = function () {
 		lib.pinyins.重振 = ['chóng', 'zhèn'];
 		lib.pinyins.散梦 = ['sǎn', 'mèng'];
 		lib.pinyins.折叶 = ['zhé', 'yè'];
-		lib.pinyins.命轮·折叶 = ['mìng', 'lún', '·', 'zhé', 'yè'];
+		lib.pinyins['命轮·折叶'] = ['mìng', 'lún', '·', 'zhé', 'yè'];
 		lib.pinyins.吴格格 = ['wú', 'gé', 'ge'];
 		lib.pinyins.秋儿 = ['qīu', 'er'];
 		lib.pinyins.悦儿 = ['yuè', 'er'];
 		lib.pinyins.清月姑娘 = ['qīng', 'yuè', 'gū', 'niang'];
 		lib.pinyins.旧版清月 = ['qīng', 'yuè', 'gū', 'niang'];
 		lib.pinyins.香紫姑娘 = ['xiāng', 'zǐ', 'gū', 'niang'];
-		lib.pinyins.方块Q = ['Diamond', 'Q'];
+		lib.pinyins['♦️️Q'] = ['Diamond', 'Q'];
 		lib.pinyins.朱焌 = ['Zhū', 'jùn'];
 		lib.pinyins['滕叔颖&武宁'] = ['Téng', 'shū', 'yǐng', 'Wǔ', 'níng'];
 		lib.pinyins['滕&武'] = ['Téng', 'shū', 'yǐng', 'Wǔ', 'níng'];

@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 // import { lib, game, ui, get, ai, _status } from '../../../../../noname.js'
 game.import('card', function (lib, game, ui, get, ai, _status) {
 	/** @type { importCardConfig } */
@@ -15,7 +15,6 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				},
 				contentBefore() {
 					'step 0';
-					game.delay();
 					player.draw();
 					('step 1');
 					if (get.is.versus()) {
@@ -32,7 +31,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					}
 					('step 2');
 					if (result && result.control == '顺时针') {
-						var evt = event.getParent();
+						var evt = event.parent;
 						evt.fixedSeat = true;
 						evt.targets.sortBySeat();
 						evt.targets.reverse();
@@ -47,11 +46,11 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					_status.dieClose.push(dialog);
 					dialog.videoId = lib.status.videoId++;
 					game.addVideo('cardDialog', null, ['调兵遣将', get.cardsInfo(cards), dialog.videoId]);
-					event.getParent().preResult = dialog.videoId;
+					event.parent.preResult = dialog.videoId;
 				},
 				content() {
 					'step 0';
-					for (var i = 0; i < ui.dialogs.length; i++) {
+					for (let i = 0; i < ui.dialogs.length; i++) {
 						if (ui.dialogs[i].videoId == event.preResult) {
 							event.dialog = ui.dialogs[i];
 							break;
@@ -63,7 +62,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					}
 					var minValue = 20;
 					var hs = target.getCards('h');
-					for (var i = 0; i < hs.length; i++) {
+					for (let i = 0; i < hs.length; i++) {
 						minValue = Math.min(minValue, get.value(hs[i], target));
 					}
 					if (target.isUnderControl(true)) {
@@ -98,7 +97,6 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						event.button.remove();
 					}
 					('step 3');
-					game.delay(2);
 				},
 				contentAfter() {
 					'step 0';
@@ -110,7 +108,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					var nextSeat = _status.currentPhase?.next;
 					var att = get.attitude(player, nextSeat);
 					if (player.isUnderControl(true) && !_status.auto) {
-						event.dialog.setCaption('将任意张牌以任意顺序置于牌堆顶（先选择的在上）');
+						event.dialog.setCaption('将任意张牌以任意顺序置于牌堆顶(先选择的在上)');
 					}
 					var next = player.chooseButton([1, event.dialog.buttons.length], event.dialog);
 					next.ai = function (button) {
@@ -126,7 +124,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					next.set('nextSeat', nextSeat);
 					('step 1');
 					if (result && result.bool && result.links && result.links.length) {
-						for (var i = 0; i < result.buttons.length; i++) {
+						for (let i = 0; i < result.buttons.length; i++) {
 							event.dialog.buttons.remove(result.buttons[i]);
 						}
 						var cards = result.links.slice(0);
@@ -135,7 +133,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						}
 						game.log(player, '将' + get.cnNumber(result.links.length) + '张牌置于牌堆顶');
 					}
-					for (var i = 0; i < event.dialog.buttons.length; i++) {
+					for (let i = 0; i < event.dialog.buttons.length; i++) {
 						event.dialog.buttons[i].link.discard();
 					}
 					('step 2');
@@ -154,7 +152,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						value: [5, 1],
 					},
 					result: {
-						player: (player, target) => {
+						player(player, target) {
 							return 1 / game.countPlayer();
 						},
 						target(player, target) {
@@ -184,7 +182,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						target
 							.chooseControl()
 							.set('prompt', get.translation('caochuanjiejian'))
-							.set('choiceList', ['将手牌中的所有杀交给' + name + '，并视为对' + name + '使用一张杀', '展示手牌并令' + name + '弃置任意一张'], function () {
+							.set('choiceList', ['将手牌中的所有杀交给' + name + ',并视为对' + name + '使用一张杀', '展示手牌并令' + name + '弃置任意一张'], function () {
 								if (get.effect(player, { name: 'sha' }, target, target) < 0) {
 									return 1;
 								}
@@ -331,7 +329,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 								}
 								var hs = player.getCards('h');
 								var dutag = player.hasSkillTag('nodu');
-								for (var i = 0; i < hs.length; i++) {
+								for (let i = 0; i < hs.length; i++) {
 									var value = get.value(hs[i], player);
 									if (hs[i].name == 'du' && dutag) {
 										continue;
@@ -365,7 +363,6 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						event.current.line(target, 'green');
 						event.current.popup('响应');
 						game.log(event.current, '响应了舌战群儒');
-						game.delayx(0.5);
 					}
 					event.goto(1);
 					('step 3');
@@ -381,7 +378,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					}
 				},
 				callback() {
-					if (event.card1.number > event.card2.number) {
+					if (event.num1 > event.num2) {
 						event.parent.parent.num++;
 					} else {
 						event.parent.parent.num--;
@@ -397,7 +394,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					result: {
 						target(player, target) {
 							var hs = target.getCards('h');
-							for (var i = 0; i < hs.length; i++) {
+							for (let i = 0; i < hs.length; i++) {
 								var value = get.value(hs[i]);
 								if (hs[i].number >= 7 && value <= 6) {
 									return 1;
@@ -429,7 +426,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					event.source.storage.youdishenru = player;
 					event.source.addSkill('youdishenru');
 					('step 1');
-					var next = event.source.chooseToUse({ name: 'sha' }, player, -1, '对' + get.translation(player) + '使用一张杀，或受到1点伤害').set('addCount', false);
+					var next = event.source.chooseToUse({ name: 'sha' }, player, -1, '对' + get.translation(player) + '使用一张杀,或受到1点伤害').set('addCount', false);
 					next.ai2 = function () {
 						return 1;
 					};
@@ -484,7 +481,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 							aoe = 0,
 							max = 0;
 						player.getCards('hs', (i) => {
-							const name = get.name(i);
+							const name = i.name;
 							if (name === 'nanman' || name === 'wanjian') {
 								aoe = Math.max(aoe, get.order(i, player));
 							}
@@ -540,7 +537,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 								if (mei.includes(i)) {
 									return false;
 								}
-								// if (!mei.length && get.name(i) === "wangmeizhike") {
+								// if (!mei.length && i.name === "wangmeizhike") {
 								// 	mei.push(i);
 								// 	return false;
 								// }
@@ -713,7 +710,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					if (hs.length) {
 						var minval = get.value(hs[0]);
 						var colors = [get.color(hs[0])];
-						for (var i = 1; i < hs.length; i++) {
+						for (let i = 1; i < hs.length; i++) {
 							var val = get.value(hs[i], player, 'raw');
 							if (val < minval) {
 								minval = val;
@@ -800,7 +797,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				},
 				selectTarget: [-1, -1],
 				judge(card) {
-					if (get.suit(card) == 'heart' && get.number(card) > 1 && get.number(card) < 10) {
+					if (card.suit == 'heart' && card.number > 1 && card.number < 10) {
 						return -6;
 					}
 					return 1;
@@ -818,7 +815,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 							return get.distance(player, current) <= 1 && player != current;
 						});
 						players.sort(lib.sort.seat);
-						for (var i = 0; i < players.length; i++) {
+						for (let i = 0; i < players.length; i++) {
 							players[i].damage(1, 'fire', 'nosource');
 						}
 					} else {
@@ -860,7 +857,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 				},
 				selectTarget: [-1, -1],
 				judge(card) {
-					if (get.suit(card) == 'club' && get.number(card) > 1 && get.number(card) < 10) {
+					if (card.suit == 'club' && card.number > 1 && card.number < 10) {
 						return -3;
 					}
 					return 1;
@@ -880,7 +877,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 							player.discard(player.getCards('he').randomGets(3));
 						}
 						var players = get.players();
-						for (var i = 0; i < players.length; i++) {
+						for (let i = 0; i < players.length; i++) {
 							var dist = get.distance(player, players[i]);
 							if (dist <= 2 && player != players[i]) {
 								var cs = players[i].getCards('he');
@@ -951,7 +948,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 									target: player,
 									card: card,
 								}) ||
-								player.hasSkillTag('unequip_ai', false, {
+								player.hasSkillTag('unequip', false, {
 									name: card ? card.name : null,
 									target: target,
 									card: card,
@@ -970,7 +967,6 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 			youdishenru: {
 				trigger: { source: 'damageEnd' },
 				silent: true,
-				onremove: true,
 				filter(event, player) {
 					return event.card && event.card.name == 'sha' && event.player == player.storage.youdishenru;
 				},
@@ -980,9 +976,9 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 			},
 			g_youdishenru: {
 				trigger: { target: 'shaBefore' },
-				direct: true,
+				forced: true,
 				filter(event, player) {
-					return !event.getParent().directHit.includes(player) && player.hasUsableCard('youdishenru');
+					return !event.parent.directHit.includes(player) && player.hasUsableCard('youdishenru');
 				},
 				content() {
 					event.youdiinfo = {
@@ -991,7 +987,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					};
 					player
 						.chooseToUse(function (card, player) {
-							if (get.name(card) != 'youdishenru') {
+							if (card.name != 'youdishenru') {
 								return false;
 							}
 							return lib.filter.cardEnabled(card, player, 'forceEnable');
@@ -1001,7 +997,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 			},
 			g_chenhuodajie: {
 				trigger: { global: 'damageEnd' },
-				direct: true,
+				forced: true,
 				filter(event, player) {
 					if (event.player == player) {
 						return false;
@@ -1022,7 +1018,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						.chooseToUse(
 							get.prompt('chenhuodajie', trigger.player).replace(/发动/, '使用'),
 							function (card, player) {
-								if (get.name(card) != 'chenhuodajie') {
+								if (card.name != 'chenhuodajie') {
 									return false;
 								}
 								return lib.filter.cardEnabled(card, player, 'forceEnable');
@@ -1042,39 +1038,38 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 		},
 		translate: {
 			diaobingqianjiang: '调兵遣将',
-			diaobingqianjiang_info: '出牌阶段，对你及其他有手牌的角色使用。你摸一张牌，然后亮出牌堆顶的X张牌（X为存活角色数的一半，向上取整），目标可以用一张手牌替换其中的一张牌。结算后，你可以将剩余的牌中的任意张以任意顺序置于牌堆顶。',
+			diaobingqianjiang_info: '出牌阶段,对你及其他有手牌的角色使用.你摸一张牌,然后亮出牌堆顶的X张牌(X为存活角色数的一半,向上取整),目标可以用一张手牌替换其中的一张牌.结算后,你可以将剩余的牌中的任意张以任意顺序置于牌堆顶',
 			caochuanjiejian: '草船借箭',
-			caochuanjiejian_info: '出牌阶段对一名有手牌的其他角色使用，目标选择一项：将手牌中的所有杀（至少一张）交给你，并视为对你使用一张杀；或展示手牌并令你弃置任意张。',
+			caochuanjiejian_info: '出牌阶段对一名有手牌的其他角色使用,目标选择一项:将手牌中的所有杀(至少一张)交给你,并视为对你使用一张杀;或展示手牌并令你弃置任意张',
 			shezhanqunru: '舌战群儒',
-			shezhanqunru_info: '出牌阶段，对你使用。你请求所有有手牌的其他角色响应，然后同时与响应的角色拼点。若有角色响应且结果中你赢的次数更多，或若没有角色响应，你摸三张牌。',
+			shezhanqunru_info: '出牌阶段,对你使用.你请求所有有手牌的其他角色响应,然后同时与响应的角色拼点.若有角色响应且结果中你赢的次数更多,或若没有角色响应,你摸三张牌',
 			youdishenru: '诱敌深入',
-			youdishenru_info: '当以你为目标的【杀】生效前，对此【杀】使用。抵消此【杀】，然后此【杀】的使用者需对你使用【杀】（在此【杀】结算结束之后，若此【杀】未对你造成伤害，其重复此流程），否则受到你造成的1点伤害。',
+			youdishenru_info: '当以你为目标的【杀】生效前,对此【杀】使用.抵消此【杀】,然后此【杀】的使用者需对你使用【杀】(在此【杀】结算结束之后,若此【杀】未对你造成伤害,其重复此流程),否则受到你造成的1点伤害',
 			suolianjia: '锁链甲',
-			suolianjia_info: '锁定技，你防止即将受到的属性伤害，当装备时进入连环状态，当卸下时解除连环状态。',
+			suolianjia_info: '锁定技,你防止即将受到的属性伤害,当装备时进入连环状态,当卸下时解除连环状态',
 			suolianjia_bg: '链',
 			geanguanhuo: '隔岸观火',
-			geanguanhuo_info: '出牌阶段对一名其他角色使用，令目标与一名你指定的另一名角色拼点，赢的角色获得对方的一张牌；若点数相同，目标可弃置你一张牌（存活角色不超过2时可重铸）。',
+			geanguanhuo_info: '出牌阶段对一名其他角色使用,令目标与一名你指定的另一名角色拼点,赢的角色获得对方的一张牌;若点数相同,目标可弃置你一张牌(存活角色不超过2时可重铸)',
 			toulianghuanzhu: '偷梁换柱',
-			toulianghuanzhu_info: '出牌阶段对一名其他角色使用，你观看其手牌，然后可以用一张手牌替牌其中的一张；若两张牌颜色相同，你摸一张牌。',
+			toulianghuanzhu_info: '出牌阶段对一名其他角色使用,你观看其手牌,然后可以用一张手牌替牌其中的一张;若两张牌颜色相同,你摸一张牌',
 			toulianghuanzhu_bg: '柱',
 			fudichouxin: '釜底抽薪',
-			fudichouxin_info: '与一名角色进行拼点，若成功则获得双方拼点牌。',
+			fudichouxin_info: '与一名角色进行拼点,若成功则获得双方拼点牌',
 			shuiyanqijun: '水攻',
-			shuiyanqijun_info: '令所有有装备的角色各弃置一张装备牌。',
+			shuiyanqijun_info: '令所有有装备的角色各弃置一张装备牌',
 			wangmeizhike: '望梅止渴',
-			wangmeizhike_info: '出牌阶段对一名角色使用，若没有角色体力比目标少，目标回复1点体力；若没有角色手牌比目标少，目标摸两张牌（若因此牌回复了体力则改为摸一张）。',
+			wangmeizhike_info: '出牌阶段对一名角色使用,若没有角色体力比目标少,目标回复1点体力;若没有角色手牌比目标少,目标摸两张牌(若因此牌回复了体力则改为摸一张)',
 			chenhuodajie: '趁火打劫',
-			chenhuodajie_info: '任意一名其他角色受到伤害时对其使用，获得其一张牌。',
+			chenhuodajie_info: '任意一名其他角色受到伤害时对其使用,获得其一张牌',
 			huoshan: '火山',
-			huoshan_info: '出牌阶段，对自己使用。若判定结果为红桃2~9，则目标角色受到2点火焰伤害，距离目标1以内的其他角色受到1点火焰伤害。若判定结果不为红桃2~9，将之移动到下家的判定区里。',
+			huoshan_info: '出牌阶段,对自己使用.若判定结果为♥️️2~9,则目标角色受到2点火焰伤害,距离目标1以内的其他角色受到1点火焰伤害.若判定结果不为♥️️2~9,将之移动到下家的判定区里',
 			hongshui: '洪水',
-			hongshui_info: '出牌阶段，对自己使用。若判定结果为梅花2~9，该角色随机弃置三张牌，距离该角色为X的角色随机弃置3-X张牌，若没有牌则失去1点体力。若判定结果不为梅花2~9，将之移动到下家的判定区里。',
+			hongshui_info: '出牌阶段,对自己使用.若判定结果为♣️️2~9,该角色随机弃置三张牌,距离该角色为X的角色随机弃置3-X张牌,若没有牌则失去1点体力.若判定结果不为♣️️2~9,将之移动到下家的判定区里',
 		},
 		list: [
 			['heart', 6, 'huoshan', 'fire'],
 			['club', 7, 'hongshui'],
 			['diamond', 3, 'guohe'],
-
 			['diamond', 4, 'fudichouxin'],
 			['club', 6, 'fudichouxin'],
 			['spade', 1, 'fudichouxin'],
@@ -1090,9 +1085,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 			['diamond', 6, 'chenhuodajie'],
 			['diamond', 9, 'chenhuodajie'],
 			['club', 3, 'chenhuodajie'],
-
 			['club', 13, 'suolianjia'],
-
 			['club', 3, 'caochuanjiejian'],
 			['spade', 7, 'caochuanjiejian'],
 			['heart', 1, 'geanguanhuo'],
@@ -1114,6 +1107,5 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 			yunchou.card[i].audio = 'ext:夜白神略/audio/ontology/card/' + i + '.mp3';
 		}
 	}
-
 	return yunchou;
 });

@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_trigger };
 /**
  * 掌管夜白为了某些目的创建的公共时机
@@ -29,7 +29,7 @@ const YBSL_trigger = function () {
 			},
 			popup: false,
 			forced: true,
-			content: function () {
+			content() {
 				trigger.trigger('YB_any');
 			},
 		};
@@ -40,7 +40,7 @@ const YBSL_trigger = function () {
 			},
 			popup: false,
 			forced: true,
-			content: function () {
+			content() {
 				trigger.trigger('YB_anyBefore');
 			},
 		};
@@ -51,7 +51,7 @@ const YBSL_trigger = function () {
 			},
 			popup: false,
 			forced: true,
-			content: function () {
+			content() {
 				trigger.trigger('YB_anyBegin');
 			},
 		};
@@ -62,7 +62,7 @@ const YBSL_trigger = function () {
 			},
 			popup: false,
 			forced: true,
-			content: function () {
+			content() {
 				trigger.trigger('YB_anyEnd');
 			},
 		};
@@ -73,7 +73,7 @@ const YBSL_trigger = function () {
 			},
 			popup: false,
 			forced: true,
-			content: function () {
+			content() {
 				trigger.trigger('YB_anyAfter');
 			},
 		};
@@ -85,7 +85,7 @@ const YBSL_trigger = function () {
 			},
 			popup: false,
 			forced: true,
-			content: function () {
+			content() {
 				trigger.trigger('YB_anySkipped');
 			},
 		};
@@ -96,7 +96,7 @@ const YBSL_trigger = function () {
 			},
 			popup: false,
 			forced: true,
-			content: function () {
+			content() {
 				trigger.trigger('YB_anyCancelled');
 			},
 		};
@@ -107,7 +107,7 @@ const YBSL_trigger = function () {
 			},
 			popup: false,
 			forced: true,
-			filter: function (event, player) {
+			filter(event, player) {
 				if (event.skill && event.skill == 'yb014_lvxin') {
 					event.trigger('YB_lvxindraw');
 				}
@@ -218,7 +218,6 @@ const YBSL_trigger = function () {
 						isBossAllowed: true,
 						extraModeData: 'qun',
 					},
-
 					boss_baiwuchang: {
 						sex: 'male',
 						group: 'shen',
@@ -451,7 +450,7 @@ const YBSL_trigger = function () {
 				lib.translate.boss_yanluo = '阎罗';
 				lib.translate.boss_xiongshou = '凶兽';
 				lib.translate.YB_boss = 'boss武将';
-				lib.translate['YB_boss_character_config'] = "<span style='color:#e1ff00'>boss武将</span>";
+				lib.translate.YB_boss_character_config = "<span style='color: #e1ff00'>boss武将</span>";
 				lib.element.player.YB_shenguicifu = function (k) {
 					var next = game.createEvent('YB_shenguicifu', false);
 					next.player = this;
@@ -466,7 +465,6 @@ const YBSL_trigger = function () {
 						if (skills.length) {
 							var skill = skills[Math.floor(Math.random() * skills.length)];
 						}
-
 						function shuffleArray(array) {
 							for (let i = array.length - 1; i > 0; i--) {
 								const j = Math.floor(Math.random() * (i + 1)); // 随机选取 0 到 i 的索引
@@ -474,12 +472,10 @@ const YBSL_trigger = function () {
 							}
 							return array;
 						}
-
 						// // 示例
 						// const arr = [1, 2, 3, 4, 5];
 						// shuffleArray(arr);
-						// console.log(arr); // 可能输出：[3, 1, 5, 2, 4]（随机顺序）
-
+						// console.log(arr); // 可能输出:[3, 1, 5, 2, 4](随机顺序)
 						var suit = ['spade', 'heart', 'club', 'diamond'];
 						shuffleArray(suit);
 						var list_cifu = [];
@@ -497,7 +493,7 @@ const YBSL_trigger = function () {
 								var str = get.translation(char) + '赐福';
 								var str;
 								if (player == game.me && !_status.auto) {
-									str = get.translation(char) + '赐福：请选择一至两项';
+									str = get.translation(char) + '赐福:请选择一至两项';
 								} else {
 									str = get.translation(char) + '赐福';
 								}
@@ -523,7 +519,7 @@ const YBSL_trigger = function () {
 						('step 2');
 						game.broadcastAll('closeDialog', event.videoId);
 						if (result.bool && result.links && result.links.length) {
-							for (var i of result.links) {
+							for (const i of result.links) {
 								if (i == event.list_cifu[0]) {
 									player.gainMaxHp();
 									player.recover();
@@ -543,8 +539,8 @@ const YBSL_trigger = function () {
 				lib.translate.identity_YB_canhun2 = '魂';
 				lib.translate.identity_YB_canhun_bg = '魂';
 				lib.translate._YB_xieguicifu = '赐福';
-				lib.translate._YB_xieguicifu_info = '游戏开始时，或回合开始时，你可以获得赐福。';
-				lib.translate._YB_xieguicifu_info_identity = '游戏开始时，或回合开始时，你可以获得赐福；当你阵亡时，你可以获得鬼神赐福，并将身份换为“残魂”复活。';
+				lib.translate._YB_xieguicifu_info = '游戏开始时,或回合开始时,你可以获得赐福';
+				lib.translate._YB_xieguicifu_info_identity = '游戏开始时,或回合开始时,你可以获得赐福;当你阵亡时,你可以获得鬼神赐福,并将身份换为<残魂>复活';
 				lib.skill._YB_xieguicifu = {
 					name: '神鬼赐福',
 					trigger: {
@@ -564,7 +560,6 @@ const YBSL_trigger = function () {
 						}
 						return true;
 					},
-					direct: true,
 					forced: true,
 					async content(event, trigger, player) {
 						if (event.triggername == 'die') {
@@ -575,15 +570,15 @@ const YBSL_trigger = function () {
 								str = '你死于非命';
 							}
 							var result = await player
-								.chooseBool(str + '，这时地府鬼神向你伸出了手，是否接受鬼神赐福？')
+								.chooseBool(str + ',这时地府鬼神向你伸出了手,是否接受鬼神赐福？')
 								.set('ai', function () {
 									return true;
 								})
 								.forResult();
 							if (result.bool) {
 								game.log(player, '获得了', '#y鬼神赐福');
-								if (!lib.translate['commoner']) {
-									lib.translate['commoner'] = '民';
+								if (!lib.translate.commoner) {
+									lib.translate.commoner = '民';
 								}
 								player.identity = 'commoner';
 								player.special_identity = 'identity_YB_canhun';
@@ -631,7 +626,7 @@ const YBSL_trigger = function () {
 						trigger.num++;
 					},
 					forced: true,
-					init: function (player) {
+					init(player) {
 						game.checkResult = function () {
 							var me = game.me._trueMe || game.me;
 							if (_status.brawl && _status.brawl.checkResult) {
@@ -708,17 +703,17 @@ const YBSL_trigger = function () {
 								}, true);
 								var winner2 = winner.slice(0);
 								var loser2 = loser.slice(0);
-								for (var i = 0; i < winner.length; i++) {
+								for (let i = 0; i < winner.length; i++) {
 									if (winner[i].isDead()) {
 										winner.splice(i--, 1);
 									}
 								}
-								for (var i = 0; i < loser.length; i++) {
+								for (let i = 0; i < loser.length; i++) {
 									if (loser[i].isDead()) {
 										loser.splice(i--, 1);
 									}
 								}
-								if (winner.length > 0 || loser.length == game.players.length) {
+								if (winner.length || loser.length == game.players.length) {
 									game.broadcastAll(
 										function (winner, loser) {
 											_status.winner = winner;
@@ -831,7 +826,7 @@ const YBSL_trigger = function () {
 					},
 				};
 				lib.translate.YB_xiegui_chouhen = '复仇';
-				lib.translate.YB_xiegui_chouhen_info = '锁定技，你对杀死你的角色造成的伤害+1；游戏结束时，若杀死你的凶手死亡，你获胜，否则你失败。';
+				lib.translate.YB_xiegui_chouhen_info = '锁定技,你对击杀你的角色造成的伤害+1;游戏结束时,若击杀你的凶手死亡,你获胜,否则你失败';
 			}
 		});
 	}
@@ -840,16 +835,14 @@ const YBSL_trigger = function () {
 		lib.arenaReady.push(function () {
 			if (lib.config.YB_wuhunjuexing) {
 				function calculateSimilarity(str1, str2) {
-					// 如果其中一个字符串为空，返回0
+					// 如果其中一个字符串为空,返回0
 					if (str1.length === 0 || str2.length === 0) {
 						return 0;
 					}
-
 					// 创建一个二维数组来存储中间结果
 					const len1 = str1.length;
 					const len2 = str2.length;
 					const distance = Array.from({ length: len1 + 1 }, () => Array(len2 + 1).fill(0));
-
 					// 初始化第一行和第一列
 					for (let i = 0; i <= len1; i++) {
 						distance[i][0] = i;
@@ -857,7 +850,6 @@ const YBSL_trigger = function () {
 					for (let j = 0; j <= len2; j++) {
 						distance[0][j] = j;
 					}
-
 					// 填充距离矩阵
 					for (let i = 1; i <= len1; i++) {
 						for (let j = 1; j <= len2; j++) {
@@ -869,25 +861,19 @@ const YBSL_trigger = function () {
 							);
 						}
 					}
-
 					// 计算相似度得分
 					const maxLen = Math.max(len1, len2);
 					const similarityScore = (maxLen - distance[len1][len2]) / maxLen;
-
 					return similarityScore;
 				}
-
 				// 示例用法
 				// const text1 = "hello world";
 				// const text2 = "hello world!";
-				// console.log(calculateSimilarity(text1, text2)); // 输出接近1的值，表示高度相似
-
+				// console.log(calculateSimilarity(text1, text2)); // 输出接近1的值,表示高度相似
 				// const text3 = "hello world";
 				// const text4 = "goodbye moon";
-				// console.log(calculateSimilarity(text3, text4)); // 输出较低的值，表示不相似
-
-				// 算了，这方法不用了
-
+				// console.log(calculateSimilarity(text3, text4)); // 输出较低的值,表示不相似
+				// 算了,这方法不用了
 				lib.element.player.YB_addHunli = function (num) {
 					const player = this;
 					player.addMark('_YB_wuhunlevel', num);

@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterTitle };
 var qmsgswkjsgj_span = 'cyber-neon-halo-flow';
 // var qmsgswkjsgj_span = 'cyber-neon-text';
@@ -9,7 +9,6 @@ var qmsgswkjsgj_shenci_span = 'solid-gold-with-flow-halo';
 // var sgsxjxfzmnl_span = 'sgsxjxfzmnl';
 const characterTitle = {
 	//称号
-
 	sgskjdbzjms_mo_zhoutai: '<font color=cyan>坚毅的铁躯</font>',
 	sgskjdbzjms_shen_zhugeliang: '<font color=cyan>五丈原的英魂</font>',
 	sgskjdbzjms_leizhenzi: '<font color=cyan>风雷疾行</font>',
@@ -19,7 +18,6 @@ const characterTitle = {
 	sgskjdbzjms_shen_liubei: '<font color=cyan>真龙之怒</font>',
 	sgskjdbzjms_zhen_machao: '<font color=cyan>狮盔银铠玉面郎</font>',
 	sgskjdbzjms_zhen_liubei: '<font color=cyan>白帝托孤</font>',
-
 	qmsgswkjsgj_re_xizhicai: "<span class = '" + qmsgswkjsgj_span + "'>负俗的夭才</span>",
 	qmsgswkjsgj_re_liuxie: "<span class = '" + qmsgswkjsgj_span + "'>受困天子</span>",
 	qmsgswkjsgj_shen_zhaoyun: "<span class = '" + qmsgswkjsgj_span + "'>神威如龙</span>",
@@ -44,7 +42,6 @@ const characterTitle = {
 	qmsgswkjsgj_re_sunhanhua: "<span class = '" + qmsgswkjsgj_span + "'>挣绽的青莲</span>",
 	qmsgswkjsgj_yingtian_simayi: "<span class = '" + qmsgswkjsgj_span + "'>三狼吞魏</span>",
 	qmsgswkjsgj_re_shen_zhaoyun: "<span class = '" + qmsgswkjsgj_span + "'>天龙乘云</span>",
-
 	qmsgswkjsgj_shen_lusu: "<span class = '" + qmsgswkjsgj_span + "'>兴吴之邓禹</span>",
 	qmsgswkjsgj_re_sunquan: "<span class = '" + qmsgswkjsgj_span + "'>东吴大帝</span>",
 	qmsgswkjsgj_shen_zhouyu: "<span class = '" + qmsgswkjsgj_span + "'>赤壁的火神</span>",
@@ -75,12 +72,10 @@ const characterTitle = {
 	qmsgswkjsgj_re_mb_caomao: "<span class = '" + qmsgswkjsgj_span + "'>向死存魏</span>",
 	qmsgswkjsgj_mengpo: "<span class = '" + qmsgswkjsgj_span + "'>忘川难断</span>",
 	qmsgswkjsgj_shen_sunce: "<span class = '" + qmsgswkjsgj_span + "'>踞江鬼雄</span>",
-
 	qmsgswkjsgj_mb_sunluyu: "<span class = '" + qmsgswkjsgj_span + "'>舍身饲虎</span>",
 	qmsgswkjsgj_re_mb_zhangzhi: "<span class = '" + qmsgswkjsgj_span + "'></span>",
 	qmsgswkjsgj_shen_taishici: "<span class = '" + qmsgswkjsgj_span + "'>义信天武</span>",
 	qmsgswkjsgj_yanxiang: "<span class = '" + qmsgswkjsgj_span + "'>明尚夙达</span>",
-
 	qmsgswkjsgj_re_zhangxuan: "<span class = '" + qmsgswkjsgj_span + "'>玉宇嫁蔷</span>",
 	qmsgswkjsgj_re_chenshi: "<span class = '" + qmsgswkjsgj_span + "'>裨将可期</span>",
 	qmsgswkjsgj_re_dc_tengfanglan: "<span class = '" + qmsgswkjsgj_span + "'>铃兰零落</span>",
@@ -97,7 +92,6 @@ const characterTitle = {
 	qmsgswkjsgj_re_caofang: "<span class = '" + qmsgswkjsgj_span + "'>迷瞑终觉</span>",
 	qmsgswkjsgj_re_guozhao: "<span class = '" + qmsgswkjsgj_span + "'>碧海青天</span>",
 	qmsgswkjsgj_re_caomao: "<span class = '" + qmsgswkjsgj_span + "'>霸业的终耀</span>",
-
 	qmsgswkjsgj_shenci_wu_zhugeliang: "<span class = '" + qmsgswkjsgj_shenci_span + "'>忠武良弼</span>",
 	qmsgswkjsgj_shenci_re_duyu: "<span class = '" + qmsgswkjsgj_shenci_span + "'>文成武德</span>",
 	qmsgswkjsgj_shenci_wu_luxun: "<span class = '" + qmsgswkjsgj_shenci_span + "'>释武怀儒</span>",
@@ -106,7 +100,6 @@ const characterTitle = {
 	qmsgswkjsgj_shenci_dc_zhouxuān: "<span class = '" + qmsgswkjsgj_shenci_span + "'>夜华青乌</span>",
 	qmsgswkjsgj_shenci_caomao: "<span class = '" + qmsgswkjsgj_shenci_span + "'>霸业的终耀</span>",
 	qmsgswkjsgj_shenci_pot_yuji: "<span class = '" + qmsgswkjsgj_shenci_span + "'>夙仙望道</span>",
-
 	sgsxjxfzmnl_re_xusheng: '<span class="sgsxjxfzmnl">江东的铁壁</span>',
 	sgsxjxfzmnl_sb_huangzhong: '<span class="sgsxjxfzmnl">没金铩羽</span>',
 	sgsxjxfzmnl_shen_sunce: '<span class="sgsxjxfzmnl">踞江鬼雄</span>',
@@ -138,7 +131,6 @@ const characterTitle = {
 	sgsxjxfzmnl_scs_duangui_dead: '<span class="sgsxjxfzmnl">祸乱纲常</span>',
 	sgsxjxfzmnl_scs_guosheng_dead: '<span class="sgsxjxfzmnl">祸乱纲常</span>',
 	sgsxjxfzmnl_scs_gaowang_dead: '<span class="sgsxjxfzmnl">祸乱纲常</span>',
-
 	sgsxjxfzmnl_yue_caiwenji: '<span class="sgsxjxfzmnl">胡笳十八拍</span>',
 	sgsxjxfzmnl_liuyan: '<span class="sgsxjxfzmnl">裂土之宗</span>',
 	sgsxjxfzmnl_shen_xunyu: '<span class="sgsxjxfzmnl">洞心先识</span>',
@@ -147,14 +139,12 @@ const characterTitle = {
 	sgsxjxfzmnl_sb_caopi: '<span class="sgsxjxfzmnl">魏文帝</span>',
 	sgsxjxfzmnl_boss_zhaoyun: '<span class="sgsxjxfzmnl">天龙乘云</span>',
 	sgsxjxfzmnl_nanhualaoxian: '<span class="sgsxjxfzmnl">冯虚御风</span>',
-
 	sgsxjxfzmnl_zhangxuan: '<span class="sgsxjxfzmnl">玉宇嫁蔷</span>',
 	sgsxjxfzmnl_caojinyu: '<span class="sgsxjxfzmnl">金乡公主</span>',
 	sgsxjxfzmnl_shen_machao: '<span class="sgsxjxfzmnl">神威天将军</span>',
 	sgsxjxfzmnl_sunhanhua: '<span class="sgsxjxfzmnl">挣绽的青莲</span>',
 	sgsxjxfzmnl_xin_guozhao: '<span class="sgsxjxfzmnl">文德皇后</span>',
 	sgsxjxfzmnl_sb_guanyu: '<span class="sgsxjxfzmnl">关圣帝君</span>',
-
 	sgsxjxfzmnl_sb_huanggai: '<span class="sgsxjxfzmnl">轻身为国</span>',
 	sgsxjxfzmnl_dc_zhouxuān: '<span class="sgsxjxfzmnl">夜华青乌</span>',
 	sgsxjxfzmnl_sunlingluan: '<span class="sgsxjxfzmnl">弦凤栖梧</span>',
@@ -165,7 +155,6 @@ const characterTitle = {
 	sgsxjxfzmnl_dc_liuye: '<span class="sgsxjxfzmnl">佐世之才</span>',
 	sgsxjxfzmnl_peixiu: '<span class="sgsxjxfzmnl">晋图开秘</span>',
 	sgsxjxfzmnl_wu_luxun: '<span class="sgsxjxfzmnl">释武怀儒</span>',
-
 	sgsxjxfzmnl_mb_caomao: '<span class="sgsxjxfzmnl">向死存魏</span>',
 	sgsxjxfzmnl_puyuan: '<span class="sgsxjxfzmnl">淬炼百兵</span>',
 	sgsxjxfzmnl_dc_shen_huatuo: '<span class="sgsxjxfzmnl">灵魂的医者</span>',
@@ -203,7 +192,6 @@ const characterTitle = {
 	sgsxjxfzmnl_yangbiao: '<span class="sgsxjxfzmnl">德彰海内</span>',
 	sgsxjxfzmnl_simazhao: '<span class="sgsxjxfzmnl">堕节肇业</span>',
 	sgsxjxfzmnl_caoying: '<span class="sgsxjxfzmnl">龙城凤鸣</span>',
-
 	sgsxjxfzmnl_mo_diaochan: '<span class="sgsxjxfzmnl">乱世的舞姬</span>',
 	sgsxjxfzmnl_mo_lvbu: '<span class="sgsxjxfzmnl">武的化身</span>',
 	sgsxjxfzmnl_mo_caopi: '<span class="sgsxjxfzmnl"></span>',
@@ -213,7 +201,6 @@ const characterTitle = {
 	sgsxjxfzmnl_mo_jiaxu: '<span class="sgsxjxfzmnl"></span>',
 	sgsxjxfzmnl_mo_guosi: '<span class="sgsxjxfzmnl"></span>',
 	sgsxjxfzmnl_mo_zhangji: '<span class="sgsxjxfzmnl"></span>',
-
 	zzrsqlkjygzz_shen_guanyu: '<font color=cyan></font>',
 	zzrsqlkjygzz_shen_zhangjiao: '<font color=cyan></font>',
 	zzrsqlkjygzz_shen_sunce: '<font color=cyan></font>',
@@ -226,23 +213,21 @@ const characterTitle = {
 	zzrsqlkjygzz_yi_luxun: '<font color=cyan></font>',
 	zzrsqlkjygzz_yi_sunce: '<font color=cyan></font>',
 	zzrsqlkjygzz_yao_zhoutai: '<font color=cyan></font>',
-
 	//---------------------------------//名将改写
-	// 'ybsl_zhouyuxiaoqiao':'详见本体龙凤。',//周瑜小乔
+	// 'ybsl_zhouyuxiaoqiao':'详见本体龙凤',//周瑜小乔
 	//---------------------------------//忆包武将
-
-	/*快捷复制：
+	/*快捷复制:
 	<span class=yellowtext>文字</span>暗亮双色
 	<span class=thundertext>文字</span>
 	<span class=thundertext></span>
 	<font color=cyan>文字</font>自带单色
-	<span style=\'color:#00c4ff\'>文字</span>自写颜色
+	<span style=\'color: #00c4ff\'>文字</span>自写颜色
 	<br/>换行
 	<li>点
 	<span style="opacity:0.5;"></span>字体变淡
 	<span style="font-family: yuanli">东吴命运线</span>
 	<span style="text-decoration: line-through;">杀</span>字体划掉
-	黑桃♠︎️ 红桃♥︎️ 梅花♣︎️ 方块♦︎ 虚无◈ 日○ 月☽ 星☆ 山△ 禁※
+	♠️️♠️︎️ ♥️️♥️︎️ ♣️️♣️︎️ ♦️️♦️︎ 虚无◈ 日○ 月☽ 星☆ 山△ 禁※
 	空桃♤ 空心♡ 空梅♧ 空钻♢ 空无◎
 	花❀ 毒❈ 衡❃ 雪❁ 血ღ 实日☀ 漆星★ 暗花✿ 细雪❅❉ 天牢§
 	骰子 一⚀ 二⚁ 三⚂ 四⚃ 五⚄ 六⚅
@@ -250,19 +235,19 @@ const characterTitle = {
 	白羊♈ 金牛♉ 双子♊ 巨蟹♋ 双鱼♓ 狮子♌ 天秤♎ 射手♐ 摩羯♑ 室女♏ 水瓶♒ 天蝎♍
 	八卦乾☰ 坤☷ 震☳ 巽☴ 坎☵ 离☲ 艮☶ 兑☱
 	☣
-	//花	<br>❀技能设计：夜白<br>❀代码撰写者：夜白<br>❀插图：暂无<br>❀配音：暂无
-	//毒	<br>❈技能设计：夜白<br>❈代码撰写者：夜白<br>❈插图：暂无<br>❈配音：暂无
-	//衡	<br>❃技能设计：夜白<br>❃代码撰写者：夜白<br>❃插图：暂无<br>❃配音：暂无
-	//雪	<br>❁技能设计：夜白<br>❁代码撰写者：夜白<br>❁插图：暂无<br>❁配音：暂无
-	//星	<br>☆技能设计：夜白<br>☆代码撰写者：夜白<br>☆插图：暂无<br>☆配音：暂无
-	//漆星  <br>★技能设计：夜白<br>★代码撰写者：夜白<br>★插图：暂无<br>★配音：暂无
-	//暗花  <br>✿技能设计：夜白<br>✿代码撰写者：夜白<br>✿插图：暂无<br>✿配音：暂无
-	//黑桃  <br>♠︎️技能设计：夜白<br>♠︎️代码撰写者：夜白<br>♠︎️插图：暂无<br>♠︎️配音：暂无
-	//红桃  <br>♥︎️技能设计：夜白<br>♥︎️代码撰写者：夜白<br>♥︎️插图：暂无<br>♥︎️配音：暂无
-	//梅花  <br>♣︎️技能设计：夜白<br>♣︎️代码撰写者：夜白<br>♣︎️插图：暂无<br>♣︎️配音：暂无
-	//方块  <br>♦︎技能设计：夜白<br>♦︎代码撰写者：夜白<br>♦︎插图：暂无<br>♦︎配音：暂无
-	//虚无  <br>◈技能设计：夜白<br>◈代码撰写者：夜白<br>◈插图：暂无<br>◈配音：暂无
-	//空无  <br>◎技能设计：夜白<br>◎代码撰写者：夜白<br>◎插图：暂无<br>◎配音：暂无
-	//细雪  <br>❅技能设计：夜白<br>❅代码撰写者：夜白<br>❅插图：暂无<br>❅配音：暂无
+	//花	<br>❀技能设计:夜白<br>❀代码撰写者:夜白<br>❀插图:暂无<br>❀配音:暂无
+	//毒	<br>❈技能设计:夜白<br>❈代码撰写者:夜白<br>❈插图:暂无<br>❈配音:暂无
+	//衡	<br>❃技能设计:夜白<br>❃代码撰写者:夜白<br>❃插图:暂无<br>❃配音:暂无
+	//雪	<br>❁技能设计:夜白<br>❁代码撰写者:夜白<br>❁插图:暂无<br>❁配音:暂无
+	//星	<br>☆技能设计:夜白<br>☆代码撰写者:夜白<br>☆插图:暂无<br>☆配音:暂无
+	//漆星  <br>★技能设计:夜白<br>★代码撰写者:夜白<br>★插图:暂无<br>★配音:暂无
+	//暗花  <br>✿技能设计:夜白<br>✿代码撰写者:夜白<br>✿插图:暂无<br>✿配音:暂无
+	//♠️️  <br>♠️︎️技能设计:夜白<br>♠️︎️代码撰写者:夜白<br>♠️︎️插图:暂无<br>♠️︎️配音:暂无
+	//♥️️  <br>♥️︎️技能设计:夜白<br>♥️︎️代码撰写者:夜白<br>♥️︎️插图:暂无<br>♥️︎️配音:暂无
+	//♣️️  <br>♣️︎️技能设计:夜白<br>♣️︎️代码撰写者:夜白<br>♣️︎️插图:暂无<br>♣️︎️配音:暂无
+	//♦️️  <br>♦️︎技能设计:夜白<br>♦️︎代码撰写者:夜白<br>♦️︎插图:暂无<br>♦️︎配音:暂无
+	//虚无  <br>◈技能设计:夜白<br>◈代码撰写者:夜白<br>◈插图:暂无<br>◈配音:暂无
+	//空无  <br>◎技能设计:夜白<br>◎代码撰写者:夜白<br>◎插图:暂无<br>◎配音:暂无
+	//细雪  <br>❅技能设计:夜白<br>❅代码撰写者:夜白<br>❅插图:暂无<br>❅配音:暂无
 	*/
 };

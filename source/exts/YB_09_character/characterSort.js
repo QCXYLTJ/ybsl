@@ -1,6 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterSort };
-
 const characterSort = {
 	ybdd: {
 		order_xzhq: ['North_yanghuiyu', 'North_duyu', 'North_sunshangxiang', 'Northxx_sunshangxiang', 'North_zhugeliang', 'Northxx_zhugeliang', 'North_lidian', 'North_diaochan', 'North_beimihu', 'North_bulianshi', 'North_caojinyu', 'North_huangyueying', 'North_caoxiancaohua', 'North_sunhanhua', 'North_guozhao', 'North_zhaoxiang', 'North_liufeng'],

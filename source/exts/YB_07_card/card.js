@@ -1,6 +1,6 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { card };
-/** @type { importCardConfig['card'] } */
+/** @type { importCardConfig.card } */
 const card = {
 	ybsl_qingfengshan: {
 		bingzhu: ['庞统'],
@@ -89,7 +89,7 @@ const card = {
 			} else {
 				var next = target.chooseToRespond();
 				next.set('filterCard', function (card, player) {
-					if (get.name(card) != 'sha') {
+					if (card.name != 'sha') {
 						return false;
 					}
 					return lib.filter.cardRespondable(card, player);
@@ -98,7 +98,7 @@ const card = {
 					next.set('prompt2', '共需打出' + event.shaRequired + '张杀');
 				}
 				next.set('ai', function (card) {
-					var evt = _status.event.getParent();
+					var evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target, 'ice') >= 0) {
 						return 0;
 					}
@@ -144,7 +144,7 @@ const card = {
 						let known = tar.getKnownCards(viewer);
 						if (!blur) {
 							return known.some((card) => {
-								let name = get.name(card, tar);
+								let name = card.name;
 								return (name === 'sha' || name === 'hufu' || name === 'yuchanqian') && lib.filter.cardRespondable(card, tar);
 							});
 						}
@@ -336,7 +336,7 @@ const card = {
 					let known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = get.name(card, target);
+							let name = card.name;
 							if (name === 'sha' || name === 'hufu' || name === 'yuchanqian') {
 								return lib.filter.cardRespondable(card, target);
 							}
@@ -377,7 +377,7 @@ const card = {
 					let known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = get.name(card, target);
+							let name = card.name;
 							if (name === 'sha' || name === 'hufu' || name === 'yuchanqian') {
 								return lib.filter.cardRespondable(card, target);
 							}
@@ -455,7 +455,7 @@ const card = {
 			} else {
 				var next = target.chooseToRespond();
 				next.set('filterCard', function (card, player) {
-					if (get.name(card) != 'shan') {
+					if (card.name != 'shan') {
 						return false;
 					}
 					return lib.filter.cardRespondable(card, player);
@@ -464,7 +464,7 @@ const card = {
 					next.set('prompt2', '共需打出' + event.shanRequired + '张闪');
 				}
 				next.set('ai', function (card) {
-					var evt = _status.event.getParent();
+					var evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target, 'YB_wind') >= 0) {
 						return 0;
 					}
@@ -513,7 +513,7 @@ const card = {
 						let known = tar.getKnownCards(viewer);
 						if (!blur) {
 							return known.some((card) => {
-								let name = get.name(card, tar);
+								let name = card.name;
 								return (name === 'shan' || name === 'hufu') && lib.filter.cardRespondable(card, tar);
 							});
 						}
@@ -705,7 +705,7 @@ const card = {
 					let known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = get.name(card, target);
+							let name = card.name;
 							if (name === 'shan' || name === 'hufu') {
 								return lib.filter.cardRespondable(card, target);
 							}
@@ -746,7 +746,7 @@ const card = {
 					let known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = get.name(card, target);
+							let name = card.name;
 							if (name === 'shan' || name === 'hufu') {
 								return lib.filter.cardRespondable(card, target);
 							}
@@ -796,12 +796,11 @@ const card = {
 			},
 		},
 	},
-
 	ybsl_ji: {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null];
 			}
@@ -809,25 +808,24 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_ji_info'];
+				return lib.translate.ybsl_ji_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
 			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_ji.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
+			var str = '转换卡,此牌视为:';
 			var list2 = ['极'];
 			for (let i = 0; i < list.length; i++) {
 				var str2 = '';
 				str2 += list2[i];
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
@@ -848,7 +846,7 @@ const card = {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null];
 			}
@@ -856,25 +854,24 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_yi_info'];
+				return lib.translate.ybsl_yi_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
 			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_yi.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
+			var str = '转换卡,此牌视为:';
 			var list2 = ['阳', '阴'];
 			for (let i = 0; i < list.length; i++) {
 				var str2 = '';
 				str2 += list2[i];
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
@@ -895,7 +892,7 @@ const card = {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null, null];
 			}
@@ -903,25 +900,24 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_cai_info'];
+				return lib.translate.ybsl_cai_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
 			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_cai.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
+			var str = '转换卡,此牌视为:';
 			var list2 = ['天', '地', '人'];
 			for (let i = 0; i < list.length; i++) {
 				var str2 = '';
 				str2 += list2[i];
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
@@ -942,7 +938,7 @@ const card = {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null, null, null, null];
 			}
@@ -950,25 +946,24 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_xiang_info'];
+				return lib.translate.ybsl_xiang_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
 			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_xiang.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
+			var str = '转换卡,此牌视为:';
 			var list2 = ['春', '夏', '秋', '冬'];
 			for (let i = 0; i < list.length; i++) {
 				var str2 = '';
 				str2 += list2[i];
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
@@ -989,7 +984,7 @@ const card = {
 		fullskin: true,
 		type: 'basic',
 		// global: "zhuanhuanCard_skill",
-		zhuanhuanList: function (card) {
+		zhuanhuanList(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
 				card.storage.zhuanhuanList = [null];
 			}
@@ -997,32 +992,31 @@ const card = {
 		},
 		cardPrompt(card) {
 			if (!card.storage || !card.storage.zhuanhuanList) {
-				return lib.translate['ybsl_hua_info'];
+				return lib.translate.ybsl_hua_info;
 			}
-
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
 			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
 			var list = lib.card.ybsl_hua.zhuanhuanList(card);
-			var str = '转换卡，此牌视为：';
+			var str = '转换卡,此牌视为:';
 			// var list2 = ['极'];
 			for (let i = 0; i < list.length; i++) {
 				var str2 = '';
 				str2 += get.cnNumber(i + 1, true);
-				str2 += '：';
+				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
 				if (i === list.length - 1) {
-					str2 += '。';
+					str2 += '';
 				} else {
-					str2 += '；';
+					str2 += ';';
 				}
 				if (num == i) {
 					str2 = `<span class="thundertext">${str2}</span>`;
 				}
 				str += str2;
 			}
-			str += '此牌转换时，若此时为最后一项，使用者可以增加一项任意牌。（同一张化至多九项）';
+			str += '此牌转换时,若此时为最后一项,使用者可以增加一项任意牌.(同一张化至多九项)';
 			return str;
 		},
 		ai: {

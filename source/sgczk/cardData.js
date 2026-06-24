@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 export default cardData = function () {
 	return (game.sgczkCardData = {
 		character: {
@@ -17,7 +17,6 @@ export default cardData = function () {
 			zhanghe: {},
 			caoren: {},
 			dengai: {},
-
 			liubei: {},
 			guanyu: {},
 			zhangfei: {},
@@ -32,7 +31,6 @@ export default cardData = function () {
 			menghuo: {},
 			zhurong: {},
 			jiangwei: {},
-
 			sunquan: {},
 			ganning: {},
 			lvmeng: {},
@@ -49,7 +47,6 @@ export default cardData = function () {
 			lusu: {},
 			zhangzhao: {},
 			zhanghong: {},
-
 			huatuo: {},
 			lvbu: {},
 			diaochan: {},
@@ -63,7 +60,6 @@ export default cardData = function () {
 			pangde: {},
 			caiwenji: {},
 			zuoci: {},
-
 			shen_guanyu: {},
 			shen_lvmeng: {},
 			shen_zhugeliang: {},

@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 // export const type = "mode";
 // /**
 //  * @type { () => importModeConfig }
@@ -7,7 +7,6 @@ import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 //     return {
 //         name: 'sgstrxs',
 //         game:{
-
 //         },
 //     }
 // }

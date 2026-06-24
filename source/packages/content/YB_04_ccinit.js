@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 import { config } from '../config.js';
 export { YBSL_ccinit };
 /**
@@ -9,7 +9,6 @@ export { YBSL_ccinit };
 const YBSL_ccinit = function () {
 	//--------------------万能的狂神-----------------//
 	//------------------------自动开启武将包
-
 	if (!lib.config.extension_夜白神略_init) {
 		game.saveConfig('extension_夜白神略_init', true);
 		game.saveConfig('characters', lib.config.characters.concat('ybslj'));
@@ -17,16 +16,15 @@ const YBSL_ccinit = function () {
 		game.saveConfig('characters', lib.config.characters.concat('ybxh'));
 		game.saveConfig('characters', lib.config.characters.concat('ybsc'));
 		game.saveConfig('characters', lib.config.characters.concat('yhky'));
-		// game.saveConfig('characters',lib.config.characters.concat('ybart'));//六艺篇的六艺之前被人反馈说不喜欢，希望关掉，因此此包不设为自动开启
+		// game.saveConfig('characters',lib.config.characters.concat('ybart'));//六艺篇的六艺之前被人反馈说不喜欢,希望关掉,因此此包不设为自动开启
 		game.saveConfig('cards', lib.config.cards.concat('ybslc'));
 		game.saveConfig('cards', lib.config.cards.concat('ybgod'));
-
 		game.saveConfig('characters', lib.config.characters.concat('ybnew1'));
 		game.saveConfig('cards', lib.config.cards.concat('ybnew2'));
 	}
 	//------------------------更新素材-----------------//
 	// if (config.夜白神略的自动更新素材开关&&game.getFileList){
-	// 	if (lib.config.extensions && lib.config.extensions.includes('十周年UI') && lib.config['extension_十周年UI_enable']) {
+	// 	if (lib.config.extensions && lib.config.extensions.includes('十周年UI') && lib.config.extension_十周年UI_enable) {
 	// 		game.getFileList('extension/十周年UI/image/decoration',(folders,files)=> {
 	// 			var decoration=['name_YB_dream.png','name_YB_memory.png'];
 	// 			decoration.forEach(function(image){
@@ -90,8 +88,8 @@ const YBSL_ccinit = function () {
 	if (!lib.qhly_groupcolor) {
 		lib.qhly_groupcolor = {};
 	}
-	lib.qhly_groupimage['YB_memory'] = 'extension/夜白神略/image/千幻势力/name_YB_memory.webp';
-	lib.qhly_groupimage['YB_dream'] = 'extension/夜白神略/image/千幻势力/name_YB_dream.webp';
-	lib.qhly_groupcolor['YB_memory'] = '#28e3ce';
-	lib.qhly_groupcolor['YB_dream'] = '#e328b7';
+	lib.qhly_groupimage.YB_memory = 'extension/夜白神略/image/千幻势力/name_YB_memory.webp';
+	lib.qhly_groupimage.YB_dream = 'extension/夜白神略/image/千幻势力/name_YB_dream.webp';
+	lib.qhly_groupcolor.YB_memory = '#28e3ce';
+	lib.qhly_groupcolor.YB_dream = '#e328b7';
 };

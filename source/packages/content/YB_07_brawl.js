@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 import { YB_yebailvcheng } from '../../../yblc/YBLC_1.js';
 import { YB_xnqbd } from '../../../yblc/YBLC_2.js';
 export { YBSL_brawl };
@@ -11,7 +11,6 @@ const YBSL_brawl = function () {
 		if (!lib.storage.stage) {
 			lib.storage.stage = {};
 		}
-
 		if (lib.config.extension_夜白神略_ybsl_wujinshilian == 'lc') {
 			if (YB_yebailvcheng) {
 				YB_yebailvcheng();
@@ -21,9 +20,9 @@ const YBSL_brawl = function () {
 				YB_xnqbd();
 			}
 		}
-		if (!lib.storage.stage['夜白旅程（二）']) {
-			lib.storage.stage['夜白旅程（二）'] = {
-				name: '夜白旅程（二）',
+		if (!lib.storage.stage['夜白旅程(二)']) {
+			lib.storage.stage['夜白旅程(二)'] = {
+				name: '夜白旅程(二)',
 				intro: '夜白旅程的新型演绎形式',
 				scenes: [
 					{
@@ -170,7 +169,7 @@ const YBSL_brawl = function () {
 					},
 					{
 						name: '第四关',
-						intro: '夜白旅程第四关（近似）',
+						intro: '夜白旅程第四关(近似)',
 						players: [
 							{
 								name: 'ybsl_008wuyuxin',
@@ -222,7 +221,7 @@ const YBSL_brawl = function () {
 					},
 					{
 						name: '第五关',
-						intro: '夜白旅程第五关（近似）',
+						intro: '夜白旅程第五关(近似)',
 						players: [
 							{
 								name: 'ybsl_012zhengjiayi',
@@ -274,7 +273,7 @@ const YBSL_brawl = function () {
 					},
 					{
 						name: '第六关',
-						intro: '夜白旅程第六关（近似）',
+						intro: '夜白旅程第六关(近似)',
 						players: [
 							{
 								name: 'random',
@@ -312,7 +311,7 @@ const YBSL_brawl = function () {
 					},
 					{
 						name: '第七关',
-						intro: '夜白旅程第七关（近似）',
+						intro: '夜白旅程第七关(近似)',
 						players: [
 							{
 								name: 'random',
@@ -350,7 +349,7 @@ const YBSL_brawl = function () {
 					},
 					{
 						name: '第八关',
-						intro: '夜白旅程第八关（近似）',
+						intro: '夜白旅程第八关(近似)',
 						players: [
 							{
 								name: 'random',
@@ -388,7 +387,7 @@ const YBSL_brawl = function () {
 					},
 					{
 						name: '第九关',
-						intro: '夜白旅程第九关（近似）',
+						intro: '夜白旅程第九关(近似)',
 						players: [
 							{
 								name: 'random',
@@ -426,7 +425,7 @@ const YBSL_brawl = function () {
 					},
 					{
 						name: '第十关',
-						intro: '夜白旅程第十关（近似）',
+						intro: '夜白旅程第十关(近似)',
 						players: [
 							{
 								name: 'random',
@@ -485,14 +484,14 @@ const YBSL_brawl = function () {
 		if (!_status.extensionmade) {
 			_status.extensionmade = [];
 		}
-		_status.extensionmade.push('夜白旅程（二）');
+		_status.extensionmade.push('夜白旅程(二)');
 		// lib.brawl.YB_寻你千百度={
 		// 	name: "寻你千百度",
 		// 	mode:'identity',
 		// 	intro:[
-		// 		'我寻你千百度，又一岁荣枯，可你从不在灯火阑珊处',
+		// 		'我寻你千百度,又一岁荣枯,可你从不在灯火阑珊处',
 		// 	],
-		// 	// intro: "我寻你千百度，又一岁荣枯，可你从不在灯火阑珊处",
+		// 	// intro: "我寻你千百度,又一岁荣枯,可你从不在灯火阑珊处",
 		// 	showcase:function(init){
 		// 		var node=this;
 		// 		var player635;
@@ -540,7 +539,6 @@ const YBSL_brawl = function () {
 		// 			ui.refresh(player2);
 		// 			player2.style.opacity=1;
 		// 			player2.style.transform='scale(0.5)';
-
 		// 			setTimeout(function(){
 		// 				if(!player2) return;
 		// 				game.linexy([//线条
@@ -551,18 +549,16 @@ const YBSL_brawl = function () {
 		// 				],node);
 		// 				setTimeout(function(){
 		// 					var popup1=ui.create.div('.damage');//字体
-		// 					popup1.innerHTML='520';//字体的描述：
-		// 					popup1.dataset.nature='wood';//-1字体的颜色：木色
+		// 					popup1.innerHTML='520';//字体的描述:
+		// 					popup1.dataset.nature='wood';//-1字体的颜色:木色
 		// 					player1.appendChild(popup1);//player1身上飘字popup1
 		// 					ui.refresh(popup1);
 		// 					popup1.classList.add('damageadded');
 		// 					popup1.listenTransition(function(){
-
 		// 						setTimeout(function(){
 		// 							popup1.delete();
 		// 						},300);//player1身上字体持续时间
 		// 					});
-
 		// 					setTimeout(function(){
 		// 						game.linexy([
 		// 							player1.getLeft()+player1.offsetWidth/2,
@@ -570,9 +566,9 @@ const YBSL_brawl = function () {
 		// 							player2.getLeft()+player2.offsetWidth/2,
 		// 							player2.getTop()+player2.offsetHeight/2,
 		// 						],node);
-		// 						var popup=ui.create.div('.damage');//字体的类别:：伤害
-		// 						popup.innerHTML='-999';//字体的描述：-1
-		// 						popup.dataset.nature='fire';//-1字体的颜色：火
+		// 						var popup=ui.create.div('.damage');//字体的类别::伤害
+		// 						popup.innerHTML='-999';//字体的描述:-1
+		// 						popup.dataset.nature='fire';//-1字体的颜色:火
 		// 						player2.appendChild(popup);//player2身上飘字popup
 		// 						ui.refresh(popup);
 		// 						popup.classList.add('damageadded');
@@ -581,10 +577,9 @@ const YBSL_brawl = function () {
 		// 								popup.delete();
 		// 							},300);//player2身上字体持续时间
 		// 						});
-		// 					},900)//（两个动作之间的延迟）
+		// 					},900)//(两个动作之间的延迟)
 		// 				},250)//陈爱琳状态执行延迟
 		// 			},600);//决定从何时开始
-
 		// 			setTimeout(function(){
 		// 				if(!player2) return;
 		// 				player2.style.transition='all 0.5s';//player2受伤动画
@@ -603,12 +598,11 @@ const YBSL_brawl = function () {
 		// 				ybsl_tiaoguan3:[null,null,null,[],["ext:夜白神略/image/character/ybsl_cundang3.jpg"]],
 		// 			},
 		// 			translate:{
-		// 				ybsl_tiaoguan1:'起始关卡：1',
-		// 				ybsl_tiaoguan2:'起始关卡：2',
-		// 				ybsl_tiaoguan3:'起始关卡：3',
+		// 				ybsl_tiaoguan1:'起始关卡:1',
+		// 				ybsl_tiaoguan2:'起始关卡:2',
+		// 				ybsl_tiaoguan3:'起始关卡:3',
 		// 			},
 		// 			skill:{
-
 		// 			},
 		// 		};
 		// 		for(var i in pack){
@@ -618,7 +612,6 @@ const YBSL_brawl = function () {
 		// 		}
 		// 		if(!_status.xunniqianbaidu) _status.xunniqianbaidu={
 		// 			used:[],
-
 		// 		}
 		// 	},
 		// 	content:{
@@ -634,9 +627,9 @@ const YBSL_brawl = function () {
 		// 					var list = ['ybsl_tiaoguan1','ybsl_tiaoguan2','ybsl_tiaoguan3']
 		// 					var dialog;
 		// 					var str='选择剧情起始点';
-		// 					var strt=`剧情一：
-		// 							剧情二：
-		// 							剧情三：暂未设计`;
+		// 					var strt=`剧情一:
+		// 							剧情二:
+		// 							剧情三:暂未设计`;
 		// 					dialog=ui.create.dialog(str,'hidden',strt,[list,'character']);
 		// 					// if(event.swapnodialog){
 		// 					// 	dialog=ui.dialog;
@@ -645,13 +638,12 @@ const YBSL_brawl = function () {
 		// 					// }
 		// 					// else{
 		// 					// 	var str='选择角色';
-		// 					// 	var strt='神夜白将在此界面常驻，方便选择<br>（若有其他想点的将可以联系作者进行加入）';
-		// 					// 	//或者在上边list2方括号里自己写武将ID，将与将之间用英文逗号隔开
+		// 					// 	var strt='神夜白将在此界面常驻,方便选择<br>(若有其他想点的将可以联系作者进行加入)';
+		// 					// 	//或者在上边list2方括号里自己写武将ID,将与将之间用英文逗号隔开
 		// 					// 	dialog=ui.create.dialog(str,'hidden',strt,[list,'character'],[list2,'character']);
 		// 					// }
-		// 					dialog.setCaption('选择剧情节点（推荐从1开始玩）');
+		// 					dialog.setCaption('选择剧情节点(推荐从1开始玩)');
 		// 					game.me.chooseButton(dialog,true);
-
 		// 					'step 0'
 		// 					'step 0'
 		// 					ui.arena.classList.add('choose-character');
@@ -665,7 +657,6 @@ const YBSL_brawl = function () {
 		// 					game.YBLC_memory2.setIdentity();
 		// 					game.YBLC_memory2.identityShown=true;
 		// 					game.YBLC_memory2.node.identity.classList.remove('guessing');
-
 		// 					event.list=[];
 		// 					for(var i in lib.character){
 		// 						if(lib.filter.characterDisabled(i)) continue;
@@ -684,8 +675,8 @@ const YBSL_brawl = function () {
 		// 					}
 		// 					else{
 		// 						var str='选择角色';
-		// 						var strt='神夜白将在此界面常驻，方便选择<br>（若有其他想点的将可以联系作者进行加入）';
-		// 						//或者在上边list2方括号里自己写武将ID，将与将之间用英文逗号隔开
+		// 						var strt='神夜白将在此界面常驻,方便选择<br>(若有其他想点的将可以联系作者进行加入)';
+		// 						//或者在上边list2方括号里自己写武将ID,将与将之间用英文逗号隔开
 		// 						dialog=ui.create.dialog(str,'hidden',strt,[list,'character'],[list2,'character']);
 		// 					}
 		// 					dialog.setCaption('选择角色');
@@ -705,7 +696,7 @@ const YBSL_brawl = function () {
 		// 							var node=_status.event.dialog.buttons[0].parentNode;
 		// 							_status.event.dialog.buttons=ui.create.buttons(list,'character',buttons);
 		// 							_status.event.dialog.content.insertBefore(buttons,node);
-		// 							buttons.animate('start');
+		// 							buttons.addTempClass('start');
 		// 							node.remove();
 		// 							game.uncheck();
 		// 							game.check();
@@ -716,7 +707,7 @@ const YBSL_brawl = function () {
 		// 						lib.onfree.push(function(){
 		// 							event.dialogxx=ui.create.characterDialog('heightset');
 		// 							if(ui.cheat2){
-		// 								ui.cheat2.animate('controlpressdownx',500);
+		// 								ui.cheat2.addTempClass('controlpressdownx',500);
 		// 								ui.cheat2.classList.remove('disabled');
 		// 							}
 		// 						});
@@ -737,7 +728,7 @@ const YBSL_brawl = function () {
 		// 								game.uncheck();
 		// 								game.check();
 		// 								if(ui.cheat){
-		// 									ui.cheat.animate('controlpressdownx',500);
+		// 									ui.cheat.addTempClass('controlpressdownx',500);
 		// 									ui.cheat.classList.remove('disabled');
 		// 								}
 		// 							}
@@ -840,7 +831,6 @@ const YBSL_brawl = function () {
 		// 			};
 		// 		}
 		// 	}
-
 		// }
 	}
 };

@@ -1,13 +1,12 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { skill };
-
-/** @type { importCardConfig['skill'] } */
+/** @type { importCardConfig.skill } */
 const skill = {
 	//-------------------------
 	ybsl_qingfengshan: {
 		equipSkill: true,
 		trigger: { player: 'useCard1' },
-		//priority:7,
+		//_priority:7,
 		filter(event, player) {
 			if (event.card.name == 'sha' && !game.hasNature(event.card, 'YB_wind')) {
 				return true;
@@ -110,7 +109,7 @@ const skill = {
 							target: target,
 							card: card,
 						}) ||
-						player.hasSkillTag('unequip_ai', false, {
+						player.hasSkillTag('unequip', false, {
 							name: card ? card.name : null,
 							target: target,
 							card: card,
@@ -248,8 +247,8 @@ const skill = {
 		},
 		// forced:true,
 		audio: 'ext:夜白神略/audio/card:true',
-		filter: (event, player, _name) => {
-			if (!['trick'].includes(get.type(event.card))) {
+		filter(event, player, _name) {
+			if ('trick' != get.type(event.card)) {
 				return false;
 			}
 			var info = get.info(event.card);
@@ -267,7 +266,7 @@ const skill = {
 			}
 			return false;
 		},
-		direct: true,
+		forced: true,
 		content() {
 			'step 0';
 			player
@@ -285,13 +284,13 @@ const skill = {
 			if (result.bool) {
 				var target = result.targets[0];
 				player.line(target, 'green');
-				game.log(player, '发动集智冠，令', target, '也成为了', trigger.card, '的目标');
+				game.log(player, '发动集智冠,令', target, '也成为了', trigger.card, '的目标');
 				trigger.targets.add(target);
 			}
 		},
 		ai: {
 			effect: {
-				player: function (card, player, target) {
+				player(card, player, target) {
 					if (get.type(card) == 'trick') {
 						return 2;
 					}
@@ -326,7 +325,7 @@ const skill = {
 		ai: {
 			effect: {
 				player(card, player, target) {
-					if (typeof card !== 'object' || !target || (get.name(card) !== 'sha' && (get.type(card) !== 'trick' || (get.color(card) !== 'black' && !get.tag(card, 'damage'))))) {
+					if (typeof card !== 'object' || !target || (card.name !== 'sha' && (get.type(card) !== 'trick' || (get.color(card) !== 'black' && !get.tag(card, 'damage'))))) {
 						return;
 					}
 					if (
@@ -337,7 +336,7 @@ const skill = {
 							target: target,
 							card: card,
 						}) ||
-						player.hasSkillTag('unequip_ai', false, {
+						player.hasSkillTag('unequip', false, {
 							name: card ? card.name : null,
 							target: target,
 							card: card,
@@ -377,7 +376,7 @@ const skill = {
 						range = [1, 1];
 					}
 					game.checkMod(card, player, range, 'selectTarget', player);
-					if (range[1] < -1) {
+					if (Array.isArray(range) && range[1] < -1) {
 						range = [1, 1];
 					} else if (range[0] < 0) {
 						if (info.filterTarget === true) {
@@ -400,7 +399,6 @@ const skill = {
 			},
 		},
 	},
-
 	// zhuanhuanCard_skill_1:{
 	// },
 };

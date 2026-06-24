@@ -1,6 +1,5 @@
-window.zhuanhuanCardPile = [
+﻿window.zhuanhuanCardPile = [
 	//--------------原属标准A牌堆--------------//
-
 	['spade', 7, 'sha'],
 	['spade', 8, 'sha'],
 	['spade', 8, 'sha'],
@@ -54,7 +53,6 @@ window.zhuanhuanCardPile = [
 	['heart', 9, 'tao'],
 	['heart', 12, 'tao'],
 	['diamond', 12, 'tao'],
-
 	['spade', 2, 'bagua'],
 	['club', 2, 'bagua'],
 	['spade', 5, 'jueying'],
@@ -72,7 +70,6 @@ window.zhuanhuanCardPile = [
 	['diamond', 5, 'guanshi'],
 	['diamond', 12, 'fangtian'],
 	['heart', 5, 'qilin'],
-
 	['heart', 3, 'wugu'],
 	['heart', 4, 'wugu'],
 	['heart', 1, 'taoyuan'],
@@ -111,7 +108,6 @@ window.zhuanhuanCardPile = [
 	['club', 2, 'renwang'],
 	['heart', 12, 'shandian'],
 	['diamond', 12, 'wuxie'],
-
 	['heart', 4, 'sha', 'fire'],
 	['heart', 7, 'sha', 'fire'],
 	['heart', 10, 'sha', 'fire'],
@@ -144,14 +140,12 @@ window.zhuanhuanCardPile = [
 	['spade', 9, 'jiu'],
 	['club', 3, 'jiu'],
 	['club', 9, 'jiu'],
-
 	['diamond', 13, 'hualiu'],
 	['club', 1, 'baiyin'],
 	['spade', 2, 'tengjia'],
 	['club', 2, 'tengjia'],
 	['spade', 1, 'guding'],
 	['diamond', 1, 'zhuque'],
-
 	['heart', 2, 'huogong'],
 	['heart', 3, 'huogong'],
 	['diamond', 12, 'huogong'],
@@ -166,11 +160,9 @@ window.zhuanhuanCardPile = [
 	['spade', 13, 'wuxie'],
 	['spade', 10, 'bingliang'],
 	['club', 4, 'bingliang'],
-
 	['diamond', 5, 'muniu'],
 	// ['heart','1','llfx_shanfengdianhuo'],
 	// ['heart','2','llfx_shanfengdianhuo'],
-
 	//转换卡
 	['spade', 1, 'ybsl_ji'],
 	['spade', 2, 'ybsl_yi'],
@@ -185,7 +177,6 @@ window.zhuanhuanCardPile = [
 	['spade', 11, 'ybsl_ji'],
 	['spade', 12, 'ybsl_yi'],
 	['spade', 13, 'ybsl_cai'],
-
 	['heart', 1, 'ybsl_xiang'],
 	['heart', 2, 'ybsl_hua'],
 	['heart', 3, 'ybsl_ji'],
@@ -199,7 +190,6 @@ window.zhuanhuanCardPile = [
 	['heart', 11, 'ybsl_xiang'],
 	['heart', 12, 'ybsl_hua'],
 	['heart', 13, 'ybsl_ji'],
-
 	['club', 1, 'ybsl_yi'],
 	['club', 2, 'ybsl_cai'],
 	['club', 3, 'ybsl_xiang'],
@@ -213,7 +203,6 @@ window.zhuanhuanCardPile = [
 	['club', 11, 'ybsl_yi'],
 	['club', 12, 'ybsl_cai'],
 	['club', 13, 'ybsl_xiang'],
-
 	['diamond', 1, 'ybsl_hua'],
 	['diamond', 2, 'ybsl_ji'],
 	['diamond', 3, 'ybsl_yi'],

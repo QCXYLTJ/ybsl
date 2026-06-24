@@ -1,6 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterSort };
-
 const characterSort = {
 	ybslj: {
 		ybsl_ssln: ['ybsl_001sunlisong', 'ybsl_002chenailin', 'ybsl_003yanshuang', 'ybsl_004zhangyujie', 'ybsl_005wangruobing', 'ybsl_006wanghanzhen', 'ybsl_007wugege', 'ybsl_008wuyuxin', 'ybsl_009liyushan', 'ybsl_010zhouyue', 'ybsl_011gaoyuhang', 'ybsl_012zhengjiayi', 'ybsl_014liutianyu', 'ybsl_015wanghairu', 'ybsl_016manchengqi', 'ybsl_017xiaohong', 'ybsl_018zhangqing', 'ybsl_019shengyan', 'ybsl_020jiayutong', 'ybsl_021liuyufeng', 'ybsl_022salt', 'ybsl_023sunlixin', 'ybsl_024yuetong', 'ybsl_025shiwang', 'ybsl_025shiqingyu', 'ybsl_025wanghe', 'ybsl_032baiyichen', 'ybsl_033xiaohui' /*'ybsl_025shiqingyu',*/, 'ybsl_042pingzi', 'ybsl_043fangjiayu', 'ybsl_044huruihang', 'ybsl_045gaocong', 'ybsl_046jiangxuewu', 'ybsl_047shan', 'ybsl_038bianqiuwen', 'ybsl_048wushuang', 'ybsl_049waner', 'ybsl_050zunjian', 'ybsl_051fomalhaut', 'ybsl_052trees', 'ybsl_053qiuer', 'ybsl_054yueer', 'ybsl_055zhengyan', 'ybsl_056dongjianchao', 'ybsl_057sunmeiqi', 'ybsl_058sunshibo', 'ybsl_059starsFall', 'ybsl_060liutianhang', 'ybsl_061zheyu', 'ybsl_062yuhongyan', 'ybsl_063weimingli', 'ybsl_064lvmingyan', 'ybsl_065yanxiwen', 'ybsl_066wujun', 'ybsl_068qingyue', 'ybsl_070lvyanqiu', 'ybsl_079xiaoxin', 'ybsl_085DGY', 'ybsl_086GJ', 'ybsl_087tianlu', 'ybsl_088lijiaxin', 'ybsl_089lvjinling', 'ybsl_090dengtingyue', 'ybsl_091wangcaiyu', 'ybsl_092handan', 'ybsl_123xuelang'],

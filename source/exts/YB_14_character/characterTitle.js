@@ -1,12 +1,9 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterTitle };
-
 const characterTitle = {
 	//称号
 	//---------------------------------//上古神话
-
 	//-----------------------上古神话专题---------------------------//
-
 	sgsh_tiandi: '<span class=yellowtext>天庭主宰</span>',
 	sgsh_shennong: '<span class=yellowtext>炎帝</span>',
 	sgsh_xuanyuan: '<span class=yellowtext>黄帝</span>',
@@ -50,12 +47,9 @@ const characterTitle = {
 	sgsh_shijiamouni: '<span class=yellowtext>阿弥陀佛</span>',
 	sgsh_luohou: '<span class=yellowtext>流星之王</span>',
 	sgsh_xingtian: '<span class=yellowtext>与天争辉</span>',
-
 	//--------------群友共创---------------------//
-
 	ybsl_xuyou: '夜白设计',
 	ybsl_pujing: '夜白设计',
-
 	niya_re_liuyan: '裂土之宗',
 	niya_caowei: '',
 	Fe2O3_duqiong: '蜀之球琳',
@@ -68,20 +62,16 @@ const characterTitle = {
 	zxunnamed_gongsunyuan: '',
 	FeO3_zhugeliang: '',
 	Fe343_zhugeliang: '',
-
 	//冷门民杀搬运
 	ybslshen_zhenji: '',
 	//夜白杂设
-
 	ybsl_kamome: '',
 	ybsl_hairi: '',
 	sp_key_umi: '',
-
 	yb_key_hina: '',
 	ybsl_youta: '',
 	yb_key_kotori: '',
 	yb_key_kagari: '',
-
 	//别群比赛
 	ybsl_lvyi: '汉尚书令',
 	ybsl_yinfan: '啼血的谍客',
@@ -95,7 +85,6 @@ const characterTitle = {
 	ybsl_yangxu: '悬鱼太守',
 	ybsl_shichong: '蜡炬作炊',
 	ybsl_simayou: '德望其殇',
-
 	//宗族武将
 	//吴郡陆氏
 	ybslclan_luji: '',
@@ -103,7 +92,6 @@ const characterTitle = {
 	ybslclan_luyan: '',
 	//一将成名
 	ybslshen_pangtong: '',
-
 	bilibiliup_jiangali: '\u9ca4\u6210\u7891', //
 	bilibiliup_guanyueliuli: '\u9c7cai\u55b5', //
 	bilibiliup_sunyuyou: '\u5e7d\u732b\u5bce', //
@@ -160,43 +148,24 @@ const characterTitle = {
 	bilibiliup_baobaolucky: '\u9971\u513f\u55dd',
 	bilibiliup_shuangshuang: '\u971c\u5c0f\u602a',
 	bilibiliup_guziyun: 'yuunnn',
-
 	bilibiliup_feiyanlira: '\u517b\u989c',
-
 	bilibiliup_yingzi: '\u8426\u5624\u7f28',
-
 	bilibiliup_yuanqing: '\u6709\u9e22\u6674',
-
 	bilibiliup_galiyang: '\u7f8a\u8089\u5bf3',
-
 	bilibiliup_tangdemao: '\u5802\u7684\u732b',
-
 	bilibiliup_bohetangowo: '\u7cd6\u6027\u604b',
-
 	bilibiliup_xueyuEira: '\u96ea\u9335\u7cd5',
-
 	bilibiliup_miaonai: '\u54fa\u732b\u4eba',
-
 	bilibiliup_yunyiAria: 'Aria',
-
 	bilibiliup_yuyuyumi: '\u5c0f\u94b0\u8ff7',
-
 	bilibiliup_wanwanneko: '\u5a49\u5c81\u723a',
-
 	bilibiliup_chachadawang: '\u5de1\u8336\u4f7f',
-
 	bilibiliup_jingyimumu: '\u4e95\u4f0a\u5473',
-
 	bilibiliup_liliz: '\u6ca1\u674e\u6bdb',
-
 	bilibiliup_cangjia: '\u846d\u7279\u7075',
-
 	bilibiliup_tangyuansishui: '\u5403\u5706\u5706', //\u5403\u5706\u5706
-
 	bilibiliup_yimengNami: '\u68a6\u5619\u6c64',
-
 	bilibiliup_zheyuanlulu: '\u81ea\u9e82\u4eba',
-
 	bilibiliup_muman: '\u6c90\u6c90ma',
 	//\u6708\u5149\u70db
 	bilibiliup_zhubao: '\u6708\u5149\u70db',

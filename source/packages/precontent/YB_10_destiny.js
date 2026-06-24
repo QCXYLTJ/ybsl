@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { YBSL_destiny };
 /**
  * 校花梦工厂缘分搭配
@@ -31,7 +31,6 @@ const YBSL_destiny = function () {
 			lib.translate.xh_ergoudan = '二狗蛋';
 			lib.translate.xh_anjianwen = '安建文';
 			lib.translate.xh_bingtang = '冰糖';
-
 			lib.translate.xh_tianjie = '天阶岛';
 			lib.translate.xh_zhangliju = '章力钜';
 			lib.translate.xh_shangguanlaner = '上官岚儿';
@@ -81,7 +80,6 @@ const YBSL_destiny = function () {
 			xh_ergoudan: ['male', 'qun', 4, [], ['unseen']],
 			xh_anjianwen: ['male', 'qun', 4, [], ['unseen']],
 			xh_bingtang: ['female', 'qun', 4, [], ['unseen']],
-
 			xh_zhangliju: ['male', 'qun', 4, [], ['unseen']],
 			xh_shangguanlaner: ['female', 'qun', 4, [], ['unseen']],
 			xh_wangxinyan: ['female', 'qun', 4, [], ['unseen']],
@@ -526,7 +524,6 @@ const YBSL_destiny = function () {
 					list: ['xh_ergoudan', 'xh_anjianwen'],
 				},
 			},
-
 			xh_zhangliju: {
 				yuanyuanfeiqian: {
 					name: '渊源匪浅',
@@ -951,7 +948,6 @@ const YBSL_destiny = function () {
 		// 		var characters=_status.xhmgcCharacter;
 		// 		var list = Object.keys(characters);
 		// 		dialog.addSmall([list,'character']);
-
 		// 	},
 		// },{
 		// 	translate: '缘分组合模拟器',

@@ -1,6 +1,5 @@
-import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
+﻿import { lib, game, ui, get, ai, _status } from '../../../../../noname.js';
 export { characterTitle };
-
 const characterTitle = {
 	//称号
 	ybmjz_caocao: '<font color=cyan></font>',
@@ -10,7 +9,6 @@ const characterTitle = {
 	ybmjz_xuzhu: '<font color=cyan></font>',
 	ybmjz_guojia: '<font color=cyan></font>',
 	ybmjz_zhenji: '<font color=cyan></font>',
-
 	ybmjz_liubei: '<font color=cyan></font>',
 	ybmjz_guanyu: '<font color=cyan></font>',
 	ybmjz_zhangfei: '<font color=cyan></font>',
@@ -18,7 +16,6 @@ const characterTitle = {
 	ybmjz_zhaoyun: '<font color=cyan></font>',
 	ybmjz_machao: '<font color=cyan></font>',
 	ybmjz_huangyueying: '<font color=cyan></font>',
-
 	ybmjz_sunquan: '<font color=cyan></font>',
 	ybmjz_ganning: '<font color=cyan></font>',
 	ybmjz_lvmeng: '<font color=cyan></font>',
@@ -27,11 +24,9 @@ const characterTitle = {
 	ybmjz_daqiao: '<font color=cyan></font>',
 	ybmjz_luxun: '<font color=cyan></font>',
 	ybmjz_sunshangxiang: '<font color=cyan></font>',
-
 	ybmjz_huatuo: '<font color=cyan></font>',
 	ybmjz_lvbu: '<font color=cyan></font>',
 	ybmjz_diaochan: '<font color=cyan></font>',
-
 	ybmjz_liuyan: '<font color=cyan></font>',
 	ybmjz_zhangqiying: '<font color=cyan></font>', //张琪瑛
 	ybmjz_shen_zhugeliang: '<font color=cyan></font>', //诸葛亮
