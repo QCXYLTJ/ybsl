@@ -260,8 +260,8 @@ const skill = {
 		},
 		viewAs: { name: 'ybsl_lumingqianzhuan' },
 		filterCard(card, player) {
-			var suit = card.suit;
-			var list = player.storage.yb017_luming_block;
+			const suit = card.suit;
+			let list = player.storage.yb017_luming_block;
 			for (let i = 0; i < list.length; i++) {
 				if (suit == list[i]) {
 					return false;
@@ -270,8 +270,8 @@ const skill = {
 			return true;
 		},
 		prompt(player) {
-			var player = _status.event.player;
-			var str = '是否将一张手牌当【鹿鸣千转】使用？';
+			const player = _status.event.player;
+			let str = '是否将一张手牌当【鹿鸣千转】使用？';
 			if (!player.storage.yb017_luming_block == []) {
 				str += '<br>不能使用以下花色:';
 				str += get.translation(player.storage.yb017_luming_block);
@@ -292,8 +292,8 @@ const skill = {
 		marktext: '鹿',
 		intro: {
 			content(storage, player) {
-				var str = '已用过';
-				var list = player.storage.yb017_luming_block;
+				let str = '已用过';
+				let list = player.storage.yb017_luming_block;
 				for (let i = 0; i < list.length; i++) {
 					str += get.translation(list[i]);
 				}
@@ -417,7 +417,7 @@ const skill = {
 			},
 		},
 		filter(event, player) {
-			var max = 6;
+			const max = 6;
 			return (
 				player.countCards('h') > 0 &&
 				player.countCards('s', function (card) {
@@ -426,12 +426,12 @@ const skill = {
 			);
 		},
 		selectCard() {
-			var player = _status.event.player;
+			const player = _status.event.player;
 			if (!player.hasSkillTag('sixartSkill')) {
 				return 1;
 			}
-			var max = 6;
-			var num =
+			const max = 6;
+			const num =
 				max -
 				player.countCards('s', function (card) {
 					return card.hasGaintag('_ybsl_sixart');
@@ -609,9 +609,9 @@ const skill = {
 		},
 		chooseButton: {
 			dialog(event, player) {
-				var list = [];
+				let list = [];
 				for (let i = 0; i < lib.inpile.length; i++) {
-					var name = lib.inpile[i];
+					const name = lib.inpile[i];
 					if (player.storage.yb014_shifu_block && player.storage.yb014_shifu_block.includes(name)) {
 						continue;
 					}
@@ -628,11 +628,11 @@ const skill = {
 				return _status.event.parent.filterCard({ name: button.link[2] }, player, _status.event.parent);
 			},
 			check(button) {
-				var player = _status.event.player;
+				const player = _status.event.player;
 				if (button.link[2] == 'wugu') {
 					return 0;
 				}
-				var effect = player.getUseValue(button.link[2]);
+				const effect = player.getUseValue(button.link[2]);
 				if (effect > 0) {
 					return effect;
 				}
@@ -665,8 +665,7 @@ const skill = {
 			order: 4,
 			result: {
 				player(player) {
-					var allshown = true,
-						players = game.filterPlayer();
+					let allshown = true, players = game.filterPlayer();
 					for (let i = 0; i < players.length; i++) {
 						if (players[i].ai.shown == 0) {
 							allshown = false;
@@ -730,17 +729,17 @@ const skill = {
 			}
 			('step 1');
 			player.addMark('yb014_shifu2', event.num);
-			var list = ['moon', 'clam', 'lightning', 'wind', 'flame'];
-			var list6 = [];
+			let list = ['moon', 'clam', 'lightning', 'wind', 'flame'];
+			const list6 = [];
 			for (const i of list) {
 				list6.push('ybsl_' + i);
 			}
 			event.list = list;
 			event.list3 = list6;
 			('step 2');
-			var list7 = event.list;
-			var list2 = event.list3;
-			for (var j of list7) {
+			const list7 = event.list;
+			const list2 = event.list3;
+			for (let j of list7) {
 				// game.log(player.storage.yb014_shifu2);
 				// game.log(player.storage['ybsl_'+j+'_lv']+1);
 				// game.log(game.checkMod(event,player,0,'ybsl'+j+'Mod',player));
@@ -786,9 +785,9 @@ const skill = {
 		intro: {
 			name: '诗篇',
 			content(storage, player, skill) {
-				var str = '';
-				var list6 = player.storage.yb014_shifu99;
-				var list = {
+				let str = '';
+				const list6 = player.storage.yb014_shifu99;
+				let list = {
 					moon: {
 						0: '①〖决堰〗(陆抗)',
 						1: '<br>②〖伪伤〗(key宫泽谦吾)',
@@ -870,13 +869,13 @@ const skill = {
 				} else if (player.storage.yb014_shifu99[5] == 'decadexianzhen') {
 					list.flame[6] = '<br>⑦<span style="text-decoration: line-through;">〖咆哮〗(界张飞)</span>/〖陷阵〗(界高顺)';
 				}
-				for (var i in list) {
-					var j = 'ybsl_' + i;
-					var k = 'ybmyx_' + i;
+				for (let i in list) {
+					let j = 'ybsl_' + i;
+					const k = 'ybmyx_' + i;
 					if (player.storage[j].includes('key')) {
 						((str += '<br>主流派<br>'), (str += player.storage[j + '_lv'] + '---' + player.storage.yb014_shifu2 + '/' + (player.storage[j + '_lv'] + 1) * game.checkMod(event, player, 0, 'ybsl' + i + 'Mod', player) + '<br>'));
-						for (var q = 0; q < 8; q++) {
-							var numa = player.storage['ybsl_' + i + '_lv'];
+						for (let q = 0; q < 8; q++) {
+							const numa = player.storage['ybsl_' + i + '_lv'];
 							if (q < numa) {
 								list[i][q] = '<span class=yellowtext>' + list[i][q] + '</span>';
 							} else {
@@ -887,8 +886,8 @@ const skill = {
 					} else if (player.storage[j].includes('sec')) {
 						str += '<br>支流派<br>';
 						str += player.storage[j + '_lv'] + '---' + player.storage.yb014_shifu2 + '/' + (player.storage[j + '_lv'] + 1) * game.checkMod(event, player, 0, 'ybsl' + i + 'Mod', player) + '<br>';
-						for (var p = 0; p < 5; p++) {
-							var numb = player.storage['ybsl_' + i + '_lv'];
+						for (let p = 0; p < 5; p++) {
+							const numb = player.storage['ybsl_' + i + '_lv'];
 							if (p < numb) {
 								list[i][p] = '<span class=yellowtext>' + list[i][p] + '</span>';
 							} else {
@@ -907,7 +906,7 @@ const skill = {
 		charlotte: true,
 		mod: {
 			ybslmoonMod(event, player, num) {
-				var str = Infinity;
+				let str = Infinity;
 				if (player.storage.ybsl_moon.includes('key')) {
 					str = 50;
 				}
@@ -917,7 +916,7 @@ const skill = {
 				return num + str;
 			},
 			ybslmoonlvMod(event, player, num) {
-				var str = 0;
+				let str = 0;
 				if (player.storage.ybsl_moon.includes('key')) {
 					str = 8;
 				} else if (player.storage.ybsl_moon.includes('sec')) {
@@ -927,7 +926,7 @@ const skill = {
 			},
 		},
 		up(player) {
-			var next = game.createEvent('yb014_shifu2', false);
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_moon.upc);
 		},
@@ -937,8 +936,8 @@ const skill = {
 			event.list66 = [];
 			//if(!['key','sec'].includes(player.storage.ybsl_moon[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('drlt_jueyan');
@@ -957,13 +956,13 @@ const skill = {
 					break;
 				case 5:
 					if (player.storage.yb014_shifu99[0] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
 									'烈武:' + get.translation('chihaya_liewu_info'),
@@ -998,13 +997,13 @@ const skill = {
 					break;
 				case 7:
 					if (player.storage.yb014_shifu99[1] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
 									'贤望:' + get.translation('xianwang_info'),
@@ -1051,7 +1050,7 @@ const skill = {
 		charlotte: true,
 		mod: {
 			ybslclamMod(event, player, num) {
-				var str = Infinity;
+				let str = Infinity;
 				if (player.storage.ybsl_clam.includes('key')) {
 					str = 40;
 				}
@@ -1061,7 +1060,7 @@ const skill = {
 				return num + str;
 			},
 			ybslclamlvMod(event, player, num) {
-				var str = 0;
+				let str = 0;
 				if (player.storage.ybsl_clam.includes('key')) {
 					str = 8;
 				} else if (player.storage.ybsl_clam.includes('sec')) {
@@ -1071,7 +1070,7 @@ const skill = {
 			},
 		},
 		up(player) {
-			var next = game.createEvent('yb014_shifu2', false);
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_clam.upc);
 		},
@@ -1081,8 +1080,8 @@ const skill = {
 			event.list66 = [];
 			//if(!['key','sec'].includes(player.storage.ybsl_clam[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('new_rewusheng', 'reqingguo');
@@ -1123,7 +1122,7 @@ const skill = {
 		charlotte: true,
 		mod: {
 			ybsllightningMod(event, player, num) {
-				var str = Infinity;
+				let str = Infinity;
 				if (player.storage.ybsl_lightning.includes('key')) {
 					str = 40;
 				}
@@ -1133,7 +1132,7 @@ const skill = {
 				return num + str;
 			},
 			ybsllightninglvMod(event, player, num) {
-				var str = 0;
+				let str = 0;
 				if (player.storage.ybsl_lightning.includes('key')) {
 					str = 8;
 				} else if (player.storage.ybsl_lightning.includes('sec')) {
@@ -1143,7 +1142,7 @@ const skill = {
 			},
 		},
 		up(player) {
-			var next = game.createEvent('yb014_shifu2', false);
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_lightning.upc);
 		},
@@ -1153,8 +1152,8 @@ const skill = {
 			event.list66 = [];
 			//if(!['key','sec'].includes(player.storage.ybsl_lightning[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('nsfuzhou');
@@ -1195,7 +1194,7 @@ const skill = {
 		charlotte: true,
 		mod: {
 			ybslwindMod(event, player, num) {
-				var str = Infinity;
+				let str = Infinity;
 				if (player.storage.ybsl_wind.includes('key')) {
 					str = 50;
 				}
@@ -1205,7 +1204,7 @@ const skill = {
 				return num + str;
 			},
 			ybslwindlvMod(event, player, num) {
-				var str = 0;
+				let str = 0;
 				if (player.storage.ybsl_wind.includes('key')) {
 					str = 8;
 				} else if (player.storage.ybsl_wind.includes('sec')) {
@@ -1215,7 +1214,7 @@ const skill = {
 			},
 		},
 		up(player) {
-			var next = game.createEvent('yb014_shifu2', false);
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_wind.upc);
 		},
@@ -1225,8 +1224,8 @@ const skill = {
 			event.list66 = [];
 			//if(!['key','sec'].includes(player.storage.ybsl_wind[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('rezhiheng');
@@ -1248,13 +1247,13 @@ const skill = {
 					break;
 				case 6:
 					if (player.storage.yb014_shifu99[2] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
 									'苦肉:' + get.translation('kurou_info'),
@@ -1288,13 +1287,13 @@ const skill = {
 					break;
 				case 7:
 					if (player.storage.yb014_shifu99[3] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
 									'敏思:' + get.translation('minsi_info'),
@@ -1340,7 +1339,7 @@ const skill = {
 		charlotte: true,
 		mod: {
 			ybslflameMod(event, player, num) {
-				var str = Infinity;
+				let str = Infinity;
 				if (player.storage.ybsl_flame.includes('key')) {
 					str = 20;
 				}
@@ -1350,7 +1349,7 @@ const skill = {
 				return num + str;
 			},
 			ybslflamelvMod(event, player, num) {
-				var str = 0;
+				let str = 0;
 				if (player.storage.ybsl_flame.includes('key')) {
 					str = 8;
 				} else if (player.storage.ybsl_flame.includes('sec')) {
@@ -1360,7 +1359,7 @@ const skill = {
 			},
 		},
 		up(player) {
-			var next = game.createEvent('yb014_shifu2', false);
+			const next = game.createEvent('yb014_shifu2', false);
 			next.player = player;
 			next.setContent(lib.skill.ybsl_flame.upc);
 		},
@@ -1370,8 +1369,8 @@ const skill = {
 			event.list66 = [];
 			//if(!['key','sec'].includes(player.storage.ybsl_flame[0])){event.finish();}//若不在主支线中,则截断,禁止升级
 			('step 1');
-			var list = [];
-			var list2 = [];
+			let list = [];
+			const list2 = [];
 			switch (event.num) {
 				case 0:
 					event.list66.push('refenglve');
@@ -1390,13 +1389,13 @@ const skill = {
 					break;
 				case 5:
 					if (player.storage.yb014_shifu99[4] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
 									'酣战:' + get.translation('hanzhan_info'),
@@ -1428,13 +1427,13 @@ const skill = {
 					break;
 				case 6:
 					if (player.storage.yb014_shifu99[5] == '') {
-						var next = game.createEvent('yb014_shifu2');
+						const next = game.createEvent('yb014_shifu2');
 						next.player = player;
 						next.list66 = event.list66;
 						next.setContent(function () {
 							'step 0';
-							var list = [];
-							var list2 = [];
+							let list = [];
+							const list2 = [];
 							list.push(
 								[
 									'咆哮:' + get.translation('olpaoxiao_info'),
@@ -1495,7 +1494,7 @@ const skill = {
 			player.awakenSkill('yb014_huanlei');
 			player.addSkill('yb014_shifu2');
 			event.list66 = ['moon', 'clam', 'lightning', 'wind', 'flame'];
-			for (var p of event.list66) {
+			for (let p of event.list66) {
 				player.storage['ybsl_' + p] = [];
 				// player.addMark('ybsl_'+p+'_lv');
 			}
@@ -1505,8 +1504,8 @@ const skill = {
 			/*for(var i of list99){
 				list.push('ybmyx_'+i);
 			}*/
-			var list2 = ['moon', 'clam', 'clam', 'lightning', 'lightning', 'wind', 'flame', 'flame', 'flame', 'flame'];
-			var list = list2.randomGets(player.storage.yb014_shifu_block.length);
+			const list2 = ['moon', 'clam', 'clam', 'lightning', 'lightning', 'wind', 'flame', 'flame', 'flame', 'flame'];
+			let list = list2.randomGets(player.storage.yb014_shifu_block.length);
 			list = list.map(function (i) {
 				return ['', '', 'ybmyx_' + i];
 			});
@@ -1516,13 +1515,13 @@ const skill = {
 			'ybsl_cuixing_club':'<span style=\'color: #a900ff\'>淬星</span>',比较暗的紫色
 			'ybsl_cuixing_diamond':'<span style=\'color: #ff0000\'>淬星</span>',刺眼的红色
 			*/
-			var next = player.chooseToMove('请依次选择作为主流派和支流派的线路');
+			const next = player.chooseToMove('请依次选择作为主流派和支流派的线路');
 			next.set('list', [
 				[
 					'主流派和支流派一样时,将加快主流派升级速度<bt>当前主流派为' + get.translation(list2[0]) + ',支流派为' + get.translation(list2[1]) + '',
 					[list, 'vcard'],
 					function (list) {
-						var list2 = list.map(function (i) {
+						const list2 = list.map(function (i) {
 							return get.translation(i[2]);
 						});
 						return '操作方法:将主流派调整至第一位,支流派调整至第二位';
@@ -1531,16 +1530,16 @@ const skill = {
 			]);
 			('step 2');
 			if (result.bool) {
-				var list1 = event.list66;
+				const list1 = event.list66;
 				list = list1.map(function (i) {
 					return ['', '', 'ybsl_' + i];
 				});
-				var list2 = result.moved[0].map(function (i) {
+				const list2 = result.moved[0].map(function (i) {
 					return i[2];
 				}); //输出调序结果
-				var list3 = [];
-				var x = 1;
-				for (var y of list1) {
+				const list3 = [];
+				let x = 1;
+				for (const y of list1) {
 					if (list2[0] == 'ybmyx_' + y) {
 						player.storage['ybsl_' + y].push('key');
 					}
@@ -1549,8 +1548,8 @@ const skill = {
 						x = 2;
 					}
 				}
-				var str = '#g';
-				for (var j = 0; j < x; j++) {
+				let str = '#g';
+				for (let j = 0; j < x; j++) {
 					str += get.translation(list2[j]);
 					if (j < x - 1) {
 						str += '/';

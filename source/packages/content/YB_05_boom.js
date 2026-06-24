@@ -76,7 +76,7 @@ const YBSL_boom = function () {
 			ruleSkill: true,
 			shaRelated: true,
 			filter(event, player) {
-				var evt = event.getParent(5);
+				const evt = event.getParent(5);
 				return evt && evt.name == 'damage' && evt.hasNature('fire') && player.isLinked();
 			},
 			forced: true,
@@ -158,8 +158,8 @@ const YBSL_boom = function () {
 					if (!player._start_cards) {
 						return false;
 					}
-					let hs = player.getCards('h');
-					for (let card of player._start_cards) {
+					const hs = player.getCards('h');
+					for (const card of player._start_cards) {
 						if (card.name == 'du' && hs.includes(card) && !get.cardtag(card, 'ybsl_duzhan')) {
 							return true;
 						}
@@ -171,8 +171,8 @@ const YBSL_boom = function () {
 					if (event.parent.name != 'draw') {
 						return false;
 					}
-					let hs = player.getCards('h');
-					for (let card of event.getg(player)) {
+					const hs = player.getCards('h');
+					for (const card of event.getg(player)) {
 						if (card.name == 'du' && hs.includes(card) && !get.cardtag(card, 'ybsl_duzhan')) {
 							return true;
 						}
@@ -182,7 +182,7 @@ const YBSL_boom = function () {
 			},
 			content() {
 				'step 0';
-				var hs = player.getCards('h');
+				const hs = player.getCards('h');
 				if (trigger.name == 'phase') {
 					event.cards = player._start_cards.filter(function (card) {
 						return card.name == 'du' && hs.includes(card) && !get.cardtag(card, 'ybsl_duzhan');
@@ -209,7 +209,7 @@ const YBSL_boom = function () {
 					prompt: '是否发动【赠毒】？',
 					prompt2: '将本次获得的【毒】交给其他角色',
 					ai1(card) {
-						var player = get.player();
+						const player = get.player();
 						if (['usedu', 'keepdu'].some((tag) => player.hasSkillTag(tag)) || get.effect(player, { name: 'losehp' }, player, player) > 0) {
 							return 0;
 						}
@@ -228,8 +228,7 @@ const YBSL_boom = function () {
 				('step 2');
 				if (result.bool) {
 					event.given = true;
-					var res = result.cards,
-						target = result.targets[0].playerid;
+					const res = result.cards, target = result.targets[0].playerid;
 					player.addGaintag(res, 'du_given');
 					cards.removeArray(res);
 					if (!event.given_map[target]) {
@@ -255,11 +254,10 @@ const YBSL_boom = function () {
 						game.stopCountChoose();
 					});
 				}
-				var logs = [];
-				var map = [],
-					cards = [];
-				for (var i in event.given_map) {
-					var source = (_status.connectMode ? lib.playerOL : game.playerMap)[i];
+				const logs = [];
+				const map = [], cards = [];
+				for (const i in event.given_map) {
+					const source = (_status.connectMode ? lib.playerOL : game.playerMap)[i];
 					logs.push(source);
 					map.push([source, event.given_map[i]]);
 					cards.addArray(event.given_map[i]);
@@ -273,7 +271,7 @@ const YBSL_boom = function () {
 						if (targets[0] != player) {
 							return get.translation(targets);
 						}
-						var selfTargets = targets.slice();
+						const selfTargets = targets.slice();
 						selfTargets[0] = '自己';
 						return get.translation(selfTargets);
 					})(logs)}发动了【${get.skillTranslation(event.name, player)}】`,

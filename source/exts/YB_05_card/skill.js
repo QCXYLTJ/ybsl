@@ -24,7 +24,7 @@ const skill = {
 			return player != _status.currentPhase && player.hasUsableCard('ybsl_anduchencang');
 		},
 		content() {
-			var next = player.chooseToUse();
+			const next = player.chooseToUse();
 			next.set('prompt', '是否使用【暗度陈仓】？');
 			next.set('filterCard', function (card, player) {
 				if (card.name != 'ybsl_anduchencang') {
@@ -153,13 +153,13 @@ const skill = {
 				if (card.name != 'tao' && get.color(card) != 'red') {
 					return;
 				}
-				var cards = player.getCards('hs', function (card) {
+				const cards = player.getCards('hs', function (card) {
 					return card.name == 'tao' || get.color(card) == 'red';
 				});
 				cards.sort(function (a, b) {
 					return (a.name == 'tao' ? 1 : 2) - (b.name == 'tao' ? 1 : 2);
 				});
-				var geti = function () {
+				const geti = function () {
 					if (cards.includes(card)) {
 						return cards.indexOf(card);
 					}
@@ -416,8 +416,8 @@ const skill = {
 		position: 'h',
 		filterTarget: lib.filter.notMe,
 		check(card) {
-			var player = _status.event.player;
-			var val = 5;
+			let player = _status.event.player;
+			let val = 5;
 			if (player.needsToDiscard()) {
 				val = 15;
 			}
@@ -477,7 +477,7 @@ const skill = {
 					'选择一张手牌当做【杀】对' + get.translation(trigger.source) + '使用',
 				)
 				.set('ai', function (card) {
-					var player = _status.event.player;
+					let player = _status.event.player;
 					return get.effect(trigger.player, { name: 'sha' }, player, player) / Math.max(1, get.value(card));
 				});
 			('step 1');
@@ -605,7 +605,7 @@ const skill = {
 		forced: true,
 		content() {
 			'step 0';
-			var next = trigger.player.chooseBool('是否发动【北斗七星扇】？', '修改' + get.translation(trigger.card) + '的花色和伤害属性');
+			const next = trigger.player.chooseBool('是否发动【北斗七星扇】？', '修改' + get.translation(trigger.card) + '的花色和伤害属性');
 			if (player == next.player) {
 				next.setHiddenSkill(event.name);
 			}
@@ -623,9 +623,9 @@ const skill = {
 			if (player.isUnderControl()) {
 				game.swapPlayerAuto(player);
 			}
-			var switchToAuto = function () {
+			const switchToAuto = function () {
 				_status.imchoosing = false;
-				var listn = ['普通'].concat(lib.inpile_nature);
+				const listn = ['普通'].concat(lib.inpile_nature);
 				event._result = {
 					bool: true,
 					suit: lib.suit.randomGet(),
@@ -638,23 +638,23 @@ const skill = {
 					event.control.close();
 				}
 			};
-			var chooseButton = function (player, card) {
-				var event = _status.event;
+			const chooseButton = function (player, card) {
+				const event = _status.event;
 				player = player || event.player;
 				if (!event._result) {
 					event._result = {};
 				}
-				var dialog = ui.create.dialog('北斗:请修改' + card + '的花色和属性', 'forcebutton', 'hidden');
+				const dialog = ui.create.dialog('北斗:请修改' + card + '的花色和属性', 'forcebutton', 'hidden');
 				event.dialog = dialog;
 				dialog.addText('花色');
-				var table = document.createElement('div');
+				const table = document.createElement('div');
 				table.classList.add('add-setting');
 				table.style.margin = '0';
 				table.style.width = '100%';
 				table.style.position = 'relative';
-				var listi = ['spade', 'heart', 'club', 'diamond'];
+				const listi = ['spade', 'heart', 'club', 'diamond'];
 				for (let i = 0; i < listi.length; i++) {
-					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
+					const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 					td.link = listi[i];
 					table.appendChild(td);
 					td.innerHTML = '<span>' + get.translation(listi[i]) + '</span>';
@@ -669,8 +669,8 @@ const skill = {
 						setTimeout(function () {
 							_status.tempNoButton = false;
 						}, 500);
-						var link = this.link;
-						var current = this.parentNode.querySelector('.bluebg');
+						const link = this.link;
+						const current = this.parentNode.querySelector('.bluebg');
 						if (current) {
 							current.classList.remove('bluebg');
 						}
@@ -680,15 +680,15 @@ const skill = {
 				}
 				dialog.content.appendChild(table);
 				dialog.addText('属性');
-				var table2 = document.createElement('div');
+				const table2 = document.createElement('div');
 				table2.classList.add('add-setting');
 				table2.style.margin = '0';
 				table2.style.width = '100%';
 				table2.style.position = 'relative';
-				var listn = ['普通'].concat(lib.inpile_nature);
+				const listn = ['普通'].concat(lib.inpile_nature);
 				for (let i = 0; i < listn.length; i++) {
-					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
-					var nature = listn[i];
+					const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
+					const nature = listn[i];
 					td.link = nature;
 					table2.appendChild(td);
 					td.innerHTML = '<span>' + get.translation(nature) + '</span>';
@@ -703,8 +703,8 @@ const skill = {
 						setTimeout(function () {
 							_status.tempNoButton = false;
 						}, 500);
-						var link = this.link;
-						var current = this.parentNode.querySelector('.bluebg');
+						const link = this.link;
+						const current = this.parentNode.querySelector('.bluebg');
 						if (current) {
 							current.classList.remove('bluebg');
 						}
@@ -727,7 +727,7 @@ const skill = {
 					_status.imchoosing = false;
 				};
 				event.control = ui.create.control('ok', 'cancel2', function (link) {
-					var result = event._result;
+					const result = event._result;
 					if (link == 'cancel2') {
 						result.bool = false;
 					} else {
@@ -757,7 +757,7 @@ const skill = {
 				switchToAuto();
 			}
 			('step 3');
-			var map = event.result || result;
+			const map = event.result || result;
 			if (map.bool) {
 				game.log(player, '将', trigger.card, '的花色属性修改为了', '#g' + get.translation(map.suit + 2), '#y' + get.translation(map.nature));
 				trigger.card.suit = map.suit;
@@ -781,7 +781,7 @@ const skill = {
 			return player.storage.rewrite_zhuque2 && event.card == player.storage.rewrite_zhuque2[0];
 		},
 		content() {
-			var nature = player.storage.rewrite_zhuque2[1];
+			const nature = player.storage.rewrite_zhuque2[1];
 			if (nature == '普通') {
 				delete trigger.nature;
 			} else {
@@ -817,7 +817,7 @@ const skill = {
 			if (event.num < player.hp && (get.mode() == 'guozhan' || event.num <= 1)) {
 				return false;
 			}
-			let cards = player.getEquips('rewrite_huxinjing').filter((i) => i.name != 'huxinjing');
+			const cards = player.getEquips('rewrite_huxinjing').filter((i) => i.name != 'huxinjing');
 			if (!cards.length) {
 				return false;
 			}
@@ -825,14 +825,14 @@ const skill = {
 		},
 		content() {
 			trigger.cancel();
-			var e2 = player.getEquips('rewrite_huxinjing').filter((i) => i.name == 'rewrite_huxinjing');
+			const e2 = player.getEquips('rewrite_huxinjing').filter((i) => i.name == 'rewrite_huxinjing');
 			if (e2.length) {
 				for (let i = 0; i < e2.length; i++) {
 					game.broadcastAll(
 						function (card, player) {
 							player.removeEquipTrigger(card.card || card);
 							card.init([card.suit, card.number, 'huxinjing', card.nature /*,tag*/]);
-							let vcard = card[card.cardSymbol];
+							const vcard = card[card.cardSymbol];
 							//
 							if (vcard && player.vcardsMap?.equips) {
 								// const cardx = game.YB_createCard('huxinjing', card.card.suit, card.card.number);
@@ -955,7 +955,7 @@ const skill = {
 		},
 		logTarget: 'target',
 		content() {
-			var target = trigger.target;
+			const target = trigger.target;
 			if (!target.isLinked()) {
 				target.link();
 			} else {
@@ -1079,17 +1079,17 @@ const skill = {
 			}
 		},
 		content: async function (event, trigger, player) {
-			let num = trigger.cards.length;
-			var result = await player
+			const num = trigger.cards.length;
+			const result = await player
 				.chooseTarget([1, num])
 				.set('ai', function (target) {
-					var player = _status.event.player;
+					let player = _status.event.player;
 					return get.damageEffect(target, player, player, 'fire');
 				})
 				.set('prompt', `请选择至多${num}名角色,对这些角色各造成一点由这些牌造成的火焰伤害`)
 				.forResult();
 			if (result.bool) {
-				var list = result.targets;
+				const list = result.targets;
 				list.sortBySeat();
 				for (const i of list) {
 					i.damage(1, { name: 'ybsl_fuxizhenhunqin' }, trigger.cards, 'fire', player);
@@ -1185,11 +1185,11 @@ const skill = {
 			}
 		},
 		check(event, player) {
-			var eff = 0;
+			let eff = 0;
 			for (let i = 0; i < event.targets.length; i++) {
-				var target = event.targets[i];
-				var eff1 = get.damageEffect(target, player, player);
-				var eff2 = get.damageEffect(target, player, player, 'thunder');
+				const target = event.targets[i];
+				const eff1 = get.damageEffect(target, player, player);
+				const eff2 = get.damageEffect(target, player, player, 'thunder');
 				eff += eff2;
 				eff -= eff1;
 			}
@@ -1208,7 +1208,7 @@ const skill = {
 			// }
 			game.setNature(trigger.card, 'thunder');
 			if (get.itemtype(trigger.card) == 'card') {
-				var next = game.createEvent('ybsl_zidian1_clear');
+				const next = game.createEvent('ybsl_zidian1_clear');
 				next.card = trigger.card;
 				event.next.remove(next);
 				trigger.after.push(next);
@@ -1252,8 +1252,8 @@ const skill = {
 			if (player && player == cardx.player) {
 				return true;
 			}
-			var player = _status.event.player;
-			var shas = player.getCards('hs', function (card) {
+			let player = _status.event.player;
+			const shas = player.getCards('hs', function (card) {
 				return card != cardx && card.name == 'sha';
 			});
 			if (shas.length > 1) {
@@ -1337,7 +1337,7 @@ const skill = {
 		logTarget: 'target',
 		content() {
 			'step 0';
-			var target = trigger.target;
+			const target = trigger.target;
 			if (!get.is.single() && target.countDiscardableCards(player, 'he')) {
 				player.discardPlayerCard('he', target);
 			}
@@ -1386,15 +1386,15 @@ const skill = {
 		},
 		forced: true,
 		filter(event, player) {
-			var evt = event.getl(player);
+			const evt = event.getl(player);
 			return evt && evt.hs && evt.hs.length > 1 && player.isPhaseUsing();
 		},
 		content() {
 			'step 0';
-			var evt = trigger.getl(player);
+			const evt = trigger.getl(player);
 			event.num = evt.hs.length;
 			event.cards = trigger.num;
-			var suits = [];
+			const suits = [];
 			if (Array.isArray(trigger.cards))
 				for (const i of trigger.cards) {
 					suits.add(i.suit);
@@ -1405,7 +1405,7 @@ const skill = {
 					return player != target;
 				})
 				.set('ai', function (target) {
-					var att = get.attitude(_status.event.player, target);
+					let att = get.attitude(_status.event.player, target);
 					if (target.countDiscardableCards(_status.event.player, 'he') >= _status.event.parent.num) {
 						att = att * 2;
 					}
@@ -1414,7 +1414,7 @@ const skill = {
 			('step 1');
 			if (result.bool) {
 				event.target = result.targets[0];
-				var list = [];
+				const list = [];
 				if (event.target.countDiscardableCards(player, 'he') > 0) {
 					list.push('弃置其牌');
 				}
@@ -1474,7 +1474,7 @@ const skill = {
 			if (_status.currentPhase != player) {
 				return false;
 			}
-			var evt = event.getl(player);
+			const evt = event.getl(player);
 			return evt && evt.hs && evt.hs.length;
 		},
 		content() {
@@ -1492,7 +1492,7 @@ const skill = {
 			if (event.target == player) {
 				return false;
 			}
-			var att = get.attitude(_status.event.player, event.target);
+			let att = get.attitude(_status.event.player, event.target);
 			if (att > 0) {
 				return false;
 			}
@@ -1659,7 +1659,7 @@ const skill = {
 			});
 			('step 1');
 			if (result.bool) {
-				var target = result.targets[0];
+				const target = result.targets[0];
 				target.link();
 			}
 		},
@@ -1679,27 +1679,27 @@ const skill = {
 		},
 		content() {
 			'step 0';
-			var cards = player.getEquips('rewrite_fulei');
+			const cards = player.getEquips('rewrite_fulei');
 			game.cardsGotoSpecial(cards);
 			game.log(cards, '与', trigger.cards[0], '融合了');
 			event.card = cards;
 			('step 1');
-			var card = trigger.cards[0];
+			const card = trigger.cards[0];
 			player.showCards(card);
-			var bool = get.position(card) == 'e';
+			const bool = get.position(card) == 'e';
 			if (bool) {
 				player.removeEquipTrigger(card);
 			}
 			game.broadcastAll(function (card) {
-				var tag = get.YB_tag(card);
+				const tag = get.YB_tag(card);
 				card.YB_init([event.card.suit, event.card.number, 'ybsl_tianleiyubi', tag]);
 			}, card);
-			var bool = get.position(card) == 'e';
+			const bool = get.position(card) == 'e';
 			if (bool) {
 				player.removeEquipTrigger(card);
 			}
 			if (bool) {
-				var info = get.info(card);
+				const info = get.info(card);
 				if (info.skills) {
 					for (let i = 0; i < info.skills.length; i++) {
 						player.addSkillTrigger(info.skills[i]);
@@ -1720,27 +1720,27 @@ const skill = {
 		},
 		content() {
 			'step 0';
-			var cards = player.getEquips('rewrite_shandian');
+			const cards = player.getEquips('rewrite_shandian');
 			game.cardsGotoSpecial(cards);
 			game.log(cards, '与', trigger.cards[0], '融合了');
 			event.card = cards;
 			('step 1');
-			var card = trigger.cards[0];
+			const card = trigger.cards[0];
 			player.showCards(card);
-			var bool = get.position(card) == 'e';
+			const bool = get.position(card) == 'e';
 			if (bool) {
 				player.removeEquipTrigger(card);
 			}
 			game.broadcastAll(function (card) {
-				var tag = get.YB_tag(card);
+				const tag = get.YB_tag(card);
 				card.YB_init([event.card.suit, event.card.number, 'ybsl_tianleiyubi', tag]);
 			}, card);
-			var bool = get.position(card) == 'e';
+			const bool = get.position(card) == 'e';
 			if (bool) {
 				player.removeEquipTrigger(card);
 			}
 			if (bool) {
-				var info = get.info(card);
+				const info = get.info(card);
 				if (info.skills) {
 					for (let i = 0; i < info.skills.length; i++) {
 						player.addSkillTrigger(info.skills[i]);
@@ -1815,7 +1815,7 @@ const skill = {
 					},
 					function (target) {
 						//ai:
-						var player = get.player(); //定义变量player为选目标的发起者(不懂可以先不写)
+						let player = get.player(); //定义变量player为选目标的发起者(不懂可以先不写)
 						return -get.attitude(player, target); //选敌人
 					},
 				);
@@ -1881,7 +1881,7 @@ const skill = {
 			'step 0';
 			event.num = Math.min(trigger.num, 9);
 			('step 1');
-			var choice;
+			let choice;
 			if (
 				player.isDamaged() &&
 				get.recoverEffect(player) > 0 &&
@@ -1893,7 +1893,7 @@ const skill = {
 			} else {
 				choice = 'draw_card';
 			}
-			var next = player.chooseDrawRecover(get.prompt(event.name));
+			const next = player.chooseDrawRecover(get.prompt(event.name));
 			next.set('choice', choice);
 			next.set('ai', function () {
 				return _status.event.parent.choice;

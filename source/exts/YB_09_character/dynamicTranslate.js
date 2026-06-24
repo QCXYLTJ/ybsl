@@ -2,8 +2,8 @@
 export { dynamicTranslate };
 const dynamicTranslate = {
 	North_smk_shangying(player) {
-		var str = '锁定技.1.回合开始/结束时,若场上有武器牌,你选择1个获得之.2.当你于一回合内使用或打出第X张牌时,你摸X张牌.3.若X不小于1/2/3/4/5,你拥有';
-		var list = [`${get.poptip('olyajiao')}`, `${get.poptip('oltiaoxin')}`, `${get.poptip('olpaoxiao')}`, `${get.poptip('retieji')}`, `${get.poptip('new_rewusheng')}`];
+		let str = '锁定技.1.回合开始/结束时,若场上有武器牌,你选择1个获得之.2.当你于一回合内使用或打出第X张牌时,你摸X张牌.3.若X不小于1/2/3/4/5,你拥有';
+		const list = [`${get.poptip('olyajiao')}`, `${get.poptip('oltiaoxin')}`, `${get.poptip('olpaoxiao')}`, `${get.poptip('retieji')}`, `${get.poptip('new_rewusheng')}`];
 		// if(player.getAttackRange()>=1)list[0]='<span class=yellowtext>'+list[0]+'</span>';
 		// if(player.getAttackRange()>=2)list[1]='<span class=yellowtext>'+list[1]+'</span>';
 		// if(player.getAttackRange()>=3)list[2]='<span class=yellowtext>'+list[2]+'</span>';
@@ -29,8 +29,8 @@ const dynamicTranslate = {
 		return '限定技.转换技.出牌阶段,你可弃置三张不同类型的牌,并执行,阳:令拥有<献>的角色依次回复X点体力;<span class=thundertext>阴:令拥有<率>的角色依次失去X点体力</span>.执行结束后,相关角色弃置<巫治>标记(X为此技能发动次数)';
 	},
 	North_zx_ningao(player) {
-		var str = '锁定技.当你的体力值变化时,你摸一张牌;当你已损失体力值不小于0/1/2/3/4时,你';
-		var list = ['可以将一张♦️️️牌当作火【杀】使用或打出', '使用牌不能被响应', '回合外失去牌后可以使用一张【杀】', '可以将一张♥️️️牌当作【桃】使用', '手牌数恒为8'];
+		let str = '锁定技.当你的体力值变化时,你摸一张牌;当你已损失体力值不小于0/1/2/3/4时,你';
+		const list = ['可以将一张♦️️️牌当作火【杀】使用或打出', '使用牌不能被响应', '回合外失去牌后可以使用一张【杀】', '可以将一张♥️️️牌当作【桃】使用', '手牌数恒为8'];
 		// if(player.getAttackRange()>=1)list[0]='<span class=yellowtext>'+list[0]+'</span>';
 		// if(player.getAttackRange()>=2)list[1]='<span class=yellowtext>'+list[1]+'</span>';
 		// if(player.getAttackRange()>=3)list[2]='<span class=yellowtext>'+list[2]+'</span>';
@@ -49,7 +49,7 @@ const dynamicTranslate = {
 		return str;
 	},
 	YB_nobody_guiyin(player) {
-		var players = game.filterPlayer(function (current) {
+		const players = game.filterPlayer(function (current) {
 			return current != player && current.inRange(player);
 		});
 		if (players.length != 1) {

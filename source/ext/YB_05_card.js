@@ -6,7 +6,7 @@ import { translate } from '../exts/YB_05_card/translate.js';
 import { list } from '../exts/YB_05_card/list.js';
 game.import('card', function (lib, game, ui, get, ai, _status) {
 	/** @type { importCardConfig } */
-	var ybslc = {
+	const ybslc = {
 		name: 'ybslc', //卡包命名
 		connect: true, //卡包是否可以联机
 		// init:true,
@@ -15,7 +15,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 		translate: translate, //卡牌翻译
 		list: list, //牌堆添加
 	};
-	for (var i in ybslc.card) {
+	for (const i in ybslc.card) {
 		if (!ybslc.card[i].image && !ybslc.card[i].modeimage) {
 			ybslc.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
 		}

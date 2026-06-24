@@ -19,7 +19,7 @@ const skill = {
 			for (let i = 0; i < event.targets.length; i++) {
 				// eff -= get.effect(event.targets[i], event.card, player, player);
 				// event.card.nature = "YB_wind";
-				var natures = nature;
+				let natures = nature;
 				if (nature != null) {
 					// if(!Array.isArray(nature)){
 					// 	if(nature.includes('|'))natures=natures.split('|').filter(item=>item!=='');
@@ -32,9 +32,9 @@ const skill = {
 					// }
 					// natures = natures.join('_');
 				}
-				var target = event.targets[i];
-				var eff1 = get.damageEffect(target, player, player, nature);
-				var eff2 = get.damageEffect(target, player, player, nature == null ? 'YB_wind' : natures + '|YB_wind');
+				const target = event.targets[i];
+				const eff1 = get.damageEffect(target, player, player, nature);
+				const eff2 = get.damageEffect(target, player, player, nature == null ? 'YB_wind' : natures + '|YB_wind');
 				eff += eff2;
 				eff -= eff1;
 				// eff += get.effect(event.targets[i], event.card, player, player);
@@ -47,8 +47,8 @@ const skill = {
 			return '将' + get.translation(event.card) + '增加风属性';
 		},
 		content() {
-			var nature = trigger.card.nature;
-			var natures = nature;
+			const nature = trigger.card.nature;
+			let natures = nature;
 			if (nature != null) {
 				// if(!Array.isArray(nature)){
 				// 	if(nature.includes('|'))natures=natures.split('|').filter(item=>item!=='');
@@ -59,7 +59,7 @@ const skill = {
 			}
 			game.setNature(trigger.card, nature == null ? 'YB_wind' : natures + '|YB_wind');
 			if (get.itemtype(trigger.card) == 'card') {
-				var next = game.createEvent('ybsl_qingfengshan_clear');
+				const next = game.createEvent('ybsl_qingfengshan_clear');
 				next.card = trigger.card;
 				event.next.remove(next);
 				trigger.after.push(next);
@@ -251,7 +251,7 @@ const skill = {
 			if ('trick' != get.type(event.card)) {
 				return false;
 			}
-			var info = get.info(event.card);
+			const info = get.info(event.card);
 			if (info.allowMultiple == false) {
 				return false;
 			}
@@ -271,18 +271,18 @@ const skill = {
 			'step 0';
 			player
 				.chooseTarget('是否为' + get.translation(trigger.card) + '增加一个目标？', function (card, player, target) {
-					var trigger = _status.event.getTrigger();
-					var card = trigger.card;
+					const trigger = _status.event.getTrigger();
+					const card = trigger.card;
 					return !trigger.targets.includes(target) && lib.filter.targetEnabled2(card, player, target) && lib.filter.targetInRange(card, player, target);
 				})
 				.set('ai', function (target) {
-					var player = _status.event.player;
-					var card = _status.event.getTrigger().card;
+					const player = _status.event.player;
+					const card = _status.event.getTrigger().card;
 					return get.effect(target, card, player, player);
 				});
 			('step 1');
 			if (result.bool) {
-				var target = result.targets[0];
+				const target = result.targets[0];
 				player.line(target, 'green');
 				game.log(player, '发动集智冠,令', target, '也成为了', trigger.card, '的目标');
 				trigger.targets.add(target);
@@ -344,8 +344,7 @@ const skill = {
 					) {
 						return;
 					}
-					let targets = [],
-						evt = _status.event.getParent('useCard');
+					const targets = [], evt = _status.event.getParent('useCard');
 					targets.addArray(ui.selected.targets);
 					if (evt && evt.card == card) {
 						targets.addArray(evt.targets);
@@ -356,7 +355,7 @@ const skill = {
 						}
 						return;
 					}
-					let info = get.info(card);
+					const info = get.info(card);
 					if (!info || info.notarget || !info.filterTarget) {
 						return;
 					}

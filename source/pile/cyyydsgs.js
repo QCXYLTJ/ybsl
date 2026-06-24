@@ -32,20 +32,20 @@ export async function cyyydsgs() {
 			 */
 			get.YB_character_lv = function (name) {
 				if (Array.isArray(lib.character[name])) {
-					var infoy = lib.character[name][4];
-					for (var infox of infoy) {
+					const infoy = lib.character[name][4];
+					for (const infox of infoy) {
 						if (infox.startsWith('YB_character_lv:')) {
-							var str = infox.slice(16);
+							let str = infox.slice(16);
 							return str;
 						}
 					}
 				} else if (lib.character[name].YB_character_lv) {
 					return lib.character[name].YB_character_lv;
 				} else {
-					var infoy = lib.character[name][4];
-					for (var infox of infoy) {
+					const infoy = lib.character[name][4];
+					for (const infox of infoy) {
 						if (infox.startsWith('YB_character_lv:')) {
-							var str = infox.slice(16);
+							let str = infox.slice(16);
 							return str;
 						}
 					}
@@ -59,14 +59,14 @@ export async function cyyydsgs() {
 			 */
 			lib.element.player.YB_addMark = function (mark, num, type) {
 				if (!num) {
-					var num = 1;
+					const num = 1;
 				}
-				var next = game.createEvent('YB_addMark', false);
+				const next = game.createEvent('YB_addMark', false);
 				next.player = this;
 				next.mark = mark;
 				next.number = num;
 				if (!type) {
-					var type = null;
+					const type = null;
 				}
 				next.YB_type = type;
 				next.setContent('YB_addMark');
@@ -93,14 +93,14 @@ export async function cyyydsgs() {
 			 */
 			lib.element.player.YB_removeMark = function (mark, num, type) {
 				if (!num) {
-					var num = 1;
+					const num = 1;
 				}
-				var next = game.createEvent('YB_removeMark', false);
+				const next = game.createEvent('YB_removeMark', false);
 				next.player = this;
 				next.mark = mark;
 				next.number = num;
 				if (!type) {
-					var type = null;
+					const type = null;
 				}
 				next.YB_type = type;
 				next.setContent('YB_removeMark');
@@ -195,7 +195,7 @@ export async function cyyydsgs() {
 	//导入穿越也要打三国杀
 	{
 		/** @type { importCharacterConfig } */
-		var cyyydsgs = {
+		const cyyydsgs = {
 			name: 'cyyydsgs',
 			connect: false, //该武将包是否可以联机(必填)
 			characterSort: {
@@ -248,8 +248,8 @@ export async function cyyydsgs() {
 					},
 					position: 'he',
 					selectCard() {
-						var player = _status.event.player;
-						var num = get.YB_skill_lv('cyyydsgs_leishan', player);
+						const player = _status.event.player;
+						const num = get.YB_skill_lv('cyyydsgs_leishan', player);
 						if (num < 2) {
 							return 1;
 						} else if (num < 4) {
@@ -260,8 +260,8 @@ export async function cyyydsgs() {
 					},
 					filterCard: true,
 					selectTarget() {
-						var player = _status.event.player;
-						var num = get.YB_skill_lv('cyyydsgs_leishan', player);
+						const player = _status.event.player;
+						const num = get.YB_skill_lv('cyyydsgs_leishan', player);
 						if (num < 3) {
 							return ui.selected.cards.length;
 						} else {
@@ -286,7 +286,7 @@ export async function cyyydsgs() {
 						result: {
 							player: 1,
 							target(player, target) {
-								var num = ui.selected.cards.length;
+								const num = ui.selected.cards.length;
 								if (num == ui.selected.targets.length) {
 									return -2;
 								}
@@ -303,7 +303,7 @@ export async function cyyydsgs() {
 						player: 'damageBegin3',
 					},
 					filter(event, player, name) {
-						var num = get.YB_skill_lv('cyyydsgs_jilei', player);
+						const num = get.YB_skill_lv('cyyydsgs_jilei', player);
 						if (!event.hasNature('thunder')) {
 							return false;
 						}
@@ -318,7 +318,7 @@ export async function cyyydsgs() {
 						if (name == 'damageBegin3') {
 							return 1;
 						} else {
-							var num = get.YB_skill_lv('cyyydsgs_jilei', player);
+							const num = get.YB_skill_lv('cyyydsgs_jilei', player);
 							if (num < 2) {
 								return 1;
 							} else {
@@ -327,15 +327,15 @@ export async function cyyydsgs() {
 						}
 					},
 					async cost(event, trigger, player) {
-						let num = trigger.num;
+						const num = trigger.num;
 						event.result = { bool: false, cost_data: { draw_card: false, recover_hp: false } };
 						if (event.triggername == 'damageBegin3') {
-							var next = await player
+							const next = await player
 								.chooseBool()
 								.set('ai', function () {
 									const player = get.player();
 									// const { target, num1, num2 } = get.event().parent;
-									var target = player;
+									const target = player;
 									const att = get.attitude(player, target);
 									const choices = get.event().controls.slice();
 									const eff1 = get.recoverEffect(target, player, player);
@@ -360,13 +360,13 @@ export async function cyyydsgs() {
 								if (controls.length == 1) {
 									result = { control: controls[0] };
 								} else {
-									var next = player.chooseControl(controls);
+									const next = player.chooseControl(controls);
 									next.set('ai', function () {
 										const player = get.player();
 										// const { target, num1, num2 } = get.event().parent;
-										var target = player;
-										var num1 = 1;
-										var num2 = 1;
+										const target = player;
+										const num1 = 1;
+										const num2 = 1;
 										const att = get.attitude(player, target);
 										const choices = get.event().controls.slice();
 										const eff1 = get.recoverEffect(target, player, player);
@@ -391,7 +391,7 @@ export async function cyyydsgs() {
 									event.result.cost_data[result.control] = true;
 								}
 							} else {
-								var result = await player
+								let result = await player
 									.chooseBool()
 									.set('ai', function () {
 										const player = get.player();
@@ -430,7 +430,7 @@ export async function cyyydsgs() {
 					},
 					async content(event, trigger, player) {
 						if (event.triggername == 'damageBegin3') {
-							let num = trigger.num;
+							const num = trigger.num;
 							trigger.cancel();
 							await player.draw(num);
 						} else {
@@ -458,7 +458,7 @@ export async function cyyydsgs() {
 						return true;
 					},
 					async content(event, trigger, player) {
-						var num = get.YB_skill_lv('cyyydsgs_shengzhang', player);
+						const num = get.YB_skill_lv('cyyydsgs_shengzhang', player);
 						await player.recover();
 						await player.draw(Math.ceil(Math.sqrt(num - 1)));
 					},
@@ -472,8 +472,8 @@ export async function cyyydsgs() {
 						return true;
 					},
 					selectTarget() {
-						var player = get.player();
-						var num = get.YB_skill_lv('cyyydsgs_huakai', player);
+						const player = get.player();
+						const num = get.YB_skill_lv('cyyydsgs_huakai', player);
 						if (num <= 2) {
 							return 1;
 						} else if (num <= 4) {
@@ -503,7 +503,7 @@ export async function cyyydsgs() {
 								source: 'damageEnd',
 							},
 							filter(event, player) {
-								var num = get.YB_skill_lv('cyyydsgs_huakai', player);
+								const num = get.YB_skill_lv('cyyydsgs_huakai', player);
 								if (event.player == player || !event.player.isIn()) {
 									return false;
 								}
@@ -524,11 +524,11 @@ export async function cyyydsgs() {
 								global: 'YB_removeMark_buff_cyyydsgs_huafen',
 							},
 							filter(event, player) {
-								var num = get.YB_skill_lv('cyyydsgs_huakai', player);
+								const num = get.YB_skill_lv('cyyydsgs_huakai', player);
 								return num > 3;
 							},
 							async cost(event, trigger, player) {
-								var target = trigger.player;
+								const target = trigger.player;
 								event.result = await player
 									.choosePlayerCard('其他角色移除<花粉>时,你可以获得其一张牌', target, 'he')
 									.set('ai', (button) => {
@@ -542,7 +542,7 @@ export async function cyyydsgs() {
 									.forResult();
 							},
 							content() {
-								var target = trigger.player;
+								const target = trigger.player;
 								player.gain(event.cards, target, 'giveAuto', 'bySelf');
 							},
 						},
@@ -552,13 +552,13 @@ export async function cyyydsgs() {
 								player: 'recoverBegin',
 							},
 							filter(event, player) {
-								var players = game.countPlayer(function (c) {
+								const players = game.countPlayer(function (c) {
 									return !c.countMark('buff_cyyydsgs_huafen') && c.isIn();
 								});
 								if (players.length == 0) {
 									return false;
 								}
-								var num = get.YB_skill_lv('cyyydsgs_huakai', player);
+								const num = get.YB_skill_lv('cyyydsgs_huakai', player);
 								return num >= 3;
 							},
 							async cost(event, trigger, player) {
@@ -602,7 +602,7 @@ export async function cyyydsgs() {
 					},
 					async content(event, trigger, player) {
 						player.YB_removeMark('buff_cyyydsgs_huafen', 1, 'buff_cyyydsgs_huafen');
-						var result = await player
+						let result = await player
 							.chooseToDiscard('he', get.prompt('cyyydsgs_huafen'))
 							.set('ai', function (card) {
 								return 9 - get.value(card);
@@ -621,7 +621,7 @@ export async function cyyydsgs() {
 						player: ['phaseDrawBegin', 'loseAfter', 'YB_removeMark_buff_cyyydsgs_fengdun'],
 					},
 					filter(event, player, name) {
-						var num = get.YB_skill_lv('cyyydsgs_fengxing', player);
+						const num = get.YB_skill_lv('cyyydsgs_fengxing', player);
 						if (name == 'phaseDrawBegin') {
 							return true;
 						} else if (name == 'loseAfter') {
@@ -640,7 +640,7 @@ export async function cyyydsgs() {
 						}
 					},
 					async content(event, trigger, player) {
-						var num = get.YB_skill_lv('cyyydsgs_fengxing', player);
+						const num = get.YB_skill_lv('cyyydsgs_fengxing', player);
 						if (event.triggername == 'phaseDrawBegin') {
 							trigger.num += Math.ceil((num + 1) / 2);
 						} else if (event.triggername == 'loseAfter') {
@@ -673,7 +673,7 @@ export async function cyyydsgs() {
 							player.YB_removeMark('buff_cyyydsgs_fengdun', 1, 'buff_cyyydsgs_damage');
 							trigger.cancel();
 						} else {
-							var numx = player.countMark('buff_cyyydsgs_fengdun') - Math.max(player.maxHp, 1);
+							let numx = player.countMark('buff_cyyydsgs_fengdun') - Math.max(player.maxHp, 1);
 							player.YB_removeMark('buff_cyyydsgs_fengdun', numx, 'buff_cyyydsgs_water');
 						}
 					},
@@ -749,9 +749,9 @@ export async function cyyydsgs() {
 						player: ['phaseDiscardAfter', 'YB_removeMark_buff_cyyydsgs_fengdun'],
 					},
 					filter(event, player, name) {
-						var num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
+						const num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
 						if (event.name == 'phaseDiscard') {
-							var cards = [];
+							const cards = [];
 							player.getHistory('lose', function (evt) {
 								if (evt && evt.type == 'discard' && evt.getParent('phaseDiscard') == event && evt.hs) {
 									cards.addArray(evt.hs);
@@ -763,29 +763,29 @@ export async function cyyydsgs() {
 						}
 					},
 					async cost(event, trigger, player) {
-						var num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
+						const num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
 						event.result = await player
 							.chooseTarget([1, 2], get.YB_prompt2('cyyydsgs_xuanfeng', null, player), true)
 							.set('filterTarget', function (card, player, target) {
 								return target != player;
 							})
 							.set('ai', function (target) {
-								var player = _status.event.player;
-								var att = get.attitude(player, target);
-								var numx = get.damageEffect(target, player, player, 'YB_wind');
+								const player = _status.event.player;
+								const att = get.attitude(player, target);
+								let numx = get.damageEffect(target, player, player, 'YB_wind');
 								return numx > 0;
 							})
 							.forResult();
 					},
 					async content(event, trigger, player) {
-						var targets = event.targets;
-						let num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
+						const targets = event.targets;
+						const num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
 						if (targets.length) {
-							for (var target of targets) {
+							for (const target of targets) {
 								if (target.isIn()) {
 									await target.damage('YB_wind');
 									if (num >= 2) {
-										var numx = Math.ceil((num - 1) / 2);
+										let numx = Math.ceil((num - 1) / 2);
 										if (numx > 1) {
 											numx = [1, numx];
 										}
@@ -806,7 +806,7 @@ export async function cyyydsgs() {
 								source: ['damageBegin1'],
 							},
 							filter(event, player, name) {
-								var num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
+								const num = get.YB_skill_lv('cyyydsgs_xuanfeng', player);
 								if (num < 5) {
 									return false;
 								}
@@ -826,7 +826,7 @@ export async function cyyydsgs() {
 								'step 0';
 								player.YB_removeMark('buff_cyyydsgs_fengdun', 1, 'cyyydsgs_xuanfeng_nowind');
 								('step 1');
-								var natures = trigger.nature;
+								let natures = trigger.nature;
 								if (nature != null) {
 									// if(!Array.isArray(nature)){
 									// 	if(nature.includes('|'))natures=natures.split('|').filter(item=>item!=='');
@@ -836,7 +836,7 @@ export async function cyyydsgs() {
 									}
 								}
 								game.setNature(trigger, nature == null ? 'YB_wind' : natures + '|YB_wind');
-								var next = game.createEvent('cyyydsgs_xuanfeng_nowind');
+								const next = game.createEvent('cyyydsgs_xuanfeng_nowind');
 								event.next.remove(next);
 								trigger.after.push(next);
 								next.setContent(function () {
@@ -966,7 +966,7 @@ export async function cyyydsgs() {
 			characterLightextParent: {},
 			characterLightext: {},
 		};
-		for (var i in cyyydsgs.skill) {
+		for (let i in cyyydsgs.skill) {
 			if (cyyydsgs.skill[i].cyyydsgs) {
 				cyyydsgs.translate[i + '_info'] = `
 					<p><span class="clickable-text" onclick="
@@ -992,7 +992,7 @@ export async function cyyydsgs() {
 				cyyydsgs.dynamicTranslate[i] = (function (iVal) {
 					// 使用立即函数捕获i的当前值
 					return function (player) {
-						var num = get.YB_skill_lv(iVal, player);
+						const num = get.YB_skill_lv(iVal, player);
 						return '<span class = yellowtext>' + get.cnNumber(num) + '阶:</span>' + cyyydsgs.translate[iVal + '_info_' + num];
 					};
 				})(i);
@@ -1011,19 +1011,19 @@ export async function cyyydsgs() {
 					})(i);
 				}
 				if (!cyyydsgs.skill[i].mark) {
-					let node = cyyydsgs.skill[i];
+					const node = cyyydsgs.skill[i];
 					node.mark = cyyydsgs.translate[i].charAt(0);
 					node.intro = {};
 					node.intro.markcount = (function (iVal) {
 						return function (storage, player, iVal) {
-							var num = get.YB_skill_lv(iVal, player);
+							const num = get.YB_skill_lv(iVal, player);
 							return num;
 						};
 					})(i);
 					node.intro.name = cyyydsgs.translate[i];
 					node.intro.content = (function (iVal) {
 						return function (storage, player, iVal) {
-							var num = get.YB_skill_lv(iVal, player);
+							const num = get.YB_skill_lv(iVal, player);
 							return '<span class = yellowtext>' + get.cnNumber(num) + '阶:</span>' + cyyydsgs.translate[iVal + '_info_' + num];
 						};
 					})(i);
@@ -1035,7 +1035,7 @@ export async function cyyydsgs() {
 		//	 }
 		// }
 		typeimage(cyyydsgs, 'cyyydsgs');
-		for (var i in cyyydsgs.card) {
+		for (let i in cyyydsgs.card) {
 			if (!cyyydsgs.card[i].image) {
 				cyyydsgs.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
 			}
@@ -1046,20 +1046,20 @@ export async function cyyydsgs() {
 	}
 	//导入 新版将魂觉醒
 	{
-		var buff_jhjx_huafen = get.poptip({
+		const buff_jhjx_huafen = get.poptip({
 			id: 'buff2_jhjx_huafen',
 			name: '花粉',
 			type: 'character',
 			info: `锁定技,准备阶段,移除一枚<花粉>,然后弃置一张牌或失去一点体力.`,
 		});
-		var buff_jhjx_fengdun = get.poptip({
+		const buff_jhjx_fengdun = get.poptip({
 			id: 'buff2_jhjx_fengdun',
 			name: '风盾',
 			type: 'character',
 			info: `锁定技,受到属性伤害时,移除一枚<风盾>并防止之;当你获得风盾后,若大于体力上限且大于1,则移除超出的<风盾>.`,
 		});
 		/** @type { importCharacterConfig } */
-		var jhjx = {
+		const jhjx = {
 			name: 'jhjx',
 			connect: true, //该武将包是否可以联机(必填)
 			characterSort: {
@@ -1131,16 +1131,16 @@ export async function cyyydsgs() {
 						thunderDamage: true,
 						result: {
 							player(player, target) {
-								var num = ui.selected.cards.length;
-								var num2 = get.damageEffect(player, player, player, 'thunder');
+								const num = ui.selected.cards.length;
+								const num2 = get.damageEffect(player, player, player, 'thunder');
 								if (num == ui.selected.targets.length) {
 									return num2;
 								}
 								return num * num2;
 							},
 							target(player, target) {
-								var num = ui.selected.cards.length;
-								var num2 = get.damageEffect(player, player, target, 'thunder');
+								const num = ui.selected.cards.length;
+								const num2 = get.damageEffect(player, player, target, 'thunder');
 								if (num == ui.selected.targets.length) {
 									return num2;
 								}
@@ -1168,7 +1168,7 @@ export async function cyyydsgs() {
 					async cost(event, trigger, player) {
 						// let num = trigger.num;
 						event.result = { bool: false, cost_data: { draw_card: false, recover_hp: false } };
-						var result = null;
+						let result = null;
 						const controls = ['draw_card'];
 						if (player.isDamaged()) {
 							event.num2 = Math.min(event.num2, player.getDamagedHp());
@@ -1178,13 +1178,13 @@ export async function cyyydsgs() {
 						if (controls.length == 1) {
 							result = { control: controls[0] };
 						} else {
-							var next = player.chooseControl(controls);
+							const next = player.chooseControl(controls);
 							next.set('ai', function () {
 								const player = get.player();
 								// const { target, num1, num2 } = get.event().parent;
-								var target = player;
-								var num1 = 1;
-								var num2 = 1;
+								const target = player;
+								const num1 = 1;
+								const num2 = 1;
 								const att = get.attitude(player, target);
 								const choices = get.event().controls.slice();
 								const eff1 = get.recoverEffect(target, player, player);
@@ -1286,7 +1286,7 @@ export async function cyyydsgs() {
 								return false;
 							},
 							async cost(event, trigger, player) {
-								var target = trigger.player;
+								const target = trigger.player;
 								event.result = await player
 									.choosePlayerCard('其他角色移除<花粉>时,你可以获得其一张牌', target, 'he')
 									.set('ai', (button) => {
@@ -1300,7 +1300,7 @@ export async function cyyydsgs() {
 									.forResult();
 							},
 							content() {
-								var target = trigger.player;
+								const target = trigger.player;
 								player.gain(event.cards, target, 'giveAuto', 'bySelf');
 							},
 						},
@@ -1310,7 +1310,7 @@ export async function cyyydsgs() {
 								player: 'recoverBegin',
 							},
 							filter(event, player) {
-								var players = game.countPlayer(function (c) {
+								const players = game.countPlayer(function (c) {
 									return !c.countMark('buff_jhjx_huafen') && c.isIn();
 								});
 								if (players.length == 0) {
@@ -1362,7 +1362,7 @@ export async function cyyydsgs() {
 					},
 					async content(event, trigger, player) {
 						player.YB_removeMark('buff_jhjx_huafen', 1, 'buff_jhjx_huafen');
-						var result = await player
+						let result = await player
 							.chooseToDiscard('he', get.prompt('jhjx_huafen'))
 							.set('ai', function (card) {
 								return 9 - get.value(card);
@@ -1438,7 +1438,7 @@ export async function cyyydsgs() {
 							player.YB_removeMark('buff_jhjx_fengdun', 1, 'buff_jhjx_damage');
 							trigger.cancel();
 						} else {
-							var numx = player.countMark('buff_jhjx_fengdun') - Math.max(player.maxHp, 1);
+							let numx = player.countMark('buff_jhjx_fengdun') - Math.max(player.maxHp, 1);
 							player.YB_removeMark('buff_jhjx_fengdun', numx, 'buff_jhjx_water');
 						}
 					},
@@ -1452,7 +1452,7 @@ export async function cyyydsgs() {
 					},
 					filter(event, player, name) {
 						if (event.name == 'phaseDiscard') {
-							var cards = [];
+							const cards = [];
 							player.getHistory('lose', function (evt) {
 								if (evt && evt.type == 'discard' && evt.getParent('phaseDiscard') == event && evt.hs) {
 									cards.addArray(evt.hs);
@@ -1470,18 +1470,18 @@ export async function cyyydsgs() {
 								return target != player;
 							})
 							.set('ai', function (target) {
-								var player = _status.event.player;
-								var att = get.attitude(player, target);
-								var numx = get.damageEffect(target, player, player, 'YB_wind');
+								const player = _status.event.player;
+								const att = get.attitude(player, target);
+								let numx = get.damageEffect(target, player, player, 'YB_wind');
 								return numx > 0;
 							})
 							.forResult();
 					},
 					async content(event, trigger, player) {
-						var targets = event.targets;
-						let num = get.YB_skill_lv('jhjx_xuanfeng', player);
+						const targets = event.targets;
+						const num = get.YB_skill_lv('jhjx_xuanfeng', player);
 						if (targets.length) {
-							for (var target of targets) {
+							for (const target of targets) {
 								if (target.isIn()) {
 									await target.damage('YB_wind');
 									await player.discardPlayerCard('he', target, 'he', 1);
@@ -1516,7 +1516,7 @@ export async function cyyydsgs() {
 								'step 0';
 								player.YB_removeMark('buff_jhjx_fengdun', 1, 'jhjx_xuanfeng_nowind');
 								('step 1');
-								var natures = trigger.nature;
+								let natures = trigger.nature;
 								if (nature != null) {
 									// if(!Array.isArray(nature)){
 									// 	if(nature.includes('|'))natures=natures.split('|').filter(item=>item!=='');
@@ -1526,7 +1526,7 @@ export async function cyyydsgs() {
 									}
 								}
 								game.setNature(trigger, nature == null ? 'YB_wind' : natures + '|YB_wind');
-								var next = game.createEvent('jhjx_xuanfeng_nowind');
+								const next = game.createEvent('jhjx_xuanfeng_nowind');
 								event.next.remove(next);
 								trigger.after.push(next);
 								next.setContent(function () {
@@ -1619,7 +1619,7 @@ export async function cyyydsgs() {
 					// 	return [1,2];
 					// },
 					selectTarget() {
-						var player = _status.event.player;
+						const player = _status.event.player;
 						if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
 							return -1;
 						} else {
@@ -1627,7 +1627,7 @@ export async function cyyydsgs() {
 						}
 					},
 					filterTarget(card, player, target) {
-						var str = [];
+						let str = [];
 						if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
 							if (!player.storage.jhjx_shejiao.includes(target)) {
 								return false;
@@ -1657,7 +1657,7 @@ export async function cyyydsgs() {
 						if (player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.length) {
 							// await player.YB_jiechushejiao();
 							await lib.skill.jhjx_shejiao.YB_jiechushejiao(player);
-							for (let target of event.targets) {
+							for (const target of event.targets) {
 								await player.discardPlayerCard('he', target, true, 1);
 							}
 							// await event.YB_jiechushejiao==true;
@@ -1684,7 +1684,7 @@ export async function cyyydsgs() {
 								// return num2;
 							},
 							target(player, target) {
-								var num2 = get.damageEffect(player, player, target, 'YB_rock');
+								const num2 = get.damageEffect(player, player, target, 'YB_rock');
 								return num2;
 							},
 						},
@@ -1715,7 +1715,7 @@ export async function cyyydsgs() {
 					YB_jiechushejiao(player) {
 						if (player.storage.jhjx_shejiao) {
 							if (player.storage.jhjx_shejiao.length) {
-								for (let target of player.storage.jhjx_shejiao) {
+								for (const target of player.storage.jhjx_shejiao) {
 									// target.unmarkSkill('jhjx_shejiao_mark');
 									target.removeAdditionalSkills('jhjx_shejiao', 'jhjx_shejiao_mark', true);
 								}
@@ -1750,16 +1750,16 @@ export async function cyyydsgs() {
 								return player.storage.jhjx_shejiao && player.storage.jhjx_shejiao.includes(event.player) && event.player.isIn();
 							},
 							prompt2(event, player) {
-								var str = '被你蛇绞的' + get.translation(event.player) + '的结束阶段,是否弃置其一张牌或令其失去一点体力';
+								let str = '被你蛇绞的' + get.translation(event.player) + '的结束阶段,是否弃置其一张牌或令其失去一点体力';
 								return str;
 							},
 							async cost(event, trigger, player) {
-								var controls = ['弃置一张牌', '失去一点体力', 'cancel2'];
-								var target = trigger.player;
+								const controls = ['弃置一张牌', '失去一点体力', 'cancel2'];
+								const target = trigger.player;
 								if (!target.hasCard((card) => lib.filter.canBeDiscarded(card, player, target), 'he')) {
 									controls.remove('弃置一张牌');
 								}
-								var result = await player.chooseControl(controls).set('prompt', get.prompt2(event.skill)).forResult();
+								let result = await player.chooseControl(controls).set('prompt', get.prompt2(event.skill)).forResult();
 								if (result.control != 'cancel2') {
 									event.result = {
 										bool: true,
@@ -1768,7 +1768,7 @@ export async function cyyydsgs() {
 								}
 							},
 							content() {
-								var target = trigger.player;
+								const target = trigger.player;
 								if (event.cost_data == '弃置一张牌') {
 									player.discardPlayerCard('he', player, true, 1);
 								} else {
@@ -1782,7 +1782,7 @@ export async function cyyydsgs() {
 							intro: {
 								name: '蛇绞',
 								content(storage, player) {
-									var source;
+									let source;
 									game.countPlayer(function (current) {
 										if (current.storage.jhjx_shejiao && current.storage.jhjx_shejiao.includes(player)) {
 											source = current;
@@ -1795,7 +1795,7 @@ export async function cyyydsgs() {
 							},
 							mod: {
 								cardEnabled2(card, player) {
-									var source;
+									let source;
 									game.countPlayer(function (current) {
 										if (current.storage.jhjx_shejiao && current.storage.jhjx_shejiao.includes(player)) {
 											source = current;
@@ -1821,7 +1821,7 @@ export async function cyyydsgs() {
 						return get.color(card) == 'red';
 					},
 					selectCard() {
-						var player = _status.event.player;
+						const player = _status.event.player;
 						if (player.countMark('buff_jhjx_fengdun') > 0) {
 							return [0, 1];
 						}
@@ -1978,12 +1978,12 @@ export async function cyyydsgs() {
 					},
 					forced: true,
 					async content(event, trigger, player) {
-						let list = ['jhjx_leizaimo', 'jhjx_hongzaimo', 'jhjx_rongzaimo', 'jhjx_baozaimo', 'jhjx_dizaimo'];
-						var cards = [];
+						const list = ['jhjx_leizaimo', 'jhjx_hongzaimo', 'jhjx_rongzaimo', 'jhjx_baozaimo', 'jhjx_dizaimo'];
+						const cards = [];
 						// _status.characterlist.removeArray(list);
 						for (let i = 0; i < list.length; i++) {
-							var name = list[i];
-							var card = {
+							const name = list[i];
+							const card = {
 								fullimage: true,
 								image: 'character:' + name,
 								type: 'equip',
@@ -2009,9 +2009,9 @@ export async function cyyydsgs() {
 									}
 									('step 1');
 									if (result.control) {
-										var num = result.index + 1;
-										var name = 'ybsl_107xiaohu' + num;
-										var tag = get.YB_tag(cards[0]);
+										const num = result.index + 1;
+										const name = 'ybsl_107xiaohu' + num;
+										const tag = get.YB_tag(cards[0]);
 										cards[0].YB_init([cards[0].suit, cards[0].number, name, cards[0].nature, tag]);
 										player.equip(cards[0]);
 									}
@@ -2020,17 +2020,17 @@ export async function cyyydsgs() {
 								ai: {},
 								skills: [],
 							};
-							var info = lib.character[name];
-							var maxHp = get.infoMaxHp(info[2]);
+							const info = lib.character[name];
+							const maxHp = get.infoMaxHp(info[2]);
 							if (maxHp != 1) {
 								card.distance = { attackFrom: 1 - maxHp };
 							}
-							var skills = info[3];
-							var str = '锁定技';
+							const skills = info[3];
+							let str = '锁定技';
 							if (skills.length) {
 								card.skills.addArray(skills);
 								str += '你视为拥有技能';
-								for (var skill of skills) {
+								for (const skill of skills) {
 									str += '〖' + get.translation(skill) + '〗';
 									str += '、';
 								}
@@ -2048,14 +2048,14 @@ export async function cyyydsgs() {
 							}
 							lib.translate['YB_characterToCard_' + name] = lib.translate[name];
 							lib.translate['YB_characterToCard_' + name + '_info'] = str;
-							var append = '';
+							let append = '';
 							if (skills.length) {
-								for (var skill of skills) {
+								for (const skill of skills) {
 									// console.log(skill)
 									if (lib.skill[skill].nobracket) {
 										append += '<div class="skilln">' + get.translation(skill) + '</div><div><span style="font-family: yuanli">' + get.skillInfoTranslation(skill) + '</span></div><br><br>';
 									} else {
-										var translation = lib.translate[skill + '_ab'] || get.translation(skill).slice(0, 2);
+										const translation = lib.translate[skill + '_ab'] || get.translation(skill).slice(0, 2);
 										append += '<div class="skill">【' + translation + '】</div><div><span style="font-family: yuanli">' + get.skillInfoTranslation(skill) + '</span></div><br><br>';
 									}
 								}
@@ -2063,11 +2063,11 @@ export async function cyyydsgs() {
 							}
 							lib.translate['YB_characterToCard_' + name + '_append'] = append;
 							lib.card['YB_characterToCard_' + name] = card;
-							var cardx = game.YB_createCard('YB_characterToCard_' + name, null, null);
+							const cardx = game.YB_createCard('YB_characterToCard_' + name, null, null);
 							cards.push(cardx);
 						}
-						for (var z = 0; z < cards.length; z++) {
-							var type = 'equip' + (z + 1);
+						for (let z = 0; z < cards.length; z++) {
+							const type = 'equip' + (z + 1);
 							const cardv = cards[z];
 							cardv.subtypes = [type];
 							await player.equip(cardv);
@@ -2132,10 +2132,10 @@ export async function cyyydsgs() {
 						},
 						result: {
 							target(player, target) {
-								var num = game.countPlayer(function (current) {
+								const num = game.countPlayer(function (current) {
 									//var skills=current.getSkills();
-									for (var j = 0; j < current.skills.length; j++) {
-										var rejudge = get.tag(current.skills[j], 'rejudge', current);
+									for (let j = 0; j < current.skills.length; j++) {
+										const rejudge = get.tag(current.skills[j], 'rejudge', current);
 										if (rejudge !== undefined) {
 											if (get.attitude(target, current) > 0 && get.attitude(current, target) > 0) {
 												return rejudge;
@@ -2149,12 +2149,12 @@ export async function cyyydsgs() {
 									return num;
 								}
 								if (num === 0) {
-									var mode = get.mode();
+									const mode = get.mode();
 									if (mode === 'identity') {
 										if (target.identity === 'nei') {
 											return 1;
 										}
-										var situ = get.situation();
+										const situ = get.situation();
 										if (target.identity === 'fan') {
 											if (situ > 1) {
 												return 1;
@@ -2244,10 +2244,10 @@ export async function cyyydsgs() {
 						},
 						result: {
 							target(player, target) {
-								var num = game.countPlayer(function (current) {
+								const num = game.countPlayer(function (current) {
 									//var skills=current.getSkills();
-									for (var j = 0; j < current.skills.length; j++) {
-										var rejudge = get.tag(current.skills[j], 'rejudge', current);
+									for (let j = 0; j < current.skills.length; j++) {
+										const rejudge = get.tag(current.skills[j], 'rejudge', current);
 										if (rejudge !== undefined) {
 											if (get.attitude(target, current) > 0 && get.attitude(current, target) > 0) {
 												return rejudge;
@@ -2261,12 +2261,12 @@ export async function cyyydsgs() {
 									return num;
 								}
 								if (num === 0) {
-									var mode = get.mode();
+									const mode = get.mode();
 									if (mode === 'identity') {
 										if (target.identity === 'nei') {
 											return 1;
 										}
-										var situ = get.situation();
+										const situ = get.situation();
 										if (target.identity === 'fan') {
 											if (situ > 1) {
 												return 1;
@@ -2408,7 +2408,7 @@ export async function cyyydsgs() {
 			characterLightext: {},
 		};
 		typeimage(jhjx, 'jhjx');
-		for (var i in jhjx.card) {
+		for (let i in jhjx.card) {
 			if (!jhjx.card[i].image) {
 				jhjx.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
 			}

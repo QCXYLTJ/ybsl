@@ -37,12 +37,12 @@ const YBSL_ccinit = function () {
 	// 				}
 	// 			});
 	// 		});
-	let lujing = 'extension/十周年UI/image/card-skins/caise';
-	let lujing2 = 'extension/夜白神略/image/card-skins/caise';
+	const lujing = 'extension/十周年UI/image/card-skins/caise';
+	const lujing2 = 'extension/夜白神略/image/card-skins/caise';
 	game.getFileList(lujing, (folders, files) => {
-		var YBtenpng = files;
+		const YBtenpng = files;
 		game.getFileList(lujing2, (folders, files) => {
-			var decoration = files;
+			const decoration = files;
 			decoration.forEach(function (image) {
 				if (!YBtenpng.includes(image)) {
 					if (game.readFile && game.writeFile) {
@@ -59,12 +59,12 @@ const YBSL_ccinit = function () {
 		});
 	});
 	game.shoudongdaorusucai = function (item) {
-		let lujing = 'extension/十周年UI/image/card-skins/caise';
-		let lujing2 = item == 'old' ? 'extension/夜白神略/image/card-oldskins/caise' : 'extension/夜白神略/image/card-skins/caise';
+		const lujing = 'extension/十周年UI/image/card-skins/caise';
+		const lujing2 = item == 'old' ? 'extension/夜白神略/image/card-oldskins/caise' : 'extension/夜白神略/image/card-skins/caise';
 		game.getFileList(lujing, (folders, files) => {
-			var YBtenpng = files;
+			const YBtenpng = files;
 			game.getFileList(lujing2, (folders, files) => {
-				var decoration = files;
+				const decoration = files;
 				decoration.forEach(function (image) {
 					if (game.readFile && game.writeFile) {
 						game.readFile(

@@ -4,7 +4,7 @@ export { YBSL_rank };
  * 掌管第五格武将评级和异构加入的数据
  */
 const YBSL_rank = function () {
-	var packages = [
+	const packages = [
 		'ybslj',
 		'ybxh',
 		'ybdd',
@@ -49,30 +49,30 @@ const YBSL_rank = function () {
 		// 	}
 		// });
 		lib.arenaReady.push(function () {
-			for (var pack of packages) {
-				for (var name in lib.characterPack[pack]) {
+			for (const pack of packages) {
+				for (const name in lib.characterPack[pack]) {
 					//['junk','common','rare','epic','legend']
-					var infoy = lib.characterPack[pack][name][4];
-					for (var infox of infoy) {
+					const infoy = lib.characterPack[pack][name][4];
+					for (const infox of infoy) {
 						if (infox.startsWith('rankAdd:')) {
-							var rarity = infox.slice(8);
+							const rarity = infox.slice(8);
 							if (lib.rank.rarity[rarity]) {
 								lib.rank.rarity[rarity].add(name);
 							}
 						}
 						if (infox.startsWith('rankS:')) {
-							var infoz = infox.slice(6);
+							const infoz = infox.slice(6);
 							if (lib.rank[infoz]) {
 								lib.rank[infoz].add(name);
 							}
 						}
 					}
 					if (lib.characterPack[pack][name].rankAdd) {
-						var rarity = lib.characterPack[pack][name].rankAdd;
+						const rarity = lib.characterPack[pack][name].rankAdd;
 						if (lib.rank.rarity[rarity]) {
 							lib.rank.rarity[rarity].add(name);
 						}
-						var rarityS = lib.characterPack[pack][name].rankS;
+						const rarityS = lib.characterPack[pack][name].rankS;
 						if (lib.rank[rarityS]) {
 							lib.rank[rarityS].add(name);
 						}
@@ -90,14 +90,14 @@ const YBSL_rank = function () {
 		// 	return lib.characterReplace[char2];
 		// }
 		lib.arenaReady.push(function () {
-			for (var pack of packages) {
-				for (var name in lib.characterPack[pack]) {
-					var infoy = lib.characterPack[pack][name][4];
-					for (var infox of infoy) {
+			for (const pack of packages) {
+				for (const name in lib.characterPack[pack]) {
+					const infoy = lib.characterPack[pack][name][4];
+					for (const infox of infoy) {
 						if (infox.startsWith('linkTo:')) {
-							var char = infox.slice(7);
+							const char = infox.slice(7);
 							// get.YB_linkTo(name,char)
-							var char2 = get.sourceCharacter(char);
+							const char2 = get.sourceCharacter(char);
 							if (!lib.characterReplace[char2]) {
 								lib.characterReplace[char2] = [char2];
 							}
@@ -107,9 +107,9 @@ const YBSL_rank = function () {
 						}
 					}
 					if (lib.characterPack[pack][name].linkTo) {
-						var linkTo = lib.characterPack[pack][name].linkTo;
+						const linkTo = lib.characterPack[pack][name].linkTo;
 						// get.YB_linkTo(name,linkTo)
-						var char2 = get.sourceCharacter(linkTo);
+						const char2 = get.sourceCharacter(linkTo);
 						if (!lib.characterReplace[char2]) {
 							lib.characterReplace[char2] = [char2];
 						}
@@ -123,11 +123,11 @@ const YBSL_rank = function () {
 	}
 	{
 		//神鬼赐福
-		var gxcfbool = lib.config.YB_guixiecifu;
-		var booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
+		const gxcfbool = lib.config.YB_guixiecifu;
+		const booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
 		// 根据状态设置不同颜色
-		var btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色,关=红色
-		var sgstrxsstr = '三国杀同人小说也是一个丰富的diy宝库,里面不乏优秀或有趣的设计<br>本人在此立下宏愿:每看一本三国杀同人文,都要将其中可以复现的武将都复现出来!<br>提示:右键子将包或查看武将简介可查看作者'; //<br>点击下方按钮可以开启或关闭鬼神赐福系统(调整后需重置游戏方可生效)(暂时重做,按钮关闭)
+		const btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色,关=红色
+		const sgstrxsstr = '三国杀同人小说也是一个丰富的diy宝库,里面不乏优秀或有趣的设计<br>本人在此立下宏愿:每看一本三国杀同人文,都要将其中可以复现的武将都复现出来!<br>提示:右键子将包或查看武将简介可查看作者'; //<br>点击下方按钮可以开启或关闭鬼神赐福系统(调整后需重置游戏方可生效)(暂时重做,按钮关闭)
 		// sgstrxsstr += `
 		// 	<div style="position:relative;display:inline-block;width:200px;">
 		// 		<button id="guixieBtn"
@@ -150,13 +150,13 @@ const YBSL_rank = function () {
 	}
 	{
 		//斗罗大陆
-		var whjxbool = lib.config.YB_wuhunjuexing;
-		var booltext = whjxbool ? '武魂觉醒现在开了' : '武魂觉醒现在关着';
+		const whjxbool = lib.config.YB_wuhunjuexing;
+		const booltext = whjxbool ? '武魂觉醒现在开了' : '武魂觉醒现在关着';
 		// 根据状态设置不同颜色
-		var btnColor = whjxbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色,关=红色
+		const btnColor = whjxbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色,关=红色
 		//优先检索牌堆或牌库中的,和角色技能字段高度相近的,或角色技能中包含的牌名
 		//作废思路
-		var whjxstr = `
+		let whjxstr = `
 			开局每名角色觉醒武魂()
 			<br>随游戏进行,获得魂力,达到瓶颈之后,准备阶段可以发动猎魂,选择想要觉醒的方向:转化,过牌,辅助,卖血等,然后用南华天书般的系统摇几个技能供玩家选择,可以放弃选择,下次再选.魂力达到瓶颈后不会升级,但会积累,最高积累到下次升级的瓶颈.
 			<br>其他的有待设定

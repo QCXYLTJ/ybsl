@@ -7,11 +7,11 @@ const dynamicTranslate = {
 	// 	return '当你受到伤害后,你可以获得对你造成伤害的牌并摸X张牌(X为已损体力值且至少为一)';
 	// }
 	sgskjdbzjms_fenglei(player) {
-		var storage = player.storage.sgskjdbzjms_fenglei;
-		var str = '永续转换技';
-		var str2 = ',出牌阶段限一次:';
-		var strwind = '风,你弃置两张牌,直到你的下一回开始之前,你不在其他角色攻击范围内';
-		var strthunder = '雷,你摸两张牌,当前回合使用牌无视距离';
+		const storage = player.storage.sgskjdbzjms_fenglei;
+		let str = '永续转换技';
+		const str2 = ',出牌阶段限一次:';
+		const strwind = '风,你弃置两张牌,直到你的下一回开始之前,你不在其他角色攻击范围内';
+		const strthunder = '雷,你摸两张牌,当前回合使用牌无视距离';
 		if (storage) {
 			if (player.hasSkill('sgskjdbzjms_fenglei_thunder')) {
 				return '<span class=yellowtext>' + str + '</span>' + str2 + strwind + ';<span class=yellowtext>' + strthunder + '</span>';
@@ -79,8 +79,8 @@ const dynamicTranslate = {
 		return '当你失去一张' + (player.hasSkill('qmsgswkjsgj_shenci_dczhangcai_all') ? '' : '点数为8的') + '牌时,你可以摸X张牌(X为你手牌区里' + (player.hasSkill('qmsgswkjsgj_shenci_dczhangcai_all') ? '与此牌点数相同' : '点数为8') + '的牌数且至少为1)';
 	},
 	qmsgswkjsgj_shenci_cmhuituo(player) {
-		var list = ['该角色回复X点体力', '该角色摸X张牌'];
-		var storage = player.countMark('qmsgswkjsgj_shenci_cmhuituo') % 2;
+		const list = ['该角色回复X点体力', '该角色摸X张牌'];
+		const storage = player.countMark('qmsgswkjsgj_shenci_cmhuituo') % 2;
 		return `${get.poptip('rule_chihengji')}.当你受到1点伤害后,你可以令一名角色进行一次判定,若结果为红色,${list[storage]};若结果为黑色,${list[storage ? 0 : 1]}.(X为此次伤害的伤害点数)`;
 	},
 	qmsgswkjsgj_re_dcpingzhi(player) {
@@ -92,12 +92,11 @@ const dynamicTranslate = {
 		} else {
 			yang = `<span class='firetext'>${yang}</span>`;
 		}
-		let start = '转换技.出牌阶段限三次,你可观看一名角色的手牌并展示其中一张牌,',
-			end = '';
+		const start = '转换技.出牌阶段限三次,你可观看一名角色的手牌并展示其中一张牌,', end = '';
 		return `${start}阳:${yang};阴:${yin}${end}`;
 	},
 	sgsxjxfzmnl_yuqi(player) {
-		var info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
+		const info = lib.skill.sgsxjxfzmnl_yuqi.getInfo(player);
 		return '锁定技,有角色受伤后,若你与其距离小于等于<span class=thundertext>' + info[0] + '</span>,你可以观看牌堆顶<span class=firetext>' + info[1] + '</span>张牌,将其中至多<span class=greentext>' + info[2] + '</span>张交给受伤角色,至多<span class=yellowtext>' + info[3] + '</span>张自己获得,其余的牌放回牌堆顶';
 	},
 	sgsxjxfzmnl_miaojian(player) {
@@ -121,8 +120,7 @@ const dynamicTranslate = {
 		} else {
 			yang = `<span class='firetext'>${yang}</span>`;
 		}
-		let start = '转换技.①游戏开始时,你可以转换此技能状态;②出牌阶段每名角色限一次,你可以令一名其他角色交给你一张牌',
-			end = '';
+		const start = '转换技.①游戏开始时,你可以转换此技能状态;②出牌阶段每名角色限一次,你可以令一名其他角色交给你一张牌', end = '';
 		return `${start}阳:${yang};阴:${yin}${end}`;
 	},
 };

@@ -11,9 +11,9 @@ const YBSL_ybtf = function () {
 			mode: 'chess',
 			showcase(init) {
 				//简介动画
-				var node = this;
-				var player635;
-				var player1;
+				const node = this;
+				let player635;
+				let player1;
 				if (init) {
 					player635 = ui.create.player(null, true).init('db_ybsp_014liutianyu');
 					player635.node.marks.remove();
@@ -41,8 +41,8 @@ const YBSL_ybtf = function () {
 				} else {
 					player1 = this.player1;
 				}
-				var func = function () {
-					var player2 = ui.create.player(null, true).init('ybsl_022salt');
+				const func = function () {
+					const player2 = ui.create.player(null, true).init('ybsl_022salt');
 					player2.node.marks.remove();
 					player2.node.hp.remove();
 					player2.style.left = 'auto';
@@ -70,7 +70,7 @@ const YBSL_ybtf = function () {
 							node,
 						);
 						setTimeout(function () {
-							var popup1 = ui.create.div('.damage'); //字体
+							const popup1 = ui.create.div('.damage'); //字体
 							popup1.innerHTML = '520'; //字体的描述:
 							popup1.dataset.nature = 'wood'; //-1字体的颜色:木色
 							player1.appendChild(popup1); //player1身上飘字popup1
@@ -83,7 +83,7 @@ const YBSL_ybtf = function () {
 							});
 							setTimeout(function () {
 								game.linexy([player1.getLeft() + player1.offsetWidth / 2, player1.getTop() + player1.offsetHeight / 2, player2.getLeft() + player2.offsetWidth / 2, player2.getTop() + player2.offsetHeight / 2], node);
-								var popup = ui.create.div('.damage'); //字体的类别::伤害
+								const popup = ui.create.div('.damage'); //字体的类别::伤害
 								popup.innerHTML = '-999'; //字体的描述:-1
 								popup.dataset.nature = 'fire'; //-1字体的颜色:火
 								player2.appendChild(popup); //player2身上飘字popup

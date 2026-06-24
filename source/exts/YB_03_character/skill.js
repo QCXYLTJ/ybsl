@@ -9,20 +9,17 @@ const skill = {
 			player: 'changeHp',
 		},
 		initList() {
-			var list,
-				skills = [],
-				banned = [],
-				bannedInfo = ['游戏开始时'];
+			let list, skills = [], banned = [], bannedInfo = ['游戏开始时'];
 			if (get.mode() == 'guozhan') {
 				list = [];
-				for (var i in lib.characterPack.mode_guozhan) {
+				for (let i in lib.characterPack.mode_guozhan) {
 					list.push(i);
 				}
 			} else if (_status.connectMode) {
 				list = get.charactersOL();
 			} else {
 				list = [];
-				for (var i in lib.character) {
+				for (let i in lib.character) {
 					if (lib.filter.characterDisabled2(i) || lib.filter.characterDisabled(i)) {
 						continue;
 					}
@@ -33,8 +30,8 @@ const skill = {
 				if (i.indexOf('gz_jun') == 0) {
 					continue;
 				}
-				for (var j of lib.character[i][3]) {
-					var skill = lib.skill[j];
+				for (let j of lib.character[i][3]) {
+					const skill = lib.skill[j];
 					if (!skill || skill.zhuSkill || banned.includes(j)) {
 						continue;
 					}
@@ -68,7 +65,7 @@ const skill = {
 			if (!_status.xhly_yulong_list) {
 				lib.skill.xhly_yulong.initList();
 			}
-			var list = _status.xhly_yulong_list
+			let list = _status.xhly_yulong_list
 				.filter(function (i) {
 					return !player.hasSkill(i, null, null, false);
 				})
@@ -80,8 +77,8 @@ const skill = {
 				event.result = { bool: true, cost_data: list };
 			} else {
 				event.videoId = lib.status.videoId++;
-				var func = function (skills, id, target) {
-					var dialog = ui.create.dialog('forcebutton');
+				const func = function (skills, id, target) {
+					const dialog = ui.create.dialog('forcebutton');
 					dialog.videoId = id;
 					dialog.add('令' + get.translation(target) + '获得一个技能');
 					for (let i = 0; i < skills.length; i++) {
@@ -97,7 +94,7 @@ const skill = {
 				event.resultx = await player
 					.chooseControl(list)
 					.set('ai', function () {
-						var controls = _status.event.controls;
+						const controls = _status.event.controls;
 						// if (controls.includes("cslilu")) return "cslilu";
 						// if (controls.includes("zhichi")) return "zhichi";
 						return controls[0];
@@ -153,11 +150,10 @@ const skill = {
 		marktext: '鹤',
 		intro: {
 			content(storage, player, skill) {
-				var str = '';
-				var list = lib.skill.xhly_baihe.getBaihe(player),
-					list2 = player.storage.xhly_baihe_list;
+				let str = '';
+				let list = lib.skill.xhly_baihe.getBaihe(player), list2 = player.storage.xhly_baihe_list;
 				str += '';
-				for (var j = 0; j < list.length; j++) {
+				for (let j = 0; j < list.length; j++) {
 					if (j != 0) {
 						str += '、';
 					}
@@ -235,9 +231,8 @@ const skill = {
 		// 	else{game.log(player,',你好像已经学会了哦,'+get.translation(event.name)+'的'+get.translation(event.suit)+'变化')}
 		// },
 		content: async function (event, trigger, player) {
-			let name = trigger.card.name,
-				suit = trigger.cards[0].suit;
-			var result = await player
+			const name = trigger.card.name, suit = trigger.cards[0].suit;
+			const result = await player
 				.chooseControl('学习', 'cancel2')
 				.set('prompt2', '是否学习' + get.translation(event.name) + '的' + get.translation(event.suit) + '变化？')
 				.forResult();
@@ -264,7 +259,7 @@ const skill = {
 		intro: {
 			name: '学会的武技',
 			content(storage, player, skill) {
-				var str = '<br>';
+				let str = '<br>';
 				for (const i of player.storage.xhly_wuji_wuji) {
 					str += get.translation(i);
 					str += ':';
@@ -290,7 +285,7 @@ const skill = {
 			) {
 				return false;
 			}
-			var evt = lib.filter.filterCard;
+			let evt = lib.filter.filterCard;
 			if (event.filterCard) {
 				evt = event.filterCard;
 			}
@@ -306,7 +301,7 @@ const skill = {
 				// player.countCards('h',function(card){
 				// 	if(card.hasGaintag('xhly_wuji_draw'))card.classList.add('thrownhighlight');
 				// })
-				var list = [];
+				let list = [];
 				for (let i = 0; i < lib.inpile.length; i++) {
 					if (player.storage.xhly_wuji_wuji.includes(lib.inpile[i])) {
 						list.push(['<span style="color: #e328b7">' + get.YB_tobo2(player.storage.xhly_wuji_wuji[lib.inpile[i]]) + '</span>', lib.inpile[i]]);
@@ -321,7 +316,7 @@ const skill = {
 				if (_status.event.parent.type != 'phase') {
 					return 1;
 				}
-				var player = _status.event.player;
+				const player = _status.event.player;
 				if (['wugu', 'zhulu_card', 'yiyi', 'lulitongxin', 'lianjunshengyan', 'diaohulishan'].includes(button.link[2])) {
 					return 0;
 				}
@@ -333,8 +328,8 @@ const skill = {
 			backup(links, player) {
 				return {
 					filterCard(card, player) {
-						var suit = card.suit;
-						var list = player.storage.xhly_wuji_wuji[links[0][2]];
+						const suit = card.suit;
+						let list = player.storage.xhly_wuji_wuji[links[0][2]];
 						for (const i of list) {
 							if (i == suit) {
 								return card.hasGaintag('xhly_wuji_draw');
@@ -613,15 +608,15 @@ const skill = {
 			}
 		},
 		async content(event, trigger, player) {
-			var func = function () {
+			const func = function () {
 				if (!_status.characterlist) {
 					lib.skill.pingjian.initList();
 				}
-				var characters = _status.characterlist.filter((ch) => lib.character[ch][0] == 'female');
+				const characters = _status.characterlist.filter((ch) => lib.character[ch][0] == 'female');
 				// console.log(characters)
-				var character = characters.randomSort();
+				const character = characters.randomSort();
 				// console.log(character)
-				var name = character[0];
+				const name = character[0];
 				if (!lib.card['xhwzf_cangyan_' + name]) {
 					lib.card['xhwzf_cangyan_' + name] = {
 						fullimage: true,
@@ -634,7 +629,7 @@ const skill = {
 					// lib.translate.character='武将'
 					lib.translate['xhwzf_cangyan_' + name] = get.translation(name);
 				}
-				var card = game.createCard('xhwzf_cangyan_' + name, 'none', 'none');
+				const card = game.createCard('xhwzf_cangyan_' + name, 'none', 'none');
 				if (!_status.xhwzf_cangyan_characterlist) {
 					_status.xhwzf_cangyan_characterlist = [];
 				}
@@ -645,7 +640,7 @@ const skill = {
 				await player.gain(func(), 'gain2');
 				// card[0].addGaintag('xhwzf_cangyan');
 			} else {
-				var num = player.countCards('h', (c) => _status.xhwzf_cangyan_characterlist.includes(c));
+				const num = player.countCards('h', (c) => _status.xhwzf_cangyan_characterlist.includes(c));
 				if (num >= 1) {
 					await player.draw(2);
 				}

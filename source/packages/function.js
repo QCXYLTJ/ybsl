@@ -86,7 +86,7 @@ const YBSL_characterIntro = function (name) {
 	// if (lib.characterIntro[name]) {
 	// 	return lib.characterIntro[name];
 	// }
-	var tags = get.character(name, 4);
+	const tags = get.character(name, 4);
 	if (tags) {
 		for (let i = 0; i < tags.length; i++) {
 			if (tags[i].startsWith('des:')) {
@@ -110,7 +110,7 @@ const YBSL_characterIntro = function (name) {
 	// }
 }
 const characterIntro = function (name) {
-	var str = '';
+	let str = '';
 	if (lib.characterCopyright[name]) {
 		//版权信息
 		str += lib.characterCopyright[name];
@@ -135,7 +135,7 @@ const characterIntro = function (name) {
 	if (lib.characterIntro[name]) {
 		return str + lib.characterIntro[name];
 	}
-	var tags = get.character(name, 4);
+	const tags = get.character(name, 4);
 	if (tags) {
 		for (let i = 0; i < tags.length; i++) {
 			if (tags[i].startsWith('des:')) {
@@ -152,11 +152,11 @@ const characterIntro = function (name) {
 	return str + '暂无武将介绍';
 };
 const nodeintro = function (node, simple, evt) {
-	var uiintro = ui.create.dialog('hidden', 'notouchscroll');
+	const uiintro = ui.create.dialog('hidden', 'notouchscroll');
 	if (node.classList.contains('player') && !node.name) {
 		return uiintro;
 	}
-	var i, translation, intro, str;
+	let i, translation, intro, str;
 	if (node._nointro) {
 		return;
 	}
@@ -168,8 +168,8 @@ const nodeintro = function (node, simple, evt) {
 			lib.placePoppedDialog(uiintro, evt);
 		}
 	} else if (Array.isArray(node._customintro)) {
-		var caption = node._customintro[0];
-		var content = node._customintro[1];
+		let caption = node._customintro[0];
+		let content = node._customintro[1];
 		if (typeof caption == 'function') {
 			caption = caption(node);
 		}
@@ -227,7 +227,7 @@ const nodeintro = function (node, simple, evt) {
 				uiintro.add('<div class="text center">明置的手牌</div>');
 				uiintro.addSmall(shownHs);
 				if (allShown) {
-					var hs = node.getCards('h');
+					const hs = node.getCards('h');
 					hs.removeArray(shownHs);
 					if (hs.length) {
 						uiintro.add('<div class="text center">其他手牌</div>');
@@ -235,19 +235,19 @@ const nodeintro = function (node, simple, evt) {
 					}
 				}
 			} else if (allShown) {
-				var hs = node.getCards('h');
+				const hs = node.getCards('h');
 				if (hs.length) {
 					uiintro.add('<div class="text center">手牌</div>');
 					uiintro.addSmall(hs);
 				}
 			}
 		}
-		var skills = node.getSkills(null, false, false).slice(0);
-		var skills2 = game.filterSkills(skills, node);
+		const skills = node.getSkills(null, false, false).slice(0);
+		const skills2 = game.filterSkills(skills, node);
 		if (node == game.me && node.hiddenSkills.length) {
 			skills.addArray(node.hiddenSkills);
 		}
-		for (var i in node.disabledSkills) {
+		for (let i in node.disabledSkills) {
 			if (node.disabledSkills[i].length == 1 && node.disabledSkills[i][0] == i + '_awake' && !node.hiddenSkills.includes(i)) {
 				skills.add(i);
 			}
@@ -266,7 +266,7 @@ const nodeintro = function (node, simple, evt) {
 					}
 				}
 				if (node.forbiddenSkills[skills[i]]) {
-					var forbidstr = '<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>';
+					let forbidstr = '<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>';
 					if (node.forbiddenSkills[skills[i]].length) {
 						forbidstr += '(与' + get.translation(node.forbiddenSkills[skills[i]]) + '冲突)<br>';
 					} else {
@@ -277,7 +277,7 @@ const nodeintro = function (node, simple, evt) {
 				} else if (!skills2.includes(skills[i])) {
 					if (lib.skill[skills[i]].preHidden && get.mode() == 'guozhan') {
 						uiintro.add('<div><div class="skill" style="opacity:0.5">' + translation + '</div><div><span style="opacity:0.5">' + get.skillInfoTranslation(skills[i], node) + '</span><br><div class="underlinenode on gray" style="position:relative;padding-left:0;padding-top:7px">预亮技能</div></div></div>');
-						var underlinenode = uiintro.content.lastChild.querySelector('.underlinenode');
+						const underlinenode = uiintro.content.lastChild.querySelector('.underlinenode');
 						if (_status.prehidden_skills.includes(skills[i])) {
 							underlinenode.classList.remove('on');
 						}
@@ -289,14 +289,14 @@ const nodeintro = function (node, simple, evt) {
 				} else if (lib.skill[skills[i]].temp || !node.skills.includes(skills[i]) || lib.skill[skills[i]].thundertext) {
 					if (lib.skill[skills[i]].frequent || lib.skill[skills[i]].subfrequent) {
 						uiintro.add('<div><div class="skill thundertext thunderauto">' + translation + '</div><div class="thundertext thunderauto">' + get.skillInfoTranslation(skills[i], node) + '<br><div class="underlinenode on gray" style="position:relative;padding-left:0;padding-top:7px">自动发动</div></div></div>');
-						var underlinenode = uiintro.content.lastChild.querySelector('.underlinenode');
+						const underlinenode = uiintro.content.lastChild.querySelector('.underlinenode');
 						if (lib.skill[skills[i]].frequent) {
 							if (lib.config.autoskilllist.includes(skills[i])) {
 								underlinenode.classList.remove('on');
 							}
 						}
 						if (lib.skill[skills[i]].subfrequent) {
-							for (var j = 0; j < lib.skill[skills[i]].subfrequent.length; j++) {
+							for (let j = 0; j < lib.skill[skills[i]].subfrequent.length; j++) {
 								if (lib.config.autoskilllist.includes(skills[i] + '_' + lib.skill[skills[i]].subfrequent[j])) {
 									underlinenode.classList.remove('on');
 								}
@@ -312,14 +312,14 @@ const nodeintro = function (node, simple, evt) {
 					}
 				} else if (lib.skill[skills[i]].frequent || lib.skill[skills[i]].subfrequent) {
 					uiintro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '<br><div class="underlinenode on gray" style="position:relative;padding-left:0;padding-top:7px">自动发动</div></div></div>');
-					var underlinenode = uiintro.content.lastChild.querySelector('.underlinenode');
+					const underlinenode = uiintro.content.lastChild.querySelector('.underlinenode');
 					if (lib.skill[skills[i]].frequent) {
 						if (lib.config.autoskilllist.includes(skills[i])) {
 							underlinenode.classList.remove('on');
 						}
 					}
 					if (lib.skill[skills[i]].subfrequent) {
-						for (var j = 0; j < lib.skill[skills[i]].subfrequent.length; j++) {
+						for (let j = 0; j < lib.skill[skills[i]].subfrequent.length; j++) {
 							if (lib.config.autoskilllist.includes(skills[i] + '_' + lib.skill[skills[i]].subfrequent[j])) {
 								underlinenode.classList.remove('on');
 							}
@@ -331,7 +331,7 @@ const nodeintro = function (node, simple, evt) {
 					underlinenode.link = skills[i];
 					underlinenode.listen(ui.click.autoskill2);
 				} else if (lib.skill[skills[i]].clickable && node.isIn() && node.isUnderControl(true)) {
-					var intronode = uiintro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '<br><div class="menubutton skillbutton" style="position:relative;margin-top:5px">点击发动</div></div></div>').querySelector('.skillbutton');
+					const intronode = uiintro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '<br><div class="menubutton skillbutton" style="position:relative;margin-top:5px">点击发动</div></div></div>').querySelector('.skillbutton');
 					if (!_status.gameStarted || (lib.skill[skills[i]].clickableFilter && !lib.skill[skills[i]].clickableFilter(node))) {
 						intronode.classList.add('disabled');
 						intronode.style.opacity = 0.5;
@@ -373,7 +373,7 @@ const nodeintro = function (node, simple, evt) {
 		}
 		if (lib.config.right_range && _status.gameStarted) {
 			uiintro.add(ui.create.div('.placeholder'));
-			var table, tr, td;
+			let table, tr, td;
 			table = document.createElement('table');
 			tr = document.createElement('tr');
 			table.appendChild(tr);
@@ -395,8 +395,8 @@ const nodeintro = function (node, simple, evt) {
 			if (node == game.me || !game.me || !game.me.isIn()) {
 				td.innerHTML = '-';
 			} else {
-				var dist1 = get.numStr(Math.max(1, game.me.distanceTo(node)));
-				var dist2 = get.numStr(Math.max(1, node.distanceTo(game.me)));
+				const dist1 = get.numStr(Math.max(1, game.me.distanceTo(node)));
+				const dist2 = get.numStr(Math.max(1, node.distanceTo(game.me)));
 				if (dist1 == dist2) {
 					td.innerHTML = dist1;
 				} else {
@@ -405,7 +405,7 @@ const nodeintro = function (node, simple, evt) {
 			}
 			tr.appendChild(td);
 			td = document.createElement('td');
-			let handcardLimit = node.getHandcardLimit();
+			const handcardLimit = node.getHandcardLimit();
 			td.innerHTML = `${node.countCards('h')}/${handcardLimit >= 999 ? '∞' : handcardLimit}`;
 			tr.appendChild(td);
 			td = document.createElement('td');
@@ -414,7 +414,7 @@ const nodeintro = function (node, simple, evt) {
 			td = document.createElement('td');
 			(function () {
 				num = 0;
-				for (var j = 0; j < node.stat.length; j++) {
+				for (let j = 0; j < node.stat.length; j++) {
 					if (typeof node.stat[j].damage == 'number') {
 						num += node.stat[j].damage;
 					}
@@ -430,24 +430,24 @@ const nodeintro = function (node, simple, evt) {
 			}
 		}
 		if (!simple || get.is.phoneLayout()) {
-			var es = node.getCards('e');
+			const es = node.getCards('e');
 			for (let i = 0; i < es.length; i++) {
 				const special = [es[i]].concat(es[i].cards || []).find((j) => j.name == es[i].name && lib.card[j.name]?.cardPrompt);
-				var str = special ? lib.card[special.name].cardPrompt(special) : lib.translate[es[i].name + '_info'];
+				let str = special ? lib.card[special.name].cardPrompt(special) : lib.translate[es[i].name + '_info'];
 				uiintro.add('<div><div class="skill">' + es[i].outerHTML + '</div><div>' + str + '</div></div>');
 				uiintro.content.lastChild.querySelector('.skill>.card').style.transform = '';
 				if (lib.translate[es[i].name + '_append']) {
 					uiintro.add('<div class="text">' + lib.translate[es[i].name + '_append'] + '</div>');
 				}
 			}
-			var js = node.getCards('j');
+			const js = node.getCards('j');
 			for (let i = 0; i < js.length; i++) {
 				if (js[i].viewAs && js[i].viewAs != js[i].name) {
 					let html = js[i].outerHTML;
 					let cardInfo = lib.card[js[i].viewAs],
 						showCardIntro = true;
 					if (cardInfo.blankCard) {
-						var cardOwner = get.owner(js[i]);
+						const cardOwner = get.owner(js[i]);
 						if (cardOwner && !cardOwner.isUnderControl(true)) {
 							showCardIntro = false;
 						}
@@ -462,16 +462,16 @@ const nodeintro = function (node, simple, evt) {
 				uiintro.content.lastChild.querySelector('.skill>.card').style.transform = '';
 			}
 			if (get.is.phoneLayout()) {
-				var markCoutainer = ui.create.div('.mark-container.marks');
-				for (var i in node.marks) {
-					var nodemark = node.marks[i].cloneNode(true);
+				const markCoutainer = ui.create.div('.mark-container.marks');
+				for (let i in node.marks) {
+					const nodemark = node.marks[i].cloneNode(true);
 					nodemark.classList.add('pointerdiv');
 					nodemark.link = node.marks[i];
 					nodemark.style.transform = '';
 					markCoutainer.appendChild(nodemark);
 					nodemark.listen(function () {
 						uiintro.noresume = true;
-						var rect = this.link.getBoundingClientRect();
+						const rect = this.link.getBoundingClientRect();
 						ui.click.intro.call(this.link, {
 							clientX: rect.left + rect.width,
 							clientY: rect.top + rect.height / 2,
@@ -490,7 +490,7 @@ const nodeintro = function (node, simple, evt) {
 		if (!game.observe && _status.gameStarted && game.me && node != game.me) {
 			ui.throwEmotion = [];
 			uiintro.addText('发送交互表情');
-			var click = function () {
+			const click = function () {
 				if (_status.dragged) {
 					return;
 				}
@@ -500,7 +500,7 @@ const nodeintro = function (node, simple, evt) {
 				if (_status.throwEmotionWait) {
 					return;
 				}
-				var emotion = this.link;
+				const emotion = this.link;
 				if (game.online) {
 					game.send('throwEmotion', node, emotion);
 				} else {
@@ -520,13 +520,13 @@ const nodeintro = function (node, simple, evt) {
 					emotion == 'flower' || emotion == 'egg' ? 500 : 5000,
 				);
 			};
-			var td;
-			var table = document.createElement('div');
+			let td;
+			let table = document.createElement('div');
 			table.classList.add('add-setting');
 			table.style.margin = '0';
 			table.style.width = '100%';
 			table.style.position = 'relative';
-			var listi = ['flower', 'egg'];
+			let listi = ['flower', 'egg'];
 			for (let i = 0; i < listi.length; i++) {
 				td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 				ui.throwEmotion.add(td);
@@ -544,7 +544,7 @@ const nodeintro = function (node, simple, evt) {
 			table.style.margin = '0';
 			table.style.width = '100%';
 			table.style.position = 'relative';
-			var listi = ['wine', 'shoe'];
+			let listi = ['wine', 'shoe'];
 			if (game.me.storage.zhuSkill_shanli) {
 				listi = ['yuxisx', 'jiasuo'];
 			}
@@ -561,9 +561,9 @@ const nodeintro = function (node, simple, evt) {
 			}
 			uiintro.content.appendChild(table);
 		}
-		var modepack = lib.characterPack['mode_' + get.mode()];
+		const modepack = lib.characterPack['mode_' + get.mode()];
 		if (lib.config.show_favourite && lib.character[node.name] && game.players.includes(node) && (!modepack || !modepack[node.name]) && (!simple || get.is.phoneLayout())) {
-			var addFavourite = ui.create.div('.text.center.pointerdiv');
+			const addFavourite = ui.create.div('.text.center.pointerdiv');
 			addFavourite.link = node.name;
 			if (lib.config.favouriteCharacter.includes(node.name)) {
 				addFavourite.innerHTML = '移除收藏';
@@ -575,18 +575,18 @@ const nodeintro = function (node, simple, evt) {
 		}
 		if (!simple || get.is.phoneLayout()) {
 			if ((lib.config.change_skin || lib.skin) && !node.isUnseen()) {
-				var num = 1;
-				var introadded = false;
-				var createButtons = function (num, avatar2) {
+				let num = 1;
+				let introadded = false;
+				const createButtons = function (num, avatar2) {
 					if (!introadded) {
 						introadded = true;
 						uiintro.add('<div class="text center">更改皮肤</div>');
 					}
-					var buttons = ui.create.div('.buttons.smallzoom.scrollbuttons');
+					const buttons = ui.create.div('.buttons.smallzoom.scrollbuttons');
 					lib.setMousewheel(buttons);
-					var nameskin = avatar2 ? node.name2 : node.name1;
-					var nameskin2 = nameskin;
-					var gzbool = false;
+					let nameskin = avatar2 ? node.name2 : node.name1;
+					let nameskin2 = nameskin;
+					let gzbool = false;
 					if (nameskin.startsWith('gz_shibing')) {
 						nameskin = nameskin.slice(3, 11);
 					} else if (nameskin.startsWith('gz_')) {
@@ -594,7 +594,7 @@ const nodeintro = function (node, simple, evt) {
 						gzbool = true;
 					}
 					for (let i = 0; i <= num; i++) {
-						var button = ui.create.div('.button.character.pointerdiv', buttons, function () {
+						const button = ui.create.div('.button.character.pointerdiv', buttons, function () {
 							if (this._link) {
 								if (avatar2) {
 									lib.config.skin[nameskin] = this._link;
@@ -634,8 +634,8 @@ const nodeintro = function (node, simple, evt) {
 					}
 					uiintro.add(buttons);
 				};
-				var loadImage = function (avatar2) {
-					var img = new Image();
+				const loadImage = function (avatar2) {
+					const img = new Image();
 					img.onload = function () {
 						num++;
 						loadImage(avatar2);
@@ -652,9 +652,9 @@ const nodeintro = function (node, simple, evt) {
 							}
 						}
 					};
-					var nameskin = avatar2 ? node.name2 : node.name1;
-					var nameskin2 = nameskin;
-					var gzbool = false;
+					let nameskin = avatar2 ? node.name2 : node.name1;
+					let nameskin2 = nameskin;
+					let gzbool = false;
 					if (nameskin.startsWith('gz_shibing')) {
 						nameskin = nameskin.slice(3, 11);
 					} else if (nameskin.startsWith('gz_')) {
@@ -671,8 +671,8 @@ const nodeintro = function (node, simple, evt) {
 					}
 				} else {
 					setTimeout(function () {
-						var nameskin1 = node.name1;
-						var nameskin2 = node.name2;
+						let nameskin1 = node.name1;
+						let nameskin2 = node.name2;
 						if (nameskin1 && nameskin1.startsWith('gz_')) {
 							nameskin1 = nameskin1.slice(3);
 						}
@@ -691,11 +691,11 @@ const nodeintro = function (node, simple, evt) {
 		}
 		uiintro.add(ui.create.div('.placeholder.slim'));
 	} else if (node.classList.contains('mark') && node.info && node.parentNode && node.parentNode.parentNode && node.parentNode.parentNode.classList.contains('player')) {
-		var info = node.info;
-		var player = node.parentNode.parentNode;
+		const info = node.info;
+		const player = node.parentNode.parentNode;
 		if (info.name) {
 			if (typeof info.name == 'function') {
-				var named = info.name(player.storage[node.skill], player);
+				const named = info.name(player.storage[node.skill], player);
 				if (named) {
 					uiintro.add(named);
 				}
@@ -706,7 +706,7 @@ const nodeintro = function (node, simple, evt) {
 			uiintro.add(get.translation(node.skill));
 		}
 		if (typeof info.id == 'string' && info.id.startsWith('subplayer') && player.isUnderControl(true) && player.storage[info.id] && !_status.video) {
-			var storage = player.storage[info.id];
+			const storage = player.storage[info.id];
 			uiintro.addText('当前体力:' + storage.hp + '/' + storage.maxHp);
 			if (storage.hs.length) {
 				uiintro.addText('手牌区');
@@ -718,9 +718,9 @@ const nodeintro = function (node, simple, evt) {
 			}
 		}
 		if (typeof info.mark == 'function') {
-			var stint = info.mark(uiintro, player.storage[node.skill], player);
+			const stint = info.mark(uiintro, player.storage[node.skill], player);
 			if (stint) {
-				var placetext = uiintro.add('<div class="text" style="display:inline">' + stint + '</div>');
+				const placetext = uiintro.add('<div class="text" style="display:inline">' + stint + '</div>');
 				if (!stint.startsWith('<div class="skill"')) {
 					uiintro._place_text = placetext;
 				}
@@ -732,12 +732,12 @@ const nodeintro = function (node, simple, evt) {
 				// }
 			}
 		} else {
-			var stint = get.storageintro(info.content, player.storage[node.skill], player, uiintro, node.skill);
+			const stint = get.storageintro(info.content, player.storage[node.skill], player, uiintro, node.skill);
 			if (stint) {
 				if (stint[0] == '@') {
 					uiintro.add('<div class="caption">' + stint.slice(1) + '</div>');
 				} else {
-					var placetext = uiintro.add('<div class="text" style="display:inline">' + stint + '</div>');
+					const placetext = uiintro.add('<div class="text" style="display:inline">' + stint + '</div>');
 					if (!stint.startsWith('<div class="skill"')) {
 						uiintro._place_text = placetext;
 					}
@@ -756,11 +756,11 @@ const nodeintro = function (node, simple, evt) {
 		if (ui.arena.classList.contains('observe') && node.parentNode.classList.contains('handcards')) {
 			return;
 		}
-		var name = node.name;
+		let name = node.name;
 		if (node.parentNode.cardMod) {
-			var moded = false;
-			for (var i in node.parentNode.cardMod) {
-				var item = node.parentNode.cardMod[i](node);
+			let moded = false;
+			for (let i in node.parentNode.cardMod) {
+				const item = node.parentNode.cardMod[i](node);
 				if (Array.isArray(item)) {
 					moded = true;
 					uiintro.add(item[0]);
@@ -774,19 +774,18 @@ const nodeintro = function (node, simple, evt) {
 		if (node.link && node.link.name && lib.card[node.link.name]) {
 			name = node.link.name;
 		}
-		var cardPosition = get.position(node);
+		const cardPosition = get.position(node);
 		if ((cardPosition === 'e' || cardPosition === 'j') && node.viewAs && node.viewAs != name) {
 			uiintro.add(get.translation(node.viewAs));
-			var cardInfo = lib.card[node.viewAs],
-				showCardIntro = true;
-			var cardOwner = get.owner(node);
+			let cardInfo = lib.card[node.viewAs], showCardIntro = true;
+			const cardOwner = get.owner(node);
 			if (cardInfo.blankCard) {
 				if (cardOwner && !cardOwner.isUnderControl(true)) {
 					showCardIntro = false;
 				}
 			}
 			if (cardOwner) {
-				var sourceVCard = cardOwner.getVCards(cardPosition).find((card) => card.cards?.includes(node));
+				const sourceVCard = cardOwner.getVCards(cardPosition).find((card) => card.cards?.includes(node));
 				if (showCardIntro && sourceVCard) {
 					uiintro.add('<div class="text center">(' + get.translation(get.translation(sourceVCard.cards)) + ')</div>');
 				}
@@ -798,8 +797,8 @@ const nodeintro = function (node, simple, evt) {
 			uiintro.add(get.translation(node));
 		}
 		if (node._banning) {
-			var clickBanned = function () {
-				var banned = lib.config[this.bannedname] || [];
+			const clickBanned = function () {
+				const banned = lib.config[this.bannedname] || [];
 				if (banned.includes(name)) {
 					banned.remove(name);
 				} else {
@@ -811,11 +810,11 @@ const nodeintro = function (node, simple, evt) {
 					node.updateBanned();
 				}
 			};
-			var modeorder = lib.config.modeorder || [];
-			for (var i in lib.mode) {
+			const modeorder = lib.config.modeorder || [];
+			for (let i in lib.mode) {
 				modeorder.add(i);
 			}
-			var list = [];
+			const list = [];
 			uiintro.contentContainer.listen(function (e) {
 				ui.click.touchpop();
 				e.stopPropagation();
@@ -835,10 +834,10 @@ const nodeintro = function (node, simple, evt) {
 			if (lib.card[name] && lib.card[name].type == 'trick') {
 				list.push('zhinang_tricks');
 			}
-			var page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
-			var banall = false;
+			const page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
+			let banall = false;
 			for (let i = 0; i < list.length; i++) {
-				var cfg = ui.create.div('.config', list[i] == 'zhinang_tricks' ? '设为智囊' : lib.translate[list[i]] + '模式', page);
+				const cfg = ui.create.div('.config', list[i] == 'zhinang_tricks' ? '设为智囊' : lib.translate[list[i]] + '模式', page);
 				cfg.classList.add('toggle');
 				if (list[i] == 'zhinang_tricks') {
 					cfg.bannedname = (node._banning == 'offline' ? '' : 'connect_') + 'zhinang_tricks';
@@ -849,7 +848,7 @@ const nodeintro = function (node, simple, evt) {
 				}
 				cfg.listen(clickBanned);
 				ui.create.div(ui.create.div(cfg));
-				var banned = lib.config[cfg.bannedname] || [];
+				const banned = lib.config[cfg.bannedname] || [];
 				if (banned.includes(name) == (list[i] == 'zhinang_tricks')) {
 					cfg.classList.add('on');
 					banall = true;
@@ -889,7 +888,7 @@ const nodeintro = function (node, simple, evt) {
 					} else if (lib.card[name] && lib.card[name].type && lib.translate[lib.card[name].type]) {
 						typeinfo += get.translation(lib.card[name].type) + '牌';
 					}
-					let vcard = get
+					const vcard = get
 						.owner(node)
 						?.getVCards(get.position(node))
 						?.find((card) => card.cards?.includes(node));
@@ -915,9 +914,9 @@ const nodeintro = function (node, simple, evt) {
 						uiintro.add('<div class="text center">' + lib.card[name].addinfomenu + '</div>');
 					}
 					if (get.subtype(name, false) == 'equip1') {
-						var added = false;
+						let added = false;
 						if (lib.card[node.name] && lib.card[node.name].distance) {
-							var dist = lib.card[node.name].distance;
+							const dist = lib.card[node.name].distance;
 							if (dist.attackFrom) {
 								added = true;
 								uiintro.add('<div class="text center">攻击范围:' + (-dist.attackFrom + 1) + '</div>');
@@ -929,13 +928,12 @@ const nodeintro = function (node, simple, evt) {
 					}
 				}
 				if (lib.card[name].cardPrompt) {
-					var str = lib.card[name].cardPrompt(node.link || node),
-						placetext = uiintro.add('<div class="text" style="display:inline">' + str + '</div>');
+					let str = lib.card[name].cardPrompt(node.link || node), placetext = uiintro.add('<div class="text" style="display:inline">' + str + '</div>');
 					if (!str.startsWith('<div class="skill"')) {
 						uiintro._place_text = placetext;
 					}
 				} else if (lib.translate[name + '_info']) {
-					var placetext = uiintro.add('<div class="text" style="display:inline">' + lib.translate[name + '_info'] + '</div>');
+					const placetext = uiintro.add('<div class="text" style="display:inline">' + lib.translate[name + '_info'] + '</div>');
 					if (!lib.translate[name + '_info'].startsWith('<div class="skill"')) {
 						uiintro._place_text = placetext;
 					}
@@ -1003,8 +1001,8 @@ const nodeintro = function (node, simple, evt) {
 			}
 		}
 		if (node._banning) {
-			var clickBanned = function () {
-				var banned = lib.config[this.bannedname] || [];
+			const clickBanned = function () {
+				const banned = lib.config[this.bannedname] || [];
 				if (banned.includes(character)) {
 					banned.remove(character);
 				} else {
@@ -1016,11 +1014,11 @@ const nodeintro = function (node, simple, evt) {
 					node.updateBanned();
 				}
 			};
-			var modeorder = lib.config.modeorder || [];
-			for (var i in lib.mode) {
+			const modeorder = lib.config.modeorder || [];
+			for (let i in lib.mode) {
 				modeorder.add(i);
 			}
-			var list = [];
+			const list = [];
 			uiintro.contentContainer.listen(function (e) {
 				ui.click.touchpop();
 				e.stopPropagation();
@@ -1040,10 +1038,10 @@ const nodeintro = function (node, simple, evt) {
 					list.push(modeorder[i]);
 				}
 			}
-			var page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
-			var banall = false;
+			const page = ui.create.div('.menu-buttons.configpopped', uiintro.content);
+			let banall = false;
 			for (let i = 0; i < list.length; i++) {
-				var cfg = ui.create.div('.config', lib.translate[list[i]] + '模式', page);
+				const cfg = ui.create.div('.config', lib.translate[list[i]] + '模式', page);
 				cfg.classList.add('toggle');
 				if (node._banning == 'offline') {
 					cfg.bannedname = list[i] + '_banned';
@@ -1052,14 +1050,14 @@ const nodeintro = function (node, simple, evt) {
 				}
 				cfg.listen(clickBanned);
 				ui.create.div(ui.create.div(cfg));
-				var banned = lib.config[cfg.bannedname] || [];
+				const banned = lib.config[cfg.bannedname] || [];
 				if (!banned.includes(character)) {
 					cfg.classList.add('on');
 					banall = true;
 				}
 			}
 			if (node._banning == 'offline') {
-				var cfg = ui.create.div('.config', '随机选将可用', page);
+				const cfg = ui.create.div('.config', '随机选将可用', page);
 				cfg.classList.add('toggle');
 				cfg.listen(function () {
 					this.classList.toggle('on');
@@ -1094,7 +1092,7 @@ const nodeintro = function (node, simple, evt) {
 			}).style.marginTop = '-10px';
 			ui.create.div('.placeholder.slim', uiintro.content);
 		} else {
-			var skills = get.character(character, 3);
+			const skills = get.character(character, 3);
 			for (let i = 0; i < skills.length; i++) {
 				if (lib.translate[skills[i] + '_info']) {
 					if (lib.translate[skills[i] + '_ab']) {
@@ -1111,9 +1109,9 @@ const nodeintro = function (node, simple, evt) {
 					}
 				}
 			}
-			var modepack = lib.characterPack['mode_' + get.mode()];
+			const modepack = lib.characterPack['mode_' + get.mode()];
 			if (lib.config.show_favourite && lib.character[node.link] && (!modepack || !modepack[node.link]) && (!simple || get.is.phoneLayout())) {
-				var addFavourite = ui.create.div('.text.center.pointerdiv');
+				const addFavourite = ui.create.div('.text.center.pointerdiv');
 				addFavourite.link = node.link;
 				addFavourite.style.marginBottom = '15px';
 				if (lib.config.favouriteCharacter.includes(node.link)) {
@@ -1126,25 +1124,25 @@ const nodeintro = function (node, simple, evt) {
 			} else {
 				uiintro.add(ui.create.div('.placeholder.slim'));
 			}
-			var addskin = false;
+			let addskin = false;
 			if (node.parentNode.classList.contains('menu-buttons')) {
 				addskin = !lib.config.show_charactercard;
 			} else {
 				addskin = lib.config.change_skin || lib.skin;
 			}
 			if (addskin && (!simple || get.is.phoneLayout())) {
-				var num = 1;
-				var introadded = false;
-				var nameskin = node.link;
-				var nameskin2 = nameskin;
-				var gzbool = false;
+				let num = 1;
+				let introadded = false;
+				let nameskin = node.link;
+				let nameskin2 = nameskin;
+				let gzbool = false;
 				if (nameskin.startsWith('gz_shibing')) {
 					nameskin = nameskin.slice(3, 11);
 				} else if (nameskin.startsWith('gz_')) {
 					nameskin = nameskin.slice(3);
 					gzbool = true;
 				}
-				var createButtons = function (num) {
+				const createButtons = function (num) {
 					if (!num) {
 						return;
 					}
@@ -1152,10 +1150,10 @@ const nodeintro = function (node, simple, evt) {
 						introadded = true;
 						uiintro.add('<div class="text center">更改皮肤</div>');
 					}
-					var buttons = ui.create.div('.buttons.smallzoom.scrollbuttons');
+					const buttons = ui.create.div('.buttons.smallzoom.scrollbuttons');
 					lib.setMousewheel(buttons);
 					for (let i = 0; i <= num; i++) {
-						var button = ui.create.div('.button.character.pointerdiv', buttons, function () {
+						const button = ui.create.div('.button.character.pointerdiv', buttons, function () {
 							if (this._link) {
 								lib.config.skin[nameskin] = this._link;
 								node.style.backgroundImage = this.style.backgroundImage;
@@ -1183,8 +1181,8 @@ const nodeintro = function (node, simple, evt) {
 					}
 					uiintro.add(buttons);
 				};
-				var loadImage = function () {
-					var img = new Image();
+				const loadImage = function () {
+					const img = new Image();
 					img.onload = function () {
 						num++;
 						loadImage();
@@ -1219,9 +1217,9 @@ const nodeintro = function (node, simple, evt) {
 			uiintro._onclose = function () {
 				ui.control.show();
 			};
-			var confirmbutton;
+			let confirmbutton;
 			for (let i = 0; i < uiintro.buttons.length; i++) {
-				var button = uiintro.buttons[i];
+				const button = uiintro.buttons[i];
 				button.classList.add('pointerdiv');
 				if (button.link.classList.contains('selected')) {
 					button.classList.add('selected');
@@ -1241,7 +1239,7 @@ const nodeintro = function (node, simple, evt) {
 					}
 				});
 			}
-			var buttoncontainer = uiintro.add(ui.create.div());
+			const buttoncontainer = uiintro.add(ui.create.div());
 			buttoncontainer.style.display = 'block';
 			confirmbutton = ui.create.div(
 				'.menubutton.large.pointerdiv',
@@ -1264,7 +1262,7 @@ const nodeintro = function (node, simple, evt) {
 			}, 300);
 		})();
 	} else if (node.classList.contains('identity') && node.dataset.career) {
-		var career = node.dataset.career;
+		const career = node.dataset.career;
 		uiintro.add(get.translation(career));
 		uiintro.add('<div class="text center" style="padding-bottom:5px">' + lib.translate['_' + career + '_skill_info'] + '</div>');
 	} else if (node.classList.contains('skillbar')) {
@@ -1322,10 +1320,10 @@ const nodeintro = function (node, simple, evt) {
 	return uiintro;
 };
 const typeimage = function (pagename, filename) {
-	for (var i in pagename.character) {
+	for (let i in pagename.character) {
 		if (pagename.character[i].YB_mjz) {
 			// return ;
-			var infoy = pagename.character[i].YB_mjz;
+			const infoy = pagename.character[i].YB_mjz;
 			pagename.character[i].img = `image/character/${infoy}.jpg`;
 			// pagename.character[i].die = `${infoy}`;
 			if (!pagename.character[i].dieAudios) {
@@ -1333,11 +1331,11 @@ const typeimage = function (pagename, filename) {
 			}
 		} else {
 			if (Array.isArray(pagename.character[i])) {
-				var infoy = pagename.character[i][4];
-				for (var infox of infoy) {
+				const infoy = pagename.character[i][4];
+				for (const infox of infoy) {
 					if (infox.startsWith('YB_mjz:')) {
 						// return ;
-						var char = infox.slice(7);
+						const char = infox.slice(7);
 						pagename.character[i][4].push(`img:image/character/${char}.jpg`);
 						pagename.character[i][4].push(`die:${char}`);
 						// if(!infox.startsWith('dieAudios:')){
@@ -1348,15 +1346,15 @@ const typeimage = function (pagename, filename) {
 		}
 	}
 	if (pagename.characterSubstitute && Object.keys(pagename.characterSubstitute).length) {
-		var substitute = pagename.characterSubstitute;
-		for (var i in substitute) {
-			for (var k = 0; k < substitute[i].length; k++) {
+		const substitute = pagename.characterSubstitute;
+		for (let i in substitute) {
+			for (let k = 0; k < substitute[i].length; k++) {
 				if (Array.isArray(substitute[i][k])) {
-					var infoy = substitute[i][k][1];
-					for (var infox of infoy) {
+					const infoy = substitute[i][k][1];
+					for (const infox of infoy) {
 						if (infox.startsWith('YB_mjz:')) {
 							// return ;
-							var char = infox.slice(7);
+							const char = infox.slice(7);
 							pagename.characterSubstitute[i][k][1].push(`img:image/character/${char}.jpg`);
 							// if(noneStartWithPrefix(pagename.characterSubstitute[i][k][1],'die:')){
 							// 	pagename.characterSubstitute[i][k][1].push(`die:../../audio/die/${i}.mp3`);
@@ -1388,9 +1386,9 @@ const typeimage = function (pagename, filename) {
 	// console.log(noneStartWithExt(testArray1)); // true
 	// console.log(noneStartWithExt(testArray2)); // false
 	// console.log(noneStartWithExt(testArray3)); // false
-	for (var i in pagename.character) {
+	for (let i in pagename.character) {
 		if (Array.isArray(pagename.character[i])) {
-			var infoy = pagename.character[i][4];
+			const infoy = pagename.character[i][4];
 			if (noneStartWithPrefix(infoy, 'YB_mjz:')) {
 				if (noneStartWithPrefix(infoy, 'ext:')) {
 					pagename.character[i][4].push(`ext:夜白神略/image/${filename}/${i}.jpg`);
@@ -1411,11 +1409,11 @@ const typeimage = function (pagename, filename) {
 		}
 	}
 	if (pagename.characterSubstitute && Object.keys(pagename.characterSubstitute).length) {
-		var substitute = pagename.characterSubstitute;
-		for (var i in substitute) {
-			for (var k = 0; k < substitute[i].length; k++) {
+		const substitute = pagename.characterSubstitute;
+		for (let i in substitute) {
+			for (let k = 0; k < substitute[i].length; k++) {
 				if (Array.isArray(substitute[i][k])) {
-					var infoy = substitute[i][k][1];
+					const infoy = substitute[i][k][1];
 					if (noneStartWithPrefix(infoy, 'YB_mjz:')) {
 						if (noneStartWithPrefix(infoy, 'ext:')) {
 							pagename.characterSubstitute[i][k][1].push(`img:extension/夜白神略/image/${filename}/${pagename.characterSubstitute[i][k][0]}.jpg`);

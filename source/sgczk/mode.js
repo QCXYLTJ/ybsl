@@ -11,7 +11,7 @@ export { sgczk };
 //         },
 //     }
 // }
-var sgczk = function () {
+const sgczk = function () {
 	game.addMode(
 		'sgczk',
 		{

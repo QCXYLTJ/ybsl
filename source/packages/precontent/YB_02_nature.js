@@ -19,7 +19,7 @@ const YBSL_nature = function () {
 			if (typeof card == 'object' && !Array.isArray(card)) {
 				return get.YB_nature(card.nature);
 			}
-			var nature = card;
+			let nature = card;
 			if (nature != '' && nature != null && nature != undefined && !Array.isArray(nature)) {
 				if (typeof nature == 'string') {
 					if (nature.includes('|')) {
@@ -40,8 +40,8 @@ const YBSL_nature = function () {
 		 * @returns 输出所有属性(按顺序排列
 		 */
 		get.YB_natureList = function () {
-			var listxx = [];
-			for (var kkk of lib.inpile_nature) {
+			const listxx = [];
+			for (let kkk of lib.inpile_nature) {
 				kkk = get.YB_nature(kkk);
 				if (!listxx.includes(kkk)) {
 					listxx.push(kkk);
@@ -137,7 +137,7 @@ const YBSL_nature = function () {
 			},
 			content() {
 				if (game.countPlayer((c) => c.isLinked() && c != player) > 0) {
-					var targets = game.filterPlayer((c) => c.isLinked() && c != player);
+					const targets = game.filterPlayer((c) => c.isLinked() && c != player);
 					trigger.windLinked = targets;
 				}
 				// trigger.nature.remove('YB_wind');
@@ -178,7 +178,7 @@ const YBSL_nature = function () {
 				}
 				('step 2');
 				if (event.targets.length) {
-					var target = event.targets.shift();
+					const target = event.targets.shift();
 					target.damage.apply(target, event._args.slice(0)).windLinked2 = true;
 					event.redo();
 				}

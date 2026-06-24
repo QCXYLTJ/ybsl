@@ -1,14 +1,14 @@
 ﻿import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
 import { ybslb_update } from './update.js';
-var num = ybslb_update.version;
-var text = ybslb_update[num].changeLog;
+const num = ybslb_update.version;
+const text = ybslb_update[num].changeLog;
 export const config = {
 	ybsl_gengxingonggao: {
 		name: '<span class="yellowtext">更新公告</span><span style="color: #ff00cc"><font size="4px">▶▶▶</font></span>',
 		clear: true,
 		onclick() {
 			if (this.ybsl_gengxingonggao == undefined) {
-				var more = ui.create.div('.ybsl_gengxingonggao', '<p font-size:12px; line-height:14px; text-shadow: 0 0 2px black; text-align: left;">当前版本:' + num + '<br>' + text.join('<br>') + '</p>');
+				const more = ui.create.div('.ybsl_gengxingonggao', '<p font-size:12px; line-height:14px; text-shadow: 0 0 2px black; text-align: left;">当前版本:' + num + '<br>' + text.join('<br>') + '</p>');
 				this.parentNode.insertBefore(more, this.nextSibling);
 				this.ybsl_gengxingonggao = more;
 				this.innerHTML = '<span class="yellowtext">更新公告</span><span style="color: #ff00cc"><font size="4px">▼▼▼</font></span>';
@@ -29,8 +29,8 @@ export const config = {
 		clear: true,
 		onclick() {
 			if (this.help == undefined) {
-				var log = ['未加入到启动代码的那些东西别乱动,都是没做完,不能用的<br>', '除原版马均公式外,还有以下马均不能的:', '· <span class=firetext>王追</span>可升级成为<span class=yellowtext>乌云踏雪</span>,', '· <span class=firetext>赤兔</span>可升级为<span class=yellowtext>烈焰赤兔</span>,', '· <span class=firetext>朱雀扇</span>、<span class=firetext>赤炎琴</span>和<span class=firetext>五行扇</span>可升级为<span class=yellowtext>北斗七星扇</span>,', '· <span class=firetext>倚天剑</span>可升级为<span class=yellowtext>七星龙渊剑</span>,', '· ♠️️️<span class=firetext>闪电</span>、<span class=firetext>太公阴符</span>和<span class=firetext>浮雷</span>可升级为<span class=yellowtext>阴勾玉</span>,', '· 非♠️️️<span class=firetext>闪电</span>、<span class=firetext>洪水</span>和<span class=firetext>火山</span>可升级为<span class=yellowtext>阳勾玉</span>,', '· <span class=firetext>阴/阳勾玉</span>在装备区时,用<span class=firetext>阳/阴勾玉</span>替掉就会合成<span class=yellowtext>天雷玉璧</span>,', '· <span class=firetext>天雷玉璧</span>可升级为<span class=yellowtext>神雷玉璧</span>,', '· <span class=firetext>毒</span>可锻造为<span class=yellowtext>毒箭</span>,', '· <span class=firetext>青龙刀</span>可锻造为<span class=yellowtext>锁龙偃月刀</span>,', '· <span class=firetext>方天画戟</span>和<span class=firetext>乌铁锁链</span>可锻造为<span class=yellowtext>方天锁链鞭</span>', '· <span class=firetext>铜雀</span>可锻造为<span class=yellowtext>界铜雀</span>', '· <span class=firetext>护心镜</span>可锻造为<span class=yellowtext>护心铠</span>'];
-				var more = ui.create.div('.help', '<div style="border:2px solid gray"><P align=left>' + log.join('<br>') + '</P>');
+				const log = ['未加入到启动代码的那些东西别乱动,都是没做完,不能用的<br>', '除原版马均公式外,还有以下马均不能的:', '· <span class=firetext>王追</span>可升级成为<span class=yellowtext>乌云踏雪</span>,', '· <span class=firetext>赤兔</span>可升级为<span class=yellowtext>烈焰赤兔</span>,', '· <span class=firetext>朱雀扇</span>、<span class=firetext>赤炎琴</span>和<span class=firetext>五行扇</span>可升级为<span class=yellowtext>北斗七星扇</span>,', '· <span class=firetext>倚天剑</span>可升级为<span class=yellowtext>七星龙渊剑</span>,', '· ♠️️️<span class=firetext>闪电</span>、<span class=firetext>太公阴符</span>和<span class=firetext>浮雷</span>可升级为<span class=yellowtext>阴勾玉</span>,', '· 非♠️️️<span class=firetext>闪电</span>、<span class=firetext>洪水</span>和<span class=firetext>火山</span>可升级为<span class=yellowtext>阳勾玉</span>,', '· <span class=firetext>阴/阳勾玉</span>在装备区时,用<span class=firetext>阳/阴勾玉</span>替掉就会合成<span class=yellowtext>天雷玉璧</span>,', '· <span class=firetext>天雷玉璧</span>可升级为<span class=yellowtext>神雷玉璧</span>,', '· <span class=firetext>毒</span>可锻造为<span class=yellowtext>毒箭</span>,', '· <span class=firetext>青龙刀</span>可锻造为<span class=yellowtext>锁龙偃月刀</span>,', '· <span class=firetext>方天画戟</span>和<span class=firetext>乌铁锁链</span>可锻造为<span class=yellowtext>方天锁链鞭</span>', '· <span class=firetext>铜雀</span>可锻造为<span class=yellowtext>界铜雀</span>', '· <span class=firetext>护心镜</span>可锻造为<span class=yellowtext>护心铠</span>'];
+				const more = ui.create.div('.help', '<div style="border:2px solid gray"><P align=left>' + log.join('<br>') + '</P>');
 				this.parentNode.insertBefore(more, this.nextSibling);
 				this.help = more;
 				this.innerHTML = '<span class="yellowtext">查看介绍</span><span style="color: #ff00cc"><font size="4px">▼▼▼</font></span>';
@@ -66,7 +66,7 @@ export const config = {
 		clear: true,
 		onclick() {
 			if (this.jiaqun == undefined) {
-				var more = ui.create.div('.jiaqun', '<div style="border:2px solid gray"><span><img style=width:238px src=' + lib.assetURL + 'extension/夜白神略/ybslb_QQ.jpg></span>');
+				const more = ui.create.div('.jiaqun', '<div style="border:2px solid gray"><span><img style=width:238px src=' + lib.assetURL + 'extension/夜白神略/ybslb_QQ.jpg></span>');
 				this.parentNode.insertBefore(more, this.nextSibling);
 				this.jiaqun = more;
 				this.innerHTML = '<span class="yellowtext">欢迎加群</span><span style="color: #ff00cc"><font size="4px">▼▼▼</font></span>';
@@ -96,7 +96,7 @@ export const config = {
 		clear: true,
 		onclick() {
 			if (this.help == undefined) {
-				var log = [
+				const log = [
 					'有点长,阅读全文需做好心理准备<br>',
 					'· YB_HpTo',
 					'完整写法为:player.YB_HpTo(num),括号内填写整数即可',
@@ -152,7 +152,7 @@ export const config = {
 					'作用是不重复的获取cards每个元素的get[i]属性.<br>',
 					'',
 				];
-				var more = ui.create.div('.help', '<div style="border:2px solid gray"><P align=left>' + log.join('<br>') + '</P>');
+				const more = ui.create.div('.help', '<div style="border:2px solid gray"><P align=left>' + log.join('<br>') + '</P>');
 				this.parentNode.insertBefore(more, this.nextSibling);
 				this.help = more;
 				this.innerHTML = '<span class="yellowtext">夜白函数详情说明</span><span style="color: #ff00cc"><font size="4px">▼▼▼</font></span>';

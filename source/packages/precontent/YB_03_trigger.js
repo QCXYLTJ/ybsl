@@ -125,7 +125,7 @@ const YBSL_trigger = function () {
 				/**
 				 * 必须开启神鬼赐福才能初始化
 				 */
-				var YB_shenguiCharacter = {
+				const YB_shenguiCharacter = {
 					boss_hundun: {
 						sex: 'male',
 						group: 'qun',
@@ -428,7 +428,7 @@ const YBSL_trigger = function () {
 						isBossAllowed: true,
 					},
 				};
-				for (var i in YB_shenguiCharacter) {
+				for (let i in YB_shenguiCharacter) {
 					YB_shenguiCharacter[i].img = `image/mode/boss/character/${i}.jpg`;
 					lib.character[i] = YB_shenguiCharacter[i];
 				}
@@ -452,18 +452,18 @@ const YBSL_trigger = function () {
 				lib.translate.YB_boss = 'boss武将';
 				lib.translate.YB_boss_character_config = "<span style='color: #e1ff00'>boss武将</span>";
 				lib.element.player.YB_shenguicifu = function (k) {
-					var next = game.createEvent('YB_shenguicifu', false);
+					const next = game.createEvent('YB_shenguicifu', false);
 					next.player = this;
 					next.k = k;
 					next.setContent(function () {
 						'step 0';
-						var listx = ['boss_xiaogui', 'boss_dagui', 'boss_yanluo', 'boss_xiongshou'];
-						var list = lib.characterSort.YB_boss[listx[event.k - 1]];
-						var char = list[Math.floor(Math.random() * list.length)];
-						var skills = lib.character[char][3];
+						const listx = ['boss_xiaogui', 'boss_dagui', 'boss_yanluo', 'boss_xiongshou'];
+						const list = lib.characterSort.YB_boss[listx[event.k - 1]];
+						const char = list[Math.floor(Math.random() * list.length)];
+						const skills = lib.character[char][3];
 						skills.filter((item) => !player.skills.includes(item));
 						if (skills.length) {
-							var skill = skills[Math.floor(Math.random() * skills.length)];
+							const skill = skills[Math.floor(Math.random() * skills.length)];
 						}
 						function shuffleArray(array) {
 							for (let i = array.length - 1; i > 0; i--) {
@@ -476,9 +476,9 @@ const YBSL_trigger = function () {
 						// const arr = [1, 2, 3, 4, 5];
 						// shuffleArray(arr);
 						// console.log(arr); // 可能输出:[3, 1, 5, 2, 4](随机顺序)
-						var suit = ['spade', 'heart', 'club', 'diamond'];
+						const suit = ['spade', 'heart', 'club', 'diamond'];
 						shuffleArray(suit);
-						var list_cifu = [];
+						const list_cifu = [];
 						list_cifu.push(get.translation(suit[0]) + '增加一点体力上限并回复一点体力');
 						list_cifu.push(get.translation(suit[1]) + '变为鬼势力');
 						if (skill) {
@@ -490,14 +490,14 @@ const YBSL_trigger = function () {
 						event.videoId = lib.status.videoId++;
 						game.broadcastAll(
 							function (player, id, list_cifu, char) {
-								var str = get.translation(char) + '赐福';
-								var str;
+								let str = get.translation(char) + '赐福';
+								let str;
 								if (player == game.me && !_status.auto) {
 									str = get.translation(char) + '赐福:请选择一至两项';
 								} else {
 									str = get.translation(char) + '赐福';
 								}
-								var dialog = ui.create.dialog(str, [list_cifu, 'tdnodes']);
+								const dialog = ui.create.dialog(str, [list_cifu, 'tdnodes']);
 								dialog.videoId = id;
 							},
 							player,
@@ -508,7 +508,7 @@ const YBSL_trigger = function () {
 						event.time = get.utc();
 						game.addVideo('delay', null, 2);
 						('step 1');
-						var next = player.chooseButton([1, 2], true);
+						const next = player.chooseButton([1, 2], true);
 						next.set('dialog', event.videoId);
 						next.set('filterButton', function (button) {
 							return true;
@@ -563,13 +563,13 @@ const YBSL_trigger = function () {
 					forced: true,
 					async content(event, trigger, player) {
 						if (event.triggername == 'die') {
-							var str;
+							let str;
 							if (trigger.source) {
 								str = '你被' + get.translation(trigger.source) + '杀害';
 							} else {
 								str = '你死于非命';
 							}
-							var result = await player
+							const result = await player
 								.chooseBool(str + ',这时地府鬼神向你伸出了手,是否接受鬼神赐福？')
 								.set('ai', function () {
 									return true;
@@ -587,14 +587,14 @@ const YBSL_trigger = function () {
 									player.storage.identity_YB_canhun = trigger.source;
 									await player.addSkill('YB_xiegui_chouhen');
 									player.ai.modAttitudeFrom = function (from, to) {
-										var player = from;
+										const player = from;
 										if (to == player.storage.identity_YB_canhun) {
 											return -20;
 										}
 										return get.attitude(from, to);
 									};
 									player.ai.modAttitudeTo = function (from, to, att) {
-										var player = to;
+										const player = to;
 										if (from == player.storage.identity_YB_canhun) {
 											return -20;
 										}
@@ -628,28 +628,28 @@ const YBSL_trigger = function () {
 					forced: true,
 					init(player) {
 						game.checkResult = function () {
-							var me = game.me._trueMe || game.me;
+							const me = game.me._trueMe || game.me;
 							if (_status.brawl && _status.brawl.checkResult) {
 								_status.brawl.checkResult();
 								return;
 							} else if (_status.mode == 'purple') {
-								var winner = [];
-								var loser = [];
-								var ye = game.filterPlayer(
+								const winner = [];
+								const loser = [];
+								const ye = game.filterPlayer(
 									function (current) {
 										return ['rYe', 'bYe'].includes(current.identity);
 									},
 									null,
 									true,
 								);
-								var red = game.filterPlayer(
+								const red = game.filterPlayer(
 									function (current) {
 										return ['rZhu', 'rZhong', 'bNei'].includes(current.identity);
 									},
 									null,
 									true,
 								);
-								var blue = game.filterPlayer(
+								const blue = game.filterPlayer(
 									function (current) {
 										return ['bZhu', 'bZhong', 'rNei'].includes(current.identity);
 									},
@@ -701,8 +701,8 @@ const YBSL_trigger = function () {
 											break;
 									}
 								}, true);
-								var winner2 = winner.slice(0);
-								var loser2 = loser.slice(0);
+								const winner2 = winner.slice(0);
+								const loser2 = loser.slice(0);
 								for (let i = 0; i < winner.length; i++) {
 									if (winner[i].isDead()) {
 										winner.splice(i--, 1);
@@ -879,15 +879,15 @@ const YBSL_trigger = function () {
 					player.addMark('_YB_wuhunlevel', num);
 				};
 				lib.element.player.YB_maxHunli = function () {
-					var num = 20;
-					var player = this;
+					const num = 20;
+					const player = this;
 					// if(game.checkMod(event,player,0,'YB_maxHunli',player))num=game.checkMod(event,player,0,'YB_maxHunli',player);
 					// if(game.checkMod(event,player,0,'YB_maxHunliAdd',player))num+=game.checkMod(event,player,0,'YB_maxHunliAdd',player);
 					return num;
 				};
 				lib.element.player.YB_maxHunliTrue = function () {
-					var num = 20;
-					var player = this;
+					const num = 20;
+					const player = this;
 					// if(game.checkMod(event,player,0,'YB_maxHunli',player))num=game.checkMod(event,player,0,'YB_maxHunli',player);
 					// if(game.checkMod(event,player,0,'YB_maxHunliAdd',player))num+=game.checkMod(event,player,0,'YB_maxHunliAdd',player);
 					return num;

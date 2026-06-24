@@ -15,7 +15,7 @@ import { dynamicTranslate } from '../exts/YB_08_character/dynamicTranslate.js';
 import { typeimage } from '../packages/function.js';
 game.import('character', function (lib, game, ui, get, ai, _status) {
 	/** @type { importCharacterConfig } */
-	var ybmjz = {
+	const ybmjz = {
 		name: 'ybmjz', //武将包命名(必填)
 		connect: true, //该武将包是否可以联机(必填)
 		connectBanned: [],
@@ -57,7 +57,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	// 	else ybmjz.character[i].img=`extension/夜白神略/image/ybsl003/${i}.jpg`;
 	// }
 	typeimage(ybmjz, 'ybsl008');
-	for (var i in ybmjz.card) {
+	for (const i in ybmjz.card) {
 		if (!ybmjz.card[i].image) {
 			ybmjz.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
 		}

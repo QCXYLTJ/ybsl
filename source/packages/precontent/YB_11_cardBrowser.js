@@ -26,7 +26,7 @@ const YB_11_cardBrowser = function () {
 			{
 				start() {
 					'step 0';
-					var dialog = ui.create.div('.yb6attack');
+					const dialog = ui.create.div('.yb6attack');
 					// this.parentNode.insertBefore(dialog, this.nextSibling);
 					// dialog.innerHTML='12312';
 					dialog.innerHTML = '<br><div class="yb6attack_title">夜白神略</div>';
@@ -79,7 +79,7 @@ const YB_11_cardBrowser = function () {
 		// image: ['extension/夜白神略/YB_mode.jpg']
 	}
 	if (false) {
-		var packages = [
+		const packages = [
 			'ybslj',
 			'ybxh',
 			'ybdd',
@@ -96,17 +96,17 @@ const YB_11_cardBrowser = function () {
 			'jhjx',
 			// 'YB_one'
 		];
-		for (var pack of packages) {
-			for (var name in lib.characterPack[pack]) {
+		for (const pack of packages) {
+			for (const name in lib.characterPack[pack]) {
 				YB_tujian[name] = {
 					version: YBSL_characterIntro(name),
 					players: [name],
 					info() {
-						var info = '';
-						for (var j in lib.characterPack[pack][name][3]) {
+						let info = '';
+						for (let j in lib.characterPack[pack][name][3]) {
 							info += '<span class="bluetext">' + lib.translate[lib.characterPack[pack][name][3][j]] + '</span>:' + lib.translate[lib.characterPack[pack][name][3][j] + '_info'] + '<br>';
 							if (lib.skill[j].derivation) {
-								for (var k in lib.skill[j].derivation) {
+								for (const k in lib.skill[j].derivation) {
 									info += '<span class="bluetext">' + lib.translate[lib.skill[j].derivation[k]] + '</span>:' + lib.translate[lib.skill[j].derivation[k] + '_info'] + '<br>';
 								}
 							}
@@ -121,32 +121,32 @@ const YB_11_cardBrowser = function () {
 		if (lib.config.YB_look == 1) {
 			if (!lib.config.extension_文武英杰_enable) {
 				game.wwyj_showNewtujian = function () {
-					var dialog = ui.create.dialog('hidden');
+					const dialog = ui.create.dialog('hidden');
 					dialog.style.height = 'calc(70%)';
 					dialog.style.width = 'calc(70%)';
 					dialog.style.left = '155px';
 					dialog.style.top = '60px';
 					dialog.classList.add('popped');
 					dialog.classList.add('static');
-					var list_newtujian = [];
-					for (var i in YB_tujian) {
+					const list_newtujian = [];
+					for (let i in YB_tujian) {
 						list_newtujian.push({
 							data: i,
 							info: YB_tujian[i],
 						});
 					}
-					var interval = setInterval(function () {
-						var num = 20;
+					const interval = setInterval(function () {
+						let num = 20;
 						if (num > list_newtujian.length) {
 							num = list_newtujian.length;
 						}
 						for (let i = 0; i < num; i++) {
-							var data = list_newtujian[0].data;
-							var info = list_newtujian[0].info;
-							var list = [];
-							var list1 = [];
+							const data = list_newtujian[0].data;
+							let info = list_newtujian[0].info;
+							const list = [];
+							const list1 = [];
 							if (info.players.length) {
-								for (var j = 0; j < info.players.length; j++) {
+								for (let j = 0; j < info.players.length; j++) {
 									if (lib.character[info.players[j]] != undefined) {
 										list.push(info.players[j]);
 									}
@@ -158,7 +158,7 @@ const YB_11_cardBrowser = function () {
 							dialog.addText(data + '   (' + info.version + ')<br>', false);
 							dialog.addText('<li>' + info.info, false);
 							if (info.cards.length) {
-								for (var j = 0; j < info.cards.length; j++) {
+								for (let j = 0; j < info.cards.length; j++) {
 									if (lib.card[info.cards[j]] != undefined) {
 										list1.push(info.cards[j]);
 									}
@@ -174,7 +174,7 @@ const YB_11_cardBrowser = function () {
 						}
 					}, 100);
 					ui.window.appendChild(dialog);
-					var div = ui.create.div('.menubutton.round', '×', function () {
+					const div = ui.create.div('.menubutton.round', '×', function () {
 						clearInterval(interval);
 						dialog.delete();
 						ui.window.removeChild(this);
@@ -195,7 +195,7 @@ const YB_11_cardBrowser = function () {
 					content() {
 						if (event.isMine()) {
 							game.broadcastAll(function (player) {
-								var Animation = ui.create.div();
+								const Animation = ui.create.div();
 								Animation.setBackgroundImage('extension/文武英杰/wwyj_newtujianicon.png');
 								Animation.style.left = '62%';
 								Animation.style.top = 'calc(80% - 90px)';
@@ -232,18 +232,18 @@ const YB_11_cardBrowser = function () {
 							this.nodes.shift().remove();
 						}
 					}
-					var lx = this.offsetWidth / 2 - 120;
-					var ly = Math.min(lx, this.offsetHeight / 2 - 60);
-					var setPos = function (node) {
-						var i = node.index;
-						var deg = (Math.PI / 4) * i;
-						var dx = Math.round(lx * Math.cos(deg));
-						var dy = Math.round(ly * Math.sin(deg));
+					const lx = this.offsetWidth / 2 - 120;
+					const ly = Math.min(lx, this.offsetHeight / 2 - 60);
+					const setPos = function (node) {
+						let i = node.index;
+						const deg = (Math.PI / 4) * i;
+						const dx = Math.round(lx * Math.cos(deg));
+						const dy = Math.round(ly * Math.sin(deg));
 						node.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
 					};
-					var characterz = ['guyong', 'litong', 'mazhong', 'fuwan', 'chengpu', 'liaohua', 'xinxianying', 'liuyu'];
+					const characterz = ['guyong', 'litong', 'mazhong', 'fuwan', 'chengpu', 'liaohua', 'xinxianying', 'liuyu'];
 					for (let i = 0; i < 8; i++) {
-						var node = ui.create.player(null, true);
+						const node = ui.create.player(null, true);
 						this.nodes.push(node);
 						node.init(characterz[i]);
 						node.classList.add('minskin');
@@ -259,7 +259,7 @@ const YB_11_cardBrowser = function () {
 						setPos(node);
 						this.appendChild(node);
 					}
-					var nodes = this.nodes;
+					const nodes = this.nodes;
 					this.showcaseinterval = setInterval(function () {
 						for (let i = 0; i < nodes.length; i++) {
 							nodes[i].index++;
@@ -273,10 +273,10 @@ const YB_11_cardBrowser = function () {
 				init() {
 					lib.element.player.YB_hunliLevel;
 					lib.element.player.addHunli = function (num) {
-						var player = this;
-						var numb = player.YB_hunliLevel;
+						let player = this;
+						const numb = player.YB_hunliLevel;
 						if (player.countMark('_YB_hunli') >= player.YB_maxHunli(numb)) {
-							var str = numb >= 9 ? '魂力达到了世间巅峰' : '魂力达到了上限,请吸收魂环';
+							const str = numb >= 9 ? '魂力达到了世间巅峰' : '魂力达到了上限,请吸收魂环';
 							game.log(player, str);
 						} else {
 							if (player.YB_maxHunli(numb) - player.countMark('_YB_hunli') < num) {
@@ -286,9 +286,9 @@ const YB_11_cardBrowser = function () {
 						}
 					};
 					lib.element.player.YB_maxHunli = function (numb) {
-						var player = this;
-						var num = numb || player.YB_hunliLevel || 0;
-						var list = [10, 30, 60, 100, 150, 210, 280, 360, 450, 550];
+						let player = this;
+						let num = numb || player.YB_hunliLevel || 0;
+						const list = [10, 30, 60, 100, 150, 210, 280, 360, 450, 550];
 						return list[num];
 					};
 					lib.element.player.YB_hunliLevelUp = function () {
@@ -303,7 +303,7 @@ const YB_11_cardBrowser = function () {
 						intro: {
 							name: '魂力',
 							content(storage, player, skill) {
-								var numb = player.YB_hunliLevel;
+								const numb = player.YB_hunliLevel;
 								return '<li>当前魂力<li>' + player.countMark('_YB_hunli') + '/' + player.YB_maxHunli(numb);
 							},
 						},
@@ -313,10 +313,10 @@ const YB_11_cardBrowser = function () {
 					submode: 'normal',
 					chooseCharacterBefore() {
 						game.identityVideoName = '武魂觉醒';
-						var skills = [];
-						var banned = ['xinfu_guhuo', 'reguhuo', 'jixi', 'duanchang', 'huashen', 'xinsheng', 'rehuashen', 'rexinsheng', 'jinqu', 'nzry_binglve', 'nzry_huaiju', 'nzry_yili', 'nzry_zhenglun', 'nzry_mingren', 'nzry_zhenliang', 'drlt_qingce', 'new_wuhun', 'qixing', 'kuangfeng', 'dawu', 'baonu', 'wumou', 'ol_wuqian', 'ol_shenfen', 'renjie', 'jilue', 'nzry_junlve', 'nzry_dinghuo', 'drlt_duorui', 'chuanxin', 'cunsi', 'jueqing', 'huilei', 'paiyi', 'fuhun', 'zhuiyi', 'olddanshou', 'yanzhu', 'juexiang', 'jiexun', 'bizhuan', 'tongbo', 'xinfu_zhanji', 'xinfu_jijun', 'xinfu_fangtong', 'xinfu_qianchong', 'pdgyinshi', 'shuliang', 'zongkui', 'guju', 'bmcanshi', 'dingpan', 'xinfu_lingren', 'new_luoyan', 'junwei', 'gxlianhua', 'qizhou', 'fenyue', 'dianhu', 'linglong', 'fenxin', 'mouduan', 'cuorui', 'xinmanjuan', 'xinfu_jianjie', 'jianjie_faq', 'new_meibu', 'xinfu_xingzhao', 'jici', 'xianfu', 'fenyong', 'xuehen', 'midao', 'yishe', 'yinbing', 'juedi', 'bushi', 'xinfu_dianhua', 'xinfu_falu', 'xinfu_zhenyi', 'lskuizhu', 'pingjian', 'xjshijian', 'fentian', 'zhiri', 'xindan', 'xinzhengnan', 'xinfu_xiaode', 'komari_xueshang', 'qiaosi_map'];
-						var characters = [];
-						for (var name in lib.character) {
+						const skills = [];
+						const banned = ['xinfu_guhuo', 'reguhuo', 'jixi', 'duanchang', 'huashen', 'xinsheng', 'rehuashen', 'rexinsheng', 'jinqu', 'nzry_binglve', 'nzry_huaiju', 'nzry_yili', 'nzry_zhenglun', 'nzry_mingren', 'nzry_zhenliang', 'drlt_qingce', 'new_wuhun', 'qixing', 'kuangfeng', 'dawu', 'baonu', 'wumou', 'ol_wuqian', 'ol_shenfen', 'renjie', 'jilue', 'nzry_junlve', 'nzry_dinghuo', 'drlt_duorui', 'chuanxin', 'cunsi', 'jueqing', 'huilei', 'paiyi', 'fuhun', 'zhuiyi', 'olddanshou', 'yanzhu', 'juexiang', 'jiexun', 'bizhuan', 'tongbo', 'xinfu_zhanji', 'xinfu_jijun', 'xinfu_fangtong', 'xinfu_qianchong', 'pdgyinshi', 'shuliang', 'zongkui', 'guju', 'bmcanshi', 'dingpan', 'xinfu_lingren', 'new_luoyan', 'junwei', 'gxlianhua', 'qizhou', 'fenyue', 'dianhu', 'linglong', 'fenxin', 'mouduan', 'cuorui', 'xinmanjuan', 'xinfu_jianjie', 'jianjie_faq', 'new_meibu', 'xinfu_xingzhao', 'jici', 'xianfu', 'fenyong', 'xuehen', 'midao', 'yishe', 'yinbing', 'juedi', 'bushi', 'xinfu_dianhua', 'xinfu_falu', 'xinfu_zhenyi', 'lskuizhu', 'pingjian', 'xjshijian', 'fentian', 'zhiri', 'xindan', 'xinzhengnan', 'xinfu_xiaode', 'komari_xueshang', 'qiaosi_map'];
+						const characters = [];
+						for (const name in lib.character) {
 							if (!lib.character[name]) {
 								continue;
 							}
@@ -326,16 +326,16 @@ const YB_11_cardBrowser = function () {
 							if (name.indexOf('old_') == 0) {
 								continue;
 							}
-							var skillsx = lib.character[name][3].slice(0);
+							const skillsx = lib.character[name][3].slice(0);
 							lib.character[name].hp = 4;
 							lib.character[name].maxHp = 4;
 							lib.character[name].hujia = 0;
 							lib.character[name].skills = [];
 							lib.character[name].hasHiddenSkill = false;
 							characters.push(name);
-							var list = skillsx.slice(0);
-							for (var j = 0; j < skillsx.length; j++) {
-								var info = get.info(skillsx[j]);
+							const list = skillsx.slice(0);
+							for (let j = 0; j < skillsx.length; j++) {
+								let info = get.info(skillsx[j]);
 								if (!info) {
 									skillsx.splice(j, 1);
 									list.splice(j--, 1);
@@ -347,11 +347,11 @@ const YB_11_cardBrowser = function () {
 									list.addArray(info.derivation);
 								}
 							}
-							for (var j = 0; j < list.length; j++) {
+							for (let j = 0; j < list.length; j++) {
 								if (skills.includes(list[j]) || banned.includes(list[j])) {
 									continue;
 								}
-								var info = get.info(list[j]);
+								let info = get.info(list[j]);
 								if (!info || info.zhuSkill || info.juexingji || info.charlotte || info.limited || info.hiddenSkill || info.dutySkill || info.groupSkill || (info.ai && info.ai.combo)) {
 									continue;
 								}
@@ -359,7 +359,7 @@ const YB_11_cardBrowser = function () {
 							}
 						}
 						_status.characterlist = characters;
-						var pack = {
+						const pack = {
 							skills: skills,
 							pack: {
 								card: {
@@ -373,7 +373,7 @@ const YB_11_cardBrowser = function () {
 										},
 										content() {
 											target.removeSkillH(target.skillH.randomGet());
-											var skills = lib.huanhuazhizhan.skills;
+											const skills = lib.huanhuazhizhan.skills;
 											skills.randomSort();
 											for (let i = 0; i < skills.length; i++) {
 												if (!target.skillH.includes(skills[i])) {
@@ -469,9 +469,9 @@ const YB_11_cardBrowser = function () {
 											player.changeLingli(-2);
 											('step 1');
 											event.skills = lib.huanhuazhizhan.skills;
-											var skills = event.skills;
+											const skills = event.skills;
 											skills.randomSort();
-											var list = [];
+											const list = [];
 											for (let i = 0; i < skills[i].length; i++) {
 												if (!player.skillH.includes(skills[i])) {
 													list.push(skills[i]);
@@ -488,7 +488,7 @@ const YB_11_cardBrowser = function () {
 												list.push('刷新');
 											}
 											event.list = list;
-											var dialog = game.getSkillDialog(event.list, '选择获得一个技能');
+											const dialog = game.getSkillDialog(event.list, '选择获得一个技能');
 											player.chooseControl(event.list).set('ai', function () {
 												return 0;
 											}).dialog = dialog;
@@ -571,12 +571,12 @@ const YB_11_cardBrowser = function () {
 												event.goto(2);
 											}
 											('step 1');
-											var type = get.rand(1, 8);
+											const type = get.rand(1, 8);
 											event.type = type;
 											trigger._lastDead.playerfocus(1200);
 											player.$fullscreenpop('乾坤八卦·' + ['离', '坎', '乾', '震', '兑', '艮', '巽', '坤'][type - 1], get.groupnature(trigger._lastDead.group, 'raw'));
 											('step 2');
-											var type = event.type;
+											const type = event.type;
 											switch (type) {
 												case 1: {
 													game.countPlayer(function (current) {
@@ -597,7 +597,7 @@ const YB_11_cardBrowser = function () {
 												}
 												case 4: {
 													game.countPlayer(function (current) {
-														var he = current.getCards('he');
+														const he = current.getCards('he');
 														if (he.length) {
 															current.discard(he.randomGet()).delay = false;
 														}
@@ -611,9 +611,9 @@ const YB_11_cardBrowser = function () {
 													break;
 												}
 												case 6: {
-													var cards = [];
+													let cards = [];
 													game.countPlayer(function (current) {
-														var card = get.cardPile(function (card) {
+														const card = get.cardPile(function (card) {
 															return !cards.includes(card) && get.type(card) == 'equip';
 														});
 														if (card) {
@@ -627,7 +627,7 @@ const YB_11_cardBrowser = function () {
 												case 7: {
 													game.countPlayer(function (current) {
 														if (current.skillH.length < 3) {
-															var skills = lib.huanhuazhizhan.skills;
+															const skills = lib.huanhuazhizhan.skills;
 															skills.randomSort();
 															for (let i = 0; i < skills.length; i++) {
 																if (!current.skillH.includes(skills[i])) {
@@ -685,8 +685,8 @@ const YB_11_cardBrowser = function () {
 											return event.source != undefined;
 										},
 										content() {
-											var source = trigger.source;
-											var cards = source.getCards('he');
+											const source = trigger.source;
+											let cards = source.getCards('he');
 											if (cards.length) {
 												source.discard(cards);
 											}
@@ -710,12 +710,12 @@ const YB_11_cardBrowser = function () {
 											return event.source != undefined;
 										},
 										content() {
-											var source = trigger.source;
-											var cards = source.getCards('he');
+											const source = trigger.source;
+											let cards = source.getCards('he');
 											if (cards.length) {
 												source.discard(cards);
 											}
-											var skills = source.skillH;
+											const skills = source.skillH;
 											if (skills.length) {
 												source.removeSkillH(skills.randomGet());
 											}
@@ -739,12 +739,12 @@ const YB_11_cardBrowser = function () {
 										forceDie: true,
 										logTarget: 'source',
 										content() {
-											var source = trigger.source;
+											const source = trigger.source;
 											source.draw();
 											if (source.skillH.length == 3) {
 												source.removeSkillH(source.skillH.randomGet());
 											}
-											var skills = lib.huanhuazhizhan.skills;
+											const skills = lib.huanhuazhizhan.skills;
 											skills.randomSort();
 											for (let i = 0; i < skills.length; i++) {
 												if (!source.skillH.includes(skills[i])) {
@@ -763,12 +763,12 @@ const YB_11_cardBrowser = function () {
 											return event.source != undefined;
 										},
 										content() {
-											var source = trigger.source;
+											const source = trigger.source;
 											source.draw(3);
 											if (source.skillH.length == 3) {
 												source.removeSkillH(source.skillH.randomGet());
 											}
-											var skills = lib.huanhuazhizhan.skills;
+											const skills = lib.huanhuazhizhan.skills;
 											skills.randomSort();
 											for (let i = 0; i < skills.length; i++) {
 												if (!source.skillH.includes(skills[i])) {
@@ -786,7 +786,7 @@ const YB_11_cardBrowser = function () {
 											return event.source != undefined && player.countCards('he') > 0;
 										},
 										content() {
-											var cards = player.getCards('he');
+											let cards = player.getCards('he');
 											cards.randomSort();
 											cards = cards.slice(0, trigger.num);
 											trigger.source.gain('give', cards, player);
@@ -842,9 +842,9 @@ const YB_11_cardBrowser = function () {
 							},
 							eltc: {
 								gameDraw() {
-									var end = player;
-									var numx;
-									var num = function (player) {
+									const end = player;
+									let numx;
+									let num = function (player) {
 										return player._hSeat > 5 ? 5 : 4;
 									};
 									do {
@@ -872,7 +872,7 @@ const YB_11_cardBrowser = function () {
 									this.removeSkill(skill);
 								},
 								dieAfter() {
-									var evt = _status.event.getParent('phase');
+									const evt = _status.event.getParent('phase');
 									if (evt) {
 										evt._lastDead = this;
 									}
@@ -888,7 +888,7 @@ const YB_11_cardBrowser = function () {
 									return false;
 								},
 								getEnemies() {
-									var list = game.playerx();
+									const list = game.playerx();
 									list.remove(this);
 									return list;
 								},
@@ -901,11 +901,11 @@ const YB_11_cardBrowser = function () {
 										source.changeLingli(this == source._toKill ? 3 : 2);
 									}
 									if (!_status._aozhan) {
-										var that = this;
+										const that = this;
 										game.countPlayer(function (current) {
 											if (current._toSave == that) {
 												game.log(current, '保护失败');
-												var cards = current.getCards('he');
+												let cards = current.getCards('he');
 												if (cards.length) {
 													current.discard(cards.randomGets(4));
 												}
@@ -959,10 +959,10 @@ const YB_11_cardBrowser = function () {
 											ui.time3.style.display = 'none';
 										}
 									}
-									var players = game.playerx();
+									const players = game.playerx();
 									for (let i = 0; i < players.length; i++) {
-										var player = players[i];
-										var list = players.slice(0).randomSort();
+										let player = players[i];
+										const list = players.slice(0).randomSort();
 										list.remove(player);
 										player._toKill = list[0];
 										player._toSave = list[1];
@@ -970,7 +970,7 @@ const YB_11_cardBrowser = function () {
 									ui.huanhuazhizhan.innerHTML = '击杀' + get.translation(game.me._toKill) + ',保护' + get.translation(game.me._toSave);
 								},
 								getSkillDialog(skills, prompt) {
-									var dialog = ui.create.dialog('hidden', 'forcebutton');
+									const dialog = ui.create.dialog('hidden', 'forcebutton');
 									if (prompt) {
 										dialog.addText(prompt);
 									}
@@ -981,19 +981,19 @@ const YB_11_cardBrowser = function () {
 									return dialog;
 								},
 								chooseCharacter() {
-									var next = game.createEvent('chooseCharacter');
+									const next = game.createEvent('chooseCharacter');
 									next.showConfig = true;
 									next.setContent(function () {
 										'step 0';
 										game.zhu = game.players.randomGet();
-										var i = 1;
-										var current = game.zhu;
+										let i = 1;
+										let current = game.zhu;
 										while (true) {
 											current.skillH = [];
 											current._hSeat = i;
 											current.identity = 'nei';
 											current.setNickname(get.cnNumber(i, true) + '号位');
-											for (var ii in lib.huanhuazhizhan.eltp) {
+											for (const ii in lib.huanhuazhizhan.eltp) {
 												current[ii] = lib.huanhuazhizhan.eltp[ii];
 											}
 											current = current.next;
@@ -1006,10 +1006,10 @@ const YB_11_cardBrowser = function () {
 										game.me.chooseButton(['请选择角色形象', [_status.characterlist.randomRemove(5), 'character']], true).onfree = true;
 										('step 1');
 										game.me.init(result.links[0]);
-										var list = ['xiandeng', 'shulv', 'xisheng'];
+										const list = ['xiandeng', 'shulv', 'xisheng'];
 										game.me.chooseControl(list).dialog = game.getSkillDialog(list, '选择要获得的初始技能');
 										('step 2');
-										var list = ['_lingli', '_lingli_round', '_lingli_draw', '_lingli_save', '_hhzz_qiankunbagua', '_lingli_damage'];
+										const list = ['_lingli', '_lingli_round', '_lingli_draw', '_lingli_save', '_hhzz_qiankunbagua', '_lingli_damage'];
 										for (let i = 0; i < list.length; i++) {
 											game.addGlobalSkill(list[i]);
 										}
@@ -1025,7 +1025,7 @@ const YB_11_cardBrowser = function () {
 										game.showIdentity(true);
 										('step 3');
 										game.randomMission();
-										var list = [game.createCard('hhzz_fudichouxin'), game.createCard('hhzz_toulianghuanzhu'), game.createCard('hhzz_toulianghuanzhu'), game.createCard('hhzz_toulianghuanzhu')];
+										const list = [game.createCard('hhzz_fudichouxin'), game.createCard('hhzz_toulianghuanzhu'), game.createCard('hhzz_toulianghuanzhu'), game.createCard('hhzz_toulianghuanzhu')];
 										for (let i = 0; i < list.length; i++) {
 											ui.cardPile.insertBefore(list[i], ui.cardPile.childNodes[get.rand(ui.cardPile.childElementCount)]);
 										}
@@ -1121,22 +1121,22 @@ const YB_11_cardBrowser = function () {
 								},
 							},
 						};
-						var func = function (pack) {
-							for (var i in pack.pack) {
-								for (var j in pack.pack[i]) {
+						const func = function (pack) {
+							for (let i in pack.pack) {
+								for (let j in pack.pack[i]) {
 									lib[i][j] = pack.pack[i][j];
 								}
 							}
-							for (var i in pack.eltc) {
+							for (let i in pack.eltc) {
 								lib.element.content[i] = pack.eltc[i];
 							}
-							for (var i in pack.eltp) {
+							for (let i in pack.eltp) {
 								lib.element.player[i] = pack.eltp[i];
 							}
-							for (var i in pack.game) {
+							for (let i in pack.game) {
 								game[i] = pack.game[i];
 							}
-							for (var i in pack.get) {
+							for (let i in pack.get) {
 								get[i] = pack.get[i];
 							}
 							lib.huanhuazhizhan = pack;

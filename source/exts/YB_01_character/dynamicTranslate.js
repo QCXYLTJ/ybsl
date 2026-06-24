@@ -3,11 +3,11 @@ export { dynamicTranslate };
 const dynamicTranslate = {
 	//动态翻译
 	yb001_minglun(player) {
-		var str = '锁定技,回合开始时,你展示牌堆顶一张牌并放在武将牌上,至多放四张.根据<命轮>的花色,你视为拥有技能:<br>';
-		var list = { spade: `♠️️️:${get.poptip('yb001_minglun_spade')}`, heart: `♥️️️:${get.poptip('yb001_minglun_heart')}`, club: `<br>♣️️️:${get.poptip('yb001_minglun_club')}`, diamond: `♦️️️:${get.poptip('yb001_minglun_diamond')}` };
-		for (var i in list) {
-			var cards = player.getExpansions('yb001_minglun');
-			for (var k of cards) {
+		let str = '锁定技,回合开始时,你展示牌堆顶一张牌并放在武将牌上,至多放四张.根据<命轮>的花色,你视为拥有技能:<br>';
+		const list = { spade: `♠️️️:${get.poptip('yb001_minglun_spade')}`, heart: `♥️️️:${get.poptip('yb001_minglun_heart')}`, club: `<br>♣️️️:${get.poptip('yb001_minglun_club')}`, diamond: `♦️️️:${get.poptip('yb001_minglun_diamond')}` };
+		for (let i in list) {
+			const cards = player.getExpansions('yb001_minglun');
+			for (const k of cards) {
 				if (k.suit == i) {
 					list[i] = '<span class=YB_snowtext>' + list[i] + '</span>';
 				}
@@ -21,7 +21,7 @@ const dynamicTranslate = {
 	yb004_tianqi(player) {
 		//天祈
 		if (!player.storage.yb004_shangyuan) {
-			var str = '锁定技,当你对其他角色造成伤害后,你进行判定:若伤害不大于1,且结果为红色,你回复1点体力或摸一张牌;若伤害大于1,且结果为黑色,你失去1点体力并摸一张牌.当你受到伤害后,你进行判定,若结果为黑色,你摸x+1张牌,否则你回复x-1点体力(x为此次伤害值)';
+			let str = '锁定技,当你对其他角色造成伤害后,你进行判定:若伤害不大于1,且结果为红色,你回复1点体力或摸一张牌;若伤害大于1,且结果为黑色,你失去1点体力并摸一张牌.当你受到伤害后,你进行判定,若结果为黑色,你摸x+1张牌,否则你回复x-1点体力(x为此次伤害值)';
 			if (lib.skill.xinleiji_misa.disableReason.includes('天祈')) {
 				str += `(此技能不可触发${get.poptip('releiji')})`;
 			}
@@ -54,14 +54,14 @@ const dynamicTranslate = {
 		return '转换技,<span class="bluetext">阳:当场上角色受到伤害后,若</span><span class=firetext>伤害来源</span><span class="bluetext">为其他角色,则你可以与伤害来源各摸一张牌或各弃一张牌;</span>阴:当场上角色受到伤害后,若受伤角色为其他角色,则你可以与受伤角色各摸一张牌或各弃一张牌.结束阶段或当你受到伤害时,你可以改变此技能状态';
 	},
 	yb016_juli(player) {
-		var info = lib.skill.yb016_juli.getInfo(player);
+		const info = lib.skill.yb016_juli.getInfo(player);
 		if (!player.storage.yb016_juli_add) {
 			return '当一名角色成为除其外的角色使用【杀】的目标时,若你至该角色的距离不大于' + info[1] + ',你可以重铸至多' + info[0] + '张牌,然后令此牌的使用者弃置' + info[2] + '张牌,(该牌的类型须为你重铸的牌中包含的类型)否则此牌对你无效';
 		}
 		return '当一名角色成为除其外的角色使用【伤害牌】的目标时,若你至该角色的距离不大于' + info[1] + ',你可以重铸至多' + info[0] + '张牌,然后令此牌的使用者弃置' + info[2] + '张牌,(该牌的类型须为你重铸的牌中包含的类型)否则此牌对你无效';
 	},
 	yb016_shanbiao(player) {
-		var storage = player.storage.yb016_shanbiao;
+		const storage = player.storage.yb016_shanbiao;
 		if (storage) {
 			return '锁定技,转换技,回合结束时或当你武将牌翻面时,阳:你摸两张牌;阴,<span class="bluetext">你受到当前回合角色造成的1点伤害</span>.<br>你阳状态下,受到的伤害-1;<br><span class="bluetext">你阴状态下,造成的伤害-1</span>';
 		}
@@ -76,13 +76,13 @@ const dynamicTranslate = {
 		}
 	},
 	yb033_yuqi(player) {
-		var info = lib.skill.yb033_yuqi.getInfo(player);
+		const info = lib.skill.yb033_yuqi.getInfo(player);
 		return '每回合限三次.当有角色受到伤害后,若你至其的距离不大于<span class=thundertext>' + info[0] + '</span>,则你可以观看牌堆顶的<span class=firetext>' + info[1] + '</span>张牌.你将其中至多<span class=greentext>' + info[2] + '</span>张牌交给受伤角色,然后可以获得剩余牌中的至多<span class=yellowtext>' + info[3] + '</span>张牌,并将其余牌以原顺序放回牌堆顶.(理论上所有具有颜色的数字至多为13,因为点数最大也才13)';
 	},
 	yb033_qijue(player) {
-		var storage1 = player.storage.yb033_qijue_lh;
-		var storage2 = player.storage.yb033_qijue_da;
-		var storage3 = player.storage.yb033_qijue_dc;
+		const storage1 = player.storage.yb033_qijue_lh;
+		const storage2 = player.storage.yb033_qijue_da;
+		const storage3 = player.storage.yb033_qijue_dc;
 		if (storage1 && storage2 && storage3) {
 			return '锁定技,出牌阶段开始时,你选择一项:失去1点体力,受到1点伤害,弃置一张牌.锁定技,<span class=firetext>当你失去体力后,' + storage1[0][0] + ',' + storage1[1][0] + ',然后' + storage1[2][0] + '</span>;<span class=yellowtext>当你受到伤害后,' + storage2[0][0] + ',' + storage2[1][0] + ',然后' + storage2[2][0] + '</span>;<span class=thundertext>当你弃置牌后,' + storage3[0][0] + ',' + storage3[1][0] + ',然后' + storage3[2][0] + '</span>';
 		} else {
@@ -91,7 +91,7 @@ const dynamicTranslate = {
 	},
 	yb037_kexie(player) {
 		//咳血
-		var str = '锁定技,每当你弃置一张';
+		let str = '锁定技,每当你弃置一张';
 		if (player.storage.yb037_kexie == 0) {
 			str += '<span class=firetext>牌</span>';
 		}
@@ -121,7 +121,7 @@ const dynamicTranslate = {
 		return '锁定技,①当你受到伤害时,你需选择:弃置一张牌,或令此伤害+1;然后获得如下效果直至当前回合结束:②每个回合结束时,你选择回复2点体力或摸X+1张牌(X为你已损体力值且至多为3);③当你脱离濒死状态时,你令②效果变为常驻效果'; //,然后将技能改名为【迸射】
 	},
 	yb054_qiangzhi(player) {
-		var str = ['转换技,出牌阶段开始时或当你受到伤害后,你可以', '展示手牌并:', '阳:弃置所有红色手牌;', '阴,弃置所有黑色手牌(无牌不弃)', '然后摸三张牌', '当你因弃置而失去以此法摸的牌时,你令此技能下次发动仅转一下,并对当前回合角色造成一点伤害'];
+		let str = ['转换技,出牌阶段开始时或当你受到伤害后,你可以', '展示手牌并:', '阳:弃置所有红色手牌;', '阴,弃置所有黑色手牌(无牌不弃)', '然后摸三张牌', '当你因弃置而失去以此法摸的牌时,你令此技能下次发动仅转一下,并对当前回合角色造成一点伤害'];
 		if (player) {
 			if (player.storage.yb054_qiangzhi) {
 				str[2] = '<span class=thundertext>' + str[2] + '</span>';
@@ -151,7 +151,7 @@ const dynamicTranslate = {
 		if (!player.storage.ybsl_cuixing_spade) {
 			return lib.translate.ybsl_cuixing_spade_info;
 		}
-		var str = '你可以将一至两张♠️️️牌当作';
+		let str = '你可以将一至两张♠️️️牌当作';
 		for (let i = 0; i < player.storage.ybsl_cuixing_spade.length; i++) {
 			if (i > 0) {
 				str += '、';
@@ -169,7 +169,7 @@ const dynamicTranslate = {
 		if (!player.storage.ybsl_cuixing_heart) {
 			return lib.translate.ybsl_cuixing_heart_info;
 		}
-		var str = '你可以将一至两张♥️️️牌当作';
+		let str = '你可以将一至两张♥️️️牌当作';
 		for (let i = 0; i < player.storage.ybsl_cuixing_heart.length; i++) {
 			if (i > 0) {
 				str += '、';
@@ -187,7 +187,7 @@ const dynamicTranslate = {
 		if (!player.storage.ybsl_cuixing_club) {
 			return lib.translate.ybsl_cuixing_club_info;
 		}
-		var str = '你可以将一至两张♣️️️牌当作';
+		let str = '你可以将一至两张♣️️️牌当作';
 		for (let i = 0; i < player.storage.ybsl_cuixing_club.length; i++) {
 			if (i > 0) {
 				str += '、';
@@ -205,7 +205,7 @@ const dynamicTranslate = {
 		if (!player.storage.ybsl_cuixing_diamond) {
 			return lib.translate.ybsl_cuixing_diamond_info;
 		}
-		var str = '你可以将一至两张♦️️️牌当作';
+		let str = '你可以将一至两张♦️️️牌当作';
 		for (let i = 0; i < player.storage.ybsl_cuixing_diamond.length; i++) {
 			if (i > 0) {
 				str += '、';
@@ -223,10 +223,10 @@ const dynamicTranslate = {
 		if (!player.storage.yb100_lieshi) {
 			return lib.translate.yb100_lieshi_info;
 		}
-		var storage = get.YB_chongzhiList(player, 'yb100_lieshi'); //当前列表
-		var list1 = player.storage['yb100_lieshi_chongzhijiList']; //刷新列表
+		const storage = get.YB_chongzhiList(player, 'yb100_lieshi'); //当前列表
+		const list1 = player.storage['yb100_lieshi_chongzhijiList']; //刷新列表
 		// var list1=get.YB_chongzhijiList(player,'yb100_lieshi');//刷新列表
-		var str = '重置技,刷新列表为:<br>';
+		let str = '重置技,刷新列表为:<br>';
 		for (let i = 0; i < list1.length; i++) {
 			if (storage.includes(list1[i])) {
 				str += '<span class=yellowtext>' + list1[i][0] + '</span><br>';
@@ -245,10 +245,10 @@ const dynamicTranslate = {
 		if (!player.storage.yb100_dianzhan) {
 			return lib.translate.yb100_dianzhan_info;
 		}
-		var storage = get.YB_chongzhiList(player, 'yb100_dianzhan'); //当前列表
-		var list1 = player.storage['yb100_dianzhan_chongzhijiList']; //刷新列表
+		const storage = get.YB_chongzhiList(player, 'yb100_dianzhan'); //当前列表
+		const list1 = player.storage['yb100_dianzhan_chongzhijiList']; //刷新列表
 		// var list1=get.YB_chongzhijiList(player,'yb100_dianzhan');//刷新列表
-		var str = '重置技,锁定技,刷新列表为:<br>';
+		let str = '重置技,锁定技,刷新列表为:<br>';
 		for (let i = 0; i < list1.length; i++) {
 			if (storage.includes(list1[i])) {
 				str += '<span class=yellowtext>' + list1[i][0] + '</span><br>';

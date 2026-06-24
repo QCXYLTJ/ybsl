@@ -3,9 +3,9 @@ export { dynamicTranslate };
 const dynamicTranslate = {
 	//动态翻译
 	yb014_shifu2(player) {
-		var str = '使用非虚拟及转化牌,经验+13,否则经验+7;受到伤害后,经验+11;回合开始时,经验+6';
-		var list6 = player.storage.yb014_shifu99;
-		var list = {
+		let str = '使用非虚拟及转化牌,经验+13,否则经验+7;受到伤害后,经验+11;回合开始时,经验+6';
+		const list6 = player.storage.yb014_shifu99;
+		const list = {
 			moon: {
 				0: '①〖决堰〗(陆抗)',
 				1: '<br>②〖伪伤〗(key宫泽谦吾)',
@@ -87,13 +87,13 @@ const dynamicTranslate = {
 		} else if (player.storage.yb014_shifu99[5] == 'decadexianzhen') {
 			list.flame[6] = '<br>⑦<span style="text-decoration: line-through;">〖咆哮〗(界张飞)</span>/〖陷阵〗(界高顺)';
 		}
-		for (var i in list) {
-			var j = 'ybsl_' + i;
-			var k = 'ybmyx_' + i;
+		for (const i in list) {
+			const j = 'ybsl_' + i;
+			const k = 'ybmyx_' + i;
 			if (player.storage[j].includes('key')) {
 				str += '<br>主流派<br>';
-				for (var q = 0; q < 8; q++) {
-					var numa = player.storage['ybsl_' + i + '_lv'];
+				for (let q = 0; q < 8; q++) {
+					const numa = player.storage['ybsl_' + i + '_lv'];
 					if (q < numa) {
 						list[i][q] = '<span class=yellowtext>' + list[i][q] + '</span>';
 					} else {
@@ -103,8 +103,8 @@ const dynamicTranslate = {
 				}
 			} else if (player.storage[j].includes('sec')) {
 				str += '<br>支流派<br>';
-				for (var p = 0; p < 5; p++) {
-					var numb = player.storage['ybsl_' + i + '_lv'];
+				for (let p = 0; p < 5; p++) {
+					const numb = player.storage['ybsl_' + i + '_lv'];
 					if (p < numb) {
 						list[i][p] = '<span class=yellowtext>' + list[i][p] + '</span>';
 					} else {

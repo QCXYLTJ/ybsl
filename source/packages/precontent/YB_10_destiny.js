@@ -104,7 +104,7 @@ const YBSL_destiny = function () {
 			xh_xinrenqinglong: ['male', 'qun', 4, [], ['unseen']],
 			xh_liuziyu: ['female', 'qun', 4, [], ['unseen']],
 		};
-		for (var i in _status.xhmgcCharacter) {
+		for (const i in _status.xhmgcCharacter) {
 			lib.character[i] = _status.xhmgcCharacter[i];
 		}
 		lib.YB_chooseYuanfen = {

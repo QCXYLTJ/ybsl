@@ -16,7 +16,7 @@ const card = {
 		modTarget: true,
 		content() {
 			'step 0';
-			var list = ['摸三弃四', '弃三摸四'];
+			const list = ['摸三弃四', '弃三摸四'];
 			target
 				.chooseControl(list)
 				.set('prompt', '请选择摸三弃四,还是弃三摸四')

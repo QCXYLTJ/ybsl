@@ -20,7 +20,7 @@ const YBSL_qianhuan = function () {
 		// 	"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
 		// 	// 'YB_one'
 		// ]
-		var packagesx = {
+		const packagesx = {
 			ybslj: 'ybsl001',
 			ybart: 'ybsl001',
 			ybxh: 'ybsl003',
@@ -35,7 +35,7 @@ const YBSL_qianhuan = function () {
 			jhjx: 'jhjx',
 		};
 		// var listxxxxx= [];
-		for (var i in packagesx) {
+		for (const i in packagesx) {
 			lib.qhlypkg.push({
 				isExt: true, //是否是扩展,一般填true
 				filterCharacter(name) {

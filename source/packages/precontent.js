@@ -19,7 +19,7 @@ import { cyyydsgs } from '../pile/cyyydsgs.js';
 // import {ybrpg}from '../ybrpg/mode.js'
 export async function precontent() {
 	if (false) {
-		let originalCompatibleMode = lib.config.compatiblemode;
+		const originalCompatibleMode = lib.config.compatiblemode;
 		// 检测兼容模式并弹窗询问
 		if (originalCompatibleMode === true && lib.config.extension_夜白神略_不再提示关闭兼容模式的弹窗 != true) {
 			// 创建自定义弹窗
@@ -89,7 +89,7 @@ export async function precontent() {
 		// 	'ext/YB_10_character.js','ext/YB_11_character.js','ext/YB_12_character.js','ext/YB_13_character.js',
 		// 	// 'ext/YB_01_character.js'
 		// ];
-		let scriptPaths = files;
+		const scriptPaths = files;
 		Promise.all(scriptPaths.map((path) => import('../ext/' + path)))
 			.then((modules) => {})
 			.catch((error) => {
@@ -110,7 +110,7 @@ export async function precontent() {
 	// 	});
 	// })
 	game.getFileList('extension/夜白神略/source/ontology/card', (folders, files) => {
-		let scriptPaths = files;
+		const scriptPaths = files;
 		Promise.all(
 			scriptPaths.map((path) => {
 				lib.init.js(lib.assetURL + 'extension/夜白神略/source/ontology/card', path.slice(0, -3));
@@ -147,7 +147,7 @@ export async function precontent() {
 	// }
 	{
 		//css
-		var nor = lib.assetURL + 'extension/夜白神略/source/css';
+		const nor = lib.assetURL + 'extension/夜白神略/source/css';
 		lib.init.css(nor, 'ybcss');
 		{
 			// lib.init.css(nor,'dark')
@@ -225,13 +225,13 @@ export async function precontent() {
 				if (lib.characterCopyright[name]) {
 					//版权信息
 					//判断是否为对象、字符串、数组
-					var strx = lib.characterCopyright[name];
+					let strx = lib.characterCopyright[name];
 					if (macg) {
 						strx = macg;
 					}
 					if (typeof strx == 'object' && !Array.isArray(strx)) {
-						var str = '';
-						var list = {
+						let str = '';
+						const list = {
 							pack: '武将包',
 							num: '武将编号',
 							skill: '技能设计',
@@ -241,7 +241,7 @@ export async function precontent() {
 							icon: '◈',
 						};
 						if (lib.characterTitle[name]) {
-							var { startTag, endTag, content } = get.extractFirstTag(lib.characterTitle[name]);
+							const { startTag, endTag, content } = get.extractFirstTag(lib.characterTitle[name]);
 						}
 						if (startTag) {
 							str += startTag;
@@ -250,7 +250,7 @@ export async function precontent() {
 						// if(strx.pack&&strx.num)str+='-';
 						// if(strx.num)str+=strx.num;
 						// if(strx.num&&lib.characterTitle[name])str+='-';
-						var strlist = [];
+						const strlist = [];
 						if (strx.pack) {
 							strlist.push(strx.pack);
 						}
@@ -290,13 +290,13 @@ export async function precontent() {
 						}
 						return str;
 					} else if (typeof strx == 'string') {
-						var str = '';
+						let str = '';
 						strx = strx.replace(/\n/g, '<br>');
 						str += strx;
 						str += '<br>';
 						return str;
 					} else {
-						var kkk = {
+						const kkk = {
 							pack: strx[0],
 							num: strx[1],
 							skill: strx[2],
@@ -310,13 +310,13 @@ export async function precontent() {
 					// str += lib.characterCopyright[name];
 				}
 			};
-			var YB_characterIntro = get.characterIntro;
+			const YB_characterIntro = get.characterIntro;
 			get.characterIntro = function (name) {
-				var str = '';
+				let str = '';
 				if (lib.characterCopyright[name]) {
 					//版权信息
 					// str += lib.characterCopyright[name];
-					var cpright = get.copyright(name);
+					const cpright = get.copyright(name);
 					str += cpright;
 					str += '<br>';
 				}
@@ -336,9 +336,9 @@ export async function precontent() {
 					str += '<br>';
 				}
 				if (lib.accessoryPacket[name] && lib.accessoryPacket[name].character) {
-					var buttonsx = ui.create.div('.buttons');
+					const buttonsx = ui.create.div('.buttons');
 					buttonsx.classList.add('smallzoom');
-					let buttons = ui.create.buttons(lib.accessoryPacket[name].character, 'character', buttonsx, 'character');
+					const buttons = ui.create.buttons(lib.accessoryPacket[name].character, 'character', buttonsx, 'character');
 					const arr = [];
 					for (const i of buttons) {
 						(_status.YB_582267 ??= {})[i.link] = i;
@@ -363,13 +363,13 @@ export async function precontent() {
 		}
 		{
 			//nodeintro修复
-			var YB_nodeIntro = get.nodeintro;
+			const YB_nodeIntro = get.nodeintro;
 			get.nodeintro = function (node, simple, evt) {
-				var YB_intro = ui.create.dialog('hidden', 'notouchscroll');
+				let YB_intro = ui.create.dialog('hidden', 'notouchscroll');
 				if (node.classList.contains('player') && !node.name) {
 					return YB_intro;
 				}
-				var i, translation, intro, str;
+				let i, translation, intro, str;
 				if (node._nointro) {
 					return;
 				}
@@ -404,13 +404,13 @@ export async function precontent() {
 					// 	YB_intro.addText(get.colorspan(lib.characterLightext[node.name1]()[lib.characterLightext[node.name1].length]));
 					// }
 					if (lib.config.show_sortPack) {
-						for (let packname in lib.characterPack) {
+						for (const packname in lib.characterPack) {
 							if (node.name in lib.characterPack[packname]) {
 								let pack = lib.translate[packname + '_character_config'],
 									sort;
 								if (lib.characterSort[packname]) {
-									let sorted = lib.characterSort[packname];
-									for (let sortname in sorted) {
+									const sorted = lib.characterSort[packname];
+									for (const sortname in sorted) {
 										if (sorted[sortname].includes(node.name)) {
 											sort = `<span style = "font-size:small">${lib.translate[sortname]}</span>`;
 											break;
@@ -445,7 +445,7 @@ export async function precontent() {
 							YB_intro.add('<div class="text center">明置的手牌</div>');
 							YB_intro.addSmall(shownHs);
 							if (allShown) {
-								var hs = node.getCards('h');
+								const hs = node.getCards('h');
 								hs.removeArray(shownHs);
 								if (hs.length) {
 									YB_intro.add('<div class="text center">其他手牌</div>');
@@ -453,19 +453,19 @@ export async function precontent() {
 								}
 							}
 						} else if (allShown) {
-							var hs = node.getCards('h');
+							const hs = node.getCards('h');
 							if (hs.length) {
 								YB_intro.add('<div class="text center">手牌</div>');
 								YB_intro.addSmall(hs);
 							}
 						}
 					}
-					var skills = node.getSkills(null, false, false).slice(0);
-					var skills2 = game.filterSkills(skills, node);
+					const skills = node.getSkills(null, false, false).slice(0);
+					const skills2 = game.filterSkills(skills, node);
 					if (node == game.me && node.hiddenSkills.length) {
 						skills.addArray(node.hiddenSkills);
 					}
-					for (var i in node.disabledSkills) {
+					for (let i in node.disabledSkills) {
 						if (node.disabledSkills[i].length == 1 && node.disabledSkills[i][0] == i + '_awake' && !node.hiddenSkills.includes(i)) {
 							skills.add(i);
 						}
@@ -484,7 +484,7 @@ export async function precontent() {
 								}
 							}
 							if (node.forbiddenSkills[skills[i]]) {
-								var forbidstr = '<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>';
+								let forbidstr = '<div style="opacity:0.5"><div class="skill">' + translation + '</div><div>';
 								if (node.forbiddenSkills[skills[i]].length) {
 									forbidstr += '(与' + get.translation(node.forbiddenSkills[skills[i]]) + '冲突)<br>';
 								} else {
@@ -495,7 +495,7 @@ export async function precontent() {
 							} else if (!skills2.includes(skills[i])) {
 								if (lib.skill[skills[i]].preHidden && get.mode() == 'guozhan') {
 									YB_intro.add('<div><div class="skill" style="opacity:0.5">' + translation + '</div><div><span style="opacity:0.5">' + get.skillInfoTranslation(skills[i], node) + '</span><br><div class="underlinenode on gray" style="position:relative;padding-left:0;padding-top:7px">预亮技能</div></div></div>');
-									var underlinenode = YB_intro.content.lastChild.querySelector('.underlinenode');
+									const underlinenode = YB_intro.content.lastChild.querySelector('.underlinenode');
 									if (_status.prehidden_skills.includes(skills[i])) {
 										underlinenode.classList.remove('on');
 									}
@@ -507,14 +507,14 @@ export async function precontent() {
 							} else if (lib.skill[skills[i]].temp || !node.skills.includes(skills[i]) || lib.skill[skills[i]].thundertext) {
 								if (lib.skill[skills[i]].frequent || lib.skill[skills[i]].subfrequent) {
 									YB_intro.add('<div><div class="skill thundertext thunderauto">' + translation + '</div><div class="thundertext thunderauto">' + get.skillInfoTranslation(skills[i], node) + '<br><div class="underlinenode on gray" style="position:relative;padding-left:0;padding-top:7px">自动发动</div></div></div>');
-									var underlinenode = YB_intro.content.lastChild.querySelector('.underlinenode');
+									const underlinenode = YB_intro.content.lastChild.querySelector('.underlinenode');
 									if (lib.skill[skills[i]].frequent) {
 										if (lib.config.autoskilllist.includes(skills[i])) {
 											underlinenode.classList.remove('on');
 										}
 									}
 									if (lib.skill[skills[i]].subfrequent) {
-										for (var j = 0; j < lib.skill[skills[i]].subfrequent.length; j++) {
+										for (let j = 0; j < lib.skill[skills[i]].subfrequent.length; j++) {
 											if (lib.config.autoskilllist.includes(skills[i] + '_' + lib.skill[skills[i]].subfrequent[j])) {
 												underlinenode.classList.remove('on');
 											}
@@ -530,14 +530,14 @@ export async function precontent() {
 								}
 							} else if (lib.skill[skills[i]].frequent || lib.skill[skills[i]].subfrequent) {
 								YB_intro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '<br><div class="underlinenode on gray" style="position:relative;padding-left:0;padding-top:7px">自动发动</div></div></div>');
-								var underlinenode = YB_intro.content.lastChild.querySelector('.underlinenode');
+								const underlinenode = YB_intro.content.lastChild.querySelector('.underlinenode');
 								if (lib.skill[skills[i]].frequent) {
 									if (lib.config.autoskilllist.includes(skills[i])) {
 										underlinenode.classList.remove('on');
 									}
 								}
 								if (lib.skill[skills[i]].subfrequent) {
-									for (var j = 0; j < lib.skill[skills[i]].subfrequent.length; j++) {
+									for (let j = 0; j < lib.skill[skills[i]].subfrequent.length; j++) {
 										if (lib.config.autoskilllist.includes(skills[i] + '_' + lib.skill[skills[i]].subfrequent[j])) {
 											underlinenode.classList.remove('on');
 										}
@@ -549,7 +549,7 @@ export async function precontent() {
 								underlinenode.link = skills[i];
 								underlinenode.listen(ui.click.autoskill2);
 							} else if (lib.skill[skills[i]].clickable && node.isIn() && node.isUnderControl(true)) {
-								var intronode = YB_intro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '<br><div class="menubutton skillbutton" style="position:relative;margin-top:5px">点击发动</div></div></div>').querySelector('.skillbutton');
+								const intronode = YB_intro.add('<div><div class="skill">' + translation + '</div><div>' + get.skillInfoTranslation(skills[i], node) + '<br><div class="menubutton skillbutton" style="position:relative;margin-top:5px">点击发动</div></div></div>').querySelector('.skillbutton');
 								if (!_status.gameStarted || (lib.skill[skills[i]].clickableFilter && !lib.skill[skills[i]].clickableFilter(node))) {
 									intronode.classList.add('disabled');
 									intronode.style.opacity = 0.5;
@@ -591,7 +591,7 @@ export async function precontent() {
 					}
 					if (lib.config.right_range && _status.gameStarted) {
 						YB_intro.add(ui.create.div('.placeholder'));
-						var table, tr, td;
+						let table, tr, td;
 						table = document.createElement('table');
 						tr = document.createElement('tr');
 						table.appendChild(tr);
@@ -613,8 +613,8 @@ export async function precontent() {
 						if (node == game.me || !game.me || !game.me.isIn()) {
 							td.innerHTML = '-';
 						} else {
-							var dist1 = get.numStr(Math.max(1, game.me.distanceTo(node)));
-							var dist2 = get.numStr(Math.max(1, node.distanceTo(game.me)));
+							const dist1 = get.numStr(Math.max(1, game.me.distanceTo(node)));
+							const dist2 = get.numStr(Math.max(1, node.distanceTo(game.me)));
 							if (dist1 == dist2) {
 								td.innerHTML = dist1;
 							} else {
@@ -623,7 +623,7 @@ export async function precontent() {
 						}
 						tr.appendChild(td);
 						td = document.createElement('td');
-						let handcardLimit = node.getHandcardLimit();
+						const handcardLimit = node.getHandcardLimit();
 						td.innerHTML = `${node.countCards('h')}/${handcardLimit >= 999 ? '∞' : handcardLimit}`;
 						tr.appendChild(td);
 						td = document.createElement('td');
@@ -632,7 +632,7 @@ export async function precontent() {
 						td = document.createElement('td');
 						(function () {
 							num = 0;
-							for (var j = 0; j < node.stat.length; j++) {
+							for (let j = 0; j < node.stat.length; j++) {
 								if (typeof node.stat[j].damage == 'number') {
 									num += node.stat[j].damage;
 								}
@@ -648,24 +648,24 @@ export async function precontent() {
 						}
 					}
 					if (!simple || get.is.phoneLayout()) {
-						var es = node.getCards('e');
+						const es = node.getCards('e');
 						for (let i = 0; i < es.length; i++) {
 							const special = [es[i]].concat(es[i].cards || []).find((j) => j.name == es[i].name && lib.card[j.name]?.cardPrompt);
-							var str = special ? lib.card[special.name].cardPrompt(special) : lib.translate[es[i].name + '_info'];
+							let str = special ? lib.card[special.name].cardPrompt(special) : lib.translate[es[i].name + '_info'];
 							YB_intro.add('<div><div class="skill">' + es[i].outerHTML + '</div><div>' + str + '</div></div>');
 							YB_intro.content.lastChild.querySelector('.skill>.card').style.transform = '';
 							if (lib.translate[es[i].name + '_append']) {
 								YB_intro.add('<div class="text">' + lib.translate[es[i].name + '_append'] + '</div>');
 							}
 						}
-						var js = node.getCards('j');
+						const js = node.getCards('j');
 						for (let i = 0; i < js.length; i++) {
 							if (js[i].viewAs && js[i].viewAs != js[i].name) {
 								let html = js[i].outerHTML;
 								let cardInfo = lib.card[js[i].viewAs],
 									showCardIntro = true;
 								if (cardInfo.blankCard) {
-									var cardOwner = get.owner(js[i]);
+									const cardOwner = get.owner(js[i]);
 									if (cardOwner && !cardOwner.isUnderControl(true)) {
 										showCardIntro = false;
 									}
@@ -680,16 +680,16 @@ export async function precontent() {
 							YB_intro.content.lastChild.querySelector('.skill>.card').style.transform = '';
 						}
 						if (get.is.phoneLayout()) {
-							var markCoutainer = ui.create.div('.mark-container.marks');
-							for (var i in node.marks) {
-								var nodemark = node.marks[i].cloneNode(true);
+							const markCoutainer = ui.create.div('.mark-container.marks');
+							for (let i in node.marks) {
+								const nodemark = node.marks[i].cloneNode(true);
 								nodemark.classList.add('pointerdiv');
 								nodemark.link = node.marks[i];
 								nodemark.style.transform = '';
 								markCoutainer.appendChild(nodemark);
 								nodemark.listen(function () {
 									YB_intro.noresume = true;
-									var rect = this.link.getBoundingClientRect();
+									const rect = this.link.getBoundingClientRect();
 									ui.click.intro.call(this.link, {
 										clientX: rect.left + rect.width,
 										clientY: rect.top + rect.height / 2,
@@ -708,7 +708,7 @@ export async function precontent() {
 					if (!game.observe && _status.gameStarted && game.me && node != game.me) {
 						ui.throwEmotion = [];
 						YB_intro.addText('发送交互表情');
-						var click = function () {
+						const click = function () {
 							if (_status.dragged) {
 								return;
 							}
@@ -718,7 +718,7 @@ export async function precontent() {
 							if (_status.throwEmotionWait) {
 								return;
 							}
-							var emotion = this.link;
+							const emotion = this.link;
 							if (game.online) {
 								game.send('throwEmotion', node, emotion);
 							} else {
@@ -738,13 +738,13 @@ export async function precontent() {
 								emotion == 'flower' || emotion == 'egg' ? 500 : 5000,
 							);
 						};
-						var td;
-						var table = document.createElement('div');
+						let td;
+						let table = document.createElement('div');
 						table.classList.add('add-setting');
 						table.style.margin = '0';
 						table.style.width = '100%';
 						table.style.position = 'relative';
-						var listi = ['flower', 'egg'];
+						let listi = ['flower', 'egg'];
 						for (let i = 0; i < listi.length; i++) {
 							td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 							ui.throwEmotion.add(td);
@@ -762,7 +762,7 @@ export async function precontent() {
 						table.style.margin = '0';
 						table.style.width = '100%';
 						table.style.position = 'relative';
-						var listi = ['wine', 'shoe'];
+						let listi = ['wine', 'shoe'];
 						if (game.me.storage.zhuSkill_shanli) {
 							listi = ['yuxisx', 'jiasuo'];
 						}
@@ -779,9 +779,9 @@ export async function precontent() {
 						}
 						YB_intro.content.appendChild(table);
 					}
-					var modepack = lib.characterPack['mode_' + get.mode()];
+					const modepack = lib.characterPack['mode_' + get.mode()];
 					if (lib.config.show_favourite && lib.character[node.name] && game.players.includes(node) && (!modepack || !modepack[node.name]) && (!simple || get.is.phoneLayout())) {
-						var addFavourite = ui.create.div('.text.center.pointerdiv');
+						const addFavourite = ui.create.div('.text.center.pointerdiv');
 						addFavourite.link = node.name;
 						if (lib.config.favouriteCharacter.includes(node.name)) {
 							addFavourite.innerHTML = '移除收藏';
@@ -897,12 +897,12 @@ export async function precontent() {
 						// 		});
 						// 	}
 						// }
-						let viewInfo = ui.create.div('.text.center.pointerdiv');
+						const viewInfo = ui.create.div('.text.center.pointerdiv');
 						viewInfo.link = node;
 						viewInfo.innerHTML = '查看资料';
 						viewInfo.listen(function () {
-							let player2 = this.link;
-							let audioName = player2.skin.name || player2.name1 || player2.name;
+							const player2 = this.link;
+							const audioName = player2.skin.name || player2.name1 || player2.name;
 							ui.click.charactercard(player2.name1 || player2.name, null, null, true, player2.node.avatar, audioName);
 						});
 						YB_intro.add(viewInfo);
@@ -941,13 +941,13 @@ export async function precontent() {
 						YB_intro.addText(get.colorspan(lib.characterLightext[node.link](node.link)[lib.characterLightext[node.link](node.link).length - 1]));
 					}
 					if (lib.config.show_sortPack) {
-						for (let packname in lib.characterPack) {
+						for (const packname in lib.characterPack) {
 							if (node.link in lib.characterPack[packname]) {
 								let pack = lib.translate[packname + '_character_config'],
 									sort;
 								if (lib.characterSort[packname]) {
-									let sorted = lib.characterSort[packname];
-									for (let sortname in sorted) {
+									const sorted = lib.characterSort[packname];
+									for (const sortname in sorted) {
 										if (sorted[sortname].includes(node.link)) {
 											sort = `<span style = "font-size:small">[${lib.translate[sortname]}]</span>`;
 											break;
@@ -976,8 +976,8 @@ export async function precontent() {
 						}
 					}
 					if (node._banning) {
-						var clickBanned = function () {
-							var banned = lib.config[this.bannedname] || [];
+						const clickBanned = function () {
+							const banned = lib.config[this.bannedname] || [];
 							if (banned.includes(character)) {
 								banned.remove(character);
 							} else {
@@ -989,11 +989,11 @@ export async function precontent() {
 								node.updateBanned();
 							}
 						};
-						var modeorder = lib.config.modeorder || [];
-						for (var i in lib.mode) {
+						const modeorder = lib.config.modeorder || [];
+						for (let i in lib.mode) {
 							modeorder.add(i);
 						}
-						var list = [];
+						const list = [];
 						YB_intro.contentContainer.listen(function (e) {
 							ui.click.touchpop();
 							e.stopPropagation();
@@ -1013,10 +1013,10 @@ export async function precontent() {
 								list.push(modeorder[i]);
 							}
 						}
-						var page = ui.create.div('.menu-buttons.configpopped', YB_intro.content);
-						var banall = false;
+						const page = ui.create.div('.menu-buttons.configpopped', YB_intro.content);
+						let banall = false;
 						for (let i = 0; i < list.length; i++) {
-							var cfg = ui.create.div('.config', lib.translate[list[i]] + '模式', page);
+							const cfg = ui.create.div('.config', lib.translate[list[i]] + '模式', page);
 							cfg.classList.add('toggle');
 							if (node._banning == 'offline') {
 								cfg.bannedname = list[i] + '_banned';
@@ -1025,14 +1025,14 @@ export async function precontent() {
 							}
 							cfg.listen(clickBanned);
 							ui.create.div(ui.create.div(cfg));
-							var banned = lib.config[cfg.bannedname] || [];
+							const banned = lib.config[cfg.bannedname] || [];
 							if (!banned.includes(character)) {
 								cfg.classList.add('on');
 								banall = true;
 							}
 						}
 						if (node._banning == 'offline') {
-							var cfg = ui.create.div('.config', '随机选将可用', page);
+							const cfg = ui.create.div('.config', '随机选将可用', page);
 							cfg.classList.add('toggle');
 							cfg.listen(function () {
 								this.classList.toggle('on');
@@ -1067,7 +1067,7 @@ export async function precontent() {
 						}).style.marginTop = '-10px';
 						ui.create.div('.placeholder.slim', YB_intro.content);
 					} else {
-						var skills = get.character(character, 3);
+						const skills = get.character(character, 3);
 						for (let i = 0; i < skills.length; i++) {
 							if (lib.translate[skills[i] + '_info']) {
 								if (lib.translate[skills[i] + '_ab']) {
@@ -1084,9 +1084,9 @@ export async function precontent() {
 								}
 							}
 						}
-						var modepack = lib.characterPack['mode_' + get.mode()];
+						const modepack = lib.characterPack['mode_' + get.mode()];
 						if (lib.config.show_favourite && lib.character[node.link] && (!modepack || !modepack[node.link]) && (!simple || get.is.phoneLayout())) {
-							var addFavourite = ui.create.div('.text.center.pointerdiv');
+							const addFavourite = ui.create.div('.text.center.pointerdiv');
 							addFavourite.link = node.link;
 							addFavourite.style.marginBottom = '15px';
 							if (lib.config.favouriteCharacter.includes(node.link)) {
@@ -1169,7 +1169,7 @@ export async function precontent() {
 						// 	}
 						// }
 						if (!simple || get.is.phoneLayout()) {
-							let viewInfo = ui.create.div('.text.center.pointerdiv');
+							const viewInfo = ui.create.div('.text.center.pointerdiv');
 							viewInfo.link = node.link;
 							viewInfo.innerHTML = '查看资料';
 							viewInfo.style.marginBottom = '15px';
@@ -1192,7 +1192,7 @@ export async function precontent() {
 		{
 			//YB_promot
 			get.YB_prompt2 = function (skill, target, player) {
-				var str = get.prompt.apply(this, arguments);
+				let str = get.prompt.apply(this, arguments);
 				if (!lib.translate[skill + '_info'] && !lib.translate[skill + '_info']) {
 					return str;
 				}
@@ -1216,7 +1216,7 @@ export async function precontent() {
 				if (typeof obj != 'object') {
 					return;
 				}
-				var name2 = obj.name;
+				const name2 = obj.name;
 				if (!lib.card[name2]) {
 					if (!name2?.startsWith('sha_')) {
 						return;
@@ -1249,7 +1249,7 @@ export async function precontent() {
 			// 	"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
 			// 	// 'YB_one'
 			// ]
-			var packagesx = {
+			const packagesx = {
 				// 'ybslj':'ybsl001',
 				// 'ybart':'ybsl001',
 				// 'ybxh':'ybsl003',
@@ -1275,7 +1275,7 @@ export async function precontent() {
 				jhjx: 'jhjx',
 			};
 			// var listxxxxx= [];
-			for (var i in packagesx) {
+			for (let i in packagesx) {
 				lib.qhlypkg.push({
 					isExt: true, //是否是扩展,一般填true
 					filterCharacter(name) {
@@ -1340,7 +1340,7 @@ export async function precontent() {
 				if (typeof num != 'number' || !num) {
 					num = 1;
 				}
-				let maxCharge = this.getMaxCharge();
+				const maxCharge = this.getMaxCharge();
 				if (maxCharge == Infinity) {
 					this.addMark('charge', num, log);
 				} else {
@@ -1384,10 +1384,10 @@ export async function precontent() {
 			 * 获取蓄力点上限
 			 */
 			lib.element.player.getMaxCharge = function () {
-				let skills = game.expandSkills(this.getSkills().concat(lib.skill.global));
+				const skills = game.expandSkills(this.getSkills().concat(lib.skill.global));
 				let max = 0;
-				for (let skill of skills) {
-					let info = get.info(skill);
+				for (const skill of skills) {
+					const info = get.info(skill);
 					if (!info || !info.chargeSkill || typeof info.chargeSkill != 'number') {
 						continue;
 					}

@@ -9,9 +9,9 @@ const dynamicTranslate = {
 		return '当你受到伤害后,你可以获得对你造成伤害的牌并摸X张牌(X为已损体力值且至少为1)';
 	},
 	ybmjz_mumu(player) {
-		var str = '出牌阶段,你可弃置x张牌并发动对应项,然后删去此项直到回合结束.<br>';
+		let str = '出牌阶段,你可弃置x张牌并发动对应项,然后删去此项直到回合结束.<br>';
 		if (player.storage.ybmjz_mumu_list) {
-			let playerStorageList = player.storage.ybmjz_mumu_list
+			const playerStorageList = player.storage.ybmjz_mumu_list
 				.map((i, index) => {
 					return index + 1 + '. ' + i[0];
 				})
@@ -22,9 +22,9 @@ const dynamicTranslate = {
 		return str;
 	},
 	ybmjz_mumuxx(player) {
-		var str = '出牌阶段,你可弃置x张牌并发动对应项,然后删去此项直到回合结束.<br>';
+		let str = '出牌阶段,你可弃置x张牌并发动对应项,然后删去此项直到回合结束.<br>';
 		if (player.storage.ybmjz_mumuxx_list) {
-			let playerStorageList = player.storage.ybmjz_mumuxx_list
+			const playerStorageList = player.storage.ybmjz_mumuxx_list
 				.map((i, index) => {
 					return index + 1 + '. ' + i[0];
 				})

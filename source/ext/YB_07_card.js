@@ -6,7 +6,7 @@ import { translate } from '../exts/YB_07_card/translate.js';
 import { list } from '../exts/YB_07_card/list.js';
 game.import('card', function (lib, game, ui, get, ai, _status) {
 	/** @type { importCardConfig } */
-	var ybnew2 = {
+	const ybnew2 = {
 		name: 'ybnew2', //武将包命名(必填)
 		connect: true, //该武将包是否可以联机(必填)
 		// connectBanned:['gz_ybsl_018zhangqing_feian','gz_ybslshen_002chenailin_feian','db_ybsp_038tengwu'],
@@ -43,7 +43,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 	// 		ybnew2.character[i][4].push('db:extension-夜白神略:' + i + '.jpg');
 	// 	}
 	// } //由于以此法加入的武将包武将图片是用源文件的,所以要用此法改变路径
-	for (var i in ybnew2.card) {
+	for (const i in ybnew2.card) {
 		if (!ybnew2.card[i].image) {
 			ybnew2.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
 		}

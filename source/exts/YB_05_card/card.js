@@ -67,13 +67,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -171,7 +171,7 @@ const card = {
 				event.finish();
 				return;
 			}
-			var num = game.countPlayer();
+			let num = game.countPlayer();
 			if (num < 4) {
 				num = 4;
 			}
@@ -238,14 +238,14 @@ const card = {
 			if (target.isUnderControl()) {
 				game.swapPlayerAuto(target);
 			}
-			var suit = {
+			const suit = {
 				spade: '♠️️️',
 				heart: '♥️️️',
 				club: '♣️️️',
 				diamond: '♦️️️',
 				none: '无花',
 			};
-			var type = {};
+			const type = {};
 			for (const i of lib.inpile) {
 				if (!type[get.type2(i)] || type[get.type2(i)] == undefined) {
 					type[get.type2(i)] = get.translation(get.type2(i));
@@ -291,15 +291,15 @@ const card = {
 			});
 			player.YB_button(title,list,ok,okw);
 			*/
-			var suita = [];
-			var typea = [];
-			for (var i in suit) {
+			const suita = [];
+			const typea = [];
+			for (let i in suit) {
 				suita.push(i);
 			}
-			for (var j in type) {
+			for (const j in type) {
 				typea.push(j);
 			}
-			var switchToAuto = function () {
+			const switchToAuto = function () {
 				_status.imchoosing = false;
 				// var listn=['普通'].concat(lib.inpile_nature);
 				event._result = {
@@ -314,32 +314,32 @@ const card = {
 					event.control.close();
 				}
 			};
-			var chooseButton = function (player) {
-				var event = _status.event;
+			const chooseButton = function (player) {
+				const event = _status.event;
 				player = target || event.player;
 				if (!event._result) {
 					event._result = {};
 				}
-				var dialog = ui.create.dialog('<font size=6><b>求贤若渴</b></font>', 'forcebutton', 'hidden');
+				const dialog = ui.create.dialog('<font size=6><b>求贤若渴</b></font>', 'forcebutton', 'hidden');
 				dialog.add('你声明一个花色和类型,然后亮出牌堆顶三张牌,获得与你描述相符的牌.<br>若有两项皆满足的牌,你回复一点体力');
 				// var dialog=ui.create.dialog('你声明一个花色和类型,然后亮出牌堆顶三张牌,获得与你描述相符的牌.<br>若有两项皆满足的牌,你回复一点体力','forcebutton','hidden');
 				event.dialog = dialog;
 				dialog.addText('花色');
-				var table = document.createElement('div');
+				const table = document.createElement('div');
 				table.classList.add('add-setting');
 				table.style.margin = '0';
 				table.style.width = '100%';
 				table.style.position = 'relative';
-				var listi = [];
-				for (var ybi in suit) {
+				const listi = [];
+				for (const ybi in suit) {
 					listi.push(ybi);
 				}
-				var listn = [];
-				for (var ybn in type) {
+				const listn = [];
+				for (const ybn in type) {
 					listn.push(ybn);
 				}
 				for (let i = 0; i < listi.length; i++) {
-					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
+					const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
 					td.link = listi[i];
 					table.appendChild(td);
 					td.innerHTML = '<span>' + suit[listi[i]] + '</span>';
@@ -354,8 +354,8 @@ const card = {
 						setTimeout(function () {
 							_status.tempNoButton = false;
 						}, 500);
-						var link = this.link;
-						var current = this.parentNode.querySelector('.bluebg');
+						const link = this.link;
+						const current = this.parentNode.querySelector('.bluebg');
 						if (current) {
 							current.classList.remove('bluebg');
 						}
@@ -365,15 +365,15 @@ const card = {
 				}
 				dialog.content.appendChild(table);
 				dialog.addText('类型');
-				var table2 = document.createElement('div');
+				const table2 = document.createElement('div');
 				table2.classList.add('add-setting');
 				table2.style.margin = '0';
 				table2.style.width = '100%';
 				table2.style.position = 'relative';
 				// var listn=['普通'].concat(lib.inpile_nature);
 				for (let i = 0; i < listn.length; i++) {
-					var td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
-					var nature = listn[i];
+					const td = ui.create.div('.shadowed.reduce_radius.pointerdiv.tdnode');
+					const nature = listn[i];
 					td.link = nature;
 					table2.appendChild(td);
 					td.innerHTML = '<span>' + type[nature] + '</span>';
@@ -388,8 +388,8 @@ const card = {
 						setTimeout(function () {
 							_status.tempNoButton = false;
 						}, 500);
-						var link = this.link;
-						var current = this.parentNode.querySelector('.bluebg');
+						const link = this.link;
+						const current = this.parentNode.querySelector('.bluebg');
 						if (current) {
 							current.classList.remove('bluebg');
 						}
@@ -412,7 +412,7 @@ const card = {
 					_status.imchoosing = false;
 				};
 				event.control = ui.create.control('ok', function (link) {
-					var result = event._result;
+					const result = event._result;
 					if (!result.type || !result.suit) {
 						return;
 					} else {
@@ -439,18 +439,15 @@ const card = {
 				switchToAuto();
 			}
 			('step 1');
-			var map = event.result || result;
+			const map = event.result || result;
 			if (map.bool) {
-				var cards = get.cards(3),
-					list = [];
-				var suit = map.suit,
-					type = map.type;
+				const cards = get.cards(3), list = [];
+				const suit = map.suit, type = map.type;
 				event.cards = cards;
 				game.cardsGotoOrdering(event.cards);
 				target.showCards(event.cards);
 				for (const i of cards) {
-					var li1 = i.suit,
-						li2 = get.type2(i);
+					const li1 = i.suit, li2 = get.type2(i);
 					if (li1 == suit) {
 						list.add(i);
 					}
@@ -502,7 +499,7 @@ const card = {
 			'step 0';
 			target.showCards(target.getCards('h'));
 			('step 1');
-			var cardxs = target.getCards('h').filter((card) => card.name == 'du');
+			const cardxs = target.getCards('h').filter((card) => card.name == 'du');
 			if (cardxs.length) {
 				target.discard(cardxs);
 			} else if (target.countDiscardableCards(target, 'h')) {
@@ -629,7 +626,7 @@ const card = {
 				player.storage.ybsl_zhijizhibi = [];
 			}
 			player.storage.zhibi.add(target);
-			var controls = [];
+			const controls = [];
 			if (target.countCards('h')) {
 				controls.push('手牌');
 			}
@@ -655,8 +652,8 @@ const card = {
 				event.finish();
 			}
 			('step 1');
-			var content;
-			var str = get.translation(target) + '的';
+			let content;
+			const str = get.translation(target) + '的';
 			if (result.control) {
 				if (result.control == '手牌') {
 					content = [str + '手牌', target.getCards('h')];
@@ -685,7 +682,7 @@ const card = {
 				game.log(player, '观看了', target, '的副将');
 			}
 			if (result.control == '身份') {
-				var func = function () {
+				const func = function () {
 					target.setIdentity();
 				};
 				if (player == game.me) {
@@ -733,7 +730,7 @@ const card = {
 			'step 0';
 			target.draw(2);
 			('step 1');
-			var next = target.phaseUse();
+			const next = target.phaseUse();
 			// event.next.remove(next);
 			// trigger.next.push(next);
 		},
@@ -773,8 +770,7 @@ const card = {
 			}
 			('step 1');
 			if (result && result.control == '顺时针') {
-				var evt = event.parent,
-					sorter = _status.currentPhase || player;
+				const evt = event.parent, sorter = _status.currentPhase || player;
 				evt.fixedSeat = true;
 				evt.targets.sortBySeat(sorter);
 				evt.targets.reverse();
@@ -784,22 +780,22 @@ const card = {
 			}
 			('step 2');
 			ui.clear();
-			var num;
+			let num;
 			if (event.targets) {
 				num = event.targets.length;
 			} else {
 				num = game.countPlayer();
 			}
-			var cards = get.cards(num);
+			const cards = get.cards(num);
 			game.cardsGotoOrdering(cards).relatedEvent = event.parent;
-			var dialog = ui.create.dialog('开仓赈粮', cards, true);
+			const dialog = ui.create.dialog('开仓赈粮', cards, true);
 			_status.dieClose.push(dialog);
 			dialog.videoId = lib.status.videoId++;
 			game.addVideo('cardDialog', null, ['开仓赈粮', get.cardsInfo(cards), dialog.videoId]);
 			event.parent.preResult = dialog.videoId;
 			game.broadcast(
 				function (cards, id) {
-					var dialog = ui.create.dialog('开仓赈粮', cards, true);
+					const dialog = ui.create.dialog('开仓赈粮', cards, true);
 					_status.dieClose.push(dialog);
 					dialog.videoId = id;
 				},
@@ -821,7 +817,7 @@ const card = {
 				return;
 			}
 			if (event.dialog.buttons.length > 1) {
-				var next = player.chooseButton(true, function (button) {
+				const next = player.chooseButton(true, function (button) {
 					return get.value(button.link, _status.event.player);
 				});
 				next.set('dialog', event.preResult);
@@ -832,8 +828,8 @@ const card = {
 				event.directButton = event.dialog.buttons[0];
 			}
 			('step 1');
-			var dialog = event.dialog;
-			var card;
+			const dialog = event.dialog;
+			let card;
 			if (event.directButton) {
 				card = event.directButton.link;
 			} else {
@@ -847,7 +843,7 @@ const card = {
 					card = event.dialog.buttons[0].link;
 				}
 			}
-			var button;
+			let button;
 			for (let i = 0; i < dialog.buttons.length; i++) {
 				if (dialog.buttons[i].link == card) {
 					button = dialog.buttons[i];
@@ -855,7 +851,7 @@ const card = {
 						if (target._tempTranslate) {
 							return target._tempTranslate;
 						}
-						var name = target.name;
+						const name = target.name;
 						if (lib.translate[name + '_ab']) {
 							return lib.translate[name + '_ab'];
 						}
@@ -865,13 +861,13 @@ const card = {
 					break;
 				}
 			}
-			var capt = get.translation(player) + '为' + get.translation(target) + '分配了' + get.translation(button.link);
+			const capt = get.translation(player) + '为' + get.translation(target) + '分配了' + get.translation(button.link);
 			if (card) {
 				target.gain(card, 'visible');
 				target.$gain2(card);
 				game.broadcast(
 					function (card, id, name, capt) {
-						var dialog = get.idDialog(id);
+						const dialog = get.idDialog(id);
 						if (dialog) {
 							dialog.content.firstChild.innerHTML = capt;
 							for (let i = 0; i < dialog.buttons.length; i++) {
@@ -889,7 +885,7 @@ const card = {
 						if (target._tempTranslate) {
 							return target._tempTranslate;
 						}
-						var name = target.name;
+						const name = target.name;
 						if (lib.translate[name + '_ab']) {
 							return lib.translate[name + '_ab'];
 						}
@@ -905,7 +901,7 @@ const card = {
 		contentAfter() {
 			for (let i = 0; i < ui.dialogs.length; i++) {
 				if (ui.dialogs[i].videoId == event.preResult) {
-					var dialog = ui.dialogs[i];
+					const dialog = ui.dialogs[i];
 					dialog.close();
 					_status.dieClose.remove(dialog);
 					if (dialog.buttons.length) {
@@ -919,7 +915,7 @@ const card = {
 				}
 			}
 			game.broadcast(function (id) {
-				var dialog = get.idDialog(id);
+				const dialog = get.idDialog(id);
 				if (dialog) {
 					dialog.close();
 					_status.dieClose.remove(dialog);
@@ -939,7 +935,7 @@ const card = {
 			},
 			result: {
 				target(player, target) {
-					var sorter = _status.currentPhase || player;
+					const sorter = _status.currentPhase || player;
 					if (get.is.versus()) {
 						if (target == sorter) {
 							return 1.5;
@@ -967,8 +963,8 @@ const card = {
 		toself: true,
 		// selectTarget:1,
 		enable(card, player) {
-			var he = player.getCards('he');
-			var list = _status.YB_jingxieList;
+			const he = player.getCards('he');
+			const list = _status.YB_jingxieList;
 			for (let i = 0; i < he.length; i++) {
 				if (list.includes(he[i].name)) {
 					return true;
@@ -981,8 +977,8 @@ const card = {
 		// 	return target === player && target.isDamaged();
 		// },
 		filterTarget(card, player, target) {
-			var he = target.getCards('he');
-			var list = _status.YB_jingxieList;
+			const he = target.getCards('he');
+			const list = _status.YB_jingxieList;
 			for (let i = 0; i < he.length; i++) {
 				if (list.includes(he[i].name)) {
 					return target == player;
@@ -1005,14 +1001,14 @@ const card = {
 		// complexTarget: true,
 		content() {
 			'step 0';
-			var list = _status.YB_jingxieList;
+			const list = _status.YB_jingxieList;
 			if (
 				player.countCards('he', function (card) {
 					return list.includes(card.name);
 				}) > 0
 			) {
 				player.chooseCard('he', 1, true, function (card) {
-					var list = _status.YB_jingxieList;
+					const list = _status.YB_jingxieList;
 					return list.includes(card.name);
 				});
 			} else {
@@ -1021,8 +1017,8 @@ const card = {
 			('step 1');
 			player.showCards(result.cards);
 			('step 2');
-			var card = result.cards[0];
-			var bool = get.position(card) == 'e';
+			let card = result.cards[0];
+			let bool = get.position(card) == 'e';
 			// var tag=[];
 			// // if(get.cardtag(card,'gifts')){tag.push('gifts');}
 			// for(var i of _status.cardtag){
@@ -1160,7 +1156,7 @@ const card = {
 			} else if (event.skipShan) {
 				event._result = { bool: true, result: 'shaned' };
 			} else {
-				var next = target.chooseToUse('请使用一张闪响应毒箭');
+				const next = target.chooseToUse('请使用一张闪响应毒箭');
 				next.set('type', 'respondShan');
 				next.set('filterCard', function (card, player) {
 					if (card.name != 'shan') {
@@ -1172,9 +1168,9 @@ const card = {
 					next.set('prompt2', '(共需使用' + event.shanRequired + '张闪)');
 				}
 				next.set('ai1', function (card) {
-					var target = _status.event.player;
-					var evt = _status.event.parent;
-					var bool = true;
+					const target = _status.event.player;
+					const evt = _status.event.parent;
+					let bool = true;
 					if (_status.event.shanRequired > 1 && !get.is.object(card) && target.countCards('h', 'shan') < _status.event.shanRequired) {
 						bool = false;
 					} else if (target.hasSkillTag('useShan')) {
@@ -1195,9 +1191,9 @@ const card = {
 			('step 2');
 			if ((!result || !result.bool || !result.result || result.result != 'shaned') && !event.unhurt) {
 				target.damage(get.nature(event.card));
-				var suit = card.suit || null;
-				var num = card.number || null;
-				var nature = card.nature || null;
+				const suit = card.suit || null;
+				let num = card.number || null;
+				const nature = card.nature || null;
 				target.gain(game.createCard('du', suit, num, nature, ['gifts']), 'gain2');
 				event.result = { bool: true };
 				event.trigger('rewrite_du_Damage');
@@ -1329,13 +1325,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1391,13 +1387,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1453,13 +1449,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1515,13 +1511,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1589,13 +1585,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1652,13 +1648,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1716,13 +1712,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1780,13 +1776,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1845,13 +1841,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -1910,13 +1906,13 @@ const card = {
 					if (player.isDisabled(get.subtype(card))) {
 						return 0.01;
 					}
-					var value = 0;
-					var info = get.info(card);
-					var current = player.getEquip(info.subtype);
+					let value = 0;
+					const info = get.info(card);
+					const current = player.getEquip(info.subtype);
 					if (current && card != current) {
 						value = get.value(current, player);
 					}
-					var equipValue = info.ai.equipValue;
+					let equipValue = info.ai.equipValue;
 					if (equipValue == undefined) {
 						equipValue = info.ai.basic.equipValue;
 					}
@@ -2136,9 +2132,9 @@ const card = {
 			if (event.directHit) {
 				event._result = { bool: false };
 			} else {
-				var next = target.chooseToDiscard('h', { type: 'basic' }, '请弃置一张基本牌,否则受到一点伤害');
+				const next = target.chooseToDiscard('h', { type: 'basic' }, '请弃置一张基本牌,否则受到一点伤害');
 				next.set('ai', function (card) {
-					var evt = _status.event.parent;
+					const evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
 						return 0;
 					}
@@ -2214,9 +2210,9 @@ const card = {
 			if (event.directHit) {
 				event._result = { bool: false };
 			} else {
-				var next = target.chooseToDiscard('he', { type: 'equip' }, '请弃置一张装备牌,否则受到一点雷电伤害');
+				const next = target.chooseToDiscard('he', { type: 'equip' }, '请弃置一张装备牌,否则受到一点雷电伤害');
 				next.set('ai', function (card) {
-					var evt = _status.event.parent;
+					const evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
 						return 0;
 					}
@@ -2287,11 +2283,11 @@ const card = {
 		defaultYingbianEffect: 'all',
 		content() {
 			'step 0';
-			var suit1 = card.suit;
+			const suit1 = card.suit;
 			if (event.directHit) {
 				event._result = { bool: false };
 			} else {
-				var next = target
+				const next = target
 					.chooseToUse(
 						function (card, player, event) {
 							return card.suit == suit1 && lib.filter.filterCard.apply(this, arguments) && get.position(card) == 'h';
@@ -2318,8 +2314,7 @@ const card = {
 			fireDamage: true,
 			result: {
 				target(player, target, card, isLink) {
-					let hs = target.getCards('h'),
-						eff = 2 * get.sgn(get.damageEffect(target, player, target, 'fire'));
+					const hs = target.getCards('h'), eff = 2 * get.sgn(get.damageEffect(target, player, target, 'fire'));
 					if (isLink || !hs.length) {
 						return eff;
 					}
@@ -2350,9 +2345,9 @@ const card = {
 			if (event.directHit) {
 				event._result = { bool: false };
 			} else {
-				var next = target.chooseToRespond({ name: 'shan' });
+				const next = target.chooseToRespond({ name: 'shan' });
 				next.set('ai', function (card) {
-					var evt = _status.event.parent;
+					const evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
 						return 0;
 					}
@@ -2392,7 +2387,7 @@ const card = {
 					if (player.hasUnknown(2) && get.mode() != 'guozhan') {
 						return 0;
 					}
-					var nh = target.countCards('h');
+					let nh = target.countCards('h');
 					if (get.mode() == 'identity') {
 						if (target.isZhu && nh <= 2 && target.hp <= 1) {
 							return -100;
@@ -2407,7 +2402,7 @@ const card = {
 					return -1.5;
 				},
 				target(player, target) {
-					var nh = target.countCards('h');
+					let nh = target.countCards('h');
 					if (get.mode() == 'identity') {
 						if (target.isZhu && nh <= 2 && target.hp <= 1) {
 							return -100;
@@ -2457,9 +2452,9 @@ const card = {
 			if (event.directHit) {
 				event._result = { bool: false };
 			} else {
-				var next = target.chooseToRespond({ name: 'sha' });
+				const next = target.chooseToRespond({ name: 'sha' });
 				next.set('ai', function (card) {
-					var evt = _status.event.parent;
+					const evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target) >= 0) {
 						return 0;
 					}
@@ -2478,9 +2473,9 @@ const card = {
 				event.goto(3);
 			} else if (target.countCards('h') > 0) {
 				target.chooseToDiscard('铁骑兵锋:请弃置一张牌,否则此【铁骑兵锋】依然造成伤害').set('ai', function (card) {
-					var target = _status.event.player;
-					var evt = _status.event.parent;
-					var bool = true;
+					const target = _status.event.player;
+					const evt = _status.event.parent;
+					let bool = true;
 					if (get.damageEffect(target, evt.player, target, evt.card.nature) >= 0) {
 						bool = false;
 					}
@@ -2517,7 +2512,7 @@ const card = {
 					if (player.hasUnknown(2) && get.mode() != 'guozhan') {
 						return 0;
 					}
-					var nh = target.countCards('h');
+					let nh = target.countCards('h');
 					if (get.mode() == 'identity') {
 						if (target.isZhu && nh <= 2 && target.hp <= 1) {
 							return -100;
@@ -2532,7 +2527,7 @@ const card = {
 					return -1.5;
 				},
 				target(player, target) {
-					var nh = target.countCards('h');
+					let nh = target.countCards('h');
 					if (get.mode() == 'identity') {
 						if (target.isZhu && nh <= 2 && target.hp <= 1) {
 							return -100;
@@ -2627,7 +2622,7 @@ const card = {
 			},
 			result: {
 				target(player, target) {
-					var hs = target.maxHp;
+					const hs = target.maxHp;
 					return Math.max(8 - hs, 2);
 				},
 			},
@@ -2664,7 +2659,7 @@ const card = {
 			},
 			result: {
 				target(player, target) {
-					var hs = target.hp;
+					const hs = target.hp;
 					return Math.max(8 - hs, 2);
 				},
 			},
@@ -2705,8 +2700,7 @@ const card = {
 					return 2;
 				},
 				target_use(player, target, card) {
-					let mode = get.mode(),
-						taos = player.getCards('hs', (i) => i.name === 'ybsl_juhua' && lib.filter.cardEnabled(i, target, 'forceEnable'));
+					const mode = get.mode(), taos = player.getCards('hs', (i) => i.name === 'ybsl_juhua' && lib.filter.cardEnabled(i, target, 'forceEnable'));
 					if (target !== _status.event.dying) {
 						if (
 							!player.isPhaseUsing() ||
@@ -2790,7 +2784,7 @@ const card = {
 						dis = 1,
 						t = _status.currentPhase || game.me;
 					while (t !== target) {
-						let att = get.attitude(player, t);
+						const att = get.attitude(player, t);
 						if (att < -2) {
 							dis++;
 						} else if (att < 1) {
@@ -3166,11 +3160,11 @@ const card = {
 		},
 		modTarget: true,
 		content() {
-			var num = Math.min(5, target.maxHp);
+			let num = Math.min(5, target.maxHp);
 			if (target.group == 'shen') {
 				target.draw(num);
 			} else {
-				var nh = target.countCards('h');
+				let nh = target.countCards('h');
 				if (nh < num) {
 					target.draw(num - nh);
 				}
@@ -3184,11 +3178,11 @@ const card = {
 			},
 			result: {
 				target(player, target) {
-					var num = Math.min(5, target.maxHp);
+					let num = Math.min(5, target.maxHp);
 					if (target.group == 'shen') {
 						return Math.sqrt(num);
 					} else {
-						var nh = target.countCards('h');
+						let nh = target.countCards('h');
 						if (target == player && player.countCards('h', 'sadouchengbing')) {
 							nh--;
 						}
@@ -3225,7 +3219,7 @@ const card = {
 				event.directfalse = true;
 			}
 			('step 1');
-			var nh = target.countCards('he');
+			let nh = target.countCards('he');
 			if ((event.directfalse || !result.bool) && nh) {
 				if (nh <= 2) {
 					event.directcards = true;
@@ -3280,7 +3274,7 @@ const card = {
 			if (event.baseDamage > 0) {
 				target.recover(event.baseDamage);
 			}
-			var num = 3 - event.baseDamage;
+			let num = 3 - event.baseDamage;
 			if (num > 0) {
 				target.draw(Math.min(num, 3));
 			}
@@ -3318,12 +3312,12 @@ const card = {
 		filterTarget(card, player, target) {
 			if (ui.selected.targets.length) {
 				for (const i of ui.selected.targets) {
-					var targets = game
+					const targets = game
 						.filterPlayer(function (current) {
 							return i.inRange(current);
 						})
 						.sortBySeat();
-					for (var k of game.filterPlayer()) {
+					for (const k of game.filterPlayer()) {
 						if (targets.length) {
 							if (targets.includes(k)) {
 								k.prompt('被火杀');
@@ -3342,7 +3336,7 @@ const card = {
 		defaultYingbianEffect: 'add',
 		addinfo: '蕾厉风行',
 		content() {
-			var targets = game
+			const targets = game
 				.filterPlayer(function (current) {
 					return target.inRange(current);
 				})
@@ -3355,11 +3349,11 @@ const card = {
 			order: 7,
 			result: {
 				target(player, target) {
-					var num = 0;
+					let num = 0;
 					game.countPlayer(function (current) {
 						if (target.inRange(current)) {
-							var att = get.attitude(player, current);
-							var eff = get.effect(current, { name: 'sha', nature: 'fire' }, target, player);
+							const att = get.attitude(player, current);
+							const eff = get.effect(current, { name: 'sha', nature: 'fire' }, target, player);
 							if (att > 0) {
 								num++;
 							} else {

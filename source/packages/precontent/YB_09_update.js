@@ -18,15 +18,15 @@ const YBSL_update = function () {
 		/********************更新公告********************/
 		//此处岔开
 		get.ybslb_gengxin = function () {
-			var cfg = 'extension_夜白神略_changelog';
+			const cfg = 'extension_夜白神略_changelog';
 			// delete window.ybslb_update;
 			// var update = window.ybslb_update;
-			var update = ybslb_update;
+			const update = ybslb_update;
 			if (!update) {
 				return false;
 			}
 			lib.extensionPack.夜白神略.version = update.version;
-			var gengxing = update[update.version];
+			const gengxing = update[update.version];
 			if (!gengxing) {
 				return false;
 			}
@@ -35,24 +35,24 @@ const YBSL_update = function () {
 			} else {
 				return false;
 			}
-			var ul = document.createElement('ul');
+			const ul = document.createElement('ul');
 			ul.style.textAlign = 'left';
-			var caption;
-			var version = update.version;
-			var players = gengxing.players || [];
-			var cards = gengxing.cards || [];
-			var changeLog = gengxing.changeLog || [];
+			let caption;
+			const version = update.version;
+			const players = gengxing.players || [];
+			const cards = gengxing.cards || [];
+			const changeLog = gengxing.changeLog || [];
 			caption = '夜白神略更新';
 			for (const i of changeLog) {
-				var li = document.createElement('li');
+				const li = document.createElement('li');
 				li.innerHTML = i;
 				ul.appendChild(li);
 			}
-			var dialog = ui.create.dialog(caption, 'hidden');
+			const dialog = ui.create.dialog(caption, 'hidden');
 			dialog.add(version);
 			dialog.forcebutton = true;
 			dialog.classList.add('forcebutton');
-			var lic = ui.create.div(dialog.content);
+			const lic = ui.create.div(dialog.content);
 			lic.style.display = 'block';
 			ul.style.display = 'inline-block';
 			ul.style.marginLeft = '-40px';
@@ -60,7 +60,7 @@ const YBSL_update = function () {
 			if (players.length) {
 				for (let i = 0; i < players.length; i++) {
 					if (!lib.character[players[i]]) {
-						var result = get.character(players[i]);
+						const result = get.character(players[i]);
 						if (result) {
 							if (!result[4]) {
 								result[4] = [];
@@ -99,13 +99,13 @@ const YBSL_update = function () {
 			dialog.addText('-----------------------------------------');
 			dialog.addText('-----------------------------------------');
 			dialog.open();
-			var hidden = false;
+			let hidden = false;
 			if (!ui.auto.classList.contains('hidden')) {
 				ui.auto.hide();
 				hidden = true;
 			}
 			game.pause();
-			var control = ui.create.control('确定', function () {
+			const control = ui.create.control('确定', function () {
 				dialog.close();
 				control.close();
 				if (hidden) {
@@ -115,10 +115,10 @@ const YBSL_update = function () {
 			});
 			lib.init.onfree();
 		};
-		var _showChangeLog = game.showChangeLog;
+		const _showChangeLog = game.showChangeLog;
 		game.showChangeLog = function () {
 			_showChangeLog();
-			var next = game.createEvent('ybslb_gengxin', false);
+			const next = game.createEvent('ybslb_gengxin', false);
 			next.setContent(function () {
 				get.ybslb_gengxin();
 			});

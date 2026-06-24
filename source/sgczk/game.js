@@ -1,3 +1,3 @@
 ﻿import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
-var funcAtk = function () {};
+const funcAtk = function () {};
 export default funcAtk;

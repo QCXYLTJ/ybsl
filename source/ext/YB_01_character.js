@@ -20,7 +20,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 	/**
 	 * @type { importCharacterConfig }
 	 */
-	var ybslj = {
+	const ybslj = {
 		name: 'ybslj', //武将包命名(必填)
 		connect: true, //该武将包是否可以联机(必填)
 		connectBanned: ['ybold_018zhangqing', 'yboldshen_002chenailin', 'ybsp_018zhangqing'],
@@ -83,7 +83,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 		},
 	};
 	typeimage(ybslj, 'ybsl001');
-	for (var i in ybslj.card) {
+	for (const i in ybslj.card) {
 		if (!ybslj.card[i].image) {
 			ybslj.card[i].image = 'ext:夜白神略/image/card/' + i + '.png';
 		}

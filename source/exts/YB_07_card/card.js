@@ -87,7 +87,7 @@ const card = {
 			if (event.directHit) {
 				event._result = { bool: false };
 			} else {
-				var next = target.chooseToRespond();
+				const next = target.chooseToRespond();
 				next.set('filterCard', function (card, player) {
 					if (card.name != 'sha') {
 						return false;
@@ -98,7 +98,7 @@ const card = {
 					next.set('prompt2', '共需打出' + event.shaRequired + '张杀');
 				}
 				next.set('ai', function (card) {
-					var evt = _status.event.parent;
+					const evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target, 'ice') >= 0) {
 						return 0;
 					}
@@ -125,8 +125,7 @@ const card = {
 		},
 		ai: {
 			wuxie(target, card, player, viewer, status) {
-				let att = get.attitude(viewer, target),
-					eff = get.effect(target, card, player, target);
+				const att = get.attitude(viewer, target), eff = get.effect(target, card, player, target);
 				if (Math.abs(att) < 1 || status * eff * att >= 0) {
 					return 0;
 				}
@@ -141,10 +140,10 @@ const card = {
 						return tar.isZhu || tar === game.boss || tar === game.trueZhu || tar === game.falseZhu;
 					},
 					canSha = function (tar, blur) {
-						let known = tar.getKnownCards(viewer);
+						const known = tar.getKnownCards(viewer);
 						if (!blur) {
 							return known.some((card) => {
-								let name = card.name;
+								const name = card.name;
 								return (name === 'sha' || name === 'hufu' || name === 'yuchanqian') && lib.filter.cardRespondable(card, tar);
 							});
 						}
@@ -325,7 +324,7 @@ const card = {
 						return 0;
 					}
 					player._nanman_temp = true;
-					let eff = get.effect(target, new lib.element.VCard({ name: 'nanman' }), player, target);
+					const eff = get.effect(target, new lib.element.VCard({ name: 'nanman' }), player, target);
 					delete player._nanman_temp;
 					if (eff >= 0) {
 						return 0;
@@ -333,10 +332,10 @@ const card = {
 					if (target.hp > 1 && target.hasSkillTag('respondSha', true, 'respond', true)) {
 						return 0;
 					}
-					let known = target.getKnownCards(player);
+					const known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = card.name;
+							const name = card.name;
 							if (name === 'sha' || name === 'hufu' || name === 'yuchanqian') {
 								return lib.filter.cardRespondable(card, target);
 							}
@@ -362,7 +361,7 @@ const card = {
 					return res;
 				},
 				target(player, target) {
-					let zhu = (get.mode() === 'identity' && target.isZhu) || target.identity === 'zhu';
+					const zhu = (get.mode() === 'identity' && target.isZhu) || target.identity === 'zhu';
 					if (!lib.filter.cardRespondable({ name: 'sha' }, target)) {
 						if (zhu) {
 							if (target.hp < 2) {
@@ -374,10 +373,10 @@ const card = {
 						}
 						return -2;
 					}
-					let known = target.getKnownCards(player);
+					const known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = card.name;
+							const name = card.name;
 							if (name === 'sha' || name === 'hufu' || name === 'yuchanqian') {
 								return lib.filter.cardRespondable(card, target);
 							}
@@ -388,7 +387,7 @@ const card = {
 					) {
 						return -1.2;
 					}
-					let nh = target.countCards('hs', (i) => !known.includes(i));
+					const nh = target.countCards('hs', (i) => !known.includes(i));
 					if (zhu && target.hp <= 1) {
 						if (nh === 0) {
 							return -99;
@@ -453,7 +452,7 @@ const card = {
 			if (event.directHit) {
 				event._result = { bool: false };
 			} else {
-				var next = target.chooseToRespond();
+				const next = target.chooseToRespond();
 				next.set('filterCard', function (card, player) {
 					if (card.name != 'shan') {
 						return false;
@@ -464,7 +463,7 @@ const card = {
 					next.set('prompt2', '共需打出' + event.shanRequired + '张闪');
 				}
 				next.set('ai', function (card) {
-					var evt = _status.event.parent;
+					const evt = _status.event.parent;
 					if (get.damageEffect(evt.target, evt.player, evt.target, 'YB_wind') >= 0) {
 						return 0;
 					}
@@ -494,8 +493,7 @@ const card = {
 		},
 		ai: {
 			wuxie(target, card, player, viewer, status) {
-				let att = get.attitude(viewer, target),
-					eff = get.effect(target, card, player, target);
+				const att = get.attitude(viewer, target), eff = get.effect(target, card, player, target);
 				if (Math.abs(att) < 1 || status * eff * att >= 0) {
 					return 0;
 				}
@@ -510,10 +508,10 @@ const card = {
 						return tar.isZhu || tar === game.boss || tar === game.trueZhu || tar === game.falseZhu;
 					},
 					canShan = function (tar, blur) {
-						let known = tar.getKnownCards(viewer);
+						const known = tar.getKnownCards(viewer);
 						if (!blur) {
 							return known.some((card) => {
-								let name = card.name;
+								const name = card.name;
 								return (name === 'shan' || name === 'hufu') && lib.filter.cardRespondable(card, tar);
 							});
 						}
@@ -694,7 +692,7 @@ const card = {
 						return 0;
 					}
 					player._wanjian_temp = true;
-					let eff = get.effect(target, new lib.element.VCard({ name: 'wanjian' }), player, target);
+					const eff = get.effect(target, new lib.element.VCard({ name: 'wanjian' }), player, target);
 					delete player._wanjian_temp;
 					if (eff >= 0) {
 						return 0;
@@ -702,10 +700,10 @@ const card = {
 					if (target.hp > 1 && target.hasSkillTag('respondShan', true, 'respond', true)) {
 						return 0;
 					}
-					let known = target.getKnownCards(player);
+					const known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = card.name;
+							const name = card.name;
 							if (name === 'shan' || name === 'hufu') {
 								return lib.filter.cardRespondable(card, target);
 							}
@@ -731,7 +729,7 @@ const card = {
 					return res;
 				},
 				target(player, target) {
-					let zhu = (get.mode() === 'identity' && target.isZhu) || target.identity === 'zhu';
+					const zhu = (get.mode() === 'identity' && target.isZhu) || target.identity === 'zhu';
 					if (!lib.filter.cardRespondable({ name: 'shan' }, target)) {
 						if (zhu) {
 							if (target.hp < 2) {
@@ -743,10 +741,10 @@ const card = {
 						}
 						return -2;
 					}
-					let known = target.getKnownCards(player);
+					const known = target.getKnownCards(player);
 					if (
 						known.some((card) => {
-							let name = card.name;
+							const name = card.name;
 							if (name === 'shan' || name === 'hufu') {
 								return lib.filter.cardRespondable(card, target);
 							}
@@ -757,7 +755,7 @@ const card = {
 					) {
 						return -1.2;
 					}
-					let nh = target.countCards('hs', (i) => !known.includes(i));
+					const nh = target.countCards('hs', (i) => !known.includes(i));
 					if (zhu && target.hp <= 1) {
 						if (nh === 0) {
 							return -99;
@@ -813,12 +811,12 @@ const card = {
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_ji.zhuanhuanList(card);
-			var str = '转换卡,此牌视为:';
-			var list2 = ['极'];
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_ji.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
+			const list2 = ['极'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += list2[i];
 				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
@@ -859,12 +857,12 @@ const card = {
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_yi.zhuanhuanList(card);
-			var str = '转换卡,此牌视为:';
-			var list2 = ['阳', '阴'];
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_yi.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
+			const list2 = ['阳', '阴'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += list2[i];
 				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
@@ -905,12 +903,12 @@ const card = {
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_cai.zhuanhuanList(card);
-			var str = '转换卡,此牌视为:';
-			var list2 = ['天', '地', '人'];
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_cai.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
+			const list2 = ['天', '地', '人'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += list2[i];
 				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
@@ -951,12 +949,12 @@ const card = {
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_xiang.zhuanhuanList(card);
-			var str = '转换卡,此牌视为:';
-			var list2 = ['春', '夏', '秋', '冬'];
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_xiang.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
+			const list2 = ['春', '夏', '秋', '冬'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += list2[i];
 				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);
@@ -997,12 +995,12 @@ const card = {
 			if (!card.storage || !card.storage.zhuanhuanNum) {
 				card.storage.zhuanhuanNum = 0;
 			}
-			var num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
-			var list = lib.card.ybsl_hua.zhuanhuanList(card);
-			var str = '转换卡,此牌视为:';
+			const num = card.storage.zhuanhuanNum % card.storage.zhuanhuanList.length;
+			const list = lib.card.ybsl_hua.zhuanhuanList(card);
+			let str = '转换卡,此牌视为:';
 			// var list2 = ['极'];
 			for (let i = 0; i < list.length; i++) {
-				var str2 = '';
+				let str2 = '';
 				str2 += get.cnNumber(i + 1, true);
 				str2 += ':';
 				str2 += list[i] == null ? '任意牌' : get.translation(list[i]);

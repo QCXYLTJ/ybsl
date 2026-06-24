@@ -43,7 +43,7 @@ const card = {
 		},
 		content() {
 			target.addTempSkill('gubuzifeng_disable', { player: 'phaseAfter' });
-			var skills = target.getSkills(null, false);
+			const skills = target.getSkills(null, false);
 			for (let i = 0; i < skills.length; i++) {
 				if (get.info(skills[i]).charlotte) {
 					skills.splice(i--, 1);
@@ -164,11 +164,11 @@ const card = {
 		},
 		modTarget: true,
 		content() {
-			var num = Math.min(5, target.maxHp);
+			let num = Math.min(5, target.maxHp);
 			if (target.group == 'shen') {
 				target.draw(num);
 			} else {
-				var nh = target.countCards('h');
+				let nh = target.countCards('h');
 				if (nh < num) {
 					target.draw(num - nh);
 				}
@@ -182,11 +182,11 @@ const card = {
 			},
 			result: {
 				target(player, target) {
-					var num = Math.min(5, target.maxHp);
+					let num = Math.min(5, target.maxHp);
 					if (target.group == 'shen') {
 						return Math.sqrt(num);
 					} else {
-						var nh = target.countCards('h');
+						let nh = target.countCards('h');
 						if (target == player && player.countCards('h', 'sadouchengbing')) {
 							nh--;
 						}
@@ -223,7 +223,7 @@ const card = {
 				event.directfalse = true;
 			}
 			('step 1');
-			var nh = target.countCards('he');
+			let nh = target.countCards('he');
 			if ((event.directfalse || !result.bool) && nh) {
 				if (nh <= 2) {
 					event.directcards = true;
@@ -379,7 +379,7 @@ const card = {
 		},
 		changeTarget(player, targets) {
 			if (get.mode() == 'guozhan') {
-				var target = targets[0];
+				const target = targets[0];
 				targets.push(player);
 				if (target.identity != 'ye') {
 					game.filterPlayer(function (current) {
@@ -410,14 +410,14 @@ const card = {
 				event.finish();
 			} else {
 				if (target == player) {
-					var num = targets.length - 1;
+					let num = targets.length - 1;
 					event.num = num;
-					var damaged = target.maxHp - target.hp;
+					const damaged = target.maxHp - target.hp;
 					if (damaged == 0) {
 						target.draw(num);
 						event.finish();
 					} else {
-						var list = [];
+						const list = [];
 						for (let i = Math.min(num, damaged); i >= 0; i--) {
 							list.push('摸' + (num - i) + '回' + i);
 						}
@@ -439,9 +439,9 @@ const card = {
 			if (target != player) {
 				target.link(false);
 			} else if (typeof result.control == 'string') {
-				var index = result.control.indexOf('回');
-				var draw = parseInt(result.control.slice(1, index));
-				var recover = parseInt(result.control.slice(index + 1));
+				const index = result.control.indexOf('回');
+				const draw = parseInt(result.control.slice(1, index));
+				const recover = parseInt(result.control.slice(index + 1));
 				if (draw) {
 					target.draw(draw);
 				}
@@ -537,11 +537,11 @@ const card = {
 		ai: {
 			basic: {
 				order(item, player) {
-					var cards = player.getCards('hs', (card) => get.tag(card, 'damage') && player.hasValueTarget(card));
+					const cards = player.getCards('hs', (card) => get.tag(card, 'damage') && player.hasValueTarget(card));
 					if (!cards.length) {
 						return 0;
 					}
-					var cardx = cards.filter((card) => card.name == 'sha');
+					let cardx = cards.filter((card) => card.name == 'sha');
 					cardx.sort((a, b) => player.getUseValue(b) - player.getUseValue(a));
 					cardx = cardx.slice(Math.min(cardx.length, player.getCardUsable('sha')), cardx.length);
 					cards.removeArray(cardx);
@@ -555,11 +555,11 @@ const card = {
 					if (target.hasSkill('gangzhi') || get.attitude(player, target) >= 0) {
 						return 0;
 					}
-					var cards = player.getCards('hs', (card) => get.tag(card, 'damage') && player.canUse(card, target) && get.effect(target, card, player, player) > 0);
+					const cards = player.getCards('hs', (card) => get.tag(card, 'damage') && player.canUse(card, target) && get.effect(target, card, player, player) > 0);
 					if (!cards.length) {
 						return 0;
 					}
-					var cardx = cards.filter((card) => card.name == 'sha');
+					let cardx = cards.filter((card) => card.name == 'sha');
 					cardx.sort((a, b) => get.effect(target, b, player, player) - get.effect(target, a, player, player));
 					cardx = cardx.slice(Math.min(cardx.length, player.getCardUsable('sha')), cardx.length);
 					cards.removeArray(cardx);
@@ -605,14 +605,14 @@ const card = {
 					if (target.hp <= 0) {
 						return 2;
 					}
-					var nd = player.needsToDiscard();
-					var keep = false;
+					const nd = player.needsToDiscard();
+					let keep = false;
 					if (nd <= 0) {
 						keep = true;
 					} else if (nd == 1 && target.hp >= 2 && target.countCards('h', 'tao') <= 1) {
 						keep = true;
 					}
-					var mode = get.mode();
+					const mode = get.mode();
 					if (target.hp >= 2 && keep && target.hasFriend()) {
 						if (target.hp > 2 || nd == 0) {
 							return 0;
@@ -739,11 +739,11 @@ const card = {
 							return 0;
 						}
 					}
-					var shas = player.getCards('h', 'sha');
+					const shas = player.getCards('h', 'sha');
 					if (shas.length > 1 && player.getCardUsable('sha') > 1) {
 						return 0;
 					}
-					var card;
+					let card;
 					if (shas.length) {
 						for (let i = 0; i < shas.length; i++) {
 							if (lib.filter.filterCard(shas[i], target)) {
@@ -782,7 +782,7 @@ const card = {
 		type: 'trick',
 		content() {
 			'step 0';
-			var num = 0;
+			let num = 0;
 			for (const i of game.players) {
 				if (i.side == player.side) {
 					if (i != player) {

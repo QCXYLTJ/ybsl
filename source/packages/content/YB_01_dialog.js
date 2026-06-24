@@ -15,7 +15,7 @@ const YBSL_dialogx = function () {
 	// game.showExtensionChangeLog(str, '夜白神略');
 	//-------------云端弹窗公告(已放弃)
 	if (config.ybslb) {
-		for (var i in lib.characterPack.ybslb) {
+		for (const i in lib.characterPack.ybslb) {
 			if (lib.character[i][4].indexOf() < 0) {
 				lib.character[i][4].push();
 			}
