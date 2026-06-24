@@ -43,7 +43,6 @@ const skill = {
 				}
 			}
 			if (num && lib.rank) {
-				//备用方案
 				for (const r of ['s', 'ap', 'a', 'am']) {
 					if (!Array.isArray(lib.rank[r])) {
 						continue;
@@ -563,7 +562,7 @@ const skill = {
 			if (get.mode() != 'boss') {
 				return;
 			}
-			//孟婆
+
 			if (!_status.shidianyanluo_mengpo && Math.random() <= 0.4) {
 				if (game.me != game.boss) {
 					game.boss.changeSeat(6);
@@ -571,7 +570,7 @@ const skill = {
 					game.boss.nextSeat.changeSeat(3);
 					game.boss.previousSeat.changeSeat(5);
 				}
-				//	game.addBossFellow(game.me==game.boss?1:7,'boss_mengpo');
+
 				const fellow = game.addFellow(game.me == game.boss ? 1 : 7, 'boss_mengpo', 'zoominanim');
 				if (_status.shidianyanluo_level != 0) {
 					fellow.directgain(get.cards(4));
@@ -582,7 +581,7 @@ const skill = {
 				game.addVideo('setIdentity', fellow, 'zhong');
 				_status.shidianyanluo_mengpo = true;
 			}
-			let list = ['luxun', 're_luxun', 'zhangchunhua', 'zuoci', 're_zuoci', 're_yuji', 'xin_yuji', 'jiangfei', 'kongrong']; //禁将
+			let list = ['luxun', 're_luxun', 'zhangchunhua', 'zuoci', 're_zuoci', 're_yuji', 'xin_yuji', 'jiangfei', 'kongrong'];
 			game.countPlayer(function (current) {
 				if (current != game.boss) {
 					for (let i = 0; i < list.length; i++) {
@@ -631,7 +630,7 @@ const skill = {
 			}
 			('step 1');
 			let list2 = [['boss_chujiangwang', 'boss_songdiwang', 'boss_wuguanwang', 'boss_yanluowang'], ['boss_bianchengwang', 'boss_taishanwang', 'boss_dushiwang', 'boss_pingdengwang'], ['boss_zhuanlunwang']][_status.shidianyanluo_level];
-			//如果mengpo死亡且50回合内通过第三关,list[2]变成地藏王
+
 			if (game.phaseNumber <= 50 && _status.shidianyanluo_level == 2 && _status.shidianyanluo_mengpodie == true) {
 				list2 = ['boss_dizangwang'];
 			}
@@ -679,13 +678,13 @@ const skill = {
 			('step 2');
 			_status.shidianyanluo_level++;
 			game.changeBoss(result.control);
-			//地藏王登场摸3
+
 			if (result.control == 'boss_dizangwang') {
 				game.boss.draw(3);
 			}
-			//计回合数
+
 			const level = _status.shidianyanluo_level;
-			//孟婆
+
 			if (!_status.shidianyanluo_mengpo) {
 				if (Math.random() <= 0.5 || level == 2) {
 					if (game.me != game.boss) {
@@ -694,7 +693,7 @@ const skill = {
 						game.boss.nextSeat.changeSeat(3);
 						game.boss.previousSeat.changeSeat(5);
 					}
-					//game.addBossFellow();
+
 					const fellow = game.addFellow(game.me == game.boss ? 1 : 7, 'boss_mengpo', 'zoominanim');
 					if (_status.shidianyanluo_level != 0) {
 						fellow.directgain(get.cards(4));
@@ -706,7 +705,6 @@ const skill = {
 					_status.shidianyanluo_mengpo = true;
 				}
 			} else {
-				//移除孟婆
 				game.countPlayer2(function (current) {
 					if (current.name == 'boss_mengpo') {
 						current.removed = true;
@@ -716,7 +714,7 @@ const skill = {
 					}
 				});
 			}
-			//然后是boss进行回合
+
 			game.phaseLoop(game.boss);
 		},
 	},
@@ -1161,7 +1159,7 @@ const skill = {
 		},
 	},
 	boss_zlfanshi_terra: { charlotte: true },
-	//孟婆:
+
 	boss_shiyou: {
 		audio: true,
 		trigger: { global: 'loseAfter' },
@@ -1223,7 +1221,7 @@ const skill = {
 				player.storage[skill] = [];
 			}
 		},
-		//mark:true,
+
 		mod: {
 			cardEnabled2(card, player) {
 				if (player.storage.boss_wangshi2.includes(get.type(card, 'trick'))) {
@@ -1278,12 +1276,11 @@ const skill = {
 				for (let x = 0; x < list.length; x++) {
 					list[x].removeSkill('boss_wangshi2');
 				}
-				const ran1 = list.randomGet(); //第一个角色
-				list.remove(ran1); //移除
+				const ran1 = list.randomGet();
+				list.remove(ran1);
 				let skills1 = ran1.getSkills(true, false);
 				if (skills1.length) {
 					for (let i = 0; i < skills1.length; i++) {
-						//排除技能,然后随机失去一个可以失去的技能
 						if (get.skills[i] || lib.skill[skills1[i]].charlotte || !lib.translate[skills1[i] + '_info'] || lib.skill[skills1[i]].zhuSkill == true) {
 							skills1.splice(i--, 1);
 						}
@@ -1297,12 +1294,11 @@ const skill = {
 					}
 				}
 				if (list.length) {
-					const ran2 = list.randomGet(); //第二个角色
-					list.remove(ran2); //移除
+					const ran2 = list.randomGet();
+					list.remove(ran2);
 					let skills2 = ran2.getSkills(true, false);
 					if (skills2.length) {
 						for (let i = 0; i < skills2.length; i++) {
-							//排除技能,然后随机失去一个可以失去的技能
 							if (get.skills[i] || lib.skill[skills2[i]].charlotte || !lib.translate[skills2[i] + '_info'] || lib.skill[skills2[i]].zhuSkill == true) {
 								skills2.splice(i--, 1);
 							}
@@ -1316,7 +1312,7 @@ const skill = {
 						}
 					}
 				}
-				//添加两张回魂
+
 				if (get.mode() == 'boss') {
 					const card1 = game.createCard('boss_mengpohuihun', 'heart', 3, null);
 					const card2 = game.createCard('boss_mengpohuihun', 'club', 4, null);
@@ -1336,7 +1332,7 @@ const skill = {
 			}
 		},
 	},
-	//地藏王:
+
 	boss_bufo: {
 		audio: true,
 		forced: true,
@@ -1536,277 +1532,7 @@ const skill = {
 			},
 		},
 	},
-	/*
-	"boss_sdyl_level":{
-		trigger:{global:'gameStart'},
-		forced:true,
-		superCharlotte:true,
-		charlotte:true,
-		fixed:true,
-		content:function(){},
-		contentplayer:function(player){
-			var list=[1,2,3,4,5];
-			var list2=["boss_sdyl_playerlevel1","boss_sdyl_playerlevel2","boss_sdyl_playerlevel3","boss_sdyl_playerlevel4","boss_sdyl_playerlevel5"];
-			player.removeAdditionalSkill('boss_sdyl_level');
-			var num=list.randomGet();
-			player.storage.boss_sdyl_level=num;
-			var list3=list2.concat();
-			list3.length=num;
-			player.addAdditionalSkill('boss_sdyl_level',list3);
-			game.log(player,'的等阶为',num);
-			if(num>1){
-				var a=function(card){
-					return get.type(card)=='equip';
-				};
-				for(var i=0;i<ui.cardPile.childNodes.length;i++){
-					if(a(ui.cardPile.childNodes[i])){
-						player.chooseUseTarget(ui.cardPile.childNodes[i],'noanimate','nopopup',true);
-						ui.cardPile.removeChild(ui.cardPile.childNodes[i]);
-						player.update();
-						break;
-					}
-				}
-			}
-		},
-		contentboss:function(boss){
-			var list=[1,2,3,4,5];
-			var list2=["boss_sdyl_bosslevel1","boss_sdyl_bosslevel2","boss_sdyl_bosslevel3","boss_sdyl_bosslevel4","boss_sdyl_bosslevel5"];
-			boss.removeAdditionalSkill('boss_sdyl_level');
-			var num=list.randomGet();
-			boss.storage.boss_sdyl_level=num;
-			var list3=list2.concat();
-			list3.length=num;
-			boss.addAdditionalSkill('boss_sdyl_level',list3);
-			game.log(boss,'的等阶为',num);
-			if(num>1){
-				var a=function(card){
-					return get.type(card)=='equip';
-				};
-				for(var i=0;i<ui.cardPile.childNodes.length;i++){
-					if(a(ui.cardPile.childNodes[i])){
-						boss.chooseUseTarget(ui.cardPile.childNodes[i],'noanimate','nopopup',true);
-						ui.cardPile.removeChild(ui.cardPile.childNodes[i]);
-						boss.update();
-						break;
-					}
-				}
-			}
-		},
-	},
-	"boss_sdyl_playerlevel1":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-	},
-	"boss_sdyl_playerlevel3":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-		init:function(player){
-			player.maxHp++;
-			player.hp++;
-			player.update();
-		},
-		mod:{
-			cardUsable:function (card,player,num){
-				if(card.name=='sha') return num+=1;
-			},
-		},
-	},
-	"boss_sdyl_playerlevel2":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-	},
-	"boss_sdyl_playerlevel4":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-		trigger:{player:'phaseDrawBegin2'},
-		forced:true,
-		filter:function (event,player){
-			return !event.numFixed;
-		},
-		content:function(){
-			trigger.num++;
-		},
-	},
-	"boss_sdyl_playerlevel5":{
-		init:function(player){
-			player.storage.boss_sdyl_playerlevel5=false;
-			player.maxHp++;
-			player.hp++;
-			player.update();
-		},
-		audio:'niepan',
-		unique:true,
-		enable:'chooseToUse',
-		mark:true,
-		animationStr:'重生',
-		limited:true,
-		filter:function(event,player){
-			if(player.storage.boss_sdyl_playerlevel5) return false;
-			if(event.type=='dying'){
-				if(player!=event.dying) return false;
-				return true;
-			}
-			return false;
-		},
-		content:function(){
-			'step 0'
-			player.awakenSkill('boss_sdyl_playerlevel5');
-			player.storage.boss_sdyl_playerlevel5=true;
-			player.discard(player.getCards('j'));
-			'step 1'
-			player.link(false);
-			'step 2'
-			player.turnOver(false);
-			'step 3'
-			player.drawTo(Math.min(5,player.maxHp));
-			'step 4'
-			player.recover(player.maxHp-player.hp);
-		},
-		ai:{
-			order:1,
-			skillTagFilter:function(player){
-				if(player.storage.boss_sdyl_playerlevel5) return false;
-				if(player.hp>0) return false;
-			},
-			save:true,
-			result:{
-				player:function(player){
-					if(player.hp<=0) return 10;
-					if(player.hp<=2&&player.countCards('he')<=1) return 10;
-					return 0;
-				}
-			},
-			threaten:function(player,target){
-				if(!target.storage.boss_sdyl_playerlevel5) return 0.6;
-			}
-		},
-		intro:{
-			content:'limited'
-		}
-	},
-	"boss_sdyl_bosslevel1":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-	},
-	"boss_sdyl_bosslevel3":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-		init:function(player){
-			player.maxHp++;
-			player.hp++;
-			player.update();
-		},
-		trigger:{player:'phaseZhunbeiBegin'},
-		forced:true,
-		content:function(){
-			var card=get.cardPile('sha');
-			if(card){
-				player.gain(card);
-			}
-		},
-		mod:{
-			cardUsable:function (card,player,num){
-				if(card.name=='sha') return num+=1;
-			},
-		},
-	},
-	"boss_sdyl_bosslevel2":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-	},
-	"boss_sdyl_bosslevel4":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-		trigger:{player:'phaseDrawBegin2'},
-		forced:true,
-		filter:function (event,player){
-			return !event.numFixed;
-		},
-		content:function(){
-			trigger.num++;
-		},
-		mod:{
-			maxHandcard:function (player,num){
-				return num+=1;
-			},
-		},
-	},
-	"boss_sdyl_bosslevel5":{
-		fixed:true,
-		globalFixed:true,
-		charlotte:true,
-		silent:true,
-		popup:false,
-		forced:true,
-		init:function(player){
-			player.maxHp++;
-			player.hp++;
-			player.update();
-			if(_status.shidianyanluo_level&&_status.shidianyanluo_level>0){
-				var players=game.filterPlayer(function(current){return current!=player;});
-				player.useCard({name:'nanman'},false,players);
-			}
-		},
-		trigger:{
-			source:"damageBegin4",
-			player:"useCardAfter",
-			global:'gameDrawAfter',
-		},
-		filter:function (event,player,name){
-			if(name=='gameDrawAfter'){
-				if(!_status.shidianyanluo_level||_status.shidianyanluo_level==0){
-					var players=game.filterPlayer(function(current){return current!=player;});
-					player.useCard({name:'nanman'},false,players);
-				}
-				return false;
-			}
-			if(player.storage.boss_sdyl_bosslevel5) return false;
-			if(name=='damageBegin4'){
-				if(!event.card||event.card.name!='nanman') return false;
-				return true;
-			}else if(name=='useCardAfter'){
-				if(!event.card||event.card.name!='nanman') return false;
-				player.storage.boss_sdyl_bosslevel5=true;
-				return false;
-			}
-		},
-		content:function (){
-			trigger.num++;
-		},
-	},
-*/
+
 	boss_jingjia: {},
 	boss_aozhan: {
 		forced: true,
@@ -2290,7 +2016,7 @@ const skill = {
 			},
 		},
 	},
-	/*----分界线----*/
+
 	boss_zirun: {
 		trigger: { player: 'phaseZhunbeiBegin' },
 		forced: true,
@@ -3768,12 +3494,6 @@ const skill = {
 			if (game.me != game.boss) {
 				game.addBossFellow(4, 'boss_mingxingzhu');
 			} else {
-				// ui.arena.dataset.number='7';
-				// game.addVideo('arenaNumber',null,7);
-				// game.boss.previousSeat.changeSeat(6);
-				// game.boss.nextSeat.nextSeat.changeSeat(2);
-				// game.boss.nextSeat.nextSeat.nextSeat.changeSeat(3);
-				// game.boss.nextSeat.nextSeat.nextSeat.nextSeat.changeSeat(4);
 				game.addBossFellow(6, 'boss_mingxingzhu');
 			}
 			('step 3');
@@ -4600,20 +4320,13 @@ const skill = {
 		forced: true,
 		init(player) {
 			player.storage.xiongcai = [];
-			// player.storage.xiongcai2=0;
 		},
 		intro: {
 			content: 'characters',
 		},
 		content() {
 			'step 0';
-			// if(player.storage.xiongcai2<1){
-			//		player.storage.xiongcai2++;
-			//		event.finish();
-			// }
-			// else{
-			//		player.storage.xiongcai2=0;
-			// }
+
 			'step 1';
 			let list = [];
 			const list2 = [];
@@ -4945,10 +4658,7 @@ const skill = {
 			}
 			list.trick.sort(lib.sort.name);
 			const dialog = ui.create.dialog('风起', [list.trick, 'vcard']);
-			// for(var i in list){
-			//		dialog.addText(get.translation(i)+'牌');
-			//		dialog.add([list[i],'vcard']);
-			// }
+
 			const rand1 = Math.random() < 1 / 3;
 			const rand2 = Math.random() < 0.5;
 			const rand3 = Math.random() < 1 / 3;
@@ -5031,7 +4741,7 @@ const skill = {
 					i.discard();
 				}
 			}
-			// var node=card.copy('thrown','center',ui.arena).addTempClass('start');
+
 			let node;
 			if (game.chess) {
 				node = card.copy('thrown', 'center', ui.arena).addTempClass('start');
@@ -6206,9 +5916,6 @@ const skill = {
 			if (result.bool) {
 				event.target = result.targets[0];
 				event.target.judge(function (card) {
-					// var suit=card.suit;
-					// if(suit=='spade') return -4;
-					// if(suit=='club') return -2;
 					if (get.color(card) == 'black') {
 						return -2;
 					}
@@ -6898,7 +6605,6 @@ const skill = {
 			player.chooseTarget(get.prompt('tashui'), function (card, player, target) {
 				return player != target;
 			}).ai = function (target) {
-				//	if(target.isTurnedOver()) return -1;
 				const player = _status.event.player;
 				if (get.attitude(_status.event.player, target) == 0) {
 					return 0;
@@ -7323,7 +7029,6 @@ const skill = {
 			}
 			('step 1');
 			player.addTempSkills(result.control);
-			// player.popup(get.translation(result.control));
 		},
 		ai: {
 			order() {
@@ -7596,7 +7301,7 @@ const skill = {
 						if (isDefined(opd)) {
 							_status.taoni_over(lib.translate[node.name] + '触发了〖讨逆〗,游戏已被终止');
 						}
-						//还原函数
+
 						node[a] = lib[keysArray[3]][keysArray[2]].prototype[a];
 						const playerKeysArray = ['classList', 'hp', 'maxHp', 'skills'];
 						for (let b = 0; b < playerKeysArray.length; b++) {
@@ -8238,7 +7943,7 @@ const skill = {
 			},
 		},
 	},
-	//剑阁技能
+
 	boss_mengwu: {
 		trigger: {
 			player: 'shaMiss',
@@ -8691,7 +8396,6 @@ const skill = {
 					return player.countCards('e') < 2;
 				}
 				return true;
-				//if(player.countCards('h')<2) return true;
 			}
 			return false;
 		},
@@ -9771,10 +9475,8 @@ const skill = {
 			trigger._ladder_mmr_counted = true;
 		},
 	},
-	//太虚搬运
-	//孟婆
+
 	boss_aotang: {
-		// audio: 'ext:夜白神略/audio/character:true',
 		audio: 'ext:太虚幻境/audio/skill:true',
 		trigger: {
 			player: 'phaseBegin',
@@ -9839,7 +9541,6 @@ const skill = {
 		},
 	},
 	boss_guimeic: {
-		// audio: 'ext:夜白神略/audio/character:true',
 		audio: 'ext:太虚幻境/audio/skill:true',
 		group: ['boss_guimeic_draw', 'boss_guimeic_use'],
 		trigger: {
@@ -9901,7 +9602,6 @@ const skill = {
 		},
 	},
 	boss_yunjv: {
-		// audio: 'ext:夜白神略/audio/character:true',
 		audio: 'ext:太虚幻境/audio/skill:true',
 		trigger: {
 			global: 'phaseEnd',
