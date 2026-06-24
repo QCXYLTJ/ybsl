@@ -725,7 +725,6 @@ const skill = {
 				},
 			},
 			shibai: {
-				audio: 'dz017_zhushi',
 				logAudio: () => ['ext:夜白神略/audio/character/dz017_zhushi3'],
 				trigger: {
 					global: [/*'useCardToPlayered',*/ 'phaseJieshuBegin'],
@@ -1129,25 +1128,26 @@ const skill = {
 				const str8 = '</span>';
 				const str9 = '(若你没有鸾鸣或鸾鸣已使用则改为黑色牌)<br>';
 				const str10 = '(若你没有鸾鸣或鸾鸣已使用则改为红色牌)<br>';
+				let str;
 				if (player.storage.ybsl_xianyin == true) {
 					//弦音阳
 					if (player.storage.ybsl_luanming == true) {
 						//鸾鸣阳
 						if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
 							//拥有鸾鸣
-							let str = str5 + str4 + str8 + str10 + str0; //√
+							str = str5 + str4 + str8 + str10 + str0; //√
 						} else {
 							//--------------------------------无鸾鸣
-							let str = str5 + str4 + str8 + str6 + str10 + str8 + str0; //√
+							str = str5 + str4 + str8 + str6 + str10 + str8 + str0; //√
 						}
 					} else {
 						//-------------------------------------鸾鸣阴
 						if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
 							//拥有鸾鸣
-							let str = str5 + str3 + str8 + str10 + str0; //√
+							str = str5 + str3 + str8 + str10 + str0; //√
 						} else {
 							//--------------------------------无鸾鸣
-							let str = str5 + str3 + str8 + str6 + str10 + str8 + str0; //√
+							str = str5 + str3 + str8 + str6 + str10 + str8 + str0; //√
 						}
 					}
 				} else {
@@ -1156,19 +1156,19 @@ const skill = {
 						//鸾鸣阳
 						if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
 							//拥有鸾鸣
-							let str = str5 + str2 + str8 + str9 + str0; //√
+							str = str5 + str2 + str8 + str9 + str0; //√
 						} else {
 							//------------------------------无鸾鸣
-							let str = str5 + str2 + str8 + str6 + str9 + str8 + str0; //√
+							str = str5 + str2 + str8 + str6 + str9 + str8 + str0; //√
 						}
 					} else {
 						//---------------------------------鸾鸣阴
 						if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
 							//拥有鸾鸣
-							let str = str5 + str1 + str8 + str9 + str0; //√
+							str = str5 + str1 + str8 + str9 + str0; //√
 						} else {
 							//-------------------------------无鸾鸣
-							let str = str5 + str1 + str8 + str6 + str9 + str8 + str0; //√
+							str = str5 + str1 + str8 + str6 + str9 + str8 + str0; //√
 						}
 					}
 				}
@@ -1187,17 +1187,18 @@ const skill = {
 				return false;
 			}
 			if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
+				let suit;
 				if (player.storage.ybsl_xianyin == true) {
 					if (player.storage.ybsl_luanming == true) {
-						const suit = 'diamond';
+						suit = 'diamond';
 					} else {
-						const suit = 'heart';
+						suit = 'heart';
 					}
 				} else {
 					if (player.storage.ybsl_luanming == true) {
-						const suit = 'club';
+						suit = 'club';
 					} else {
-						const suit = 'spade';
+						suit = 'spade';
 					}
 				}
 				for (const i of event.cards) {
@@ -1206,10 +1207,11 @@ const skill = {
 					}
 				}
 			} else {
+				let color;
 				if (player.storage.ybsl_xianyin == true) {
-					const color = 'red';
+					color = 'red';
 				} else {
-					const color = 'black';
+					color = 'black';
 				}
 				for (const i of event.cards) {
 					if (get.color(i) == color) {
@@ -1336,11 +1338,12 @@ const skill = {
 		viewAs(cards, player) {
 			let name = false;
 			let nature = null;
+			let colorx;
 			if (player.storage.ybsl_luanming == true) {
-				const colorx = 'red';
+				colorx = 'red';
 			} //阳,红色
 			else {
-				const colorx = 'black';
+				colorx = 'black';
 			} //阴,黑色
 			for (const i of cards) {
 				if (get.color(i) == colorx) {
@@ -1376,15 +1379,11 @@ const skill = {
 		enable: 'chooseToUse',
 		position: 'hs',
 		filterCard(card, player) {
-			// var player=_status.event.player;
 			if (player.storage.ybsl_luanming == true) {
 				const colro = 'red';
 			} else {
 				const colro = 'black';
 			}
-			// var evt=lib.filter.filterCard;
-			// if(event.filterCard) evt=event.filterCard;
-			// if(lib.filter.canBeDiscarded(card,player)){
 			const color = get.color(card);
 			if (Array.isArray(ui.selected.cards)) {
 				for (const i of ui.selected.cards) {
@@ -1393,26 +1392,21 @@ const skill = {
 					}
 				}
 			}
-			// if(color==colro)return evt(card,player);
 			return get.color(card) != 'none';
-			// }
-			// if(evt(card,player,event)&&get.color(card)==colro){
-			// }
-			// return true;
 		},
 		selectCard: 2,
 		complexCard: true,
-		lose: true,
 		ignoreMod: true,
 		precontent() {
 			'step 0';
 			player.discard(event.result.cards);
 			('step 1');
+			let color;
 			if (player.storage.ybsl_luanming == true) {
-				const color = 'red';
+				color = 'red';
 			} //阳,红色
 			else {
-				const color = 'black';
+				color = 'black';
 			} //阴,黑色
 			for (const i of event.result.cards) {
 				if (get.color(i) == color) {
@@ -1421,36 +1415,7 @@ const skill = {
 			}
 			('step 2');
 			player.changeZhuanhuanji('ybsl_luanming');
-			// event.card.effectCount++;
-			// 	if(player.storage.ybsl_luanming==true){event.color='red';}//阳,红色
-			// 	else{event.color='black';}//阴,黑色
-			// 	for(var i of cards){
-			// 		if(get.color(i)==event.color){
-			// 			event.card=i;
-			// 		}
-			// 	}
-			// 	'step 1'
-			// 	player.changeZhuanhuanji('ybsl_luanming')
-			// 	if(event.card&&player.hasUseTarget(event.card)){
-			// 		player.chooseUseTarget(event.card,'视为使用一张'+get.translation(event.card),true);
-			// 	}
 		},
-		// prompt:'<span class="yellowtext">注意:此技能不能用于响应其他牌,更不能在别人濒死时用桃选择其为目标!</span>',
-		// content:function(){
-		// 	'step 0'
-		// 	if(player.storage.ybsl_luanming==true){event.color='red';}//阳,红色
-		// 	else{event.color='black';}//阴,黑色
-		// 	for(var i of cards){
-		// 		if(get.color(i)==event.color){
-		// 			event.card=i;
-		// 		}
-		// 	}
-		// 	'step 1'
-		// 	player.changeZhuanhuanji('ybsl_luanming')
-		// 	if(event.card&&player.hasUseTarget(event.card)){
-		// 		player.chooseUseTarget(event.card,'视为使用一张'+get.translation(event.card),true);
-		// 	}
-		// },
 		group: 'ybsl_luanming_use',
 		subSkill: {
 			use: {
@@ -1458,45 +1423,12 @@ const skill = {
 				forced: true, //不用改
 				charlotte: true,
 				filter(event, player) {
-					// game.log('event.skill:',event.skill)
-					// game.log('event.parent:',event.parent)
-					// game.log('event.parent.skill:',event.parent.skill)
-					// game.log('event.getParent(0):',event.getParent(0))
-					// game.log('event.getParent(1):',event.getParent(1))
-					// game.log('event.getParent(2):',event.getParent(2))//
-					// game.log('event.getParent(3):',event.getParent(3))
-					// game.log('event.getParent(3).skill:',event.getParent(3).skill)//√
-					// game.log('event.getParent(4):',event.getParent(4))
-					// game.log('event.getParent(5):',event.getParent(5))
-					// return event.parent.skill=='ybsl_luanming';
 					return event.skill == 'ybsl_luanming';
 				},
 				content() {
 					trigger.effectCount++;
-					// player.addTempSkill('ybsl_luanming_buff','phaseUseAfter');
-					// trigger.ybsl_luanming_buff=player;
 				},
 			},
-			/*
-			buff:{
-				trigger:{player:'useCardToTargeted'},
-				forced:true,
-				charlotte:true,
-				popup:false,
-				lastDo:true,
-				filter:function(event,player){
-					return (event.parent.ybsl_luanming_buff==player&&event.targets.length==event.parent.triggeredTargets4.length);
-				},
-				content:function(){
-					trigger.parent.targets=trigger.parent.targets.concat(trigger.targets);
-					trigger.parent.triggeredTargets4=trigger.parent.triggeredTargets4.concat(trigger.targets);
-				},
-				onremove:true,
-				// onremove:function(player){
-				// 	delete player.storage.counttrigger.ybsl_luanming_buff;
-				// },
-			},
-			*/
 		},
 	},
 	//----------------神甄姬
@@ -1518,18 +1450,6 @@ const skill = {
 	ybsl_zjsqiyuan: {
 		audio: 'ext:夜白神略/audio/character:2',
 		usable: 1,
-		// subSkill:{
-		// block:{
-		// onremove:true,
-		// direct:true,
-		// trigger:{
-		// player:'phaseUseAfter',
-		// },
-		// content:function(){
-		// player.removeSkill('ybsl_zjsqiyuan_block');
-		// }
-		// },
-		// },
 		enable: 'phaseUse',
 		// filter:function(event,player){
 		// return !player.hasMark('ybsl_zjsqiyuan_block');
