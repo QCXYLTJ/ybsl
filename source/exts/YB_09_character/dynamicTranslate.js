@@ -30,7 +30,7 @@ const dynamicTranslate = {
 	},
 	North_zx_ningao(player) {
 		var str = '锁定技.当你的体力值变化时,你摸一张牌;当你已损失体力值不小于0/1/2/3/4时,你';
-		var list = ['可以将一张♦️️牌当作火【杀】使用或打出', '使用牌不能被响应', '回合外失去牌后可以使用一张【杀】', '可以将一张♥️️牌当作【桃】使用', '手牌数恒为8'];
+		var list = ['可以将一张♦️️️牌当作火【杀】使用或打出', '使用牌不能被响应', '回合外失去牌后可以使用一张【杀】', '可以将一张♥️️️牌当作【桃】使用', '手牌数恒为8'];
 		// if(player.getAttackRange()>=1)list[0]='<span class=yellowtext>'+list[0]+'</span>';
 		// if(player.getAttackRange()>=2)list[1]='<span class=yellowtext>'+list[1]+'</span>';
 		// if(player.getAttackRange()>=3)list[2]='<span class=yellowtext>'+list[2]+'</span>';

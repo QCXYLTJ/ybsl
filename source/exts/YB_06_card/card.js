@@ -370,7 +370,7 @@ const card = {
 		image: 'ext:夜白神略/image/card/lianjunshengyan_gai.png',
 		filterTarget(card, player, target) {
 			if (get.mode() == 'guozhan') {
-				return target != player && target.identity != 'unknown' && !target.isFriendsOf(player);
+				return target != player && target.identity != 'unknown' && target.isEnemiesOf(player);
 			}
 			return true;
 		},

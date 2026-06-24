@@ -139,7 +139,7 @@ const skill = {
 		viewAsFilter(player) {
 			return player.countCards('hes') > 0;
 		},
-		prompt: '将一张♥️️牌当桃使用',
+		prompt: '将一张♥️️️牌当桃使用',
 		position: 'hes',
 		selectCard: 1,
 		check(card) {

@@ -4724,7 +4724,7 @@ const skill = {
 		nopop: true,
 		temp: true,
 		intro: {
-			content: '锁定技,回合开始时,你进行判定,若结果不为♥️️,你受到1点无来源的伤害,若结果不为♠️️,你失去此技能',
+			content: '锁定技,回合开始时,你进行判定,若结果不为♥️️️,你受到1点无来源的伤害,若结果不为♠️️️,你失去此技能',
 		},
 		content() {
 			'step 0';
@@ -5327,7 +5327,6 @@ const skill = {
 				player.removeSkill('xiangxing' + player.storage.xiangxing);
 				player.storage.xiangxing--;
 				player.storage.xiangxing_count = 0;
-
 				if (player.storage.xiangxing) {
 					player.addSkill('xiangxing' + player.storage.xiangxing);
 				} else {
@@ -7627,7 +7626,7 @@ const skill = {
 		trigger: { player: 'useCard' },
 		forced: true,
 		filter(event, player) {
-			return event.card.suit == 'club' && player.hp < player.maxHp;
+			return event.card && event.card.suit == 'club' && player.hp < player.maxHp;
 		},
 		content() {
 			player.recover();
@@ -8880,11 +8879,11 @@ const skill = {
 		usable: 1,
 		filter(event, player) {
 			return game.hasPlayer((current) => {
-				return !current.isFriendsOf(player) && current.countDiscardableCards(player, 'he');
+				return current.isEnemiesOf(player) && current.countDiscardableCards(player, 'he');
 			});
 		},
 		filterTarget(card, player, target) {
-			return !target.isFriendsOf(player) && target.countDiscardableCards(player, 'he');
+			return target.isEnemiesOf(player) && target.countDiscardableCards(player, 'he');
 		},
 		selectTarget: -1,
 		async content(event, trigger, player) {
@@ -9367,7 +9366,7 @@ const skill = {
 		content() {
 			'step 0';
 			player.chooseTarget(get.prompt('boss_huodi'), function (card, player, target) {
-				return !target.isFriendsOf(player);
+				return target.isEnemiesOf(player);
 			}).ai = function (target) {
 				if (target.isTurnedOver()) {
 					return 0;
@@ -9949,7 +9948,7 @@ const skill = {
 			if (result.color == 'red') {
 				game.trySkillAudio('boss_biantianx2');
 				for (let i = 0; i < players.length; i++) {
-					if (!players[i].isFriendsOf(player)) {
+					if (players[i].isEnemiesOf(player)) {
 						players[i].addSkill('boss_biantian3');
 						players[i].popup('kuangfeng');
 						targets.push(players[i]);
@@ -10059,7 +10058,7 @@ const skill = {
 			('step 1');
 			if (get.color(event.cards[0]) != get.color(event.cards[1])) {
 				player.chooseTarget('是否令一名敌方角色失去1点体力？', function (card, player, target) {
-					return !target.isFriendsOf(player);
+					return target.isEnemiesOf(player);
 				}).ai = function (target) {
 					return -get.attitude(player, target);
 				};

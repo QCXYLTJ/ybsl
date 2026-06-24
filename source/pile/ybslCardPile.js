@@ -217,14 +217,14 @@
 	['diamond', 11, 'tao', null, ['gifts']],
 	['diamond', 12, 'shan'],
 	['diamond', 13, 'sha', 'stab'],
-	['spade', '2', 'sha', null, ['gifts']], //原夜白神略毒包紫电剑格,现调剂至用间牌堆原♠️️A
+	['spade', '2', 'sha', null, ['gifts']], //原夜白神略毒包紫电剑格,现调剂至用间牌堆原♠️️️A
 	//毒
 	['heart', 12, 'youdishenru'],
 	//-----------运筹牌堆---------------//
 	//---------------------//
 	//-----------------夜白牌堆------------------------//
 	//-----------------------------------花----------------------------------//
-	//---------------------♠️️
+	//---------------------♠️️️
 	['spade', '1', 'sha', 'YB_snow'], //将军披风霸者披风
 	['spade', '2', 'hongmianbaihuapao'],
 	['spade', '3', 'ybsl_dafeng', null, ['yingbian_zhuzhan', 'yingbian_add']], //达成
@@ -239,11 +239,11 @@
 	['spade', '11', 'ybsl_zhuzi', null, ['yingbian_fujia', 'yingbian_add']],
 	['spade', '12', 'shuiyanqijunx', 'thunder', ['yingbian_zhuzhan', 'yingbian_all']], //达成
 	['spade', '13', 'ybsl_wusun'], //达成
-	//---------------------♥️️
+	//---------------------♥️️️
 	['heart', '1', 'goujiangdesidai'],
 	['heart', '2', 'ybsl_mixianshenshu'], //鎏金冠集智冠
 	['heart', '3', 'ybsl_qiuxianruoke'], //募兵
-	['heart', '4', 'ybsl_dafeng', null, ['yingbian_zhuzhan', 'yingbian_add']], //达成原♠️️2
+	['heart', '4', 'ybsl_dafeng', null, ['yingbian_zhuzhan', 'yingbian_add']], //达成原♠️️️2
 	// ['heart','5','tao'],//水镜袍
 	['heart', '5', 'ybsl_shuijingpao'], //水镜袍
 	['heart', '6', 'tao'], //画地为牢
@@ -254,7 +254,7 @@
 	['heart', '11', 'ybsl_juhua', null, ['yingbian_fujia', 'yingbian_add']], //达成
 	['heart', '12', 'wuxie', null, ['gifts']], //达成
 	['heart', '13', 'ybsl_xiji'], //达成
-	//---------------------♣️️
+	//---------------------♣️️️
 	['club', '1', 'sha', 'ice'], //白羽扇清风扇
 	['club', '2', 'hongmianbaihuapao'],
 	['club', 3, 'guohe'], //---------☆
@@ -268,7 +268,7 @@
 	['club', '11', 'ybsl_meihua', null, ['yingbian_fujia', 'yingbian_add']], //达成
 	['club', '12', 'wuxie', null, ['gifts']], //达成
 	['club', '13', 'ybsl_wangzhui'], //达成
-	//---------------------♦️️
+	//---------------------♦️️️
 	['diamond', '1', 'ybsl_qinglinkui'], //青鳞盔
 	['diamond', '2', 'wuxie', null, ['gifts']], //达成
 	['diamond', '3', 'ybsl_qiuxianruoke'], //募兵
@@ -286,7 +286,7 @@
 	['spade', '2', 'sha', 'YB_snow'], //之子于归
 	['heart', '12', 'ybsl_taoyao'], //桃之夭夭
 	//-----------------------------------毒----------------------------------//
-	//---------------------♠️️
+	//---------------------♠️️️
 	['spade', '1', 'ybsl_zidian'], //达成
 	['spade', '2', 'linglongshimandai'],
 	['spade', '3', 'sha', 'YB_snow', ['yingbian_fujia', 'yingbian_add']], //达成
@@ -300,10 +300,10 @@
 	['spade', '11', 'sha', 'YB_snow', []], //宴安鸩毒
 	['spade', '12', 'sha', 'YB_snow', []], //观星
 	['spade', '13', 'ybsl_disarm', 'stab', ['yingbian_fujia', 'yingbian_remove']], //铁骑兵锋
-	//---------------------♥️️[]
+	//---------------------♥️️️[]
 	['heart', '1', 'ybsl_meteor', 'fire', ['yingbian_fujia', 'yingbian_remove']], //流星火矢
 	['heart', '2', 'ybsl_mixianshenshu'], //八阵
-	['heart', 3, 'sha', 'fire'], //---------原逐鹿♥️️三火杀
+	['heart', 3, 'sha', 'fire'], //---------原逐鹿♥️️️三火杀
 	['heart', '4', 'tao'], //毒桃
 	['heart', '5', 'ybsl_baihong'], //达成
 	['heart', 6, 'wangmeizhike'],
@@ -313,40 +313,40 @@
 	['heart', '10', 'guaguliaodu', null, ['gifts']], //达成
 	['heart', 11, 'yiyi'], //国战调剂
 	['heart', '12', 'sha', null, ['gifts']], //毒爆//毒
-	['heart', '13', 'shan', null, ['yingbian_fujia', 'yingbian_draw']], //达成//-----------原♥️️3
-	//---------------------♣️️
+	['heart', '13', 'shan', null, ['yingbian_fujia', 'yingbian_draw']], //达成//-----------原♥️️️3
+	//---------------------♣️️️
 	['club', '1', 'ybsl_liuxing'], //达成
 	['club', '2', 'linglongshimandai'],
 	['club', '3', 'sha', 'fire', ['yingbian_canqu', 'yingbian_add']], //达成
 	['club', '4', 'sha', 'fire', ['yingbian_canqu', 'yingbian_add']], //达成
 	['club', '5', 'ybsl_bixie'], //达成
 	['club', '6', 'ybsl_luolei', 'thunder', ['yingbian_zhuzhan', 'yingbian_add']], //达成
-	['club', '7', 'sha', 'ice'], //青梅煮酒//----原♣️️3
+	['club', '7', 'sha', 'ice'], //青梅煮酒//----原♣️️️3
 	['club', 8, 'guohe'],
 	['club', '9', 'ybsl_tianhuoduan', 'fire', ['gifts']],
 	['club', '10', 'ybsl_luolei', 'thunder', ['yingbian_zhuzhan', 'yingbian_add']], //达成
 	['club', '11', 'sha', 'ice'], //雷霆万钧
 	['club', 12, 'jiedao'], //---------☆
 	['club', 13, 'jiedao'], //---------☆
-	//---------------------♦️️
+	//---------------------♦️️️
 	['diamond', '1', 'juedou', null, ['yingbian_fujia', 'yingbian_hit']], //生死决斗
-	['diamond', '2', 'shan', null, ['yingbian_fujia', 'yingbian_draw']], //达成----原♦️️4
+	['diamond', '2', 'shan', null, ['yingbian_fujia', 'yingbian_draw']], //达成----原♦️️️4
 	['diamond', '3', 'tao'], //达成
 	['diamond', 4, 'yiyi'], //-------------国战调剂
 	['diamond', '5', 'ybsl_baili'], //达成
 	['diamond', '6', 'sha', 'thunder', ['yingbian_canqu', 'yingbian_damage']], //半途而废
-	['diamond', '7', 'sha', 'YB_blood'], //募兵----原♦️️3
+	['diamond', '7', 'sha', 'YB_blood'], //募兵----原♦️️️3
 	['diamond', '8', 'shan', null, ['yingbian_fujia', 'yingbian_draw']], //达成
 	['diamond', '9', 'sha', 'YB_blood', ['yingbian_zhuzhan', 'yingbian_lianDa']], //宴安鸩毒
 	['diamond', '10', 'ybsl_luolei', 'thunder', ['yingbian_zhuzhan', 'yingbian_add']], //达成
 	['diamond', '11', 'ybsl_mixianshenshu'], //封神登极
 	['diamond', 12, 'sanjian'],
-	['diamond', '13', 'sha', 'thunder', ['yingbian_canqu', 'yingbian_damage']], //百里剑----原♦️️5
+	['diamond', '13', 'sha', 'thunder', ['yingbian_canqu', 'yingbian_damage']], //百里剑----原♦️️️5
 	//---------------------EX
 	['club', '2', 'ybsl_yangtuo'], //神兽羊驼
 	['diamond', '12', 'ybsl_milu'], //圣诞麋鹿
 	//-----------------------------------衡----------------------------------//
-	//---------------------♠️️
+	//---------------------♠️️️
 	['spade', '1', 'ybsl_nodouble'], //无双铠
 	['spade', '2', 'longfenghemingjian'],
 	['spade', 3, 'huoshaolianying', 'fire'],
@@ -354,13 +354,13 @@
 	['spade', '5', 'ybsl_tianhuoduan', 'fire'], //锁龙偃月刀
 	['spade', '6', 'ybsl_tianhuoduan', 'fire'], //赤血青锋遗址
 	['spade', '7', 'sha'], //达成
-	['spade', '8', 'sha', 'YB_snow', ['yingbian_fujia', 'yingbian_lianDa']], //达成原♠️️8
-	['spade', '9', 'sha', 'YB_snow', ['yingbian_fujia', 'yingbian_lianDa']], //达成原♠️️9雪杀
+	['spade', '8', 'sha', 'YB_snow', ['yingbian_fujia', 'yingbian_lianDa']], //达成原♠️️️8
+	['spade', '9', 'sha', 'YB_snow', ['yingbian_fujia', 'yingbian_lianDa']], //达成原♠️️️9雪杀
 	['spade', '10', 'sha'], //达成
 	['spade', '11', 'sha', 'thunder'], //达成
 	['spade', '12', 'ybsl_lvchenqiang'], //达成绿沉枪
 	['spade', '13', 'ybsl_zhaoyeyushi'], //达成
-	//---------------------♥️️
+	//---------------------♥️️️
 	// ['heart','1','guofengyupao'],//达成国士圣袍
 	['heart', '1', 'ybsl_guoshishengpao'], //达成国士圣袍
 	['heart', '2', 'tao', null, ['yingbian_canqu', 'yingbian_damage']], //达成问策
@@ -371,11 +371,11 @@
 	['heart', '7', 'sadouchengbing'], //达成闪
 	['heart', '8', 'sadouchengbing'], //达成闪
 	['heart', '9', 'sadouchengbing'], //达成闪
-	['heart', '10', 'ybsl_anduchencang', null, []], //暗度陈仓原♠️️2
+	['heart', '10', 'ybsl_anduchencang', null, []], //暗度陈仓原♠️️️2
 	['heart', '11', 'sadouchengbing'], //达成桃
 	['heart', '12', 'ybsl_tongguiyujin', null, ['yingbian_canqu', 'yingbian_add']], //达成
 	['heart', '13', 'tao'], //伏羲镇魂琴
-	//---------------------♣️️
+	//---------------------♣️️️
 	['club', '1', 'ybsl_bainiaochaofeng'], //百鸟朝凤枪
 	['club', '2', 'sha', 'ice'], //知己知彼
 	['club', 3, 'chenhuodajie'],
@@ -389,7 +389,7 @@
 	['club', '11', 'sha'],
 	['club', '12', 'yihuajiemu'], //达成
 	['club', '13', 'yihuajiemu'], //乌云踏雪
-	//---------------------♦️️
+	//---------------------♦️️️
 	['diamond', '1', 'ybsl_fuxizhenhunqin'], //北斗七星扇
 	['diamond', '2', 'wuxie'], //达成
 	['diamond', '3', 'ybsl_tianhuoduan', 'fire'],
@@ -474,7 +474,7 @@
 	['spade', 7, 'caochuanjiejian'],
 	['spade', 8, 'sha'], //---------☆
 	['spade', 9, 'youdishenru'],
-	['spade', '10', 'ybsl_tianhuoduan', 'fire'], //达成看破原♣️️Q
+	['spade', '10', 'ybsl_tianhuoduan', 'fire'], //达成看破原♣️️️Q
 	['spade', 11, 'jinchan'],
 	['spade', 12, 'guohe'], //---------☆
 	['spade', '13', 'shanrangzhaoshu'],
@@ -482,7 +482,7 @@
 	['heart', 2, 'wuxie'],
 	['heart', 3, 'jingfanma'],
 	['heart', 4, 'shezhanqunru'],
-	['heart', '5', 'tao'], //募兵原♥️️3
+	['heart', '5', 'tao'], //募兵原♥️️️3
 	['heart', 6, 'zengbin'],
 	['heart', 7, 'wuzhong'], //---------☆
 	['heart', 8, 'wuzhong'], //---------☆
@@ -504,17 +504,17 @@
 	['club', '12', 'lingsheji'],
 	['club', 13, 'suolianjia'],
 	['diamond', 1, 'xietianzi'],
-	['diamond', '2', 'sha', null, ['gifts']], //达成原♣️️8草船
+	['diamond', '2', 'sha', null, ['gifts']], //达成原♣️️️8草船
 	// ['diamond','3','guofengyupao'],
 	['diamond', '3', 'ybsl_guoshishengpao'], //达成国士圣袍
 	['diamond', 4, 'zengbin'],
 	['diamond', '5', 'sha'],
 	['diamond', 6, 'chenhuodajie'],
-	['diamond', '7', 'sha'], //流星剑原♣️️A冰杀
-	['diamond', '8', 'ybsl_mixianshenshu'], //达成空城原♦️️Q米线
+	['diamond', '7', 'sha'], //流星剑原♣️️️A冰杀
+	['diamond', '8', 'ybsl_mixianshenshu'], //达成空城原♦️️️Q米线
 	['diamond', 9, 'chenhuodajie'],
 	['diamond', 10, 'sha'], //---------☆
-	['diamond', '11', 'ybsl_tianhuoduan', 'fire'], //原♦️️4天火煅
+	['diamond', '11', 'ybsl_tianhuoduan', 'fire'], //原♦️️️4天火煅
 	['diamond', 12, 'yinyueqiang'],
 	['diamond', '13', 'niaobaidaowenha'],
 	['club', '2', 'zhaogujing'],
@@ -529,51 +529,51 @@
 	['spade', 7, 'sha'], //---------☆
 	['spade', 8, 'sha'], //---------☆
 	['spade', 9, 'sha'],
-	['spade', 10, 'caomu'], //原♠️️A
+	['spade', 10, 'caomu'], //原♠️️️A
 	['spade', 11, 'wuxie'],
-	['spade', '12', 'sha', 'YB_snow', ['yingbian_fujia', 'yingbian_add']], //达成原♠️️7雪杀
+	['spade', '12', 'sha', 'YB_snow', ['yingbian_fujia', 'yingbian_add']], //达成原♠️️️7雪杀
 	['spade', '13', 'shenzhixiunvfu'],
 	['heart', '1', 'lianjunshengyan_gai'],
-	['heart', '2', 'sha'], //达成杀原♥️️6
+	['heart', '2', 'sha'], //达成杀原♥️️️6
 	['heart', '3', 'lianjunshengyan_gai'],
 	['heart', '4', 'lianjunshengyan_gai'],
 	['heart', '5', 'jinwuluorigong'],
-	['heart', '6', 'yanxiao_card'], //言笑原♥️️6
-	['heart', '7', 'sha'], //达成原♠️️6
-	['heart', '8', 'shan'], //青梅煮酒原♣️️2冰杀
+	['heart', '6', 'yanxiao_card'], //言笑原♥️️️6
+	['heart', '7', 'sha'], //达成原♠️️️6
+	['heart', '8', 'shan'], //青梅煮酒原♣️️️2冰杀
 	['heart', 9, 'toulianghuanzhu'],
-	['heart', '10', 'jiu', null, ['gifts']], //达成原♠️️3
-	['heart', '11', 'jiu'], //达成原♣️️3
-	['heart', '12', 'ybsl_qisihuisheng'], //原♦️️Q
-	['heart', '13', 'tao'], //兵临城下原♥️️4
-	['club', '1', 'tiesuo', null, ['gifts']], //铁索拦江原♣️️K
+	['heart', '10', 'jiu', null, ['gifts']], //达成原♠️️️3
+	['heart', '11', 'jiu'], //达成原♣️️️3
+	['heart', '12', 'ybsl_qisihuisheng'], //原♦️️️Q
+	['heart', '13', 'tao'], //兵临城下原♥️️️4
+	['club', '1', 'tiesuo', null, ['gifts']], //铁索拦江原♣️️️K
 	['club', 2, 'lanyinjia'],
 	['club', 3, 'caomu'],
-	['club', '4', 'sha', 'YB_snow', []], //青冥剑原♠️️5
+	['club', '4', 'sha', 'YB_snow', []], //青冥剑原♠️️️5
 	// ['club','5','gubuzifeng'],
 	['club', '5', 'sha'],
-	['club', '6', 'sha', 'YB_snow', []], //七星龙渊剑原♠️️2
+	['club', '6', 'sha', 'YB_snow', []], //七星龙渊剑原♠️️️2
 	['club', '7', 'ybsl_tianhuoduan', 'fire'], //风神盾
 	['club', 8, 'shezhanqunru'],
 	['club', 9, 'sha'], //---------☆
 	['club', 10, 'sha'], //---------☆
-	['club', '11', 'sha'], //达成原♣️️10
+	['club', '11', 'sha'], //达成原♣️️️10
 	['club', 12, 'qijia'],
 	['club', 13, 'qijia'],
 	['diamond', 1, 'diaobingqianjiang'],
-	['diamond', '2', 'sha', 'fire'], //烈焰赤兔原♥️️5
-	['diamond', '3', 'sha', 'thunder'], //达成原♣️️9
+	['diamond', '2', 'sha', 'fire'], //烈焰赤兔原♥️️️5
+	['diamond', '3', 'sha', 'thunder'], //达成原♣️️️9
 	['diamond', 4, 'fudichouxin'],
 	['diamond', 5, 'muniu'],
-	['diamond', '6', 'shufazijinguan'], //原♦️️5
+	['diamond', '6', 'shufazijinguan'], //原♦️️️5
 	['diamond', '7', 'sha'],
 	// ['diamond','7','gubuzifeng'],
-	['diamond', '8', 'sha'], //达成原♠️️8
-	['diamond', '9', 'sha'], //达成原♠️️9
+	['diamond', '8', 'sha'], //达成原♠️️️8
+	['diamond', '9', 'sha'], //达成原♠️️️9
 	['diamond', 10, 'wuxie'],
-	['diamond', '11', 'shan'], //达成原♥️️10
+	['diamond', '11', 'shan'], //达成原♥️️️10
 	['diamond', 12, 'fangtian'], //---------☆
-	['diamond', '13', 'xuwangzhimian'], //-------原♦️️4
+	['diamond', '13', 'xuwangzhimian'], //-------原♦️️️4
 	['club', 2, 'jiu'],
 	['diamond', '12', 'xiuluolianyuji'],
 	// ['club',1,'yuxi'],
@@ -626,7 +626,7 @@
 	// ['heart','13','ybsl_hsbwp','fire',['yingbian_fujia','yingbian_all']],
 	// ['heart','13','ybsl_hsbwp','fire',['yingbian_fujia','yingbian_all']],
 	//['spade','5','juechenjinge_gai'],
-	// ['heart','12','sha','YB_blood',[]],//起死回生原♦️️Q
+	// ['heart','12','sha','YB_blood',[]],//起死回生原♦️️️Q
 	// ['club',2,'huxinjing'],
 	// ['diamond','3','qicaishenlu'],
 	// ['club','13','yihuajiemu'],

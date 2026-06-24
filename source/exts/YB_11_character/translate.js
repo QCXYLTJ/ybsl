@@ -23,7 +23,7 @@ const translate = {
 	yhky_lzyfengjian: '封缄',
 	yhky_lzyfengjian2: '封缄',
 	yhky_lzyfengjian_info: get.poptip('rule_chihengji') + '.锁定技,受到你伤害的角色于其下个回合结束前,无法使用牌指定你为目标',
-	// yhky_lzyfengpo_info: "持恒技.①当你使用【杀】或【决斗】指定唯一目标后,你可观看目标角色的手牌并选择一项:⒈摸X张牌.⒉令此牌的伤害值基数+X(X为其手牌中的♦️数).②当你击杀一名角色后,你将〖凤魄①〗中的<♦️数>改为<红色牌数>.",
+	// yhky_lzyfengpo_info: "持恒技.①当你使用【杀】或【决斗】指定唯一目标后,你可观看目标角色的手牌并选择一项:⒈摸X张牌.⒉令此牌的伤害值基数+X(X为其手牌中的♦️️数).②当你击杀一名角色后,你将〖凤魄①〗中的<♦️️数>改为<红色牌数>.",
 	yhky_lzyfenshen: '焚身',
 	yhky_lzyfenshen_info: get.poptip('rule_chihengji') + '.限定技.出牌阶段,你可以令所有角色依次将体力调整至1并获得X点护甲(X为一名角色以此法变化的体力值且你以此法获得的护甲数额外+2).然后你将牌堆、弃牌堆、场上及所有角色手牌中的【闪】、【桃】和【酒】牌名改为火【杀】且增加如下<向死存汉>的全局技能:当有牌进入弃牌堆后,系统将这些牌中的【闪】、【桃】和【酒】改为火【杀】',
 	yhky_lzyjuejing: '绝境',
@@ -62,7 +62,7 @@ const translate = {
 	yhky_dcmoucheng: '谋逞',
 	yhky_dcmoucheng_info: get.poptip('rule_chihengji') + '.每回合限一次.你可以将一张黑色牌当【借刀杀人】使用',
 	yhky_dcjiuchi: '酒池',
-	yhky_dcjiuchi_info: get.poptip('rule_chihengji') + '.你可以将一张♠️牌当作【酒】使用',
+	yhky_dcjiuchi_info: get.poptip('rule_chihengji') + '.你可以将一张♠️️牌当作【酒】使用',
 	yhky_dczuixiao: '醉霄',
 	yhky_dczuixiao_info: get.poptip('rule_chihengji') + '.出牌阶段限一次,你可以视为对一名其他角色使用【酗酒】,然后其视为使用一张【酒】',
 	// yhky_dczuixiao_info:get.poptip("rule_chihengji")+'.当有角色于你的回合内受到伤害后,你可以令其本回合获得'+get.poptip("jiuchi")+'.本回合结束时,若其本回合没有使用过【酒】,你可令其失去一点体力',
@@ -83,7 +83,7 @@ const translate = {
 			info: `开启后,其他技能在此形态下均有变化:
 			<br><li>${get.poptip('yhky_dclihun')}改为:${get.poptip('rule_chihengji')}.出牌阶段限一次,你可以弃置一张牌,并选择一名其他男性角色,你观看其手牌,然后可以依次选择其中一张令其对你指定的一名目标使用之(目标需合法,至多执行次数为其体力值数且至多为5),然后你可以令其视为对另一名男性角色使用一张【决斗】(以此法使用的牌不可被【无懈可击】响应).
 			<br><li>${get.poptip('yhky_dclianji')}改为:${get.poptip('rule_chihengji')}.出牌阶段限一次,你可令一名其他角色摸一张牌,然后令其视为使用一张你指定的基本或锦囊牌.
-			<br><li>${get.poptip('yhky_dcjiuchi')}改为:${get.poptip('rule_chihengji')}.你可以将一张♠️牌当作【酒】使用.你使用【酒】无次数限制.
+			<br><li>${get.poptip('yhky_dcjiuchi')}改为:${get.poptip('rule_chihengji')}.你可以将一张♠️️牌当作【酒】使用.你使用【酒】无次数限制.
 			<br><li>${get.poptip('yhky_dczuixiao')}改为:${get.poptip('rule_chihengji')}.出牌阶段限一次,你可以视为对一名其他角色使用【酗酒】,然后其视为使用一张【酒】,然后可以视为对其使用一张【煽风点火】.
 			<br><li>${get.poptip('yhky_dcchanjuan')}改为:${get.poptip('rule_chihengji')}.当其他角色于你的回合内使用牌时,你移去6点魅力值.然后依次执行①摸两张牌;②令此牌基础伤害或回复值+1;③使其本回合获得${get.poptip('wushuang')}.
 		`,
@@ -92,7 +92,7 @@ const translate = {
 	// ${skill.yhky_dcyingwu.derivation.includes('yhky_dclihun')?`<br><li>${get.poptip("yhky_dclihun")}改为:${get.poptip("rule_chihengji")}.出牌阶段限一次,你可以弃置一张牌,并选择一名其他男性角色,你观看其手牌,然后可以依次选择其中一张令其使用之(至多为其体力值数且至多为5),然后你可以令其视为对另一名男性角色使用一张【决斗】(以此法使用的牌不可被【无懈可击】响应).`:''}
 	// ${skill.yhky_dcyingwu.derivation.includes('yhky_dclianji')?`<br><li>${get.poptip("yhky_dclianji")}改为:${get.poptip("rule_chihengji")}.出牌阶段限一次,你可令一名其他角色摸一张牌,然后令其视为使用一张你指定的基本或锦囊牌.`:''}
 	// ${skill.yhky_dcyingwu.derivation.includes('yhky_dcmoucheng')?`<br><li>${get.poptip("yhky_dcmoucheng")}改为:${get.poptip("rule_chihengji")}.每回合限一次.你可以将一张牌当【借刀杀人】使用.`:''}
-	// ${skill.yhky_dcyingwu.derivation.includes('yhky_dcjiuchi')?`<br><li>${get.poptip("yhky_dcjiuchi")}改为:${get.poptip("rule_chihengji")}.你可以将一张♠️牌当作【酒】使用.你使用【酒】无次数限制.`:''}
+	// ${skill.yhky_dcyingwu.derivation.includes('yhky_dcjiuchi')?`<br><li>${get.poptip("yhky_dcjiuchi")}改为:${get.poptip("rule_chihengji")}.你可以将一张♠️️牌当作【酒】使用.你使用【酒】无次数限制.`:''}
 	// ${skill.yhky_dcyingwu.derivation.includes('yhky_dczuixiao')?`<br><li>${get.poptip("yhky_dczuixiao")}改为:${get.poptip("rule_chihengji")}.出牌阶段限一次,你可以令一名其他角色视为使用一张【酒】,然后可以视为对其使用一张【煽风点火】.`:''}
 	//无法增加<魅力>值直到状态结束,
 	//,且场上角色的<酒>状态回合结束不移除

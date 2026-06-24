@@ -2107,7 +2107,7 @@ const skill = {
 				}) > 0
 			);
 		},
-		// prompt: "将♦️牌当做杀,♥️牌当做桃,♣️牌当做闪,♠️牌当做无懈可击使用或打出",
+		// prompt: "将♦️️牌当做杀,♥️️牌当做桃,♣️️牌当做闪,♠️️牌当做无懈可击使用或打出",
 		//动态的viewAs
 		viewAs(cards, player) {
 			if (cards.length) {
@@ -2140,19 +2140,19 @@ const skill = {
 		filterCard(card, player, event) {
 			//获取卡牌花色
 			var name = card.suit;
-			//如果这张牌是♣️️并且当前时机能够使用/打出闪 那么这张牌可以选择
+			//如果这张牌是♣️️️并且当前时机能够使用/打出闪 那么这张牌可以选择
 			if (name == 'club' && player.canAddJudge({ name: 'hongshui', cards: [card] })) {
 				return true;
 			}
-			//如果这张牌是♦️️并且当前时机能够使用/打出火杀 那么这张牌可以选择
+			//如果这张牌是♦️️️并且当前时机能够使用/打出火杀 那么这张牌可以选择
 			if (name == 'diamond' && player.canAddJudge({ name: 'suibozhuliu', cards: [card] })) {
 				return true;
 			}
-			//如果这张牌是♠️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
+			//如果这张牌是♠️️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
 			if (name == 'spade' && player.canAddJudge({ name: 'shandian', cards: [card] })) {
 				return true;
 			}
-			//如果这张牌是♥️️并且当前时机能够使用/打出桃 那么这张牌可以选择
+			//如果这张牌是♥️️️并且当前时机能够使用/打出桃 那么这张牌可以选择
 			if (name == 'heart' && player.canAddJudge({ name: 'huoshan', cards: [card] })) {
 				return true;
 			}

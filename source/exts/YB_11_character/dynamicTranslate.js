@@ -3,7 +3,7 @@ export { dynamicTranslate };
 const dynamicTranslate = {
 	// yhky_lzyfengpo(player) {
 	// 	if (player.storage.yhky_lzyfengpo) return "当你使用【杀】或【决斗】指定唯一目标后,你可观看目标角色的手牌并选择一项:⒈摸X张牌.⒉令此牌的伤害值基数+X(X为其手牌中的红色牌数).";
-	// 	return "①当你使用【杀】或【决斗】指定唯一目标后,你可观看目标角色的手牌并选择一项:⒈摸X张牌.⒉令此牌的伤害值基数+X(X为其手牌中的♦️数).②当你击杀一名角色后,你将〖凤魄①〗中的<♦️数>改为<红色牌数>.";
+	// 	return "①当你使用【杀】或【决斗】指定唯一目标后,你可观看目标角色的手牌并选择一项:⒈摸X张牌.⒉令此牌的伤害值基数+X(X为其手牌中的♦️️数).②当你击杀一名角色后,你将〖凤魄①〗中的<♦️️数>改为<红色牌数>.";
 	// },
 	// "YB_nobody_guiyin":function(player){
 	//     var players=game.filterPlayer(function(current){
@@ -32,9 +32,9 @@ const dynamicTranslate = {
 	},
 	yhky_dcjiuchi(player) {
 		if (player.storage.yhky_dchuayan_dcjuewu) {
-			return get.poptip('rule_chihengji') + '.你可以将一张♠️牌当作【酒】使用.你使用【酒】无次数限制';
+			return get.poptip('rule_chihengji') + '.你可以将一张♠️️牌当作【酒】使用.你使用【酒】无次数限制';
 		}
-		return get.poptip('rule_chihengji') + '.你可以将一张♠️牌当作【酒】使用';
+		return get.poptip('rule_chihengji') + '.你可以将一张♠️️牌当作【酒】使用';
 	},
 	yhky_dczuixiao(player) {
 		if (player.storage.yhky_dchuayan_dcjuewu) {

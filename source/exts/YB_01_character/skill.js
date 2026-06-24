@@ -941,7 +941,6 @@ const skill = {
 					global: ['dying', 'dyingAfter'],
 				},
 				charlotte: true,
-				forced: true,
 				forced: true, //牢鬼作品
 				filter(event, player, name) {
 					if (!player.storage.dzsl_shennu_buff) {
@@ -1120,10 +1119,10 @@ const skill = {
 		intro: {
 			content(storage, player) {
 				var str0 = '(括号内的阴阳为鸾鸣的形态)<br/>';
-				var str1 = '阴(阴):当你因弃置而失去一张♠️️牌时,你可令一名角色下个摸牌阶段额外摸一张牌;';
-				var str2 = '阴(阳):当你因弃置而失去一张♣️️牌时,你可令一名角色回复1点体力;';
-				var str3 = '阳(阴):当你因弃置而失去一张♥️️牌时,你可令一名角色失去1点体力;';
-				var str4 = '阳(阳):当你因弃置而失去一张♦️️牌时,你可令一名角色下个摸牌阶段少摸一张牌';
+				var str1 = '阴(阴):当你因弃置而失去一张♠️️️牌时,你可令一名角色下个摸牌阶段额外摸一张牌;';
+				var str2 = '阴(阳):当你因弃置而失去一张♣️️️牌时,你可令一名角色回复1点体力;';
+				var str3 = '阳(阴):当你因弃置而失去一张♥️️️牌时,你可令一名角色失去1点体力;';
+				var str4 = '阳(阳):当你因弃置而失去一张♦️️️牌时,你可令一名角色下个摸牌阶段少摸一张牌';
 				var str5 = '<span class="bluetext">'; //蓝色字符
 				var str6 = '<span class=yellowtext>'; //黄色字符
 				var str7 = '<span class=firetext>'; //红色字符
@@ -1675,7 +1674,7 @@ const skill = {
 		viewAs: {
 			name: 'ybsl_mixianshenshu',
 		},
-		prompt: '将一张♦️️牌当弥仙神术使用',
+		prompt: '将一张♦️️️牌当弥仙神术使用',
 		check(card) {
 			return 4.5 - get.value(card);
 		},
@@ -2128,7 +2127,7 @@ const skill = {
 	yb001_yongyue_info:'锁定技,判定阶段开始时/当你受到伤害时,若你存在已损体力值,你跳过之,改为失去空血条,然后摸等量牌;当你失去牌后,若你的已损体力值不大于3,你增加1点体力上限',
 	'yb001_minglun_info':'锁定技,回合开始时,根据你已损体力值:<br/>不小于1:你可选择一个牌的类型,本回合使用此类型的牌时,摸一张牌;<br/>不小于2:你可获得一张随机装备;<br/>不小于3:你可摸3张牌.<br/>结束阶段,你回复X点体力或摸2X张牌(记X为回合开始时你可选的选项,但你没选,且当前阶段不满足的选项数)',
 	锁定技,回合开始时,你展示牌堆顶一张牌并放在武将牌上,至多放四张.根据<命轮>的花色,你视为拥有技能:
-	<br>♠️️:栖月;♥️️,旅心;<br>♣️️,折叶;♦️️:忆水.
+	<br>♠️️️:栖月;♥️️️,旅心;<br>♣️️️,折叶;♦️️️:忆水.
 	结束阶段,若<命轮>包含相同花色或四种花色,则你需弃置所有<命轮>或失去1点体力.
 	*/
 	yb001_haowan: {
@@ -4371,7 +4370,6 @@ const skill = {
 			if (storage.length && storage.includes(trigger.card.name)) {
 				trigger.cancel();
 				player.storage.yb011_khen.remove(trigger.card.name);
-
 				player.draw();
 				_status.currentPhase.draw();
 			} else {
@@ -5293,7 +5291,7 @@ const skill = {
 	// yb015_liangquan:'良劝',
 	// yb015_liangquan_info:'每回合限一次,当有其他角色使用牌指定另一名角色为唯一目标时,你可以与其拼点.然后败者成为此牌额外目标,胜者可以令此牌无效并摸两张牌',
 	// yb015_bixin:'比心',
-	// yb015_bixin_info:'锁定技,你的♥️️牌点数均视为K,你的♠️️牌点数均视为A.(包括手牌,拼点牌,判定牌)',
+	// yb015_bixin_info:'锁定技,你的♥️️️牌点数均视为K,你的♠️️️牌点数均视为A.(包括手牌,拼点牌,判定牌)',
 	//----------------新满城柒
 	yb016_shenzou: {
 		audio: 'ext:夜白神略/audio/character:2',
@@ -12023,11 +12021,11 @@ const skill = {
 			var filter = event._backup.filterCard;
 			//获取卡牌颜色
 			var name = get.color(card, player);
-			//如果这张牌是♣️️并且当前时机能够使用/打出闪 那么这张牌可以选择
+			//如果这张牌是♣️️️并且当前时机能够使用/打出闪 那么这张牌可以选择
 			if (name == 'black' && filter({ name: 'shan', cards: [card] }, player, event)) {
 				return true;
 			}
-			//如果这张牌是♦️️并且当前时机能够使用/打出雷杀 那么这张牌可以选择
+			//如果这张牌是♦️️️并且当前时机能够使用/打出雷杀 那么这张牌可以选择
 			if (name == 'red' && filter({ name: 'sha', cards: [card] }, player, event)) {
 				return true;
 			}
@@ -12038,11 +12036,11 @@ const skill = {
 			// if(player.countMark('yb070_meiying')<1) return false;
 			//获取当前时机的卡牌选择限制
 			var filter = event.filterCard;
-			//如果当前时机能够使用/打出火杀并且角色有♦️️ 那么可以发动技能
+			//如果当前时机能够使用/打出火杀并且角色有♦️️️ 那么可以发动技能
 			if (filter({ name: 'sha' }, player, event) && player.countCards('hes', { color: 'red' })) {
 				return true;
 			}
-			//如果当前时机能够使用/打出闪并且角色有♣️️ 那么可以发动技能
+			//如果当前时机能够使用/打出闪并且角色有♣️️️ 那么可以发动技能
 			if (filter({ name: 'shan' }, player, event) && player.countCards('hes', { color: 'black' })) {
 				return true;
 			}
@@ -12078,7 +12076,7 @@ const skill = {
 			},
 		},
 	},
-	//----------------------♦️️Q
+	//----------------------♦️️️Q
 	yb037_yizhong: {
 		trigger: { target: 'shaBefore' },
 		forced: true,
@@ -16686,7 +16684,7 @@ const skill = {
 		}, //技能发动时机
 		enable: ['chooseToUse', 'chooseToRespond'],
 		//发动时提示的技能描述
-		prompt: '将♦️牌当做雷杀,♥️牌当做桃,♣️牌当做闪,♠️牌当做无懈可击使用或打出',
+		prompt: '将♦️️牌当做雷杀,♥️️牌当做桃,♣️️牌当做闪,♠️️牌当做无懈可击使用或打出',
 		//动态的viewAs
 		viewAs(cards, player) {
 			var name = false;
@@ -16769,19 +16767,19 @@ const skill = {
 			var filter = event._backup.filterCard;
 			//获取卡牌花色
 			var name = card.suit;
-			//如果这张牌是♣️️并且当前时机能够使用/打出闪 那么这张牌可以选择
+			//如果这张牌是♣️️️并且当前时机能够使用/打出闪 那么这张牌可以选择
 			if (name == 'club' && filter({ name: 'shan', cards: [card] }, player, event)) {
 				return true;
 			}
-			//如果这张牌是♦️️并且当前时机能够使用/打出雷杀 那么这张牌可以选择
+			//如果这张牌是♦️️️并且当前时机能够使用/打出雷杀 那么这张牌可以选择
 			if (name == 'diamond' && filter({ name: 'sha', cards: [card], nature: 'thunder' }, player, event)) {
 				return true;
 			}
-			//如果这张牌是♠️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
+			//如果这张牌是♠️️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
 			if (name == 'spade' && filter({ name: 'wuxie', cards: [card] }, player, event)) {
 				return true;
 			}
-			//如果这张牌是♥️️并且当前时机能够使用/打出桃 那么这张牌可以选择
+			//如果这张牌是♥️️️并且当前时机能够使用/打出桃 那么这张牌可以选择
 			if (name == 'heart' && filter({ name: 'tao', cards: [card] }, player, event)) {
 				return true;
 			}
@@ -16793,19 +16791,19 @@ const skill = {
 			// if(player.countMark('yb070_meiying')<1) return false;
 			//获取当前时机的卡牌选择限制
 			var filter = event.filterCard;
-			//如果当前时机能够使用/打出火杀并且角色有♦️️ 那么可以发动技能
+			//如果当前时机能够使用/打出火杀并且角色有♦️️️ 那么可以发动技能
 			if (filter({ name: 'sha', nature: 'thunder' }, player, event) && player.countCards('hes', { suit: 'diamond' })) {
 				return true;
 			}
-			//如果当前时机能够使用/打出闪并且角色有♣️️ 那么可以发动技能
+			//如果当前时机能够使用/打出闪并且角色有♣️️️ 那么可以发动技能
 			if (filter({ name: 'shan' }, player, event) && player.countCards('hes', { suit: 'club' })) {
 				return true;
 			}
-			//如果当前时机能够使用/打出桃并且角色有♥️️ 那么可以发动技能
+			//如果当前时机能够使用/打出桃并且角色有♥️️️ 那么可以发动技能
 			if (filter({ name: 'tao' }, player, event) && player.countCards('hes', { suit: 'heart' })) {
 				return true;
 			}
-			//如果当前时机能够使用/打出无懈可击并且角色有♠️️ 那么可以发动技能
+			//如果当前时机能够使用/打出无懈可击并且角色有♠️️️ 那么可以发动技能
 			if (filter({ name: 'wuxie' }, player, event) && player.countCards('hes', { suit: 'spade' })) {
 				return true;
 			}
@@ -17048,7 +17046,7 @@ const skill = {
 			return str;
 		},
 		// prompt:function(){
-		// 	return '根据装备区内折枝枪的花色,视为使用一张:<br><span class=yellowtext>♣️️:♣️️;♦️️:兰花;<br>♠️️:竹子;♥️️:菊花.</span><br><span style="opacity:0.05;">无花:无花</span>';
+		// 	return '根据装备区内折枝枪的花色,视为使用一张:<br><span class=yellowtext>♣️️️:♣️️️;♦️️️:兰花;<br>♠️️️:竹子;♥️️️:菊花.</span><br><span style="opacity:0.05;">无花:无花</span>';
 		// },
 		position: 'h',
 		filterCard: () => false,
@@ -17239,16 +17237,16 @@ const skill = {
 			var next = player.chooseToMove('淬星:请选择要新增的牌名');
 			next.set('list', [
 				[
-					'♠️️/♥️️/♣️️/♦️️',
+					'♠️️️/♥️️️/♣️️️/♦️️️',
 					[list, 'vcard'],
 					function (list) {
 						var list2 = list.map(function (i) {
 							return get.translation(i[2]);
 						});
-						return '<span class=YB_snowtext>♠️️新增' + list2[0] + '可转化;</span><span class=yellowtext>♥️️新增' + list2[1] + '可转化;</span><br><span class=YB_darktext>♣️️新增' + list2[2] + '可转化;</span><span class=firetext>♦️️新增' + list2[3] + '可转化.</span><br>请不要为♠️️赋予无懈,为♥️️赋予桃,为♣️️赋予闪,为♦️️赋予杀,不仅是无事发生,而是会出大问题';
+						return '<span class=YB_snowtext>♠️️️新增' + list2[0] + '可转化;</span><span class=yellowtext>♥️️️新增' + list2[1] + '可转化;</span><br><span class=YB_darktext>♣️️️新增' + list2[2] + '可转化;</span><span class=firetext>♦️️️新增' + list2[3] + '可转化.</span><br>请不要为♠️️️赋予无懈,为♥️️️赋予桃,为♣️️️赋予闪,为♦️️️赋予杀,不仅是无事发生,而是会出大问题';
 					},
 				],
-				["操作方法:从下方选择你想要的目标牌,然后替换你要赋予的花色.操作结算时,会根据你选择的牌名对该花色进行添加.<br>此操作本质上是读取此格内牌名的序列,按照♠️️,♥️️,♣️️,♦️️的顺序依次读取,故而想要不为这个花色赋予时,可以把自带的花色图案放在那里卡位,那玩意不会被读取.<br><span style='color: #fff600'>请勿在此界面托管,否则ai不会进行任何操作,并直接确认</span><br>——感谢Angel大佬撰写的ai框架,并顺手让这个框只能替换而不能移动", [list66, 'vcard']],
+				["操作方法:从下方选择你想要的目标牌,然后替换你要赋予的花色.操作结算时,会根据你选择的牌名对该花色进行添加.<br>此操作本质上是读取此格内牌名的序列,按照♠️️️,♥️️️,♣️️️,♦️️️的顺序依次读取,故而想要不为这个花色赋予时,可以把自带的花色图案放在那里卡位,那玩意不会被读取.<br><span style='color: #fff600'>请勿在此界面托管,否则ai不会进行任何操作,并直接确认</span><br>——感谢Angel大佬撰写的ai框架,并顺手让这个框只能替换而不能移动", [list66, 'vcard']],
 			]);
 			next.set('filterMove', function (from, to) {
 				return typeof to != 'number';
@@ -17261,7 +17259,7 @@ const skill = {
 				var name = names;
 				//给个例子,suit花色的第一个设置设置为桃,如果没有桃则随机 只有第一个,剩下的自己看着加吧
 				if (name.includes('tao')) {
-					//♠️️
+					//♠️️️
 					var i = name.length;
 					while (i--) {
 						if (name[i] === 'tao') {
@@ -17291,7 +17289,7 @@ const skill = {
 					suit[0] = cardname[0];
 				}
 				if (name.includes('wuxie')) {
-					//♥️️
+					//♥️️️
 					var i = name.length;
 					while (i--) {
 						if (name[i] === 'wuxie') {
@@ -17321,7 +17319,7 @@ const skill = {
 					suit[1] = cardname[0];
 				}
 				if (name.includes('ybsl_lanhua')) {
-					//♣️️
+					//♣️️️
 					var i = name.length;
 					while (i--) {
 						if (name[i] === 'ybsl_lanhua') {
@@ -17351,7 +17349,7 @@ const skill = {
 					suit[2] = cardname[0];
 				}
 				if (name.includes('sadouchengbing')) {
-					//♦️️
+					//♦️️️
 					var i = name.length;
 					while (i--) {
 						if (name[i] === 'sadouchengbing') {
@@ -17469,7 +17467,7 @@ const skill = {
 								list.push(['淬星', '', list2[i], 'ice']);
 							}
 						}
-						return ui.create.dialog('淬星♠️️', [list, 'vcard']);
+						return ui.create.dialog('淬星♠️️️', [list, 'vcard']);
 					},
 					filter(button, player) {
 						return _status.event.parent.filterCard({ name: button.link[2] }, player, _status.event.parent);
@@ -17514,7 +17512,7 @@ const skill = {
 						};
 					},
 					prompt(links, player) {
-						return '将一至两张♠️️牌当作冰属性' + get.translation(links[0][2]) + '使用';
+						return '将一至两张♠️️️牌当作冰属性' + get.translation(links[0][2]) + '使用';
 					},
 				},
 				hiddenCard(player, name) {
@@ -17573,7 +17571,7 @@ const skill = {
 								list.push(['淬星', '', list2[i], 'YB_blood']);
 							}
 						}
-						return ui.create.dialog('淬星♥️️', [list, 'vcard']);
+						return ui.create.dialog('淬星♥️️️', [list, 'vcard']);
 					},
 					filter(button, player) {
 						return _status.event.parent.filterCard({ name: button.link[2] }, player, _status.event.parent);
@@ -17618,7 +17616,7 @@ const skill = {
 						};
 					},
 					prompt(links, player) {
-						return '将一至两张♥️️牌当作血属性' + get.translation(links[0][2]) + '使用';
+						return '将一至两张♥️️️牌当作血属性' + get.translation(links[0][2]) + '使用';
 					},
 				},
 				hiddenCard(player, name) {
@@ -17677,7 +17675,7 @@ const skill = {
 								list.push(['淬星', '', list2[i], 'thunder']);
 							}
 						}
-						return ui.create.dialog('淬星♣️️', [list, 'vcard']);
+						return ui.create.dialog('淬星♣️️️', [list, 'vcard']);
 					},
 					filter(button, player) {
 						return _status.event.parent.filterCard({ name: button.link[2] }, player, _status.event.parent);
@@ -17722,7 +17720,7 @@ const skill = {
 						};
 					},
 					prompt(links, player) {
-						return '将一至两张♣️️牌当作雷属性' + get.translation(links[0][2]) + '使用';
+						return '将一至两张♣️️️牌当作雷属性' + get.translation(links[0][2]) + '使用';
 					},
 				},
 				hiddenCard(player, name) {
@@ -17781,7 +17779,7 @@ const skill = {
 								list.push(['淬星', '', list2[i], 'fire']);
 							}
 						}
-						return ui.create.dialog('淬星♦️️', [list, 'vcard']);
+						return ui.create.dialog('淬星♦️️️', [list, 'vcard']);
 					},
 					filter(button, player) {
 						return _status.event.parent.filterCard({ name: button.link[2] }, player, _status.event.parent);
@@ -17826,7 +17824,7 @@ const skill = {
 						};
 					},
 					prompt(links, player) {
-						return '将一至两张♦️️牌当作火属性' + get.translation(links[0][2]) + '使用';
+						return '将一至两张♦️️️牌当作火属性' + get.translation(links[0][2]) + '使用';
 					},
 				},
 				hiddenCard(player, name) {

@@ -5073,9 +5073,9 @@ const skill = {
 				prompt(event, player) {
 					var player = _status.event.player;
 					if (player.maxHp - player.hp >= 3) {
-						return '将♦️牌当做火杀,♥️牌当做桃';
+						return '将♦️️牌当做火杀,♥️️牌当做桃';
 					} else {
-						return '将♦️牌当做火杀';
+						return '将♦️️牌当做火杀';
 					}
 				},
 				//动态的viewAs
@@ -5155,15 +5155,15 @@ const skill = {
 					var filter = event._backup.filterCard;
 					//获取卡牌花色
 					var name = card.suit;
-					//如果这张牌是♣️️并且当前时机能够使用/打出闪 那么这张牌可以选择
+					//如果这张牌是♣️️️并且当前时机能够使用/打出闪 那么这张牌可以选择
 					// if(name=='club'&&filter({name:'shan',cards:[card]},player,event)) return true;
-					//如果这张牌是♦️️并且当前时机能够使用/打出雷杀 那么这张牌可以选择
+					//如果这张牌是♦️️️并且当前时机能够使用/打出雷杀 那么这张牌可以选择
 					if (name == 'diamond' && filter({ name: 'sha', cards: [card], nature: 'fire' }, player, event)) {
 						return true;
 					}
-					//如果这张牌是♠️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
+					//如果这张牌是♠️️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
 					// if(name=='spade'&&filter({name:'wuxie',cards:[card]},player,event)) return true;
-					//如果这张牌是♥️️并且当前时机能够使用/打出桃 那么这张牌可以选择
+					//如果这张牌是♥️️️并且当前时机能够使用/打出桃 那么这张牌可以选择
 					if (name == 'heart' && filter({ name: 'tao', cards: [card] }, player, event) && player.maxHp - player.hp >= 3) {
 						return true;
 					}
@@ -5175,17 +5175,17 @@ const skill = {
 					// if(player.countMark('yb070_meiying')<1) return false;
 					//获取当前时机的卡牌选择限制
 					var filter = event.filterCard;
-					//如果当前时机能够使用/打出火杀并且角色有♦️️ 那么可以发动技能
+					//如果当前时机能够使用/打出火杀并且角色有♦️️️ 那么可以发动技能
 					if (filter({ name: 'sha', nature: 'fire' }, player, event) && player.countCards('hes', { suit: 'diamond' })) {
 						return true;
 					}
-					//如果当前时机能够使用/打出闪并且角色有♣️️ 那么可以发动技能
+					//如果当前时机能够使用/打出闪并且角色有♣️️️ 那么可以发动技能
 					// if(filter({name:'shan'},player,event)&&player.countCards('hes',{suit:'club'})) return true;
-					//如果当前时机能够使用/打出桃并且角色有♥️️ 那么可以发动技能
+					//如果当前时机能够使用/打出桃并且角色有♥️️️ 那么可以发动技能
 					if (player.maxHp - player.hp >= 3 && filter({ name: 'tao' }, player, event) && player.countCards('hes', { suit: 'heart' })) {
 						return true;
 					}
-					//如果当前时机能够使用/打出无懈可击并且角色有♠️️ 那么可以发动技能
+					//如果当前时机能够使用/打出无懈可击并且角色有♠️️️ 那么可以发动技能
 					// if(filter({name:'wuxie'},player,event)&&player.countCards('hes',{suit:'spade'})) return true;
 					return false;
 				},

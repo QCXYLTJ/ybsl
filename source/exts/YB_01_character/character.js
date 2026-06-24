@@ -71,7 +71,7 @@ const character = {
 	ybsl_034zhoulianyuan: ['male', 'YB_dream', 3, ['yb034_bifa', 'yb034_jiandao', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:rare', 'rankS:b', 'name:周|怜渊']], //梦——周怜渊
 	ybsl_035stamp: ['male', 'shen', '2/3', ['yb035_zhengzhao', 'yb035_jitian', 'yb035_liuwang' /*,'yb035_weiyan'*/], ['YB_memory', 'rankAdd:legend', 'rankS:s', 'name:null|玺']], //梦——玺
 	ybsl_036bright: ['female', 'YB_dream', 3, ['yb036_qianjin', /*'yb036_chongzheng','yb036_aoxiang',*/ 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a', 'name:null|熙']], //梦——熙
-	ybsl_037diamondqueen: ['female', 'YB_dream', 6, ['yb037_yizhong', 'yb037_kexie', 'yb037_guiling', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:rare', 'rankS:b', 'name:null|Q']], //梦——♦️️Q
+	ybsl_037diamondqueen: ['female', 'YB_dream', 6, ['yb037_yizhong', 'yb037_kexie', 'yb037_guiling', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:rare', 'rankS:b', 'name:null|Q']], //梦——♦️️️Q
 	db_ybsl_038tengwu: ['female', 'YB_dream', '3/4', ['yb038_quanlu', 'yb038_fushengxx', 'ybsl_sanmeng'], ['doublegroup:YB_memory:YB_dream', 'rankAdd:legend', 'rankS:s', 'name:滕|叔颖-武|宁']], //梦——滕叔颖＆武宁
 	ybsl_038bianqiuwen: ['female', 'YB_memory', 3, ['yb047_youhun', 'yb038_chameng'], ['rankAdd:epic', 'rankS:a', 'name:卞|秋雯']], //卞秋雯
 	ybsl_039zhafu: ['male', 'YB_dream', 3, ['yb039_zhifu', 'yb039_feiyan', 'ybsl_sanmeng', 'ybsl_rumeng'], ['YB_memory', 'rankAdd:epic', 'rankS:a', 'name:查|符']], //梦——查符

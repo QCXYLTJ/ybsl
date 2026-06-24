@@ -709,7 +709,7 @@ const YBSL_ybslf = function () {
 			next.setContent('YB_button');
 			return next;
 		}
-		//[{suit:'花色'},{spade:'♠️️'}]
+		//[{suit:'花色'},{spade:'♠️️️'}]
 		lib.element.content.YB_button = function(){
 			'step 0'
 			var list6666=event.list6666,title=event.title;

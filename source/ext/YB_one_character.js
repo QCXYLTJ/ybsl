@@ -711,7 +711,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						return false;
 					}
 				},
-				prompt: '将一张♦️️牌当杀使用或打出',
+				prompt: '将一张♦️️️牌当杀使用或打出',
 				check(card) {
 					const val = get.value(card);
 					if (_status.event.name == 'chooseToRespond') {
@@ -2241,7 +2241,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					target: 'useCardToTargeted',
 				},
 				filter(event, player) {
-					return event.card.name == 'sha';
+					return event.card && event.card.name == 'sha';
 				},
 				async cost(event, trigger, player) {
 					event.result = await player
@@ -4081,7 +4081,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			yb_wan_jianli: '坚利', //√
 			yb_wan_jianli_info: '出牌阶段限一次,你可以展示所有手牌,若颜色均一致,你可对一名角色造成一点伤害',
 			yb_wan_linglong: '玲珑', //√
-			yb_wan_linglong_info: '你的♦️️牌无出杀次数限制且不计入出杀次数,你的♦️️牌可以当做杀或闪使用或打出',
+			yb_wan_linglong_info: '你的♦️️️牌无出杀次数限制且不计入出杀次数,你的♦️️️牌可以当做杀或闪使用或打出',
 			yb_wan_yaoji: '邀计', //√
 			yb_wan_yaoji_info: '限定技,出牌阶段你可依次选择两名不同的角色a、b(b不能是你),令b选择一项:1,a摸b角色手牌数手牌,b摸a角色手牌数手牌.2,弃置所有手牌,在其下个回合开始前免疫所有伤害,其下个出牌阶段开始时摸x(弃置数量)张手牌',
 			yb_wan_luosuo: '落锁', //√

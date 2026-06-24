@@ -2207,7 +2207,7 @@ const skill = {
 			//if(!event.hasNature()) return false;
 			return player.hasMark('xinfu_falu_diamond') || player.hasMark('xinfu_falu_none');
 		},
-		prompt2: '弃置「勾陈♦️」标记,从牌堆中获得每种类型的牌各一张',
+		prompt2: '弃置「勾陈♦️️」标记,从牌堆中获得每种类型的牌各一张',
 		content() {
 			'step 0';
 			if (player.hasMark('xinfu_falu_diamond')) {
@@ -2249,7 +2249,7 @@ const skill = {
 				},
 				content() {
 					'step 0';
-					var str = get.translation(trigger.player) + '的' + (trigger.judgestr || '') + '判定为' + get.translation(trigger.player.judging[0]) + ',是否发动【真仪】,弃置「紫薇♠️」标记并修改判定结果？';
+					var str = get.translation(trigger.player) + '的' + (trigger.judgestr || '') + '判定为' + get.translation(trigger.player.judging[0]) + ',是否发动【真仪】,弃置「紫薇♠️️」标记并修改判定结果？';
 					player
 						.chooseControl('spade', 'heart', 'diamond', 'club', 'cancel2')
 						.set('prompt', str)
@@ -2320,7 +2320,7 @@ const skill = {
 				viewAs: {
 					name: 'tao',
 				},
-				prompt: '弃置「后土♣️」标记,将一张手牌当桃使用',
+				prompt: '弃置「后土♣️️」标记,将一张手牌当桃使用',
 				check(card) {
 					return 15 - get.value(card);
 				},
@@ -2356,7 +2356,7 @@ const skill = {
 					//return player.hasMark('xinfu_falu_spade')||get.color(ui.cardPile.firstChild)=='black';
 				},
 				prompt2(event) {
-					return '弃置「玉清♥️」标记,令对' + get.translation(event.player) + '即将造成的伤害+1';
+					return '弃置「玉清♥️️」标记,令对' + get.translation(event.player) + '即将造成的伤害+1';
 				},
 				logTarget: 'player',
 				content() {
@@ -3515,7 +3515,7 @@ const skill = {
 				}) > 0
 			);
 		},
-		// prompt: "将♦️牌当做杀,♥️牌当做桃,♣️牌当做闪,♠️牌当做无懈可击使用或打出",
+		// prompt: "将♦️️牌当做杀,♥️️牌当做桃,♣️️牌当做闪,♠️️牌当做无懈可击使用或打出",
 		//动态的viewAs
 		viewAs(cards, player) {
 			if (cards.length) {
@@ -3548,19 +3548,19 @@ const skill = {
 		filterCard(card, player, event) {
 			//获取卡牌花色
 			var name = card.suit;
-			//如果这张牌是♣️️并且当前时机能够使用/打出闪 那么这张牌可以选择
+			//如果这张牌是♣️️️并且当前时机能够使用/打出闪 那么这张牌可以选择
 			if (name == 'club' && player.canAddJudge({ name: 'bingliang', cards: [card] })) {
 				return true;
 			}
-			//如果这张牌是♦️️并且当前时机能够使用/打出火杀 那么这张牌可以选择
+			//如果这张牌是♦️️️并且当前时机能够使用/打出火杀 那么这张牌可以选择
 			if (name == 'diamond' && player.canAddJudge({ name: 'lebu', cards: [card] })) {
 				return true;
 			}
-			//如果这张牌是♠️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
+			//如果这张牌是♠️️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
 			if (name == 'spade' && player.canAddJudge({ name: 'shandian', cards: [card] })) {
 				return true;
 			}
-			//如果这张牌是♥️️并且当前时机能够使用/打出桃 那么这张牌可以选择
+			//如果这张牌是♥️️️并且当前时机能够使用/打出桃 那么这张牌可以选择
 			if (name == 'heart' && player.canAddJudge({ name: 'niya_wangmeizhike', cards: [card] })) {
 				return true;
 			}
@@ -4363,7 +4363,6 @@ const skill = {
 				.forResult();
 			game.log(target, '选择了', '#g【轻澜】', '的', `#y选项${get.cnNumber(result.links[0] + 1, true)}`);
 			chosen.add(result.links[0]);
-
 			await eval(`(async function () {${skill.choiceAfter[result.links[0]]}})()`);
 		},
 		subSkill: {
@@ -4890,7 +4889,6 @@ const skill = {
 							}
 						}
 					}
-
 					player.update(event.name);
 				}
 				let list = [...get.skillInfoTranslation(event.name, player).matchAll(/(?<=\d\.).*?(?=,\d\.|.)/g)];
@@ -5103,7 +5101,6 @@ const skill = {
 			game.log(player, '选择了', '#g【恃险】', '的', `#y选项${get.cnNumber(result.links[0] + 1, true)}`);
 			chosen.add(result.links[0]);
 			player.storage.zxunnamed_huaiyi_items?.push(result.links[0]);
-
 			await eval(`(async function () {${lib.skill[event.name].choiceAfter[result.links[0]]}})()`);
 		},
 		onremove(player) {
@@ -7297,7 +7294,7 @@ const skill = {
 		trigger: { player: 'useCard' },
 		forced: true,
 		filter(event) {
-			return event.card.suit == 'club' && event.card.isCard;
+			return event.card && event.card.suit == 'club' && event.card.isCard;
 		},
 		content() {
 			player.draw();
@@ -8782,7 +8779,7 @@ const skill = {
 		audio: 'sgsk_zhizun',
 		filter(event, player) {
 			if (event.name == 'useCard') {
-				return event.card.number == 5 || event.card.number == 9;
+				return (event.card && event.card.number == 5) || event.card.number == 9;
 			}
 			return lib.skill.sgsk_zhizun.zhizunFilter();
 		},
@@ -9820,7 +9817,7 @@ const skill = {
 		},
 		filter(event, player) {
 			// if(!player.isDamaged())return false;
-			return event.card.suit == 'spade';
+			return event.card && event.card.suit == 'spade';
 		},
 		content() {
 			'step 0';
@@ -10721,7 +10718,6 @@ const skill = {
 						return;
 					} else if (event.triggername == 'useCard') {
 						player.storage.sgsk_zhuiri++;
-
 						return;
 					}
 				},
@@ -11603,7 +11599,7 @@ const skill = {
 		// forced: true,
 		// content() {
 		// 	"step 0";
-		// 	player.chooseTarget(get.prompt("zhiyan"), "令一名角色摸一张牌并展示之.若为♥️️,其回复1点体力").set("ai", function (target) {
+		// 	player.chooseTarget(get.prompt("zhiyan"), "令一名角色摸一张牌并展示之.若为♥️️️,其回复1点体力").set("ai", function (target) {
 		// 		return get.attitude(_status.event.player, target) * (target.isDamaged() ? 2 : 1);
 		// 	});
 		// 	"step 1";
@@ -11632,7 +11628,7 @@ const skill = {
 		// },
 		cost() {
 			event.result = player
-				.chooseTarget(get.prompt('zhiyan'), '令一名角色摸一张牌并展示之.若为♥️️,其回复1点体力')
+				.chooseTarget(get.prompt('zhiyan'), '令一名角色摸一张牌并展示之.若为♥️️️,其回复1点体力')
 				.set('ai', function (target) {
 					return get.attitude(_status.event.player, target) * (target.isDamaged() ? 2 : 1);
 				})
@@ -12650,7 +12646,6 @@ const skill = {
 		},
 	},
 	/*
-
 	bilibiliup_quanji:'全寄',
 	bilibiliup_quanji_info:'限定技,出牌阶段,你可以积蓄1点能量(弃置一张牌),然后此后每个出牌阶段开始时,你需选择:继续积蓄1点能量或释放能量(移去全部能量,然后对全场所有角色各造成释放能量点伤害.).当你积蓄能量后,若能量不少于3,你可以立即释放',
 	bilibiliup_paiyi:'拍翼',

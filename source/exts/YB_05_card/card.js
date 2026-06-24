@@ -239,10 +239,10 @@ const card = {
 				game.swapPlayerAuto(target);
 			}
 			var suit = {
-				spade: '♠️️',
-				heart: '♥️️',
-				club: '♣️️',
-				diamond: '♦️️',
+				spade: '♠️️️',
+				heart: '♥️️️',
+				club: '♣️️️',
+				diamond: '♦️️️',
 				none: '无花',
 			};
 			var type = {};

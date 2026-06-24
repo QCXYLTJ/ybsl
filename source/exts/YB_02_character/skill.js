@@ -463,7 +463,6 @@ const skill = {
 			target.loseToSpecial(event.cards2, '_ybsl_sixart', player).visible = true;
 			game.log(player, '将', target, '的', get.cnNumber(1), '张牌置入了六艺区');
 			player.addMark('_ybsl_sixart', 1);
-
 			if (
 				player.countCards('s', function (card) {
 					return card.hasGaintag('_ybsl_sixart');
@@ -497,7 +496,6 @@ const skill = {
 			('step 1');
 			player.discard(event.cards);
 			player.removeMark('_ybsl_sixart', event.num);
-
 			if (player.hasSkill('ybsl_master')) {
 				game.log('调试2', event.num);
 				player.draw(event.num);

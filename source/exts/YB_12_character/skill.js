@@ -3595,7 +3595,7 @@ const skill = {
 								const eff = get.effect(target, card, player, target);
 								delete target._qmsgswkjsgj_xiongluan2_effect;
 								if (eff > 0) {
-									return [1, -99999];
+									return [1, -9999];
 								}
 								if (eff < 0) {
 									return 999;
@@ -10178,7 +10178,7 @@ const skill = {
 				function createCustom(suit, count) {
 					return function (itemContainer) {
 						function formatStr(str) {
-							return str.replace(/(?:♥️︎|♦️︎)/g, '<span style="color: red; ">$&</span>');
+							return str.replace(/(?:♥️️︎|♦️️︎)/g, '<span style="color: red; ">$&</span>');
 						}
 						let div = ui.create.div(itemContainer);
 						if (count) {
@@ -13329,7 +13329,7 @@ const skill = {
 		audio: 'starlifeng',
 		enable: 'chooseToUse',
 		filter(event, player) {
-			if (!event.filterCard || (!event.filterCard({ name: 'sha', storage: { qmsgswkjsgj_re_starlifeng: true } }, player, event) && !event.filterCard({ name: 'wuxie', storage: { qmsgswkjsgj_re_starlifeng: true } }, player, event))) {
+			if (!event.filterCard || !event.filterCard || (!event.filterCard({ name: 'sha', storage: { qmsgswkjsgj_re_starlifeng: true } }, player, event) && !event.filterCard({ name: 'wuxie', storage: { qmsgswkjsgj_re_starlifeng: true } }, player, event))) {
 				return false;
 			}
 			return player.hasCard((card) => {
@@ -17778,7 +17778,7 @@ const skill = {
 				function createCustom(suit, count) {
 					return function (itemContainer) {
 						function formatStr(str) {
-							return str.replace(/(?:♥️︎|♦️︎)/g, '<span style="color: red; ">$&</span>');
+							return str.replace(/(?:♥️️︎|♦️️︎)/g, '<span style="color: red; ">$&</span>');
 						}
 						let div = ui.create.div(itemContainer);
 						if (count) {
@@ -22343,7 +22343,7 @@ const skill = {
 	sgsxjxfzmnl_scsmiaoyu: {
 		audio: 'scsmiaoyu',
 		enable: ['chooseToUse', 'chooseToRespond'],
-		prompt: '将一张♥️牌当做桃,♦️牌当做火杀,♣️牌当做闪,♠️牌当做无懈可击使用或打出',
+		prompt: '将一张♥️️牌当做桃,♦️️牌当做火杀,♣️️牌当做闪,♠️️牌当做无懈可击使用或打出',
 		viewAs(cards, player) {
 			var name = false;
 			var nature = null;
@@ -23593,7 +23593,7 @@ const skill = {
 		trigger: { player: 'useCard2' },
 		forced: true,
 		filter(event, player) {
-			return event.card.suit == 'none';
+			return event.card && event.card.suit == 'none';
 		},
 		content() {
 			'step 0';
@@ -24857,7 +24857,7 @@ const skill = {
 		//技能发动时机
 		enable: ['chooseToUse', 'chooseToRespond'],
 		//发动时提示的技能描述
-		prompt: '将♦️牌当做杀,♥️牌当做桃,♣️牌当做闪,♠️牌当做无懈可击使用或打出',
+		prompt: '将♦️️牌当做杀,♥️️牌当做桃,♣️️牌当做闪,♠️️牌当做无懈可击使用或打出',
 		//动态的viewAs
 		viewAs(cards, player) {
 			if (cards.length) {
@@ -24936,19 +24936,19 @@ const skill = {
 			var filter = event._backup.filterCard;
 			//获取卡牌花色
 			var name = card.suit;
-			//如果这张牌是♣️️并且当前时机能够使用/打出闪 那么这张牌可以选择
+			//如果这张牌是♣️️️并且当前时机能够使用/打出闪 那么这张牌可以选择
 			if (name == 'club' && filter({ name: 'shan' }, player, event)) {
 				return true;
 			}
-			//如果这张牌是♦️️并且当前时机能够使用/打出火杀 那么这张牌可以选择
+			//如果这张牌是♦️️️并且当前时机能够使用/打出火杀 那么这张牌可以选择
 			if (name == 'diamond' && filter({ name: 'sha', nature: 'fire' }, player, event)) {
 				return true;
 			}
-			//如果这张牌是♠️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
+			//如果这张牌是♠️️️并且当前时机能够使用/打出无懈 那么这张牌可以选择
 			if (name == 'spade' && filter({ name: 'wuxie' }, player, event)) {
 				return true;
 			}
-			//如果这张牌是♥️️并且当前时机能够使用/打出桃 那么这张牌可以选择
+			//如果这张牌是♥️️️并且当前时机能够使用/打出桃 那么这张牌可以选择
 			if (name == 'heart' && filter({ name: 'tao' }, player, event)) {
 				return true;
 			}
@@ -24959,19 +24959,19 @@ const skill = {
 		filter(event, player) {
 			//获取当前时机的卡牌选择限制
 			var filter = event.filterCard;
-			//如果当前时机能够使用/打出火杀并且角色有♦️️ 那么可以发动技能
+			//如果当前时机能够使用/打出火杀并且角色有♦️️️ 那么可以发动技能
 			if (filter({ name: 'sha', nature: 'fire' }, player, event) && player.countCards('hes', { suit: 'diamond' })) {
 				return true;
 			}
-			//如果当前时机能够使用/打出闪并且角色有♣️️ 那么可以发动技能
+			//如果当前时机能够使用/打出闪并且角色有♣️️️ 那么可以发动技能
 			if (filter({ name: 'shan' }, player, event) && player.countCards('hes', { suit: 'club' })) {
 				return true;
 			}
-			//如果当前时机能够使用/打出桃并且角色有♥️️ 那么可以发动技能
+			//如果当前时机能够使用/打出桃并且角色有♥️️️ 那么可以发动技能
 			if (filter({ name: 'tao' }, player, event) && player.countCards('hes', { suit: 'heart' })) {
 				return true;
 			}
-			//如果当前时机能够使用/打出无懈可击并且角色有♠️️ 那么可以发动技能
+			//如果当前时机能够使用/打出无懈可击并且角色有♠️️️ 那么可以发动技能
 			if (filter({ name: 'wuxie' }, player, event) && player.countCards('hes', { suit: 'spade' })) {
 				return true;
 			}
@@ -28220,7 +28220,6 @@ const skill = {
 				audio: 'sgsxjxfzmnl_dcpandi',
 				charlotte: true,
 				_priority: Infinity,
-
 				intro: {
 					content: '下一张牌视为由$使用',
 				},
@@ -28890,7 +28889,7 @@ const skill = {
 		async cost(event, trigger, player) {
 			const num = game.dead.length;
 			const result = await player
-				.chooseToDiscard('he', '嬉战:弃置一张牌或失去1点体力', '根据弃置的牌对' + get.translation(trigger.player) + '视为使用如下牌:<br>♠️,其使用【酒】;♥️,你使用【无中生有】<br>♣️,对其使用【铁索连环】;♦️:对其使用火【杀】')
+				.chooseToDiscard('he', '嬉战:弃置一张牌或失去1点体力', '根据弃置的牌对' + get.translation(trigger.player) + '视为使用如下牌:<br>♠️️,其使用【酒】;♥️️,你使用【无中生有】<br>♣️️,对其使用【铁索连环】;♦️️:对其使用火【杀】')
 				.set(
 					'ai',
 					/** @param {Card} card */
@@ -30165,7 +30164,7 @@ const skill = {
 				function createCustom(suit, count) {
 					return function (itemContainer) {
 						function formatStr(str) {
-							return str.replace(/(?:♥️︎|♦️︎)/g, '<span style="color: red; ">$&</span>');
+							return str.replace(/(?:♥️️︎|♦️️︎)/g, '<span style="color: red; ">$&</span>');
 						}
 						let div = ui.create.div(itemContainer);
 						if (count) {
@@ -34264,7 +34263,7 @@ const skill = {
 			},
 			abdomen: {
 				name: '气海',
-				info: '令其不能使用或打出♥️️牌',
+				info: '令其不能使用或打出♥️️️牌',
 				css_male: {
 					left: '50%',
 					top: '42%',
@@ -34437,7 +34436,7 @@ const skill = {
 				marktext: '伤',
 				intro: {
 					name: '中伤 - 气海',
-					content: (_, player) => '不能使用或打出♥️️牌',
+					content: (_, player) => '不能使用或打出♥️️️牌',
 				},
 				mod: {
 					cardEnabled(card) {
@@ -35188,7 +35187,6 @@ const skill = {
 						player.storage.sgsxjxfzmnl_rehuashen.current2 = control;
 						if (!player.additionalSkills.sgsxjxfzmnl_rehuashen?.includes(control)) {
 							player.flashAvatar('sgsxjxfzmnl_rehuashen', card);
-
 							await player.addAdditionalSkills('sgsxjxfzmnl_rehuashen', control);
 							await player.YB_zhongliuSkills(control);
 							// lib.skill.sgsxjxfzmnl_rehuashen.createAudio(card,link,'re_zuoci');
@@ -37912,7 +37910,7 @@ const skill = {
 			},
 			{
 				toIndex: 2,
-				name: '你可以令一名其他角色判定,若判定结果为♠️️,则其受到2点雷属性伤害',
+				name: '你可以令一名其他角色判定,若判定结果为♠️️️,则其受到2点雷属性伤害',
 				effect: {
 					filter(event, player) {
 						return game.hasPlayer((target) => target !== player);

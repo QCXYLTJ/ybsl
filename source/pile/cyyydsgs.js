@@ -2380,13 +2380,13 @@ export async function cyyydsgs() {
 				jhjx_baozai: '雹灾',
 				jhjx_baozai_info: '场上角色的准备阶段,你可以令其进行【冰雹】判定',
 				jhjx_bingbao: '冰雹',
-				jhjx_bingbao_info: '出牌阶段,对自己使用.若判定结果为♠️️2~9,则目标角色受到3点冰冻伤害.若判定不为♠️️2~9,将之移动到下家的判定区里',
+				jhjx_bingbao_info: '出牌阶段,对自己使用.若判定结果为♠️️️2~9,则目标角色受到3点冰冻伤害.若判定不为♠️️️2~9,将之移动到下家的判定区里',
 				//地灾魔
 				jhjx_dizaimo: '地灾魔',
 				jhjx_dizai: '地灾',
 				jhjx_dizai_info: '场上角色的准备阶段,你可以令其进行【地震】判定',
 				jhjx_dizhen: '地震',
-				jhjx_dizhen_info: '出牌阶段,对自己使用.若判定结果为♦️️2~9,则目标角色受到3点岩属性伤害.若判定不为♦️️2~9,将之移动到下家的判定区里',
+				jhjx_dizhen_info: '出牌阶段,对自己使用.若判定结果为♦️️️2~9,则目标角色受到3点岩属性伤害.若判定不为♦️️️2~9,将之移动到下家的判定区里',
 				//灾厄使者
 				jhjx_zaieshizhe: '灾厄使者',
 				jhjx_zaiyuan: '灾源',

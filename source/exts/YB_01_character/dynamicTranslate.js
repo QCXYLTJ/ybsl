@@ -4,7 +4,7 @@ const dynamicTranslate = {
 	//动态翻译
 	yb001_minglun(player) {
 		var str = '锁定技,回合开始时,你展示牌堆顶一张牌并放在武将牌上,至多放四张.根据<命轮>的花色,你视为拥有技能:<br>';
-		var list = { spade: `♠️️:${get.poptip('yb001_minglun_spade')}`, heart: `♥️️:${get.poptip('yb001_minglun_heart')}`, club: `<br>♣️️:${get.poptip('yb001_minglun_club')}`, diamond: `♦️️:${get.poptip('yb001_minglun_diamond')}` };
+		var list = { spade: `♠️️️:${get.poptip('yb001_minglun_spade')}`, heart: `♥️️️:${get.poptip('yb001_minglun_heart')}`, club: `<br>♣️️️:${get.poptip('yb001_minglun_club')}`, diamond: `♦️️️:${get.poptip('yb001_minglun_diamond')}` };
 		for (var i in list) {
 			var cards = player.getExpansions('yb001_minglun');
 			for (var k of cards) {
@@ -99,7 +99,7 @@ const dynamicTranslate = {
 			str += '<span class=firetext>红色牌</span>';
 		}
 		if (player.storage.yb037_kexie >= 2) {
-			str += '<span class=firetext>♥️️牌</span>';
+			str += '<span class=firetext>♥️️️牌</span>';
 		}
 		str += '时,你失去1点体力';
 		return str;
@@ -151,7 +151,7 @@ const dynamicTranslate = {
 		if (!player.storage.ybsl_cuixing_spade) {
 			return lib.translate.ybsl_cuixing_spade_info;
 		}
-		var str = '你可以将一至两张♠️️牌当作';
+		var str = '你可以将一至两张♠️️️牌当作';
 		for (let i = 0; i < player.storage.ybsl_cuixing_spade.length; i++) {
 			if (i > 0) {
 				str += '、';
@@ -169,7 +169,7 @@ const dynamicTranslate = {
 		if (!player.storage.ybsl_cuixing_heart) {
 			return lib.translate.ybsl_cuixing_heart_info;
 		}
-		var str = '你可以将一至两张♥️️牌当作';
+		var str = '你可以将一至两张♥️️️牌当作';
 		for (let i = 0; i < player.storage.ybsl_cuixing_heart.length; i++) {
 			if (i > 0) {
 				str += '、';
@@ -187,7 +187,7 @@ const dynamicTranslate = {
 		if (!player.storage.ybsl_cuixing_club) {
 			return lib.translate.ybsl_cuixing_club_info;
 		}
-		var str = '你可以将一至两张♣️️牌当作';
+		var str = '你可以将一至两张♣️️️牌当作';
 		for (let i = 0; i < player.storage.ybsl_cuixing_club.length; i++) {
 			if (i > 0) {
 				str += '、';
@@ -205,7 +205,7 @@ const dynamicTranslate = {
 		if (!player.storage.ybsl_cuixing_diamond) {
 			return lib.translate.ybsl_cuixing_diamond_info;
 		}
-		var str = '你可以将一至两张♦️️牌当作';
+		var str = '你可以将一至两张♦️️️牌当作';
 		for (let i = 0; i < player.storage.ybsl_cuixing_diamond.length; i++) {
 			if (i > 0) {
 				str += '、';

@@ -2351,7 +2351,7 @@ const skill = {
 		viewAsFilter(player) {
 			return player.hasCard((card) => card.suit == 'spade', 'hs');
 		},
-		prompt: '将一张♠️️手牌当酒使用',
+		prompt: '将一张♠️️️手牌当酒使用',
 		check(cardx, player) {
 			if (player && player == cardx.player) {
 				return true;

@@ -29,7 +29,7 @@ export const config = {
 		clear: true,
 		onclick() {
 			if (this.help == undefined) {
-				var log = ['未加入到启动代码的那些东西别乱动,都是没做完,不能用的<br>', '除原版马均公式外,还有以下马均不能的:', '· <span class=firetext>王追</span>可升级成为<span class=yellowtext>乌云踏雪</span>,', '· <span class=firetext>赤兔</span>可升级为<span class=yellowtext>烈焰赤兔</span>,', '· <span class=firetext>朱雀扇</span>、<span class=firetext>赤炎琴</span>和<span class=firetext>五行扇</span>可升级为<span class=yellowtext>北斗七星扇</span>,', '· <span class=firetext>倚天剑</span>可升级为<span class=yellowtext>七星龙渊剑</span>,', '· ♠️️<span class=firetext>闪电</span>、<span class=firetext>太公阴符</span>和<span class=firetext>浮雷</span>可升级为<span class=yellowtext>阴勾玉</span>,', '· 非♠️️<span class=firetext>闪电</span>、<span class=firetext>洪水</span>和<span class=firetext>火山</span>可升级为<span class=yellowtext>阳勾玉</span>,', '· <span class=firetext>阴/阳勾玉</span>在装备区时,用<span class=firetext>阳/阴勾玉</span>替掉就会合成<span class=yellowtext>天雷玉璧</span>,', '· <span class=firetext>天雷玉璧</span>可升级为<span class=yellowtext>神雷玉璧</span>,', '· <span class=firetext>毒</span>可锻造为<span class=yellowtext>毒箭</span>,', '· <span class=firetext>青龙刀</span>可锻造为<span class=yellowtext>锁龙偃月刀</span>,', '· <span class=firetext>方天画戟</span>和<span class=firetext>乌铁锁链</span>可锻造为<span class=yellowtext>方天锁链鞭</span>', '· <span class=firetext>铜雀</span>可锻造为<span class=yellowtext>界铜雀</span>', '· <span class=firetext>护心镜</span>可锻造为<span class=yellowtext>护心铠</span>'];
+				var log = ['未加入到启动代码的那些东西别乱动,都是没做完,不能用的<br>', '除原版马均公式外,还有以下马均不能的:', '· <span class=firetext>王追</span>可升级成为<span class=yellowtext>乌云踏雪</span>,', '· <span class=firetext>赤兔</span>可升级为<span class=yellowtext>烈焰赤兔</span>,', '· <span class=firetext>朱雀扇</span>、<span class=firetext>赤炎琴</span>和<span class=firetext>五行扇</span>可升级为<span class=yellowtext>北斗七星扇</span>,', '· <span class=firetext>倚天剑</span>可升级为<span class=yellowtext>七星龙渊剑</span>,', '· ♠️️️<span class=firetext>闪电</span>、<span class=firetext>太公阴符</span>和<span class=firetext>浮雷</span>可升级为<span class=yellowtext>阴勾玉</span>,', '· 非♠️️️<span class=firetext>闪电</span>、<span class=firetext>洪水</span>和<span class=firetext>火山</span>可升级为<span class=yellowtext>阳勾玉</span>,', '· <span class=firetext>阴/阳勾玉</span>在装备区时,用<span class=firetext>阳/阴勾玉</span>替掉就会合成<span class=yellowtext>天雷玉璧</span>,', '· <span class=firetext>天雷玉璧</span>可升级为<span class=yellowtext>神雷玉璧</span>,', '· <span class=firetext>毒</span>可锻造为<span class=yellowtext>毒箭</span>,', '· <span class=firetext>青龙刀</span>可锻造为<span class=yellowtext>锁龙偃月刀</span>,', '· <span class=firetext>方天画戟</span>和<span class=firetext>乌铁锁链</span>可锻造为<span class=yellowtext>方天锁链鞭</span>', '· <span class=firetext>铜雀</span>可锻造为<span class=yellowtext>界铜雀</span>', '· <span class=firetext>护心镜</span>可锻造为<span class=yellowtext>护心铠</span>'];
 				var more = ui.create.div('.help', '<div style="border:2px solid gray"><P align=left>' + log.join('<br>') + '</P>');
 				this.parentNode.insertBefore(more, this.nextSibling);
 				this.help = more;
@@ -54,8 +54,8 @@ export const config = {
 	// 		"6":"<li><span class=firetext>赤兔</span>可升级为<span class=yellowtext>烈焰赤兔</span>,",
 	// 		"7":"<li><span class=firetext>朱雀扇</span>、<span class=firetext>赤炎琴</span>和<span class=firetext>五行扇</span>可升级为<span class=yellowtext>北斗七星扇</span>,",
 	// 		"8":"<li><span class=firetext>倚天剑</span>可升级为<span class=yellowtext>七星龙渊剑</span>,",
-	// 		"9":"<li>♠️️<span class=firetext>闪电</span>、<span class=firetext>太公阴符</span>和<span class=firetext>浮雷</span>可升级为<span class=yellowtext>阴勾玉</span>,",
-	// 		"10":"<li>非♠️️<span class=firetext>闪电</span>、<span class=firetext>洪水</span>和<span class=firetext>火山</span>可升级为<span class=yellowtext>阳勾玉</span>,",
+	// 		"9":"<li>♠️️️<span class=firetext>闪电</span>、<span class=firetext>太公阴符</span>和<span class=firetext>浮雷</span>可升级为<span class=yellowtext>阴勾玉</span>,",
+	// 		"10":"<li>非♠️️️<span class=firetext>闪电</span>、<span class=firetext>洪水</span>和<span class=firetext>火山</span>可升级为<span class=yellowtext>阳勾玉</span>,",
 	// 		"11":"<li><span class=firetext>阴/阳勾玉</span>在装备区时,用<span class=firetext>阳/阴勾玉</span>替掉就会合成<span class=yellowtext>天雷玉璧</span>,",
 	// 		"12":"<li><span class=firetext>天雷玉璧</span>可升级为<span class=yellowtext>神雷玉璧</span>,",
 	// 		"13":"<li><span class=firetext>毒</span>可锻造为<span class=yellowtext>毒箭</span>."
@@ -112,9 +112,9 @@ export const config = {
 					'i参数不填则为默认参数,详情在下方具体列举<br>',
 					"默认扶汉:默认参数i为['all',5,2,'all'].若创建了i的集合,则不论参数填写与否,英文逗号必须保留.作用是从参数一所列势力中抽取参数二张武将牌,<span class=yellowtext>player挑选至多参数三个技能获得之</span>,抽取的武将排除掉参数四所列举的武将,抽取的武将性别限定为参数五,第六个参数筛选是否为主公.",
 					"第一个参数为势力筛选,是个嵌套数组,需要列举势力id(例['wei','shu']),若不输入数组或输入all则为所有势力;第二个参数为抽取武将的数量,不填默认为5;<span class=yellowtext>第三个参数为挑选技能的数量,不填默认为2</span>;第四个参数是被筛除的武将,是个嵌套的数组,需在其中列举(例['zuoci','huatuo']),默认为空,即不筛选;第五个参数为性别筛选,是个嵌套的数组,需在其中列举(例['male','double']),不填数组或填入'all'则不筛选势力;第六个参数筛选是否为主公,填'zhu'则挑选主公.填'nozhu'则挑选非主公,填其他或不填则不筛选.<br>",
-					"tw扶汉:默认参数i为['all',5,,'all'].若创建了i的集合,则不论参数填写与否,英文逗号必须保留.作用是从参数一所列势力中抽取参数二张武将牌,<span class=yellowtext>player挑选一个获得其技能</span>,抽取的武将排除掉参数四所列举的武将,抽取的武将性别限定为参数五,第六个参数筛选是否为主公.",
+					"tw扶汉:默认参数i为['all',5,'all'].若创建了i的集合,则不论参数填写与否,英文逗号必须保留.作用是从参数一所列势力中抽取参数二张武将牌,<span class=yellowtext>player挑选一个获得其技能</span>,抽取的武将排除掉参数四所列举的武将,抽取的武将性别限定为参数五,第六个参数筛选是否为主公.",
 					"第一个参数为势力筛选,是个嵌套数组,需要列举势力id(例['wei','shu']),若不输入数组或输入all则为所有势力;第二个参数为抽取武将的数量,不填默认为5;<span class=yellowtext>第三个参数为发动此技能的角色id,乱填不知会有何后果,不填默认为player的主将</span>;第四个参数是被筛除的武将,是个嵌套的数组,需在其中列举(例['zuoci','huatuo']),默认为空,即不筛选;第五个参数为性别筛选,是个嵌套的数组,需在其中列举(例['male','double']),不填数组或填入'all'则不筛选势力;第六个参数筛选是否为主公,填'zhu'则挑选主公.填'nozhu'则挑选非主公,填其他或不填则不筛选.<br>",
-					"旧版扶汉:默认参数i为['all',5,,'all'].若创建了i的集合,则不论参数填写与否,英文逗号必须保留.作用是从参数一所列势力中抽取参数二张武将牌,<span class=yellowtext>player挑选一个将参数三武将替换为所选武将</span>,抽取的武将排除掉参数四所列举的武将,抽取的武将性别限定为参数五,第六个参数筛选是否为主公.",
+					"旧版扶汉:默认参数i为['all',5,'all'].若创建了i的集合,则不论参数填写与否,英文逗号必须保留.作用是从参数一所列势力中抽取参数二张武将牌,<span class=yellowtext>player挑选一个将参数三武将替换为所选武将</span>,抽取的武将排除掉参数四所列举的武将,抽取的武将性别限定为参数五,第六个参数筛选是否为主公.",
 					"第一个参数为势力筛选,是个嵌套数组,需要列举势力id(例['wei','shu']),若不输入数组或输入all则为所有势力;第二个参数为抽取武将的数量,不填默认为5;<span class=yellowtext>第三个参数为被替换角色的id,乱填不知会有何后果,不填默认为player的主将</span>;第四个参数是被筛除的武将,是个嵌套的数组,需在其中列举(例['zuoci','huatuo']),默认为空,即不筛选;第五个参数为性别筛选,是个嵌套的数组,需在其中列举(例['male','double']),不填数组或填入'all'则不筛选势力;第六个参数筛选是否为主公,填'zhu'则挑选主公.填'nozhu'则挑选非主公,填其他或不填则不筛选.",
 					'综上.<br>',
 					'· YB_shelie',

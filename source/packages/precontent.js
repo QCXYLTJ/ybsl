@@ -24,7 +24,7 @@ export async function precontent() {
 		if (originalCompatibleMode === true && lib.config.extension_夜白神略_不再提示关闭兼容模式的弹窗 != true) {
 			// 创建自定义弹窗
 			const dialog = document.createElement('div');
-			dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:99999;display:flex;justify-content:center;align-items:center;';
+			dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;display:flex;justify-content:center;align-items:center;';
 			const content = document.createElement('div');
 			content.style.cssText = 'background:#fff;padding:30px;border-radius:10px;min-width:400px;min-height:400px;box-shadow:0 5px 20px rgba(0,0,0,0.3);font-family:sans-serif;';
 			const title = document.createElement('div');
