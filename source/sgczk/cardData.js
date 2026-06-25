@@ -1,6 +1,7 @@
 ﻿import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
-export default cardData = function () {
-	return (game.sgczkCardData = {
+export { cardData };
+const cardData = function () {
+	game.sgczkCardData = {
 		character: {
 			caocao: {},
 			simayi: {},
@@ -70,5 +71,6 @@ export default cardData = function () {
 			shen_simayi: {},
 		},
 		card: {},
-	});
+	};
+	return game.sgczkCardData;
 };

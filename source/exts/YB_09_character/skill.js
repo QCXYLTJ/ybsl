@@ -2979,7 +2979,6 @@ const skill = {
 			return true;
 		},
 		complexCard: true,
-		limited: true,
 		position: 'he',
 		selectCard: 3,
 		line: 'water',
@@ -3602,7 +3601,6 @@ const skill = {
 						}
 						return false;
 					}).length;
-					return true;
 				},
 				forced: true,
 				content() {
@@ -4630,17 +4628,18 @@ const skill = {
 		forced: true,
 		content() {
 			'step 0';
+			let fil, str;
 			if (player.storage.North_shh_yuniao == true) {
-				const fil = function (card, player, target) {
+				fil = function (card, player, target) {
 					return target.countCards('he') > 0;
 				};
-				let str = '你可获得1名角色一张牌,然后对该角色造成1点火属性伤害';
+				str = '你可获得1名角色一张牌,然后对该角色造成1点火属性伤害';
 				const nat = 'fire';
 			} else {
-				const fil = function (card, player, target) {
+				fil = function (card, player, target) {
 					return player.countCards('he') > 0;
 				};
-				let str = '你可交给1名角色一张牌,然后对该角色造成1点伤害';
+				str = '你可交给1名角色一张牌,然后对该角色造成1点伤害';
 				const nat = null;
 			}
 			player

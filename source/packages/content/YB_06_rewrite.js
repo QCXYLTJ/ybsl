@@ -225,7 +225,7 @@ const YBSL_rewrite = function () {
 			// 	intro:{
 			// 		content:function(storage,player){
 			// 			var info=lib.skill.yuqi.getInfo(player);
-			// 			return '<div class="text center"><span class=thundertext>蓝色:'+info[0]+'</span>　<span class=firetext>红色:'+info[1]+'</span><br><span class=greentext>绿色:'+info[2]+'</span>　<span class=yellowtext>黄色:'+info[3]+'</span></div>'
+			//return '<div class="text center"><span class=thundertext>蓝色:'+info[0]+'</span>　<span class=firetext>红色:'+info[1]+'</span><br><span class=greentext>绿色:'+info[2]+'</span>　<span class=yellowtext>黄色:'+info[3]+'</span></div>'
 			// 		},
 			// 	},
 			// 	ai:{

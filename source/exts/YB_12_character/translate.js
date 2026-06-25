@@ -1239,7 +1239,7 @@ const translate = {
 	sgsxjxfzmnl_sb_sp_zhugeliang: '阴间谋诸葛亮',
 	sgsxjxfzmnl_sb_sp_zhugeliang_prefix: '阴间谋',
 	sgsxjxfzmnl_sbhuoji: '火计',
-	sgsxjxfzmnl_sbhuoji_info: `使命技.①使命:出牌阶段限一次.你可以对一名其他角色造成1点火焰伤害,然后你对所有与其势力相同的不为其的其他角色各造成1点火焰伤害.②成功:准备阶段,若你本局游戏已对其他角色造成的火焰伤害不小于本局游戏总角色数,则<span style=\"text-decoration: line-through;\">你失去〖火计〗和〖看破〗,然后</span>获得${get.poptip('sgsxjxfzmnl_sbguanxing')}和${get.poptip('sgsxjxfzmnl_sbkongcheng')}.③失败:使命成功前进入濒死状态.(三国杀仙界下凡怎么你了)`,
+	sgsxjxfzmnl_sbhuoji_info: `使命技.①使命:出牌阶段限一次.你可以对一名其他角色造成1点火焰伤害,然后你对所有与其势力相同的不为其的其他角色各造成1点火焰伤害.②成功:准备阶段,若你本局游戏已对其他角色造成的火焰伤害不小于本局游戏总角色数,则<span style="text-decoration: line-through;">你失去〖火计〗和〖看破〗,然后</span>获得${get.poptip('sgsxjxfzmnl_sbguanxing')}和${get.poptip('sgsxjxfzmnl_sbkongcheng')}.③失败:使命成功前进入濒死状态.(三国杀仙界下凡怎么你了)`,
 	sgsxjxfzmnl_sbkanpo: '看破',
 	sgsxjxfzmnl_sbkanpo_info: '①每轮开始时,你清除〖看破①〗记录的牌名,然后你可以依次记录<span class=firetext>Y个牌名</span>(Y为本局存活人数且至少为4,对其他角色不可见<span style="text-decoration: line-through;">,每局游戏至多记录2个牌名</span>).②其他角色使用你〖看破①〗记录过的牌名的牌时,你可以移去一个〖看破①〗中的此牌名的记录令此牌无效,然后你摸一张牌.(三国杀仙界下凡怎么你了)',
 	sgsxjxfzmnl_sbguanxing: '观星',
@@ -1261,7 +1261,7 @@ const translate = {
 	sgsxjxfzmnl_junkyuheng: '驭衡',
 	sgsxjxfzmnl_junkyuheng_info: '锁定技.①回合开始时,你须弃置任意张花色不同的牌,从<span class=firetext>X名吴势力武将中选择等量技能(X为全场存活人数)</span>.②回合结束时,你失去所有因〖驭衡①〗获得的技能,然后摸<span class=firetext>Y张</span>牌<span class=firetext>(Y为你以此法弃置牌的二倍)</span>.(三国杀仙界下凡怎么你了)',
 	sgsxjxfzmnl_junkdili: '帝力',
-	sgsxjxfzmnl_junkdili_info: `觉醒技.当你获得技能后,若你拥有的技能数大于<span class=firetext>场上势力数</span>,则你<span class=firetext>加</span>1点体力上限,<span style=\"text-decoration: line-through;\">选择失去任意个其他技能,</span>然后获得以下技能<span style=\"text-decoration: line-through;\">中的前等量个</span>:${get.poptip('sgsxjxfzmnl_junkshengzhi')}${get.poptip('sgsxjxfzmnl_junkquandao')}${get.poptip('sgsxjxfzmnl_junkchigang')}.(三国杀仙界下凡怎么你了)`,
+	sgsxjxfzmnl_junkdili_info: `觉醒技.当你获得技能后,若你拥有的技能数大于<span class=firetext>场上势力数</span>,则你<span class=firetext>加</span>1点体力上限,<span style="text-decoration: line-through;">选择失去任意个其他技能,</span>然后获得以下技能<span style="text-decoration: line-through;">中的前等量个</span>:${get.poptip('sgsxjxfzmnl_junkshengzhi')}${get.poptip('sgsxjxfzmnl_junkquandao')}${get.poptip('sgsxjxfzmnl_junkchigang')}.(三国杀仙界下凡怎么你了)`,
 	sgsxjxfzmnl_junkshengzhi: '圣质',
 	sgsxjxfzmnl_junkshengzhi_info: '锁定技.当你发动非锁定技后,你令你本回合使用的牌无距离和次数限制.(三国杀仙界下凡怎么你了)',
 	sgsxjxfzmnl_junkquandao: '权道',
@@ -1332,9 +1332,9 @@ const translate = {
 		type: 'character',
 		info: `
 				<li><span style='font-family: yuanli'>力烽</span>:令其随机弃置一半手牌(向上取整);<br>
-				<li><span style='font-family: yuanli'>地机</span>:令其<span class=firetext>接下来</span>受到的伤害+1<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>;<br>
-				<li><span style='font-family: yuanli'>中枢</span>:令其<span class=firetext>每回合使用的第一张牌</span>无效<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>;<br>
-				<li><span style='font-family: yuanli'>气海</span>:令其不能使用或打出♥️️️牌<span style=\"text-decoration: line-through;\">直到其下个回合结束</span>;
+				<li><span style='font-family: yuanli'>地机</span>:令其<span class=firetext>接下来</span>受到的伤害+1<span style="text-decoration: line-through;">直到其下个回合结束</span>;<br>
+				<li><span style='font-family: yuanli'>中枢</span>:令其<span class=firetext>每回合使用的第一张牌</span>无效<span style="text-decoration: line-through;">直到其下个回合结束</span>;<br>
+				<li><span style='font-family: yuanli'>气海</span>:令其不能使用或打出♥️️️牌<span style="text-decoration: line-through;">直到其下个回合结束</span>;
 			`,
 	})}>;若你击伤了一名角色,则本回合再次击伤该角色时出现<${get.poptip({
 		id: 'sgsxjxfzmnl_dclieqiong_tianchong',

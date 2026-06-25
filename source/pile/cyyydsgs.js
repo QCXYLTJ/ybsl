@@ -357,6 +357,7 @@ export async function cyyydsgs() {
 									controls.push('recover_hp');
 								}
 								controls.push('cancel2');
+								let result;
 								if (controls.length == 1) {
 									result = { control: controls[0] };
 								} else {
@@ -827,15 +828,12 @@ export async function cyyydsgs() {
 								player.YB_removeMark('buff_cyyydsgs_fengdun', 1, 'cyyydsgs_xuanfeng_nowind');
 								('step 1');
 								let natures = trigger.nature;
-								if (nature != null) {
-									// if(!Array.isArray(nature)){
-									// 	if(nature.includes('|'))natures=natures.split('|').filter(item=>item!=='');
-									// }
-									if (Array.isArray(nature)) {
+								if (event.nature != null) {
+									if (Array.isArray(event.nature)) {
 										natures = natures.join('|');
 									}
 								}
-								game.setNature(trigger, nature == null ? 'YB_wind' : natures + '|YB_wind');
+								game.setNature(trigger, event.nature == null ? 'YB_wind' : natures + '|YB_wind');
 								const next = game.createEvent('cyyydsgs_xuanfeng_nowind');
 								event.next.remove(next);
 								trigger.after.push(next);
@@ -1517,15 +1515,12 @@ export async function cyyydsgs() {
 								player.YB_removeMark('buff_jhjx_fengdun', 1, 'jhjx_xuanfeng_nowind');
 								('step 1');
 								let natures = trigger.nature;
-								if (nature != null) {
-									// if(!Array.isArray(nature)){
-									// 	if(nature.includes('|'))natures=natures.split('|').filter(item=>item!=='');
-									// }
-									if (Array.isArray(nature)) {
+								if (event.nature != null) {
+									if (Array.isArray(event.nature)) {
 										natures = natures.join('|');
 									}
 								}
-								game.setNature(trigger, nature == null ? 'YB_wind' : natures + '|YB_wind');
+								game.setNature(trigger, event.nature == null ? 'YB_wind' : natures + '|YB_wind');
 								const next = game.createEvent('jhjx_xuanfeng_nowind');
 								event.next.remove(next);
 								trigger.after.push(next);
@@ -2005,7 +2000,7 @@ export async function cyyydsgs() {
 										event.list1 = ['武器', '防具', '防御马', '进攻马', '宝物', '双格马'];
 										player.chooseControl(event.list1).set('prompt', '请选择将【' + get.translation(event.skill) + '】当做哪种装备');
 									} else {
-										(event, finish());
+										event.finish();
 									}
 									('step 1');
 									if (result.control) {
