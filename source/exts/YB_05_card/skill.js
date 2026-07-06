@@ -2,20 +2,13 @@
 export { skill };
 /** @type { importCardConfig.skill } */
 const skill = {
-	// ybsl_diedpk_skill: {
-	// 	mod: {
-	// 		cardname (card, player) {
-	// 			if (card.name == "ybsl_diedpk")return 'juedou';
-	// 		},
-	// 	},
-	// },
 	rewrite_goujiangdesidai_skill: {
 		inherit: 'kagari_ybzongsi',
 		filter(event, player) {
 			return !player.hasSkill('kagari_ybzongsi') || player.getStat('skill').kagari_ybzongsi;
 		},
 	},
-	//----------暗度陈仓
+
 	ybsl_anduchencang_skill: {
 		trigger: { global: 'phaseBegin' },
 		forced: true,
@@ -35,7 +28,6 @@ const skill = {
 			next.set('ai2', function () {
 				return get.effect_use.apply(this, arguments) + 0.01;
 			});
-			// next.event._trigger=next;
 		},
 	},
 	ybsl_anduchencang_skill2: {
@@ -48,7 +40,7 @@ const skill = {
 			trigger.num--;
 		},
 	},
-	//----------凤求凰
+
 	ybsl_fengqiuhuang: {
 		equipSkill: true,
 		trigger: {
@@ -64,16 +56,15 @@ const skill = {
 			return event.xtargets.length;
 		},
 		content(trigger) {
-			// 重置使用牌事件
 			trigger.finished = 0;
 			trigger._triggered = 2;
-			//
+
 			trigger.num = 0;
 			trigger.step = 0;
 			trigger.targets = trigger.xtargets;
-			//
+
 			trigger.addCount = false;
-			//
+
 			trigger.huiyinUse = true;
 		},
 		ai: {
@@ -88,18 +79,10 @@ const skill = {
 					}
 					return 1;
 				},
-				// player:function(card,player,target){
-				// if(player==target&&get.subtype(card)=='equip5'){
-				// 	if(get.equipValue(card)<=8.5) return 0;
-				// }
-				// 	if(!target.hasEmptySlot(5)) return;
-				// 	return lib.skill.ybsl_fengqiuhuang.ai.effect.player.apply(this,arguments);
-				// 	-------凤求凰没有以上代码
-				// }
 			},
 		},
 	},
-	//-------------------------飘雪神符
+
 	ybsl_piaoxueruyi: {
 		equipSkill: true,
 		trigger: {
@@ -126,7 +109,7 @@ const skill = {
 			return get.attitude(player, event.player) > 0;
 		},
 	},
-	//----------桃之夭夭
+
 	ybsl_taoyao: {
 		equipSkill: true,
 		charlotte: true,
@@ -175,7 +158,7 @@ const skill = {
 			threaten: 1.5,
 		},
 	},
-	//-----------青鳞盔
+
 	ybsl_qinglinkui: {
 		audio: 'renwang',
 		equipSkill: true,
@@ -183,7 +166,7 @@ const skill = {
 			player: 'damageBegin4',
 		},
 		forced: true,
-		// frequent:true,
+
 		filter(event, player) {
 			if (player.hasSkillTag('unequip2')) {
 				return false;
@@ -206,16 +189,9 @@ const skill = {
 		content() {
 			trigger.num--;
 		},
-		ai: {
-			// threaten:0.3,
-			// effect:{
-			// 	target:function(card,player,target,current,isLink){
-			// 		if(!player.inRange(target)&&get.tag(card,'damage')) return 0;
-			// 	},
-			// }
-		},
+		ai: {},
 	},
-	//-----------水镜袍
+
 	ybsl_shuijingpao: {
 		audio: 'rewrite_bagua',
 		equipSkill: true,
@@ -223,7 +199,7 @@ const skill = {
 			target: 'useCardToPlayered',
 		},
 		forced: true,
-		// frequent:true,
+
 		filter(event, player) {
 			if (player.hasSkillTag('unequip2')) {
 				return false;
@@ -240,7 +216,7 @@ const skill = {
 			if (get.type2(event.card) != 'trick') {
 				return false;
 			}
-			// if(event.parent.triggeredTargets3.length>1) return false;
+
 			return event.targets.length;
 		},
 		content() {
@@ -257,7 +233,7 @@ const skill = {
 			},
 		},
 	},
-	//------------国士圣袍
+
 	ybsl_guoshishengpao: {
 		equipSkill: true,
 		trigger: { target: 'shaBegin' },
@@ -314,7 +290,7 @@ const skill = {
 			},
 		},
 	},
-	//-----------锁龙偃月刀
+
 	rewrite_qinglong_skill: {
 		audio: 'qinglong_skill',
 		equipSkill: true,
@@ -325,7 +301,6 @@ const skill = {
 				return false;
 			}
 			return event.target.isIn() && player.canUse('sha', event.target, false);
-			//&&(player.hasSha()||_status.connectMode&&player.countCards('h'))
 		},
 		content() {
 			'step 0';
@@ -386,27 +361,6 @@ const skill = {
 		},
 	},
 	ybsl_milu: {
-		// trigger:{//不能成功,别私自改回
-		// player:'loseBegin',
-		// global:['equipBegin','addJudgeBegin','gainBegin','loseAsyncBegin'],
-		// },
-		// equipSkill:true,
-		// forceDie:true,
-		// charlotte:true,
-		// forced:true,
-		// popup:false,
-		// filter:function(event,player){
-		// // return event.cards && event.cards.some(card=>card.name.indexOf('qiexie_')==0)
-		// game.log(2)
-		// var evt=event.getl(player);
-		// game.log(evt.es)
-		// return evt&&evt.player==player&&evt.es&&evt.es.length>0;
-		// },
-		// content:function(){
-		// var cards=trigger.getl(player).es;
-		// game.log(cards)
-		// player.gain(cards,'gain2');
-		// },
 		enable: 'phaseUse',
 		usable: 1,
 		filter(event, player) {
@@ -482,55 +436,17 @@ const skill = {
 				});
 			('step 1');
 			if (result.bool) {
-				// player.logSkill('ybsl_yangtuo')
 				player.useCard({ name: 'sha' }, result.cards, 'ybsl_yangtuo', trigger.player, false);
 			}
 		},
 	},
-	//-----------------君子之花
-	// '_ybsl_junzizhihua':{
-	// 	trigger:{
-	// 		player:'useCardAfter',
-	// 	},
-	// 	equipSkill:false,
-	// 	direct:true,
-	// 	forced:true,
-	// 	ruleSkill:true,
-	// 	filter:function (event,player){
-	// 		return event.card&&['ybsl_meihua','ybsl_lanhua','ybsl_zhuzi','ybsl_juhua'].includes(event.card.name)&&
-	// 			event.targets.length>0;
-	// 	},
-	// 	content:function(){
-	// 		if(trigger.targets.length<2){
-	// 			var tar=[];
-	// 			for (var i=0;i<trigger.targets.length;i++){
-	// 				//trigger.targets[i].gain(game.YB_createCard('du',null,null,null,['gifts']),'gain2');
-	// 				tar.push(trigger.targets[i]);
-	// 			}
-	// 			var cards=trigger.cards;
-	// 			// game.cardsGotoSpecial(cards);
-	// 			tar[0].draw();
-	// 			game.log(cards,'被',tar,'独自享用');
-	// 		}
-	// 		if(trigger.targets.length>=2){
-	// 			var tar=[];
-	// 			for (var i=0;i<trigger.targets.length;i++){
-	// 				//trigger.targets[i].gain(game.YB_createCard('du',null,null,null,['gifts']),'gain2');
-	// 				tar.push(trigger.targets[i]);
-	// 			}
-	// 			var cards=trigger.cards;
-	// 			game.cardsGotoSpecial(cards);
-	// 			game.log(cards,'被',tar,'分而食之');
-	// 		}
-	// 	},
-	// },
-	//---------------天火煅
+
 	ybsl_tianhuoduan_skill: {
 		equipSkill: false,
 		forced: true,
 		ruleSkill: true,
 	},
-	//----------------乌云踏雪
+
 	rewrite_ybsl_wangzhui: {
 		equipSkill: true,
 		trigger: {
@@ -562,7 +478,7 @@ const skill = {
 			},
 		},
 	},
-	//----------------烈焰赤兔
+
 	rewrite_chitu: {
 		equipSkill: true,
 		trigger: {
@@ -594,7 +510,7 @@ const skill = {
 			},
 		},
 	},
-	//--------------北斗七星扇
+
 	rewrite_zhuque: {
 		equipSkill: true,
 		trigger: { player: 'useCard1' },
@@ -614,7 +530,6 @@ const skill = {
 				trigger.player.addTempSkill('rewrite_zhuque2');
 				if (player != trigger.player) {
 					trigger.player.line(player, 'green');
-					//player.gain(result.cards,trigger.player,'giveAuto');
 				}
 			} else {
 				event.finish();
@@ -789,7 +704,7 @@ const skill = {
 			}
 		},
 	},
-	//-------------------------七星龙渊剑
+
 	rewrite_yitianjian: {
 		audio: 'yitianjian_skill',
 		trigger: { source: 'damageSource' },
@@ -807,12 +722,12 @@ const skill = {
 			}
 		},
 	},
-	//--------------------------护心铠
+
 	rewrite_huxinjing: {
 		equipSkill: true,
 		inherit: 'huxinjing',
 		trigger: { player: 'damageBegin4' },
-		// forced:true,
+
 		filter(event, player) {
 			if (event.num < player.hp && (get.mode() == 'guozhan' || event.num <= 1)) {
 				return false;
@@ -831,12 +746,10 @@ const skill = {
 					game.broadcastAll(
 						function (card, player) {
 							player.removeEquipTrigger(card.card || card);
-							card.init([card.suit, card.number, 'huxinjing', card.nature /*,tag*/]);
+							card.init([card.suit, card.number, 'huxinjing', card.nature]);
 							const vcard = card[card.cardSymbol];
-							//
+
 							if (vcard && player.vcardsMap?.equips) {
-								// const cardx = game.YB_createCard('huxinjing', card.card.suit, card.card.number);
-								// player.vcardsMap.equips[player.vcards]
 								const cardx = get.autoViewAs(card, void 0, false);
 								player.vcardsMap.equips[player.vcardsMap.equips.indexOf(vcard)] = cardx;
 								card[card.cardSymbol] = cardx;
@@ -848,7 +761,6 @@ const skill = {
 					);
 				}
 			}
-			// player.removeSkill("rewrite_huxinjing");
 		},
 		mod: {
 			canBeDiscarded(card, player, target) {
@@ -858,81 +770,8 @@ const skill = {
 			},
 		},
 	},
-	//-------------护心铠
-	// 'rewrite_huxinjing':{
-	// 	audio:'huxinjing',
-	// 	equipSkill:true,
-	// 	trigger:{player:'damageBegin4'},
-	// 	direct:true,
-	// 	filter:function(event,player){
-	// 		if(player.hasSkillTag('unequip2')) return false;
-	// 		if(event.source&&event.source.hasSkillTag('unequip',false,{
-	// 			name:event.card?event.card.name:null,
-	// 			target:player,
-	// 			card:event.card
-	// 		})) return false;
-	// 		var cards=player.getEquips('rewrite_huxinjing');
-	// 		if(!cards.length) return false;
-	// 		if(player.hasMark('rewrite_huxinjing2'))return true;
-	// 		if(get.mode()!='guozhan'&&event.num>1) return true;
-	// 		return event.num>=player.hp;
-	// 	},
-	// 	content:function(){
-	// 		'step 0'
-	// 		if(player.hasMark('rewrite_huxinjing2')&&player.getEquips('rewrite_huxinjing').length){
-	// 			var e2=player.getEquips('rewrite_huxinjing');
-	// 			if(e2.length){
-	// 				player.discard(e2);
-	// 			}
-	// 			// player.removeSkill('rewrite_huxinjing');
-	// 			player.removeSkill('rewrite_huxinjing2');
-	// 			event.finish();
-	// 		}
-	// 		else{
-	// 			player.chooseBool(get.prompt('rewrite_huxinjing',player),lib.translate.rewrite_huxinjing_info);
-	// 		}
-	// 		'step 1'
-	// 		if(result.bool){
-	//
-	// 			trigger.cancel();
-	// 			player.addMark('rewrite_huxinjing2')
-	// 		}
-	// 	}
-	// },
-	// 'rewrite_huxinjing2':{
-	// 	audio:'baiyin',
-	// 	equipSkill:true,
-	// 	trigger:{source:'damageBegin2'},
-	// 	forced:true,
-	// 	marktext:'虎',
-	// 	intro:{
-	// 		content:'下次造成的伤害+1,若你在此状态再次受到伤害,则失去此效果,同时弃置护心铠',
-	// 	},
-	// 	filter:function(event,player){
-	// 		if(player.hasSkillTag('unequip2')) return false;
-	// 		var cards=player.getEquips('rewrite_huxinjing');
-	// 		if(!cards.length) return false;
-	// 		return player.hasMark('rewrite_huxinjing2');
-	// 	},
-	// 	content:function(){
-	// 		player.removeMark('rewrite_huxinjing2');
-	// 		trigger.num++;
-	// 	}
-	// },
-	//-------------原版铜雀
+
 	rewrite_tongque: {
-		// trigger:{player:'useCard1'},
-		// equipSkill:true,
-		// forced:true,
-		// filter:function(event,player){
-		// 	return !event.card.yingbian&&get.is.yingbian(event.card);
-		// },
-		// content:function(){
-		// 	trigger.card.yingbian=true;
-		// 	var info=get.info(trigger.card);
-		// 	if(info&&info.yingbian) info.yingbian(trigger);
-		// 	player.addTempSkill('yingbian_changeTarget');
-		// },
 		trigger: {
 			player: 'yingbian',
 		},
@@ -944,14 +783,14 @@ const skill = {
 		},
 		_priority: -25,
 	},
-	//--------------方天锁链鞭(什么J8玩意)
+
 	rewrite_fangtian: {
 		trigger: { player: 'useCardToPlayered' },
 		forced: true,
 		equipSkill: true,
 		audio: true,
 		filter(event, player) {
-			return event.card && event.card.name == 'sha' && !event.target.isLinked(); //||event.target.countCards('h'));
+			return event.card && event.card.name == 'sha' && !event.target.isLinked();
 		},
 		logTarget: 'target',
 		content() {
@@ -963,7 +802,7 @@ const skill = {
 			}
 		},
 	},
-	//---------------------绿沉枪
+
 	ybsl_lvchenqiang1_skill: {
 		charlotte: true,
 		equipSkill: true,
@@ -1020,44 +859,7 @@ const skill = {
 			player.draw();
 		},
 	},
-	//-----------------伏羲镇魂琴
-	// ybsl_fuxizhenhunqin:{
-	// 	equipSkill:true,
-	// 	trigger:{player:'useCard1'},
-	// 	//_priority:7,
-	// 	filter:function(event,player){
-	// 		if(event.card.name=='sha') return true;
-	// 	},
-	// 	audio:true,
-	// 	check:function(event,player){
-	// 		var eff=0;
-	// 		for(var i=0;i<event.targets.length;i++){
-	// 			var target=event.targets[i];
-	// 			var eff1=get.damageEffect(target,player,player);
-	// 			var eff2=get.damageEffect(target,player,player,'fire|thunder|ice|YB_snow|YB_blood');
-	// 			eff+=eff2;
-	// 			eff-=eff1;
-	// 		}
-	// 		return eff>=0;
-	// 	},
-	// 	prompt2:function(event,player){
-	// 		return '将'+get.translation(event.card)+'附着全部属性';
-	// 	},
-	// 	content:function(){
-	// 		var list=lib.inpile_nature;
-	// 		if(trigger.card.hasNature('kami'))var list=lib.inpile_nature.concat('kami');
-	// 		game.setNature(trigger.card,list);
-	// 		if(get.itemtype(trigger.card)=='card'){
-	// 			var next=game.createEvent('ybsl_fuxizhenhunqin_clear');
-	// 			next.card=trigger.card;
-	// 			event.next.remove(next);
-	// 			trigger.after.push(next);
-	// 			next.setContent(function(){
-	// 				game.setNature(trigger.card,[]);
-	// 			});
-	// 		}
-	// 	}
-	// },
+
 	ybsl_fuxizhenhunqin: {
 		equipSkill: true,
 		trigger: {
@@ -1093,12 +895,11 @@ const skill = {
 				list.sortBySeat();
 				for (const i of list) {
 					i.damage(1, { name: 'ybsl_fuxizhenhunqin' }, trigger.cards, 'fire', player);
-					// i.damage(1,{name:'ybsl_fuxizhenhunqin',card:trigger.cards},'fire',player);
 				}
 			}
 		},
 	},
-	//---------无双铠
+
 	ybsl_nodouble: {
 		equipSkill: true,
 		trigger: {
@@ -1149,7 +950,7 @@ const skill = {
 			},
 		},
 	},
-	//--------------吴六剑
+
 	ybsl_baihong: {
 		charlotte: true,
 		equipSkill: true,
@@ -1170,9 +971,6 @@ const skill = {
 				}
 			},
 		},
-		// ai:{
-		// 	unequip:true,
-		// }
 	},
 	ybsl_zidian1: {
 		charlotte: true,
@@ -1196,16 +994,6 @@ const skill = {
 			return eff >= 0;
 		},
 		content() {
-			// trigger.card.nature='thunder';
-			// if(get.itemtype(trigger.card)=='card'){
-			// var next=game.createEvent('ybsl_zidian1_clear');
-			// next.card=trigger.card;
-			// event.next.remove(next);
-			// trigger.after.push(next);
-			// next.setContent(function(){
-			// delete card.nature;
-			// });
-			// }
 			game.setNature(trigger.card, 'thunder');
 			if (get.itemtype(trigger.card) == 'card') {
 				const next = game.createEvent('ybsl_zidian1_clear');
@@ -1259,7 +1047,7 @@ const skill = {
 			if (shas.length > 1) {
 				return 1;
 			}
-			return -1; //改自界董卓酒池,大力出奇迹,只判断手中杀的数量
+			return -1;
 		},
 	},
 	ybsl_zidian3: {
@@ -1285,7 +1073,6 @@ const skill = {
 			game.broadcastAll(function (player) {
 				player.removeSkill('ybsl_zidian3');
 			}, player);
-			// game.addVideo('jiuNode',player,false);
 		},
 		group: 'ybsl_zidian4',
 		onremove(player) {
@@ -1313,7 +1100,7 @@ const skill = {
 			trigger.baseDamage += player.storage.ybsl_zidian3;
 			trigger.ybsl_zidian3 = true;
 			trigger.ybsl_zidian3_add = player.storage.ybsl_zidian3;
-			// game.addVideo('jiuNode',player,false);
+
 			game.broadcastAll(function (player) {
 				player.removeSkill('ybsl_zidian3');
 			}, player);
@@ -1341,15 +1128,9 @@ const skill = {
 			if (!get.is.single() && target.countDiscardableCards(player, 'he')) {
 				player.discardPlayerCard('he', target);
 			}
-			// 'step 1'
-			// if(result.bool){
-			// // game.log(player,'ybsl_bixie');
-			// player.logSkill('ybsl_bixie')
-			// }
 		},
 		check(event, player) {
 			return get.attitude(player, event.player) < 0;
-			//这里没有判断假如弃牌是否会给对方带来正收益
 		},
 	},
 	ybsl_liuxing: {
@@ -1358,9 +1139,7 @@ const skill = {
 			maxHandcard(player, num) {
 				return num + 1;
 			},
-			// attackRange:function(player,num){
-			// return num+1;
-			// },
+
 			cardUsable(card, player, num) {
 				if (card.name == 'sha') {
 					return num + 1;
@@ -1395,10 +1174,11 @@ const skill = {
 			event.num = evt.hs.length;
 			event.cards = trigger.num;
 			const suits = [];
-			if (Array.isArray(trigger.cards))
-				{for (const i of trigger.cards) {
+			if (Array.isArray(trigger.cards)) {
+				for (const i of trigger.cards) {
 					suits.add(i.suit);
-				}}
+				}
+			}
 			event.suits = suits.length;
 			player
 				.chooseTarget(get.prompt('ybsl_qingming'), '选择一名其他角色,弃置其的' + get.cnNumber(event.num) + '张牌或对其造成' + get.cnNumber(event.suits) + '点伤害', function (card, player, target) {
@@ -1462,8 +1242,7 @@ const skill = {
 	ybsl_baili_skill: {
 		audio: 'ybsl_baili_give',
 		trigger: { global: 'gainEnd' },
-		// forced:true,
-		// popup:false,
+
 		check(event, player) {
 			return get.attitude(player, event.player) < 0;
 		},
@@ -1481,7 +1260,7 @@ const skill = {
 			trigger.player.damage(1, 'nocard');
 		},
 	},
-	//----------百鸟朝凤枪
+
 	ybsl_bainiaochaofeng: {
 		audio: 'zhangba_skill',
 		trigger: { player: 'useCardToTargeted' },
@@ -1537,47 +1316,7 @@ const skill = {
 			},
 		},
 	},
-	/*
-	ybsl_bainiaochaofeng:{
-		audio:'zhangba_skill',
-		trigger:{player:'useCard'},
-		global:'ybsl_bainiaochaofeng_ban',
-		// forced:true,
-		// popup:false,
-		check:function(event,player){
-			return true;
-		},
-		filter:function(event,player){
-			return true;
-		},
-		init:function(player){
-			player.storage.ybsl_bainiaochaofeng_ban=[];
-		},
-		content:function(){
-			player.storage.ybsl_bainiaochaofeng_ban.push(trigger.card);
-			trigger.directHit.addArray(game.filterPlayer(function(current){
-				return current!=player&&get.distance(current,player)<=1;
-			}));
-		},
-	},
-	ybsl_bainiaochaofeng_ban:{
-		trigger:{player:'useCardAfter'},
-		forced:true,
-		popup:false,
-		filter:function(event,player){
-			return(game.filterPlayer(function(current){
-				return current.storage.ybsl_bainiaochaofeng_ban&&current.storage.ybsl_bainiaochaofeng_ban.includes(event.card);
-			}));
-		},
-		init:function(player){
-			player.storage.ybsl_bainiaochaofeng_ban=[];
-		},
-		content:function(){
-			player.storage.ybsl_bainiaochaofeng_ban.remove(trigger.card);
-		},
-	},
-	*/
-	//----------七星刀
+
 	ybsl_qixingdao: {
 		equipSkill: true,
 		audio: true,
@@ -1593,8 +1332,6 @@ const skill = {
 		},
 		forced: true,
 		content() {
-			// if(trigger.card&&trigger.card.name=='sha'&&!trigger.card.nature)trigger.num++;
-			// if(trigger.target.hp>player.hp)trigger.num++;
 			'step 0';
 			event.num = 0;
 			if (trigger.card && trigger.card.name == 'sha' && !trigger.card.nature) {
@@ -1624,29 +1361,7 @@ const skill = {
 			},
 		},
 	},
-	// 'ybsl_qixingdao':'七星刀',//2
-	// 'ybsl_qixingdao_info':'锁定技,①当你使用普通【杀】造成伤害时②当你对体力值大于你的角色造成伤害时,以上每满足一条,此伤害便+1',
-	// _ybsl_wuliujian:{
-	// silent: true,
-	//
-	// trigger: {
-	// player: 'equipBegin',
-	// },
-	// ruleSkill:true,
-	// filter (event, player,card) {
-	// var subtype = get.subtype(event.card);
-	// if (subtype != 'equip1') return false;//判定装备的类型
-	// if (event.card.name!='ybsl_baihong'&&event.card.name!='ybsl_zidian'&&event.card.name!='ybsl_bixie'&&event.card.name!='ybsl_liuxing'&&event.card.name!='ybsl_qingming'&&event.card.name!='ybsl_baili') return false;
-	// return (player.getEquip('ybsl_baihong')||player.getEquip('ybsl_zidian')||player.getEquip('ybsl_bixie')||player.getEquip('ybsl_liuxing')||player.getEquip('ybsl_qingming')||player.getEquip('ybsl_baili'))
-	// // return true;
-	// },
-	// content () {
-	// // game.log('event.name',event.name)
-	// trigger.setContent(lib.skill.ybsl_infEquip.equip);
-	// },
-	// },
-	//吴六剑共存现今版本会出问题,故此取消
-	//-------------------------勾玉连环
+
 	ybsl_tianleiyubi_link: {
 		audio: 'taigongyinfu_link',
 		trigger: { player: 'phaseUseBegin' },
@@ -1749,7 +1464,7 @@ const skill = {
 			}
 		},
 	},
-	//-------------------------阴勾玉
+
 	rewrite_fulei_skill: {
 		equipSkill: true,
 		audio: 'link',
@@ -1781,7 +1496,7 @@ const skill = {
 			}
 		},
 	},
-	//-------------------------阳勾玉
+
 	rewrite_shandian_skill: {
 		equipSkill: true,
 		trigger: {
@@ -1801,8 +1516,7 @@ const skill = {
 			('step 1');
 			if (result.control == '发动') {
 				player.judge(function (card) {
-					//你进行一次判定
-					return get.color(card) == 'black' ? 2 : 0; //黑色返回2,否则返回0
+					return get.color(card) == 'black' ? 2 : 0;
 				});
 			}
 			('step 2');
@@ -1810,13 +1524,11 @@ const skill = {
 				player.chooseTarget(
 					'请选择一个目标',
 					function (card, player, target) {
-						//选1个目标
-						return player != target; //限制条件:你不是目标
+						return player != target;
 					},
 					function (target) {
-						//ai:
-						let player = get.player(); //定义变量player为选目标的发起者(不懂可以先不写)
-						return -get.attitude(player, target); //选敌人
+						let player = get.player();
+						return -get.attitude(player, target);
 					},
 				);
 			} else {
@@ -1833,7 +1545,7 @@ const skill = {
 			event.finish();
 		},
 	},
-	//-------------------------天雷玉璧
+
 	ybsl_tianleiyubi_skill: {
 		audio: 'judge',
 		equipSkill: true,
@@ -1867,7 +1579,7 @@ const skill = {
 			threaten: 0.5,
 		},
 	},
-	//-------------------------天雷玉璧觉醒
+
 	rewrite_ybsl_tianleiyubi_skill: {
 		audio: 'judge',
 		trigger: { source: 'damageSource' },
@@ -1913,7 +1625,6 @@ const skill = {
 		trigger: { source: 'damageBegin1' },
 		forced: true,
 		content() {
-			// trigger.nature='fire';
 			game.setNature(trigger, 'fire');
 		},
 	},
@@ -1927,111 +1638,4 @@ const skill = {
 			trigger.num++;
 		},
 	},
-	// _ybsl_yingbian:{
-	// 	trigger:{player:'useCard',},
-	// 	direct:true,
-	// 	charlotte:true,
-	// 	ruleSkill:true,
-	// 	filter:function(event,player){
-	// 		if (!event.yingbian_lianDa) return false;
-	// 		return true;
-	// 	},
-	// 	content:function(){
-	// 		player.addTempSkill('_yingbian_doubleBlow','phaseUseAfter');
-	// 		trigger._yingbian_doubleBlow=player;
-	// 	}
-	// },
-	// _yingbian_doubleBlow:{
-	// 	trigger:{player:'useCardToTargeted'},
-	// 	forced:true,
-	// 	charlotte:true,
-	// 	ruleSkill:true,
-	// 	popup:false,
-	// 	lastDo:true,
-	// 	filter:function(event,player){
-	// 		if(event.parent._yingbian_doubleBlow==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
-	// 		else if (event.parent._yingbian_Cunzhi==player&&event.targets.length==event.parent.triggeredTargets4.length) return true;
-	// 		return false;
-	// 	},
-	// 	content:function(){
-	// 		'step 0'
-	// 		if(trigger.parent._yingbian_doubleBlow==player){
-	// 			trigger.parent.effectCount++
-	// 			game.log(trigger.card,'连打生效,额外执行一次');
-	// 		}
-	// 		'step 1'
-	// 		if(trigger.parent._yingbian_Cunzhi==player){
-	// 			trigger.parent.effectCount--
-	// 			game.log(trigger.card,'寸止生效,执行次数减一');
-	// 		}
-	// 	},
-	// 	onremove:true,
-	// },
-	/*
-	// _yingbian_doubleBlow:{
-	// 	trigger: {
-	// 		player: "useCardEnd"
-	// 	},
-	// 	forced:true,
-	// 	ruleSkill:true,
-	// 	audio:'ext:夜白神略/audio/card:true',
-	// 	filter(event, player, _name){
-	// 		if (!event.yingbian_lianDa) return false
-	// 		if (event.doubleUse) return false
-	// 		event.xtargets = event.targets.filter(current => current.isAlive() && player.canUse(event.card, current, false))
-	// 		return event.xtargets.length
-	// 	},
-	// 	content(trigger){
-	// 		// 重置使用牌事件
-	// 		trigger.finished = 0;
-	// 		trigger._triggered = 2;
-	// 		//
-	// 		trigger.num = 0;
-	// 		trigger.step = 0;
-	// 		trigger.targets = trigger.xtargets;
-	// 		//
-	// 		trigger.addCount = false;
-	// 		//
-	// 		trigger.doubleUse = true;
-	// 	}
-	// },
-	/*
-	// _ybsl_nature:{
-	// 	trigger:{
-	// 		global:['phaseBefore','enterGame','gameStart'],
-	// 		player:'enterGame',
-	// 	},
-	// 	limited:true,
-	// 	ruleSkill:true,
-	// 	filter:function (event,player){
-	// 		return (event.name!='phase'||game.phaseNumber==0);
-	// 	},
-	// 	direct:true,
-	// 	content:()=>{
-	// 		//-------------改杀描述
-	// 		// var NorthShaPrompt=lib.card.sha.cardPrompt;
-	// 		// lib.card.sha.cardPrompt=function(card){
-	// 			// if(card.name=='sha'&&card.nature=='YB_blood')
-	// 				// return '出牌阶段,对你攻击范围内的一名角色使用.其须使用一张【闪】.否则你对其造成1点血属性伤害(造成伤害后,你回复等同伤害值的生命值.)';
-	// 			// return NorthShaPrompt.apply(this,arguments);
-	// 		// };
-	// 		// lib.card.sha.nature.add('YB_blood');
-	// 		// lib.card.sha.nature.add('YB_snow');
-	// 		// lib.card.sha.cardPrompt=function(card){
-	// 			// if(card.nature=='stab')
-	// 				// return '出牌阶段,对你攻击范围内的一名角色使用.其须使用一张【闪】,且在此之后需弃置一张手牌(没有则不弃).否则你对其造成1点伤害';
-	// 			// if(card.nature=='YB_blood')
-	// 				// return '出牌阶段,对你攻击范围内的一名角色使用.其须使用一张【闪】.否则你对其造成1点血属性伤害(造成伤害后,你回复等同伤害值的生命值.)';
-	// 			// if(lib.linked.includes(card.nature))
-	// 				// return '出牌阶段,对你攻击范围内的一名角色使用.其须使用一张【闪】,否则你对其造成1点'+get.translation(card.nature)+'属性伤害';
-	// 			// return '出牌阶段,对你攻击范围内的一名角色使用.其须使用一张【闪】,否则你对其造成1点伤害';
-	// 		// }
-	// 		lib.card.yanxiao_card.image='ext:夜白神略/image/card/yanxiao_card.png'
-	// 		lib.card.goujiangdesidai.image='ext:夜白神略/image/card/goujiangdesidai.png'
-	// 		delete lib.card.goujiangdesidai.modeimage;
-	// 		lib.card.shenzhixiunvfu.image='ext:夜白神略/image/card/shenzhixiunvfu.png'
-	// 		delete lib.card.shenzhixiunvfu.modeimage;
-	// 	},
-	// }
-	*/
 };

@@ -2,75 +2,23 @@
 const extname = '夜白神略';
 game.import('character', function (lib, game, ui, get, ai, _status) {
 	const YB_one = {
-		name: 'YB_one', //武将包命名(必填)
-		connect: true, //该武将包是否可以联机(必填)
-		connectBanned: [], //联机禁用
+		name: 'YB_one',
+		connect: true,
+		connectBanned: [],
 		characterSort: {
 			YB_one: {
 				one_01: [],
 			},
 		},
 		character: {
-			//'武将名字':['性别','势力',体力,[技能],[]], //格式内每一样东西都不能缺少,否则无法导入该武将包及其以下内容
-			//最后的括号可以不加内容,但不能没有!已经有呆宝宝犯过错了
-			yb_wan_wujiangceshi: [
-				'female',
-				'qun',
-				4,
-				[
-					'yb_wan_xueyi',
-					'yb_wan_jianli',
-					'yb_wan_linglong',
-					'yb_wan_yaoji',
-					'yb_wan_luosuo',
-					'yb_wan_qingzhu',
-					'yb_wan_xueyii',
-					'yb_wan_suyi',
-					'yb_wan_fushui',
-					'yb_wan_huantian',
-					'yb_wan_huangtian',
-					'yb_wan_shuangqiang',
-					'yb_wan_qiangxia',
-					'yb_wan_xianshuai',
-					'yb_wan_zeishi',
-					'yb_wan_zhujian',
-					'yb_wan_zhudao',
-					'yb_wan_zhumao',
-					'yb_wan_jici',
-					'yb_wan_yijie',
-					'yb_wan_yingai',
-					'yb_wan_xiayi',
-					'yb_wan_haoqi',
-					'yb_wan_jiazi',
-					'yb_wan_yaoshu',
-					'yb_wan_digong',
-					'yb_wan_rengong',
-					// 'yb_wan_jiqiao',
-					'yb_wan_qiquan',
-					'yb_wan_baquan',
-					'yb_wan_wenfeng',
-					'yb_wan_luanjing',
-					'akiko_dongcha',
-					'yb_wan_linzuo',
-					'yb_wan_guojiang',
-					'yb_wan_jixin',
-					// 'yb_wan_gongxun',
-					// 'yb_wan_kuitian',
-					'yb_wan_muhua',
-					'yb_wan_xiamou',
-					'yb_wan_hanyong',
-					'yb_wan_yinmou',
-				],
-				['name:null|null'],
-			],
-		}, //武将(必填)
-		characterIntro: {}, //武将介绍(选填)
-		perfectPair: {}, //珠联璧合武将(选填)
-		characterFilter: {}, //武将使用条件
-		characterTitle: {}, //武将标题(用于写称号或注释)(选填)
+			yb_wan_wujiangceshi: ['female', 'qun', 4, ['yb_wan_xueyi', 'yb_wan_jianli', 'yb_wan_linglong', 'yb_wan_yaoji', 'yb_wan_luosuo', 'yb_wan_qingzhu', 'yb_wan_xueyii', 'yb_wan_suyi', 'yb_wan_fushui', 'yb_wan_huantian', 'yb_wan_huangtian', 'yb_wan_shuangqiang', 'yb_wan_qiangxia', 'yb_wan_xianshuai', 'yb_wan_zeishi', 'yb_wan_zhujian', 'yb_wan_zhudao', 'yb_wan_zhumao', 'yb_wan_jici', 'yb_wan_yijie', 'yb_wan_yingai', 'yb_wan_xiayi', 'yb_wan_haoqi', 'yb_wan_jiazi', 'yb_wan_yaoshu', 'yb_wan_digong', 'yb_wan_rengong', 'yb_wan_qiquan', 'yb_wan_baquan', 'yb_wan_wenfeng', 'yb_wan_luanjing', 'akiko_dongcha', 'yb_wan_linzuo', 'yb_wan_guojiang', 'yb_wan_jixin', 'yb_wan_muhua', 'yb_wan_xiamou', 'yb_wan_hanyong', 'yb_wan_yinmou'], ['name:null|null']],
+		},
+		characterIntro: {},
+		perfectPair: {},
+		characterFilter: {},
+		characterTitle: {},
 		skill: {
 			yb_wan_qingzhu: {
-				//请诛换了个写法,没bug了,就是有点艹淡
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				filter(event, player) {
@@ -143,18 +91,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					},
 				},
 			},
-			// 	// yb_wan_qingzhu:'请诛',
-			// 	// yb_wan_qingzhu_info:'你可令一名其他角色观看你的手牌,其选择一项:
-			// 	// 1、对一名你选择的另一名角色视为使用其中所有伤害类牌,
-			// 	// 该角色直到回合结束不能打出或使用任何手牌.
-			// 	// 2、摸伤害类牌数量数牌.
-			// 	// 然后你失去此技能,再然后若其选择的是第二项你获得技能【搏宦】',
-			// 	// yb_wan_bohuan:'搏宦',
-			// 	// yb_wan_bohuan_info:'限定技,
-			// 	// 展示所有手牌,对一名角色使用其中所有伤害类牌,
-			// 	// 该角色不能打出或使用任何手牌.然后你弃置所有手牌',
+
 			yb_wan_bohuan: {
-				//搏宦
 				audio: 'ext:无名扩展/audio/character:2',
 				mark: true,
 				limited: true,
@@ -182,17 +120,16 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					event.target.addTempSkill('yb_wan_bohuan_buff');
 					('step 3');
 					const cardsx = event.cards.filter((card) => player.getCards('h').includes(card) && player.canUse(card, event.target, false) && get.tag(card, 'damage') > 0.5);
-					// game.log(cardsx)
+
 					if (cardsx.length) {
 						player
 							.chooseToUse(event.target, true, get.prompt2('yb_wan_bohuan'))
 							.set('addCount', false)
 							.set('filterCard', function (card) {
-								// if(cardsx.includes(card))return lib.filter.filterCard.apply(this,arguments);
 								if (cardsx.includes(card) && player.canUse(card, event.target, false)) {
 									return true;
 								}
-								// return true;
+
 								return false;
 							})
 							.set('targetRequired', true)
@@ -227,22 +164,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					},
 				},
 			},
-			// yb_wan_jiqiao:'机巧',
-			// 出牌阶段,你可弃置你区域(装备区、手牌区)任意张装备牌,
-			// 选择一名没有<机巧>的角色令其获得<机巧>,然后根据你弃置的牌数,
-			// 记述其<机巧>的内容直至其下个回合的结束:
-			// 1,一张,其下回合准备阶段亮出牌堆顶一张牌,
-			// 其需任意选择自己手牌(最少一张)点数相加等于牌堆顶这张牌点数,
-			// 否则其跳过下个出牌阶段.
-			// 2,两张,其下回合准备阶段亮出牌堆顶牌堆底各一张牌,你
-			// 可令其摸或者弃置亮出的牌的颜色数的牌(此法摸的牌不计入手牌上限),
-			// 然后其需任意选择自己手牌(最少一张)点数相加大于亮出的两张牌点数之和,
-			// 否则其跳过下个出牌阶段.
-			// 3,三张及以上,你可选择令其弃置X张牌或摸X张牌
-			// (X为你本次弃置的牌数,此法摸的牌不计入手牌上限),
-			// 然后其跳过下个出牌阶段.
+
 			yb_wan_jiqiao: {
-				//机巧
 				audio: 'ext:无名扩展/audio/character:2',
 				YB_jiqiaoyinji: [
 					function (player, source) {
@@ -335,7 +258,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								event.finish();
 							}
 							('step 3');
-							// event.card.discard();
+
 							game.addVideo('deletenode', player, [get.cardInfo(event.node)]);
 							event.node.delete();
 							game.broadcast(function (card) {
@@ -459,20 +382,14 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								}
 								return 6 - get.value(card);
 							});
-							// if(player.countCards('he')>0){
-							// 	player.chooseCard([1,Infinity]).set('prompt','需任意选择自己手牌(最少一张)点数相加等于牌堆顶这张牌点数,否则跳过下个出牌阶段').set('ai',function(card){
-							// 		return 6-get.value(card);
-							// 	}).set('filterCard',function(cardx){
-							// 	});
-							// }
-							// else event._result = false;
+
 							('step 4');
 							if (!result.bool) {
 								player.skip('phaseUse');
 								event.finish();
 							}
 							('step 5');
-							// player.discard();
+
 							game.addVideo('deletenode', player, [get.cardInfo(event.node)]);
 							event.node.delete();
 							game.broadcast(function (card) {
@@ -488,7 +405,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					},
 				],
 				enable: 'phaseUse',
-				// usable:1,
+
 				selectCard: [1, Infinity],
 				filterCard(card) {
 					return get.type(card) == 'equip';
@@ -533,7 +450,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 									return '无效果';
 								}
 								const list = player.storage.yb_wan_jiqiao_mark;
-								let num = Math.min(list[2], 2), a = get.translation(list[0]), b = get.translation(list[1]);
+								let num = Math.min(list[2], 2),
+									a = get.translation(list[0]),
+									b = get.translation(list[1]);
 								let str;
 								switch (num) {
 									case 0:
@@ -584,7 +503,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_xueyi: {
-				//血裔
 				audio: 'ext:无名扩展/audio/character:2',
 				forced: true,
 				trigger: {
@@ -600,8 +518,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					event.cards = get.cards(4);
 					game.cardsGotoOrdering(event.cards);
 					event.videoId = lib.status.videoId++;
-					player.showCards(event.cards); //
-					// event.dialog=event.videoId;
+					player.showCards(event.cards);
+
 					game.broadcastAll(
 						function (player, id, cards) {
 							let str = event.i;
@@ -620,24 +538,25 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					game.addVideo('delay', null, 2);
 					('step 1');
 					const next = player.chooseToMove();
-					// next.set('dialog',event.videoId);
+
 					next.set('list', [['牌堆顶', event.cards]]);
 					next.set('prompt', '点击交换牌的顺序,交换后的牌序也会展示给其他玩家看');
 					next.set('processAI', (list) => {
-						let cards = list[0][1], cards1 = [];
-						//cards为待定选择牌 cards1为牌堆顶的牌
+						let cards = list[0][1],
+							cards1 = [];
+
 						const player = _status.event.player;
 						cards.sort(function (a, b) {
 							return get.value(b, player) - get.value(a, player);
 						});
-						//为cards排序,价值最大的在最前面
-						//将cards数组中的牌加入cards1数组
+
 						return [[], cards];
-					}); //
-					// next.videoId=event.videoId;
+					});
+
 					('step 2');
 					game.broadcastAll('closeDialog', event.videoId);
-					const top = result.moved[0], list = [];
+					const top = result.moved[0],
+						list = [];
 					for (let k = 0; k < top.length; k++) {
 						list.push(top[k]);
 					}
@@ -652,7 +571,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_jianli: {
-				//坚利
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				usable: 1,
@@ -676,7 +594,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				delay: false,
 				async content(event, trigger, player) {
 					let cards = player.getCards('h');
-					await player.showCards(cards); //
+					await player.showCards(cards);
 					const list2 = [];
 					for (let k of cards) {
 						if (list2.length == 0 || !list2.includes(get.color(k))) {
@@ -699,7 +617,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_linglong: {
-				//玲珑
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: ['chooseToRespond', 'chooseToUse'],
 				filterCard(card, player) {
@@ -773,7 +690,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_yaoji: {
-				//邀计
 				audio: 'ext:无名扩展/audio/character:2',
 				mark: true,
 				limited: true,
@@ -791,13 +707,14 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					if (ui.selected.targets.length == 1) {
 						return target != player;
 					}
-					// return player!=target;
+
 					return true;
 				},
 				content: async function (event, trigger, player) {
 					const targets = event.targets;
 					player.awakenSkill('yb_wan_yaoji');
-					const tara = targets[0], tarb = targets[1];
+					const tara = targets[0],
+						tarb = targets[1];
 					const relu = await tarb
 						.chooseControl()
 						.set('choiceList', ['令' + get.translation(tara) + '摸' + tarb.countCards('h') + '张牌,然后你摸' + tara.countCards('h') + '张牌', '弃置所有手牌,在你下个回合开始前免疫所有伤害,你下个出牌阶段开始时摸x(弃置数量)张手牌'])
@@ -822,10 +739,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						tarb.when({ player: 'phaseUseBegin' }).then(() => {
 							if (player.storage.yb_wan_yaoji_draw && typeof player.storage.yb_wan_yaoji_draw == 'number' && player.storage.yb_wan_yaoji_draw > 0) {
 								player.draw(player.storage.yb_wan_yaoji_draw);
-								// trigger.num+=player.storage.yb_wan_yaoji_draw;
-								// delete player.storage.yb_wan_yaoji_draw;
 							}
-							// if(trigger.num<=0) trigger.finish();
 						});
 					}
 				},
@@ -840,9 +754,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_luosuo: {
-				//落锁
 				audio: 'ext:无名扩展/audio/character:2',
-				// forced:true,
+
 				trigger: {
 					player: 'loseAfter',
 					global: ['equipAfter', 'addJudgeAfter', 'gainAfter', 'loseAsyncAfter', 'addToExpansionAfter', 'phaseUseSkipped', 'phaseUseCancelled'],
@@ -878,8 +791,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				async content(event, trigger, player) {
 					const relu = await player
 						.judge(function (card) {
-							//你进行一次判定
-							return get.color(card) == 'black' ? 2 : -0.3; //黑色返回2,否则返回0
+							return get.color(card) == 'black' ? 2 : -0.3;
 						})
 						.forResult();
 					if (relu.bool) {
@@ -888,23 +800,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_xueyii: {
-				//学艺
 				audio: 'ext:无名扩展/audio/character:2',
-				// locked:true,
+
 				trigger: { player: ['useCard', 'respond'] },
-				// filter:function(event,player){
-				// 	return event.card && event.card.name=='sha'&&_status.currentPhase!=player;
-				// },
-				// cost(){
-				// 	event.result = player.choosePlayerCard(_status.currentPhase,1,'hej').set('ai',function(card){
-				// 		var att = get.attitude(player,_status.currentPhase);
-				// 		if(att>0)return get.value(card)<0;
-				// 		return get.value(card);
-				// 	}).set('prompt2','锁定技,当你回合外打出或使用一张杀时,你可选择当前角色区域的一张牌置于你武将牌上称为艺.你每有一张艺,进攻距离加一').forResult();
-				// },
-				// content(){
-				// 	player.addToExpansion(event.cards, "giveAuto", player).gaintag.add("yb_wan_xueyii");
-				// },
+
 				filter(event, player) {
 					return event.card && event.card.name == 'sha';
 				},
@@ -957,7 +856,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_suyi: {
-				//溯艺
 				audio: 'ext:无名扩展/audio/character:2',
 				forced: true,
 				juexingji: true,
@@ -967,16 +865,14 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				filter(e, p) {
 					return !p.storage.yb_wan_suyi && p.getExpansions('yb_wan_xueyii')?.length >= 4;
 				},
-				// contentBefore () {
-				// 	player.awakenSkill("yb_wan_suyi");
-				// },
+
 				content() {
 					'step 0';
 					player.awakenSkill('yb_wan_suyi');
 					('step 1');
 					player.loseMaxHp();
 					('step 2');
-					// player.removeSkill('yb_wan_xueyii');
+
 					player.addSkill('yb_wan_qiangyi');
 				},
 				derivation: 'yb_wan_qiangyi',
@@ -985,10 +881,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_qiangyi: {
-				//枪意
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: { player: 'useCard' },
-				// forced: true,
+
 				filter(event, player) {
 					if (player.additionalSkills.yb_wan_qiangyi) {
 						return false;
@@ -1147,7 +1042,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_shuangqiang: {
-				//双枪
 				audio: 'ext:无名扩展/audio/character:2',
 				init(player) {
 					player.expandEquip(1);
@@ -1167,7 +1061,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_fushui: {
-				//符水
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				filterCard: true,
@@ -1228,7 +1121,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_huantian: {
-				//换天
 				audio: 'ext:无名扩展/audio/character:2',
 				mark: true,
 				limited: true,
@@ -1248,8 +1140,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					return target != player && target.countMark('yb_wan_fushui_mark');
 				},
 				selectTarget: -1,
-				// multitarget: true,
-				// multiline: true,
+
 				contentBefore() {
 					player.awakenSkill('yb_wan_huantian');
 				},
@@ -1292,10 +1183,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_huangtian: {
-				//黄天
 				audio: 'ext:无名扩展/audio/character:2',
 				zhuSkill: true,
-				// global:'yb_wan_huangtian_draw',
+
 				group: 'yb_wan_huangtian_draw',
 				subSkill: {
 					draw: {
@@ -1304,12 +1194,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							global: 'damageSource',
 						},
 						sourceSkill: 'yb_wan_huangtian',
-						// filter:function(event,player){
-						// 	if(player.group!='qun') return false;
-						// 	return game.hasPlayer(function (current) {
-						// 		return current.hasSkill("yb_wan_huangtian");
-						// 	});
-						// },
+
 						filter(event, player) {
 							if (!event.source || event.source.group != 'qun') {
 								return false;
@@ -1333,7 +1218,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_qiangxia: {
-				//枪匣
 				audio: 'ext:无名扩展/audio/character:2',
 				forced: true,
 				trigger: {
@@ -1346,7 +1230,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						['yb_wan_cangleishuo', Math.random() > 0.5 ? 'spade' : 'club', Math.floor(Math.random() * 13) + 1],
 						['yb_wan_chaoximao', Math.random() > 0.5 ? 'spade' : 'club', Math.floor(Math.random() * 13) + 1],
 						['yb_wan_cangdaici', Math.random() > 0.5 ? 'spade' : 'club', Math.floor(Math.random() * 13) + 1],
-						// 'yb_wan_sulinqiang','yb_wan_cangleishuo','yb_wan_chaoximao','yb_wan_cangdaici'
 					];
 				},
 				filter(event, player) {
@@ -1354,10 +1237,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 				async content(event, trigger, player) {
 					const cardlist = [];
-					// 	var equips=[
-					// 	'yb_wan_sulinqiang','yb_wan_cangleishuo',
-					// 	'yb_wan_chaoximao','yb_wan_cangdaici'
-					// ];
+
 					const qiangxia = lib.skill.yb_wan_qiangxia.getQiangxia();
 					let num = player.countEquipableSlot(1) > 1 ? 2 : 1;
 					const dialog = [`选择${num}张装备牌`];
@@ -1365,16 +1245,12 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						const cardx = [i[1], i[2], i[0]];
 						await cardlist.push(cardx);
 					}
-					// for(var i of equips){
-					// 	// var suit = ['spade','club'].randomGets(1);
-					// 	var suit =Math.random()>0.5?'spade':'club';
-					// 	var cardx=[suit,Math.floor(Math.random()*13)+1,i];
-					// 	await cardlist.push(cardx);
-					// }
+
 					await dialog.push([cardlist, 'vcard']);
 					const relu = await player.chooseButton(dialog, num).forResult();
 					if (relu.bool) {
-						let cards = relu.links, cardxs = [];
+						let cards = relu.links,
+							cardxs = [];
 						for (let k = 0; k < cards.length; k++) {
 							const cc = game.createCard(cards[k][2], cards[k][0], cards[k][1], null);
 							await player.addSkill('yb_wan_qiangxia_destroy');
@@ -1394,7 +1270,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					destroy: {
 						audio: 'yb_wan_qiangxia',
 						trigger: { player: 'loseBegin' },
-						// trigger: { global: ["loseEnd", "cardsDiscardEnd"] },
+
 						forced: true,
 						charlotte: true,
 						popup: false,
@@ -1419,14 +1295,12 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							const storage = player.storage.yb_wan_qiangxia_destroy;
 							for (const i of trigger.cards) {
 								if (storage.includes(i)) {
-									// delete _status.yb_wan_qiangxia_map[i.name];
 									i._destroy = true;
 									storage.remove(i);
 									cards.push(i);
 								}
 							}
-							// game.cardsGotoSpecial(cards);
-							// game.log(cards, "被撕掉了");
+
 							if (!storage.length) {
 								player.removeSkill('yb_wan_qiangxia_destroy');
 							}
@@ -1435,13 +1309,12 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_sulinqiang: {
-				//溯麟枪
 				charlotte: true,
 				equipSkill: true,
 				enable: ['chooseToUse', 'chooseToRespond'],
-				//发动时提示的技能描述
+
 				prompt: '将锦囊牌当做无懈可击,闪当杀使用或打出',
-				//动态的viewAs
+
 				viewAs(cards, player) {
 					if (cards.length) {
 						let name = false;
@@ -1456,13 +1329,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 					return null;
 				},
-				//AI选牌思路
+
 				check(card) {
 					return 20 - get.value(card);
 				},
 				selectCards: 1,
 				position: 'hes',
-				//选牌合法性判断
+
 				filterCard(card, player, event) {
 					event = event || _status.event;
 					const filter = event._backup.filterCard;
@@ -1474,9 +1347,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 					return false;
 				},
-				//判断当前时机能否发动技能
+
 				filter(event, player) {
-					//获取当前时机的卡牌选择限制
 					const filter = event.filterCard;
 					if (
 						filter({ name: 'sha' }, player, event) &&
@@ -1498,18 +1370,18 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 				ai: {
 					respondSha: true,
-					//让系统知道角色<有杀><有闪>
+
 					skillTagFilter(player, tag) {
 						if (!player.countCards('hes', { name: 'shan' })) {
 							return false;
 						}
 					},
-					//AI牌序
+
 					order(item, player) {
 						return 2;
 					},
 				},
-				//让系统知道玩家<有无懈><有桃>
+
 				hiddenCard(player, name) {
 					if (name == 'wuxie' && _status.connectMode && player.countCards('hs') > 0) {
 						return true;
@@ -1551,7 +1423,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_cangleishuo: {
-				//沧泪槊
 				charlotte: true,
 				equipSkill: true,
 				trigger: {
@@ -1581,7 +1452,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 				},
 				content() {
-					// var target = lib.skill.yb_wan_cangleishuo.logTarget(trigger, player,event.triggername);
 					if (event.triggername == 'useCardToTargeted') {
 						trigger.parent.directHit.push(trigger.target);
 					} else {
@@ -1590,7 +1460,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_chaoximao: {
-				//潮汐矛
 				charlotte: true,
 				equipSkill: true,
 				trigger: {
@@ -1604,7 +1473,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_cangdaici1: {
-				//藏黛刺1
 				charlotte: true,
 				equipSkill: true,
 				trigger: { player: 'useCardToPlayered' },
@@ -1622,7 +1490,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_cangdaici2: {
-				//藏黛刺2
 				charlotte: true,
 				equipSkill: true,
 				enable: ['chooseToRespond', 'chooseToUse'],
@@ -1658,7 +1525,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_xianshuai: {
-				//先率
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					player: 'useCard',
@@ -1704,35 +1570,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								player.recover();
 							}
 						});
-					// await player.when({
-					// 	source:'damageAfter'
-					// }).filter(function(event,player){
-					// 	// return event.card && event.card.yb_wan_xianshuai==true
-					// 	return player.storage.yb_wan_xianshuai==event.card;
-					// }).then(function(){
-					// 	player.chooseBool('是否增加一点体力上限并回复一点体力？');
-					// }).then(()=>{
-					// 	if(result.bool){
-					//
-					// 		player.gainMaxHp();
-					// 		player.recover();
-					// 	}
-					// })
-					// await player.when({
-					// 	player:'useCardAfter'
-					// }).filter(function(event,player){
-					// 	// return event.card && event.card.yb_wan_xianshuai==true;
-					// 	return player.storage.yb_wan_xianshuai==event.card&&!player.getHistory('sourceDamage',function(evt){
-					// 		return evt.card==event.card;
-					// 	}).length;
-					// }).then(() => {
-					// 	player.logSkill('yb_wan_xianshuai')
-					// 	player.draw(2);
-					// })
 				},
 			},
 			yb_wan_zeishi: {
-				//贼势
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					player: 'damageBegin3',
@@ -1742,7 +1582,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					if (player.storage.yb_wan_zeishi_mark) {
 						await player.logSkill('yb_wan_zeishi');
 						trigger.num += player.storage.yb_wan_zeishi_mark;
-						// delete player.storage.yb_wan_zeishi_mark;
+
 						await player.removeSkill('yb_wan_zeishi_mark');
 					}
 					const numb = trigger.num;
@@ -1753,9 +1593,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						trigger.num -= numb;
 					}
 				},
-				// cost(){
-				// 	event.result = player
-				// }
+
 				subSkill: {
 					mark: {
 						mark: true,
@@ -1768,7 +1606,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_zhujian: {
-				//铸剑
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				filter(event, player) {
@@ -1795,7 +1632,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_zhudao: {
-				//铸刀
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				filter(event, player) {
@@ -1821,7 +1657,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_zhumao: {
-				//铸矛
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				filter(event, player) {
@@ -1847,7 +1682,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_jici: {
-				//疾刺
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					player: 'useCardAfter',
@@ -1884,7 +1718,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_shuanggu: {
-				//双股
 				audio: 'ext:无名扩展/audio/character:2',
 				mod: {
 					cardUsable(card, player, num) {
@@ -1894,12 +1727,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					},
 				},
 			},
-			// 出牌阶段限一次,你可先选择一名角色a
-			// 再选择两名角色,并与这两名角色依次拼点
-			// 你将赢了的拼点牌收回
-			// 你和输了的角色,对a角色各造成一点伤害
+
 			yb_wan_yijie: {
-				//义结
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				usable: 1,
@@ -1909,7 +1738,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					return game.filterPlayer(function (current) {
 						return current != player && current != target && player.canCompare(current);
 					}).length;
-					// return player!=target;
 				},
 				async content(event, trigger, player) {
 					const taarget = event.target;
@@ -1921,13 +1749,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							.chooseTarget(
 								get.prompt2('yb_wan_yijie'),
 								function (card, player, target) {
-									//选1个目标
-									return !list1.includes(target) && player.canCompare(target); //限制条件:你不是目标
+									return !list1.includes(target) && player.canCompare(target);
 								},
 								function (target) {
-									//ai:
-									const player = get.player(); //定义变量player为选目标的发起者(不懂可以先不写)
-									return target.countCards('h') - get.attitude(player, target); //选敌人
+									const player = get.player();
+									return target.countCards('h') - get.attitude(player, target);
 								},
 								true,
 							)
@@ -1950,7 +1776,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_yingai: {
-				//荫盖
 				audio: 'ext:无名扩展/audio/character:2',
 				zhuSkill: true,
 				mod: {
@@ -1963,17 +1788,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						});
 						return numb;
 					},
-					// maxHandcard:function(player,num){
-					// 	var numb=0;
-					// 	game.filterPlayer(function(i){
-					// 		if(i.maxHp>numb)numb=i.maxHp;
-					// 	});
-					// 	return numb;
-					// }
 				},
 			},
 			yb_wan_xiayi: {
-				//侠义
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					source: 'damageAfter',
@@ -1987,7 +1804,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						.chooseToDiscard('h', get.prompt2('yb_wan_xiayi'))
 						.set('chooseonly', true)
 						.set('ai', function (card) {
-							// if (!_status.event.cardResult.includes(card)) return 0;
 							return 4 - get.value(card);
 						})
 						.forResult();
@@ -2041,7 +1857,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						content() {
 							if (player == trigger.player) {
 								if (trigger.num1 > trigger.num2) {
-									// player.gain(trigger.card2, "gain2", "log");
 									event.finish();
 								} else {
 									player.gain(trigger.card1, 'gain2', 'log');
@@ -2049,7 +1864,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							} else {
 								if (trigger.num1 < trigger.num2) {
 									event.finish();
-									// player.gain(trigger.card1, "gain2", "log");
 								} else {
 									player.gain(trigger.card2, 'gain2', 'log');
 								}
@@ -2077,10 +1891,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_jiazi: {
-				//家资
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: { player: ['gameDrawBegin'] },
-				// trigger: { global: "phaseBefore", player: "enterGame" },
+
 				forced: true,
 				filter(event, player) {
 					return event.name != 'phase' || game.phaseNumber == 0;
@@ -2090,7 +1903,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_haoqi: {
-				//豪气
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					player: ['chooseToCompareAfter', 'compareMultipleAfter'],
@@ -2174,7 +1986,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_yaoshu: {
-				//妖术
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					player: 'useCardToTargeted',
@@ -2188,7 +1999,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						.chooseToDiscard('h', get.prompt2('yb_wan_yaoshu'))
 						.set('chooseonly', true)
 						.set('ai', function (card) {
-							// if (!_status.event.cardResult.includes(card)) return 0;
 							return 4 - get.value(card);
 						})
 						.forResult();
@@ -2198,7 +2008,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.discard(event.cards);
 					('step 1');
 					player.judge(function (card) {
-						//你进行一次判定
 						if (trigger.target == player) {
 							return get.color(card) == 'black';
 						}
@@ -2215,10 +2024,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_digong: {
-				//地公
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
-					// target: 'rewriteGainResult',
 					player: 'loseEnd',
 				},
 				usable: 1,
@@ -2270,7 +2077,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_rengong: {
-				//人公
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: { global: 'recoverAfter' },
 				getIndex(event, player) {
@@ -2345,7 +2151,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								trigger.player.judging[0] = result.cards[0];
 								trigger.orderingCards.addArray(result.cards);
 								game.log(trigger.player, '的判定牌改为', result.cards[0]);
-								// trigger.noJudgeTrigger=true;
 							}
 						},
 					},
@@ -2367,14 +2172,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_yinmou: {
-				//隐谋
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: { player: 'phaseUseBegin' },
 				init(player) {
 					player.storage.yb_wan_yinmou = [];
 					player.storage.yb_wan_yinmou_2 = [];
-					// player.storage.yb_wan_yinmou={};
-					// player.storage.yb_wan_yinmou={};
 				},
 				filter() {
 					return true;
@@ -2395,7 +2197,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player
 						.chooseButton(['选择一张牌作为「隐」', target.getCards('h')], true)
 						.set('ai', function (button) {
-							// var target = target||_status.event.parent.target;
 							let card = button.link;
 							let val = target.getUseValue(card);
 							if (val > 0) {
@@ -2409,8 +2210,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					('step 1');
 					player.storage.yb_wan_yinmou.push(target);
 					player.storage.yb_wan_yinmou_2.push(result.links[0]);
-					// if(!player.storage.yb_wan_yinmou[target])player.storage.yb_wan_yinmou[target]=[];
-					// player.storage.yb_wan_yinmou[target].push(result.links[0]);
 				},
 				mark: true,
 				intro: {
@@ -2512,7 +2311,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_qiquan: {
-				//戚权
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					player: ['loseAfter', 'gainAfter'],
@@ -2534,11 +2332,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						if (event.getg(player).length) {
 							return 1;
 						}
-						// else if();
+
 						return false;
 					}
 				},
-				// forced:true,
+
 				cost() {
 					if (event.triggername == 'loseAfter') {
 						event.result = { bool: true };
@@ -2578,7 +2376,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_baquan: {
-				//霸权
 				audio: 'ext:无名扩展/audio/character:2',
 				forced: true,
 				firstDo: true,
@@ -2596,35 +2393,20 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					return (
 						game
 							.filterPlayer((target) => {
-								// switch (get.mode()) {
-								// 	case "identity":
-								// 		return target.isZhu;
-								// 	case "guozhan":
-								// 		return get.is.jun(target);
-								// 	case "versus": {
-								// 		if (["three", "four", "guandu"].includes(_status.mode)) return target.identity == "zhu";
-								// 		return bool(target);
-								// 	}
-								// 	case "doudizhu":
-								// 	case "boss":
-								// 		return target.identity == "zhu";
-								// 	default:
 								return bool(target);
-								// }
 							})
 							.includes(event.player) && !event.numFixed
 					);
 				},
 				async content(event, trigger, player) {
-					// console.log('event.cards',trigger.num)
 					trigger.changeToZero();
 					const cardsx = await player.draw(3).forResult();
-					// console.log('cardsx',cardsx.result)
+
 					event.cards = [];
 					for (const i of cardsx.cards) {
 						event.cards.push(i);
 					}
-					// console.log('event.cards',event.cards)
+
 					event.number = 2;
 					event.boolyb = true;
 					const max = Math.min(
@@ -2632,9 +2414,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.boolyb == true ? event.cards.length : player.countCards('he'),
 						game.countPlayer((target) => target != player),
 					);
-					// await player.draw(num);
+
 					const list = [];
-					// let given_map = {};
+
 					const listx = [];
 					if (_status.connectMode) {
 						game.broadcastAll(() => (_status.noclearcountdown = true));
@@ -2648,16 +2430,13 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								position: 'he',
 								animate: false,
 								filterCard(card, player) {
-									// if(event.boolyb==true)return event.cards && event.cards.includes(card)&&!get.event("list").some(listx => listx == card);
-									// return !get.event("list").some(listx => listx == card);
 									if (event.boolyb == true) {
 										return event.cards && event.cards.includes(card) && !get.event('list').some((list) => list[1] == card);
 									}
 									return !get.event('list').some((list) => list[1] == card);
 								},
-								// selectCard(){return max - listx.length},
+
 								filterTarget(card, player, target) {
-									// return target != player && !get.event("list").some(list => list[0] == target);
 									return true;
 								},
 								ai1(card) {
@@ -2710,7 +2489,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_wenfeng: {
-				//问锋
 				audio: 'ext:无名扩展/audio/character:2',
 				usable: 1,
 				enable: 'phaseUse',
@@ -2739,7 +2517,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_luanjing: {
-				//乱京
 				audio: 'ext:无名扩展/audio/character:2',
 				usable: 1,
 				enable: 'phaseUse',
@@ -2763,7 +2540,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								event.i.chooseCard(true, 'h');
 								('step 1');
 								if (result.bool) {
-									// game.cardsGotoOrdering(result.cards[0]);
 									event.cardsx.push(result.cards[0]);
 								}
 							});
@@ -2774,7 +2550,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					let cards;
 					if (event.cardsx && event.cardsx.length) {
 						cards = event.cardsx;
-						const lose_list = [], cards2 = [];
+						const lose_list = [],
+							cards2 = [];
 						cards.forEach((card) => {
 							const owner = get.owner(card);
 							if (owner) {
@@ -2829,7 +2606,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						if (event.dialog) {
 							next.dialog = event.dialog;
 						}
-						// next.cards=cards;
+
 						next.preResult = event.preResult;
 						next.setContent(function () {
 							const target = event.target;
@@ -2966,7 +2743,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_linzuo: {
-				//麟佐
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					global: 'phaseBefore',
@@ -3004,7 +2780,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						player.storage.yb_wan_linzuo = [];
 					}
 					player.storage.yb_wan_linzuo.push(target);
-					// player.addSkill("yb_wan_linzuo_");
+
 					const func = (player, target) => {
 						if (!target.storage.yb_wan_linzuo_mark) {
 							target.storage.yb_wan_linzuo_mark = [];
@@ -3012,8 +2788,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						target.storage.yb_wan_linzuo_mark.add(player);
 						target.storage.yb_wan_linzuo_mark.sortBySeat();
 						target.markSkill('yb_wan_linzuo_mark');
-						// target.markSkill("yb_wan_linzuo_mark", null, null, true);
-						// target.markSkill('yb_wan_linzuo_mark',)
 					};
 					if (event.isMine()) {
 						func(player, target);
@@ -3212,7 +2986,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 									},
 								};
 							}
-							// event.result.cost_data.index = index;
 						},
 						async content(event, trigger, player) {
 							const result = event.cost_data;
@@ -3252,18 +3025,17 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_guojiang: {
-				//国将
 				audio: 'ext:无名扩展/audio/character:2',
 				juexingji: true,
 				derivation: ['yb_wan_gongxun', 'yb_wan_linjiang'],
 				trigger: { player: 'phaseZhunbeiBegin' },
 				filter(event, player) {
 					const content = player.getExpansions('yb_wan_linzuo_mark1');
-					// return content&&content.length>2;
+
 					return content && content.length >= 4 && !player.storage.hunzi;
 				},
 				forced: true,
-				//_priority:3,
+
 				async content(event, trigger, player) {
 					player.awakenSkill(event.name);
 					await player.removeSkill('yb_wan_linzuo');
@@ -3271,7 +3043,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_jixin: {
-				//寂心
 				audio: 'ext:无名扩展/audio/character:2',
 				juexingji: true,
 				derivation: ['yb_wan_yewang', 'yb_wan_kuitian'],
@@ -3281,11 +3052,11 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 				filter(event, player) {
 					const content = player.getExpansions('yb_wan_linzuo_mark2');
-					// return content&&content.length>2;
+
 					return content && content.length > player.hp && !player.storage.hunzi;
 				},
 				forced: true,
-				//_priority:3,
+
 				content() {
 					'step 0';
 					player.awakenSkill(event.name);
@@ -3332,7 +3103,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_linjiang: {
-				//麟将
 				audio: 'ext:无名扩展/audio/character:2',
 				forced: true,
 				group: ['yb_wan_linjiang_sha', 'yb_wan_linjiang_draw', 'yb_wan_linjiang_trick'],
@@ -3423,7 +3193,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_gongxun: {
-				//功勋
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				trigger: {
@@ -3460,75 +3229,14 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					select() {
 						return 2;
 					},
-					// check(button) {
-					// 	var player = _status.event.player;
-					// 	if (typeof button.link == "number") {
-					// 		if (!player.hasEmptySlot(button.link)) {
-					// 			var card = player.getEquip(button.link);
-					// 			if (card) {
-					// 				var val = get.value(card);
-					// 				if (val > 0) return 0;
-					// 				return 5 - val;
-					// 			}
-					// 		}
-					// 		switch (button.link) {
-					// 			case 3:
-					// 				return 4.5;
-					// 			case 4:
-					// 				return 4.4;
-					// 			case 5:
-					// 				return 4.3;
-					// 			case 2:
-					// 				return (3 - player.hp) * 1.5;
-					// 			case 1: {
-					// 				if (
-					// 					game.hasPlayer(function (current) {
-					// 						return (get.realAttitude || get.attitude)(player, current) < 0 && get.distance(player, current) > 1;
-					// 					})
-					// 				)
-					// 					return 0;
-					// 				return 3.2;
-					// 			}
-					// 		}
-					// 	}
-					// 	var name = button.link[2];
-					// 	var evt = _status.event.parent;
-					// 	if (get.type(name) == "basic") {
-					// 		if (name == "shan") return 2;
-					// 		if (evt.type == "dying") {
-					// 			if (get.attitude(player, evt.dying) < 2) return false;
-					// 			if (name == "jiu") return 2.1;
-					// 			return 1.9;
-					// 		}
-					// 		if (evt.type == "phase")
-					// 			return player.getUseValue({
-					// 				name: name,
-					// 				nature: button.link[3],
-					//
-					// 			});
-					// 		return 1;
-					// 	}
-					// 	if (!["chuqibuyi", "shuiyanqijunx", "juedou", "nanman", "wanjian", "shunshou", "zhujinqiyuan"].includes(name)) return 0;
-					// 	var card = { name: name };
-					// 	if (["shunshou", "zhujinqiyuan"].includes(card.name)) {
-					// 		if (
-					// 			!game.hasPlayer(function (current) {
-					// 				return get.attitude(player, current) != 0 && get.distance(player, current) <= 1 && player.canUse(card, current) && get.effect(current, card, player, player) > 0;
-					// 			})
-					// 		)
-					// 			return 0;
-					// 		return player.getUseValue(card) - 7;
-					// 	}
-					// 	return player.getUseValue(card) - 4;
-					// },
+
 					backup(links, player) {
 						if (typeof links[1] == 'number') {
 							links.reverse();
 						}
 						const control = links[0];
 						const cardx = links[1];
-						// var name = links[1][2];
-						// var nature = links[1][3];
+
 						return {
 							name: '功勋',
 							filterCard() {
@@ -3587,7 +3295,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					} else {
 						event.finish();
 					}
-					// event.result.cost_data.index = index;
 				},
 				async content(event, trigger, player) {
 					await player.loseToDiscardpile(event.cost_data.card);
@@ -3617,12 +3324,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						}
 					}
 				},
-				// group:['yb_wan_gongxun_1','yb_wan_gongxun_2','yb_wan_gongxun_3'],
-				// subSkill:{
-				// }
 			},
 			yb_wan_yewang: {
-				//野妄
 				audio: 'ext:无名扩展/audio/character:2',
 				group: 'yb_wan_yewang_max',
 				subSkill: {
@@ -3669,7 +3372,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_kuitian: {
-				//窥天
 				audio: 'ext:无名扩展/audio/character:2',
 				enable: 'phaseUse',
 				usable: 1,
@@ -3683,7 +3385,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					backup(links, player) {
 						return {
 							audio: 'yb_wan_kuitian',
-							// filterTarget: true,
+
 							filterCard() {
 								return false;
 							},
@@ -3691,16 +3393,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							card: links[0],
 							delay: false,
 							content: lib.skill.yb_wan_kuitian.contentx,
-							// ai: {
-							// 	order: 10,
-							// 	result: {
-							// 		target (player, target) {
-							// 			if (player != target) return 0;
-							// 			if (player.hasSkill("requanji") || player.countCards("h") + 2 <= player.hp + player.getExpansions("quanji").length) return 1;
-							// 			return 0;
-							// 		},
-							// 	},
-							// },
 						};
 					},
 					prompt() {
@@ -3730,7 +3422,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_xiamou: {
-				//黠谋
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					global: 'phaseZhunbeiBegin',
@@ -3743,7 +3434,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_muhua: {
-				//幕划
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					player: 'loseAfter',
@@ -3771,22 +3461,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					}
 				},
 				forced: true,
-				// async content(event, trigger, player) {
-				// 	let cards;
-				// 	if (trigger.name != "cardsDiscard") {
-				// 		cards = trigger.getd(player, "cards2");
-				// 	} else cards = trigger.cards.filterInD("d");
-				// 	cards = cards.filter(card => ["trick"].includes(get.type2(card))&&get.color(card)=='black');
-				// 	if (cards.length) {
-				// 		const dialog = ui.create.dialog("幕划", "hidden");
-				// 		var str='是否将其中一张牌交给其他角色？'
-				// 		dialog.add(str);
-				// 		dialog.add(cards);
-				// 		const { result } = await player.chooseButton(dialog).forResult();
-				// 		// const next = player.chooseButton(cards).set();
-				// 		await result;
-				// 	}
-				// },
+
 				content() {
 					'step 0';
 					let cards;
@@ -3826,9 +3501,8 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.cards.remove(event.cardx);
 						player.line(result.targets[0]);
 						player.give(event.cardx, result.targets[0]);
-						// result.targets[0].$gain2(event.cardx,'yb_wan_muhua');
+
 						player.$give(event.cardx, result.targets[0], 'yb_wan_muhua');
-						// event.goto(1);
 					} else {
 						event.finish();
 					}
@@ -3844,7 +3518,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_hanyong: {
-				//憨勇
 				audio: 'ext:无名扩展/audio/character:2',
 				trigger: {
 					global: ['damageBegin2', 'useCardAfter'],
@@ -3859,12 +3532,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							return evt.card == event.card;
 						}).length;
 					} else if (name == 'damageSource') {
-						// //这个检测是否是首张杀,不是首张杀无效
-						// var history=player.getHistory('useCard',function(evt){
-						// 	return evt.card.name=='sha';
-						// });
-						// return history&&history[0].card==event.card;
-						//这个检测是不是首次杀的伤害,不是则无效
 						const historyx = player.getHistory('sourceDamage', function (evt) {
 							return evt.card.name == 'sha' && evt != event;
 						});
@@ -3877,12 +3544,10 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					'step 0';
 					event.result = {
 						bool: false,
-						// index:1,
-						// cardx:
 					};
 					('step 1');
 					if (event.triggername == 'damageSource') {
-						event.result = player.chooseBool('是否摸一张牌？').forResult(); // player.chooseControl('是','cancel2').set('prompt','是否摸一张牌？');
+						event.result = player.chooseBool('是否摸一张牌？').forResult();
 					} else {
 						let str = '是否弃置一张手牌,令';
 						if (event.triggername == 'damageBegin2') {
@@ -3901,17 +3566,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 							cards: result.cards,
 						};
 					}
-					// else {
-					// 	if(result.index==0){
-					// 		event.result={
-					// 			bool:true,
-					// 			cards:'是',
-					// 		}
-					// 	}
-					// 	else event.result={
-					// 		bool:false,
-					// 	}
-					// }
 				},
 				content() {
 					if (event.cards) {
@@ -3925,11 +3579,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					} else {
 						player.draw();
 					}
-					// else {
-					// 	if(event.index==0){
-					// 		player.draw();
-					// 	}
-					// }
 				},
 				subSkill: {
 					use: {
@@ -3948,10 +3597,9 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					},
 				},
 			},
-		}, //技能(必填) ……………………!…!!!【…？.!!？？？？…………
+		},
 		card: {
 			yb_wan_sulinqiang: {
-				//溯麟枪
 				type: 'equip',
 				subtype: 'equip1',
 				fullskin: true,
@@ -3966,7 +3614,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_cangleishuo: {
-				//沧泪槊
 				type: 'equip',
 				subtype: 'equip1',
 				fullskin: true,
@@ -3981,7 +3628,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_chaoximao: {
-				//潮汐矛
 				type: 'equip',
 				subtype: 'equip1',
 				fullskin: true,
@@ -3996,7 +3642,6 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 				},
 			},
 			yb_wan_cangdaici: {
-				//藏黛刺
 				type: 'equip',
 				subtype: 'equip1',
 				fullskin: true,
@@ -4014,190 +3659,140 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 		translate: {
 			one_01: '将包1',
 			yb_wan_wujiangceshi: '测试武将',
-			yb_wan_xueyi: '血裔', //√
+			yb_wan_xueyi: '血裔',
 			yb_wan_xueyi_info: '锁定技,你的摸牌阶段改为展示牌堆顶四张牌,你可随意排列顺序,然后你摸三张牌',
-			yb_wan_jianli: '坚利', //√
+			yb_wan_jianli: '坚利',
 			yb_wan_jianli_info: '出牌阶段限一次,你可以展示所有手牌,若颜色均一致,你可对一名角色造成一点伤害',
-			yb_wan_linglong: '玲珑', //√
+			yb_wan_linglong: '玲珑',
 			yb_wan_linglong_info: '你的♦️️️牌无出杀次数限制且不计入出杀次数,你的♦️️️牌可以当做杀或闪使用或打出',
-			yb_wan_yaoji: '邀计', //√
+			yb_wan_yaoji: '邀计',
 			yb_wan_yaoji_info: '限定技,出牌阶段你可依次选择两名不同的角色a、b(b不能是你),令b选择一项:1,a摸b角色手牌数手牌,b摸a角色手牌数手牌.2,弃置所有手牌,在其下个回合开始前免疫所有伤害,其下个出牌阶段开始时摸x(弃置数量)张手牌',
-			yb_wan_luosuo: '落锁', //√
+			yb_wan_luosuo: '落锁',
 			yb_wan_luosuo_info: '锁定技,当有人跳过出牌阶段或你失去一张装备时你可进行一次判定,若为黑色则你可选择摸一张牌或回复一点体力',
 			yb_wan_jiqiao: '机巧',
 			yb_wan_jiqiao_info: '出牌阶段,你可弃置你区域(装备区、手牌区)任意张装备牌,然后根据你弃置牌数,发动以下效果:1,一张,选择一名角色,其下回合准备阶段亮出牌堆顶一张牌,其需任意选择自己手牌(最少一张)点数相加等于牌堆顶这张牌点数,否则其跳过出牌阶段.2,两张,选择一名角色,其下回合准备阶段亮出牌堆顶牌堆底各一张牌,你可令其摸或者弃置亮出的牌的颜色数的牌(此法摸的牌不计入手牌上限),然后其需任意选择自己手牌(最少一张)点数相加大于亮出的两张牌点数之和,否则其跳过出牌阶段.3,三张及以上,你可选择令一名角色弃置三张牌或摸三张牌(此法摸的牌不计入手牌上限),然后其跳过出牌阶段',
-			yb_wan_xueyii: '学艺', //√
+			yb_wan_xueyii: '学艺',
 			yb_wan_xueyii_info: '每当你使用或打出一张杀时,你可选择场上一名角色区域一张牌(手牌、判定区、装备区)置于你武将牌上称为艺.你每有一张艺,进攻距离加一',
-			// yb_wan_xueyii_info:'锁定技,当你回合外打出或使用一张杀时,你可选择当前角色区域的一张牌置于你武将牌上称为艺.你每有一张艺,进攻距离加一',
-			yb_wan_suyi: '溯艺', //√
+
+			yb_wan_suyi: '溯艺',
 			yb_wan_suyi_info: '觉醒技,当你艺大于等于四时,失去一点体力上限,你获得技能枪意',
-			yb_wan_shuangqiang: '双枪', //√
+			yb_wan_shuangqiang: '双枪',
 			yb_wan_shuangqiang_info: '你多一个武器栏.你的手牌上限+x(x为你当前装备区武器数)',
-			yb_wan_qiangyi: '枪意', //√
+			yb_wan_qiangyi: '枪意',
 			yb_wan_qiangyi_info: '(每发动一次需移去一张<艺>)当你使用【杀】时,你可以获得一项未获得过且与杀或伤害相关的技能,此【杀】结算完毕后,你失去以此法获得的技能',
-			// 那个枪意就是张绣的百鸣,你套一下然后改名字改成枪意就好了
-			// 学艺 溯义 枪匣改成锁定技,双枪后半段改成你的手牌上限+x(x为你当前装备区武器数)
+
 			yb_wan_jici: '疾刺',
 			yb_wan_jici_info: '回合内,当你第一次使用一张杀后你可弃置一张手牌视为对原目标再使用一张杀',
-			yb_wan_xianshuai: '先率', //√
+			yb_wan_xianshuai: '先率',
 			yb_wan_xianshuai_info: '当你于回合内第一次使用的杀造成伤害后,你可增加一体力上限然后回复一体力,否则此杀结算之后你摸两张牌',
-			yb_wan_zeishi: '贼势', //√
+			yb_wan_zeishi: '贼势',
 			yb_wan_zeishi_info: '当你受到伤害时弃置等同伤害值数量的牌减免该伤害,然后本回合下次受到伤害增加这个值',
-			// 先率:当你回合内第一次打出杀,若造成伤害则你可增加一体力上限然后回复一体力,若没造成伤害则你摸两张牌.
-			// 贼势:每轮限一次,当你受到一点伤害后你可弃置一张牌令此伤害减一,该回合你再受到伤害时伤害加一.
-			yb_wan_fushui: '符水', //√
+
+			yb_wan_fushui: '符水',
 			yb_wan_fushui_info: '出牌阶段,你可弃置一张手牌令一名角色回复一点体力,然后其获得一个<徒>标记,一名角色最多有一个<徒>标记,你的手牌上限+x(x为场上徒标记数)',
-			yb_wan_huantian: '换天', //√
+			yb_wan_huantian: '换天',
 			yb_wan_huantian_info: '限定技,出牌阶段,你可获得所有有<徒>标记的角色的所有手牌,然后失去技能符水,当你即将受到伤害时你可移去场上一个徒标记令伤害减一',
-			yb_wan_huangtian: '黄天', //√
+			yb_wan_huangtian: '黄天',
 			yb_wan_huangtian_info: '主公技,群雄势力角色回合内第一次造成伤害后其可令你摸一张牌',
-			yb_wan_fushui_mark: '徒', //√
+			yb_wan_fushui_mark: '徒',
 			yb_wan_fushui_mark_info: '当你即将受到伤害时你可移去场上一个徒标记令伤害减一',
-			yb_wan_zhujian: '铸剑', //√
+			yb_wan_zhujian: '铸剑',
 			yb_wan_zhujian_info: '出牌阶段若你武器栏没有武器,你可弃置一张黑色牌将雌雄双股剑置入你的武器栏',
-			yb_wan_zhudao: '铸刀', //√
+			yb_wan_zhudao: '铸刀',
 			yb_wan_zhudao_info: '出牌阶段若你武器栏没有武器,你可弃置一张黑色牌将青龙偃月刀置入你的武器栏',
-			yb_wan_zhumao: '铸矛', //√
+			yb_wan_zhumao: '铸矛',
 			yb_wan_zhumao_info: '出牌阶段若你武器栏没有武器,你可弃置一张黑色牌将丈八蛇矛置入你的武器栏',
-			yb_wan_shuanggu: '双股', //√
+			yb_wan_shuanggu: '双股',
 			yb_wan_shuanggu_info: '当你武器栏有武器时你出杀次数加一',
-			yb_wan_yijie: '义结', //√
+			yb_wan_yijie: '义结',
 			yb_wan_yijie_info: '出牌阶段限一次,你可先选择一名角色a,然后你再选择两名角色并与这两名角色依次拼点,你可将赢了的拼点牌收回,然后你和输了的角色对a角色各造成一点伤害',
-			yb_wan_yingai: '荫盖', //√
+			yb_wan_yingai: '荫盖',
 			yb_wan_yingai_info: '主公技,你的手牌上限为当前场上体力上限最多角色体力上限数',
-			yb_wan_xiayi: '侠义', //√
+			yb_wan_xiayi: '侠义',
 			yb_wan_xiayi_info: '每当你造成一点伤害你可弃置一张手牌视为使用一张五谷丰登.锁定技,当你拼点拼输可将你的拼点牌收回.每个回合限一次,当一名角色受到伤害后你可选择与伤害来源拼点,若你赢你可对伤害来源角色造成一点伤害',
-			yb_wan_jiazi: '家资', //√
+			yb_wan_jiazi: '家资',
 			yb_wan_jiazi_info: '你的初始手牌加二',
-			yb_wan_haoqi: '豪气', //√
+			yb_wan_haoqi: '豪气',
 			yb_wan_haoqi_info: '锁定技,当你拼点拼赢时,你可对一名角色造成一点伤害.出牌阶段,每回合限一次,你可选择与一名角色拼点,若你输你可摸一张牌并可将这张牌交给一名角色',
-			yb_wan_yaoshu: '妖术', //√
+			yb_wan_yaoshu: '妖术',
 			yb_wan_yaoshu_info: '当你成为【杀】的目标时,你可弃置一张手牌进行一次判定,若为黑色此【杀】无效;当你使用【杀】指定其他角色为目标时,你可弃置一张手牌进行一次判定,若为红色其无法响应此【杀】',
-			yb_wan_digong: '地公', //√
+			yb_wan_digong: '地公',
 			yb_wan_digong_info: '每回合限一次,当你的最后一张手牌被别人获得时你可摸一张牌.你可获得你的黑色判定牌',
-			yb_wan_rengong: '人公', //√
+			yb_wan_rengong: '人公',
 			yb_wan_rengong_info: '锁定技,每当场上一名角色回复一点体力你可摸一张牌.一张判定牌即将生效时你可打出一张牌视为判定牌.你的摸牌数改为场上存活角色的一半,向下取整',
 			yb_wan_yinmou: '隐谋',
 			yb_wan_yinmou_info: '锁定技,你的出牌阶段开始时你可观看一名角色所有手牌,并秘密选择其中一张手牌为<隐>,你的准备阶段开始时,若场上角色手中每有一张<隐>你加一点体力上限并回复一点体力,你的摸牌数+x(x为隐的数量),每当场上失去一张隐,你选择失去一体力上限或受到一点伤害,当你因此受到5点伤害后你失去隐谋',
-			// 隐谋:锁定技,你的出牌阶段开始时你可观看一名角色所有手牌,
-			// 并秘密选择其中一张手牌为<隐>,
-			// 你的准备阶段开始时,
-			// 若场上角色手中每有一张<隐>你加一点体力上限并回复一点体力,
-			// 你的摸牌数+x(x为隐的数量),
-			// 每当场上失去一张隐,你选择失去一体力上限或受到一点伤害,
-			// 当你因此受到5点伤害后你失去隐谋.
-			yb_wan_qingzhu: '请诛', //√
+
+			yb_wan_qingzhu: '请诛',
 			yb_wan_qingzhu_info: '你可令一名其他角色观看你的手牌,其选择一项:1、对一名你选择的另一名角色视为使用其中所有伤害类牌,该角色直到回合结束不能打出或使用任何手牌.2、摸伤害类牌数量数牌.然后你失去此技能,再然后若其选择的是第二项你获得技能【搏宦】',
-			yb_wan_bohuan: '搏宦', //√
+			yb_wan_bohuan: '搏宦',
 			yb_wan_bohuan_info: '限定技,出牌阶段,你展示所有手牌,对一名角色使用其中所有伤害类牌,该角色不能打出或使用任何手牌直到此技能结束.然后你弃置所有手牌',
-			// yb_wan_qingzhu_info:'限定技,你可令一名角色观看你的手牌,其选择一项:1、对一名你选择的另一名角色使用其中所有伤害类牌,该角色不能打出或使用任何手牌.2、摸伤害类牌数量数牌',
-			yb_wan_qiquan: '戚权', //√
+
+			yb_wan_qiquan: '戚权',
 			yb_wan_qiquan_info: '你的回合外每当你失去一张手牌后你流失一点体力.每当你因摸牌阶段和此技能以外的方法获得牌时你可摸一张牌,此法摸的牌不计入手牌上限',
-			// 戚权:你的回合外每当你失去一张手牌后你受到一点伤害.
-			// 每当你因摸牌阶段和此技能以外的方法获得牌时你可摸一张牌,
-			// 此法摸的牌不计入手牌上限.
-			yb_wan_baquan: '霸权', //√
+
+			yb_wan_baquan: '霸权',
 			yb_wan_baquan_info: '锁定技,一号位摸牌阶段改为令你摸三张牌然后你可选择将其中两张牌任意分配交给场上角色,剩下的一张牌交给一号位.(场上多人拥有此技能时,此技能无效)',
-			// 霸权:锁定技,
-			// 一号位摸牌阶段改为令你摸三张牌然后你可选择将其中两张牌任意分配交给场上角色,
-			// 剩下的一张牌交给一号位.
-			yb_wan_wenfeng: '问锋', //√
+
+			yb_wan_wenfeng: '问锋',
 			yb_wan_wenfeng_info: '出牌阶段限一次,你可令一名角色展示所有手牌,若颜色均一致其对你造成一点伤害,若不一致你对其造成一点伤害',
-			// 问锋:出牌阶段限一次,你可令一名角色展示所有手牌,
-			// 若颜色均一致其对你造成一点伤害,若不一致你对其造成一点伤害.
-			yb_wan_luanjing: '乱京', //√
+
+			yb_wan_luanjing: '乱京',
 			yb_wan_luanjing_info: '出牌阶段限一次,你可令其它角色各选择一张手牌,然后从你开始每个人依次选择获得其中一张牌',
-			// 乱京:出牌阶段限一次,你可令其它角色各选择一张手牌,然后从你开始每个人依次选择获得其中一张牌.
-			yb_wan_linzuo: '麟佐', //√
+
+			yb_wan_linzuo: '麟佐',
 			yb_wan_linzuo_info: '锁定技,开局时你选择一名其它角色获得<麟佑>标记.有<麟佑>标记的角色成为【杀】的目标时,你可对【杀】的使用者使用一张【杀】令其的【杀】无效,然后你将你区域内一张牌置于你武将牌上称为<勋>,然后<麟佑>角色需将其区域内一张牌交给你.若你的<勋>大于2,你的摸牌阶段摸牌数改为勋数量.当你使用一张锦囊牌时,<麟佑>角色可选择一项:1、令此牌无效,你摸一张牌再将一张手牌置于武将牌上称为<寂>.2、令此锦囊牌结算次数加一.你手牌上限加寂的数量',
-			//  锁定技,开局时你选择一名其它角色获得<麟佑>标记.
-			// 有<麟佑>标记的角色成为【杀】的目标时,你可对【杀】的使用者使用一张【杀】令其的【杀】无效,
-			// 然后你将你区域内一张牌置于你武将牌上称为<勋>,
-			// 然后<麟佑>角色需将其区域内一张牌交给你.
-			// 若你的<勋>大于2,你的摸牌阶段摸牌数改为勋数量.
-			// 当你使用一张锦囊牌时,<麟佑>角色可选择一项:
-			// 1、令此牌无效,你摸一张牌再将一张手牌置于武将牌上称为<寂>.
-			// 2、令此锦囊牌结算次数加一.
-			//  你手牌上限加寂的数量.
-			yb_wan_guojiang: '国将', //√
+
+			yb_wan_guojiang: '国将',
 			yb_wan_guojiang_info: '觉醒技,准备阶段,当你的勋大于等于4时获得技能功勋、麟将.失去技能麟佐',
-			// 国将:觉醒技,准备阶段,当你的勋大于等于4时获得技能功勋、麟将.失去技能麟佐.
-			yb_wan_linjiang: '麟将', //√
+
+			yb_wan_linjiang: '麟将',
 			yb_wan_linjiang_info: '锁定技,有<麟佑>标记的角色成为【杀】的目标时,你可对【杀】的使用者使用一张【杀】令其的【杀】无效,然后对【杀】的使用者造成一点伤害,然后你将你区域内一张牌置于你武将牌上称为<勋>,然后<麟佑>角色需将其区域内一张牌交给你.你的摸牌阶段摸牌数改为勋数量.当你使用锦囊牌时结算次数加一',
-			// 锁定技,有<麟佑>标记的角色成为【杀】的目标时,
-			// 你可对【杀】的使用者使用一张【杀】令其的【杀】无效,
-			// 然后对【杀】的使用者造成一点伤害,
-			// 然后你将你区域内一张牌置于你武将牌上称为<勋>,
-			// 然后<麟佑>角色需将其区域内一张牌交给你.
-			// 你的摸牌阶段摸牌数改为勋数量.
-			// 当你使用的锦囊牌时结算次数加一.
-			yb_wan_gongxun_backup: '功勋', //√
-			yb_wan_gongxun: '功勋', //√
+
+			yb_wan_gongxun_backup: '功勋',
+			yb_wan_gongxun: '功勋',
 			yb_wan_gongxun_info: '你可将勋如此使用:1、当一名角色即将受到伤害时你可移去一张勋防止此伤害.2、你可移去一张勋对一名角色造成一点伤害.3、你可移去一张勋令一名角色摸两张牌',
 			yb_wan_gongxun_append: '因代码水平受限(懒),ai不会出牌阶段主动发动该技能',
-			// 功勋:你可将勋如此使用:
-			// 1、当一名角色即将受到伤害时你可移去一张勋防止此伤害.
-			// 2、出牌阶段以及其他角色结束阶段,你可移去一张勋对一名角色造成一点伤害.
-			// 3、出牌阶段以及其他角色准备阶段,你可移去一张勋令一名角色摸两张牌.
-			yb_wan_jixin: '寂心', //√
+
+			yb_wan_jixin: '寂心',
 			yb_wan_jixin_info: '觉醒技,当你的寂大于你当前体力值时觉醒,移去麟佐标记且对其造成一点伤害,然后你减一点体力上限,失去技能麟佐,获得技能窥天、野妄,获得场上所有角色区域内一张牌,然后直接进入你的回合',
 			yb_wan_jixin_append: '注:无名杀乃至三国杀中都没有确切的标记大于等于某数值的时点,这里我因地制宜,采取了标记增加时,体力变化后,或体力上限变化后的时点来判断',
-			// 寂心:觉醒技,当你的寂大于你当前体力值时觉醒,
-			// 移去麟佐标记且对其造成一点伤害,
-			// 然后你减一点体力上限,
-			// 失去技能麟佐,
-			// 获得场上所有角色区域内一张手牌然后直接进入你的回合,
-			// 获得技能窥天、野妄.
-			yb_wan_yewang: '野妄', //√
+
+			yb_wan_yewang: '野妄',
 			yb_wan_yewang_info: '每当你造成一点伤害,你可摸一张牌再将一张手牌置于武将牌上称为<寂>. 你手牌上限加寂的数量',
-			// 野妄:每当你造成一点伤害,
-			// 你可摸一张牌再将一张手牌置于武将牌上称为<寂>.
-			// 你手牌上限加寂的数量.
+
 			yb_wan_kuitian_backup: '窥天',
-			yb_wan_kuitian: '窥天', //√
+			yb_wan_kuitian: '窥天',
 			yb_wan_kuitian_info: '出牌阶段限一次,你可移去一个寂,观看牌堆顶x张牌,然后选择获得其中y张牌,其余牌放回.然后你受到一点伤害.(x为场上玩家数,y为场上存活角色数.)',
-			// 窥天:出牌阶段限一次,你可移去一个寂,
-			// 观看牌堆顶x张牌,然后选择获得其中y张牌,
-			// 其余手牌放回.然后你受到一点伤害.
-			// (x为场上玩家数,y为场上存活角色数.)
-			yb_wan_xiamou: '黠谋', //√
+
+			yb_wan_xiamou: '黠谋',
 			yb_wan_xiamou_info: '每名角色的准备阶段时,你可观看牌堆顶三张牌,并任意分配至牌堆顶或牌堆底',
-			// 黠谋:每名角色的准备阶段时,
-			// 你可观看牌堆顶三张牌,
-			// 并任意分配至牌堆顶或牌堆底.
-			yb_wan_muhua: '幕划', //√
+
+			yb_wan_muhua: '幕划',
 			yb_wan_muhua_info: '每当你的一张黑色锦囊牌进入弃牌堆时你可将此牌交给一名其他角色,然后若处于你的回合内,本回合结束阶段你摸一张牌,若不在你回合内你摸一张牌',
-			// 每当你的一张黑色锦囊牌离开你的手牌区时你可将此牌交给一名其他角色,
-			// 然后若处于你的回合内,本回合结束阶段你摸一张牌,
-			// 若不在你回合内你摸一张牌.
+
 			yb_wan_hanyong: '憨勇',
 			yb_wan_hanyong_info: '当一名角色用杀造成伤害时,你可弃置一张手牌令伤害加一,当一名角色用杀未造成伤害后你可弃置一张手牌令其本回合出杀次数加一.每回合当你第一次用杀造成伤害你可摸一张牌',
-			// 憨勇:当一名角色用杀造成伤害后你可弃置一张手牌令伤害加一,
-			// 当一名角色用杀未造成伤害后你可弃置一张手牌令其本回合出杀次数加一.
-			// 每回合当你第一次用杀造成伤害你可摸一张牌.
-			yb_wan_qiangxia: '枪匣', //√
+
+			yb_wan_qiangxia: '枪匣',
 			yb_wan_qiangxia_info: '锁定技,游戏开局时、你的出牌阶段开始时、你的结束阶段时,你可选择从溯麟枪、沧泪槊、潮汐矛、藏黛刺中选择两把武器置入你的武器区,这些武器离开你的装备区销毁',
-			// 枪匣:游戏开局时、你的出牌阶段开始时、你的结束阶段时,你可选择从溯麟枪、沧泪槊、潮汐矛、藏黛刺中选择两把武器置入你的武器区,这些武器离开你的装备区销毁.
-			yb_wan_sulinqiang: '溯麟枪', //√
+
+			yb_wan_sulinqiang: '溯麟枪',
 			yb_wan_sulinqiang_info: '可将锦囊牌当做无懈可击使用或打出,可将闪当杀使用或打出',
-			yb_wan_cangleishuo: '沧泪槊', //√
+			yb_wan_cangleishuo: '沧泪槊',
 			yb_wan_cangleishuo_info: '当你闪避一张杀时可视为对对方使用一张杀,你使用杀可令对方无法响应',
-			yb_wan_chaoximao: '潮汐矛', //√
+			yb_wan_chaoximao: '潮汐矛',
 			yb_wan_chaoximao_info: '当你使用或打出一张基本牌时你摸一张牌',
-			yb_wan_cangdaici: '藏黛刺', //√
+			yb_wan_cangdaici: '藏黛刺',
 			yb_wan_cangdaici_info: '你对一名角色出杀时可令其非锁定技失效,能将杀当闪使用或打出',
-			yb_wan_cangdaici1: '藏黛刺', //√
+			yb_wan_cangdaici1: '藏黛刺',
 			yb_wan_cangdaici1_info: '你对一名角色出杀时可令其非锁定技失效,能将杀当闪使用或打出',
-			yb_wan_cangdaici2: '藏黛刺', //√
+			yb_wan_cangdaici2: '藏黛刺',
 			yb_wan_cangdaici2_info: '你对一名角色出杀时可令其非锁定技失效,能将杀当闪使用或打出',
-			// 溯麟枪:攻击距离3,可将锦囊牌当做无懈可击使用或打出,可将闪当杀使用或打出.
-			// 沧泪槊:攻击距离2,当你闪避一张杀时可视为对对方打出一张杀,你打出或使用杀可令对方无法响应.
-			// 潮汐矛:攻击距离4,当你使用或打出一张基本牌时你摸一张牌.
-			// 藏黛刺:攻击距离1,你对一名角色出杀时可令其非锁定技失效,能将杀当闪使用或打出.
-		}, //翻译(必填)
+		},
 		dynamicTranslate: {},
 	};
-	// const extensionName = extensionName;
+
 	for (let i in YB_one.character) {
 		if (YB_one.character[i][4]) {
 			YB_one.character[i][4].push(`ext:${extname}/image/character/${i}.jpg`);
@@ -4215,7 +3810,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 			YB_one.card[i].image = `ext:${extname}/image/card/${i}.png`;
 		}
 	}
-	// lib.config.all.characters.add('YB_one');
+
 	lib.translate.YB_one_character_config = "<span style='color: #e328b7'>无名将包</span>";
 	return YB_one;
 });

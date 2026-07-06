@@ -450,36 +450,6 @@ const card = {
 			},
 		},
 	},
-	yzdel_bagikerosu: {
-		audio: true,
-		enable: true,
-		type: 'ybsl_magicSkill',
-		fullskin: true,
-		selectTarget: 1,
-		filterTarget(card, player, target) {
-			return player.isEnemiesOf(target);
-		},
-		manaCost: 15,
-		content() {
-			target.damage(8, 'thunder');
-		},
-		ai: {
-			basic: {
-				order: 5,
-				useful: 2,
-				value: 8,
-			},
-			result: {
-				target(player, target) {
-					return -20;
-				},
-			},
-			tag: {
-				damage: true,
-				thunderDamage: true,
-			},
-		},
-	},
 	YB_windDamage: {
 		ai: {
 			result: {

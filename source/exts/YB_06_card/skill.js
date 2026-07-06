@@ -4099,7 +4099,6 @@ const skill = {
 					}
 					target.draw(3, false);
 					target.$draw(3);
-					event.delay = true;
 				} else {
 					target[event.command]();
 				}

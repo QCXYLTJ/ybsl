@@ -4,112 +4,47 @@ export { YBSL_rank };
  * 掌管第五格武将评级和异构加入的数据
  */
 const YBSL_rank = function () {
-	const packages = [
-		'ybslj',
-		'ybxh',
-		'ybdd',
-		'ybgod',
-		'ybslc',
-		'ybart',
-		'ybnew1',
-		'ybmjz',
-		'yhky',
-		'sgstrxs',
-		'ybMagic',
-		'ybnew3',
-		'cyyydsgs',
-		'jhjx',
-		// 'YB_one'
-	];
-	{
-		//修改函数以防止失灵
-		// lib.arenaReady.push(function(){
-		// 	get.characterIntro=characterIntro;
-		// 	get.nodeintro=nodeintro;
-		// })
-	}
-	{
-		//武将第五格评级--------狂神著
-		// lib.arenaReady.push(function(){
-		// 	for(var pack of packages){
-		// 		for(var name in lib.characterPack[pack]){
-		// 			for(var rarity of ['junk','common','rare','epic','legend']){//废材,普通,精品,史诗,传说
-		// 				if(lib.characterPack[pack][name][4]){
-		// 					if(lib.characterPack[pack][name][4].includes(rarity)){
-		// 						lib.rank.rarity[rarity].add(name);
-		// 						break;
-		// 					}
-		// 				}
-		// 			}
-		// 			if(lib.characterPack[pack][name].yb_rank){
-		// 				var rarity = lib.characterPack[pack][name].yb_rank;
-		// 				lib.rank.rarity[rarity].add(name);
-		// 			}
-		// 		}
-		// 	}
-		// });
-		lib.arenaReady.push(function () {
-			for (const pack of packages) {
-				for (const name in lib.characterPack[pack]) {
-					//['junk','common','rare','epic','legend']
-					const infoy = lib.characterPack[pack][name][4];
-					for (const infox of infoy) {
-						if (infox.startsWith('rankAdd:')) {
-							const rarity = infox.slice(8);
-							if (lib.rank.rarity[rarity]) {
-								lib.rank.rarity[rarity].add(name);
-							}
-						}
-						if (infox.startsWith('rankS:')) {
-							const infoz = infox.slice(6);
-							if (lib.rank[infoz]) {
-								lib.rank[infoz].add(name);
-							}
-						}
-					}
-					if (lib.characterPack[pack][name].rankAdd) {
-						const rarity = lib.characterPack[pack][name].rankAdd;
+	const packages = ['ybslj', 'ybxh', 'ybdd', 'ybgod', 'ybslc', 'ybart', 'ybnew1', 'ybmjz', 'yhky', 'sgstrxs', 'ybMagic', 'ybnew3', 'cyyydsgs', 'jhjx'];
+	lib.arenaReady.push(function () {
+		for (const pack of packages) {
+			for (const name in lib.characterPack[pack]) {
+				const infoy = lib.characterPack[pack][name][4];
+				for (const infox of infoy) {
+					if (infox.startsWith('rankAdd:')) {
+						const rarity = infox.slice(8);
 						if (lib.rank.rarity[rarity]) {
 							lib.rank.rarity[rarity].add(name);
 						}
-						const rarityS = lib.characterPack[pack][name].rankS;
-						if (lib.rank[rarityS]) {
-							lib.rank[rarityS].add(name);
+					}
+					if (infox.startsWith('rankS:')) {
+						const infoz = infox.slice(6);
+						if (lib.rank[infoz]) {
+							lib.rank[infoz].add(name);
 						}
 					}
 				}
-			}
-		});
-	}
-	{
-		//y异构加入
-		// get.YB_linkTo =function(from,to){
-		// 	var char2 = get.sourceCharacter(to);
-		// 	if(!lib.characterReplace[char2])lib.characterReplace[char2]=[char2];
-		// 	if(!lib.characterReplace[char2].includes(from))lib.characterReplace[char2].push(from);
-		// 	return lib.characterReplace[char2];
-		// }
-		lib.arenaReady.push(function () {
-			for (const pack of packages) {
-				for (const name in lib.characterPack[pack]) {
-					const infoy = lib.characterPack[pack][name][4];
-					for (const infox of infoy) {
-						if (infox.startsWith('linkTo:')) {
-							const char = infox.slice(7);
-							// get.YB_linkTo(name,char)
-							const char2 = get.sourceCharacter(char);
-							if (!lib.characterReplace[char2]) {
-								lib.characterReplace[char2] = [char2];
-							}
-							if (!lib.characterReplace[char2].includes(name)) {
-								lib.characterReplace[char2].push(name);
-							}
-						}
+				if (lib.characterPack[pack][name].rankAdd) {
+					const rarity = lib.characterPack[pack][name].rankAdd;
+					if (lib.rank.rarity[rarity]) {
+						lib.rank.rarity[rarity].add(name);
 					}
-					if (lib.characterPack[pack][name].linkTo) {
-						const linkTo = lib.characterPack[pack][name].linkTo;
-						// get.YB_linkTo(name,linkTo)
-						const char2 = get.sourceCharacter(linkTo);
+					const rarityS = lib.characterPack[pack][name].rankS;
+					if (lib.rank[rarityS]) {
+						lib.rank[rarityS].add(name);
+					}
+				}
+			}
+		}
+	});
+	lib.arenaReady.push(function () {
+		for (const pack of packages) {
+			for (const name in lib.characterPack[pack]) {
+				const infoy = lib.characterPack[pack][name][4];
+				for (const infox of infoy) {
+					if (infox.startsWith('linkTo:')) {
+						const char = infox.slice(7);
+
+						const char2 = get.sourceCharacter(char);
 						if (!lib.characterReplace[char2]) {
 							lib.characterReplace[char2] = [char2];
 						}
@@ -118,51 +53,32 @@ const YBSL_rank = function () {
 						}
 					}
 				}
+				if (lib.characterPack[pack][name].linkTo) {
+					const linkTo = lib.characterPack[pack][name].linkTo;
+
+					const char2 = get.sourceCharacter(linkTo);
+					if (!lib.characterReplace[char2]) {
+						lib.characterReplace[char2] = [char2];
+					}
+					if (!lib.characterReplace[char2].includes(name)) {
+						lib.characterReplace[char2].push(name);
+					}
+				}
 			}
-		});
-	}
-	{
-		//神鬼赐福
-		const gxcfbool = lib.config.YB_guixiecifu;
-		const booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
-		// 根据状态设置不同颜色
-		const btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色,关=红色
-		const sgstrxsstr = '三国杀同人小说也是一个丰富的diy宝库,里面不乏优秀或有趣的设计<br>本人在此立下宏愿:每看一本三国杀同人文,都要将其中可以复现的武将都复现出来!<br>提示:右键子将包或查看武将简介可查看作者'; //<br>点击下方按钮可以开启或关闭鬼神赐福系统(调整后需重置游戏方可生效)(暂时重做,按钮关闭)
-		// sgstrxsstr += `
-		// 	<div style="position:relative;display:inline-block;width:200px;">
-		// 		<button id="guixieBtn"
-		// 				onclick="
-		// 					lib.config.YB_guixiecifu = !lib.config.YB_guixiecifu;
-		// 					var isOn = lib.config.YB_guixiecifu;
-		// 					this.textContent = isOn ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
-		// 					this.style.background = isOn ? '#4CAF50' : '#9e9e9e';
-		// 					game.saveConfig('YB_guixiecifu',lib.config.YB_guixiecifu);
-		// 				"
-		// 				style="background:${btnColor};color:white;padding:10px;border:none;cursor:pointer;width:100%;text-align:left;">
-		// 			${booltext}
-		// 		</button>
-		// 	</div>
-		// `;
-		// // 初始化按钮状态(如果需要)
-		// if (typeof lib !== 'undefined' && lib.config) {
-		// 	lib.config.YB_guixiecifu = lib.config.YB_guixiecifu || false;
-		// }
-	}
-	{
-		//斗罗大陆
-		const whjxbool = lib.config.YB_wuhunjuexing;
-		const booltext = whjxbool ? '武魂觉醒现在开了' : '武魂觉醒现在关着';
-		// 根据状态设置不同颜色
-		const btnColor = whjxbool ? '#4CAF50' : '#9e9e9e'; // 开=绿色,关=红色
-		//优先检索牌堆或牌库中的,和角色技能字段高度相近的,或角色技能中包含的牌名
-		//作废思路
-		let whjxstr = `
+		}
+	});
+	const gxcfbool = lib.config.YB_guixiecifu;
+	const booltext = gxcfbool ? '神鬼赐福现在开了' : '神鬼赐福现在关着';
+
+	const btnColor = gxcfbool ? '#4CAF50' : '#9e9e9e';
+	const whjxbool = lib.config.YB_wuhunjuexing;
+	let whjxstr = `
 			开局每名角色觉醒武魂()
 			<br>随游戏进行,获得魂力,达到瓶颈之后,准备阶段可以发动猎魂,选择想要觉醒的方向:转化,过牌,辅助,卖血等,然后用南华天书般的系统摇几个技能供玩家选择,可以放弃选择,下次再选.魂力达到瓶颈后不会升级,但会积累,最高积累到下次升级的瓶颈.
 			<br>其他的有待设定
 			<br>点击下方按钮可以开启或关闭武魂觉醒系统(调整后需重置游戏方可生效)
 		`;
-		whjxstr += `
+	whjxstr += `
 			<div style="position:relative;display:inline-block;width:200px;">
 				<button id="wuhunBtn"
 						onclick="
@@ -177,10 +93,9 @@ const YBSL_rank = function () {
 				</button>
 			</div>
 		`;
-		// 初始化按钮状态(如果需要)
-		if (typeof lib !== 'undefined' && lib.config) {
-			lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
-		}
+
+	if (typeof lib !== 'undefined' && lib.config) {
+		lib.config.YB_wuhunjuexing = lib.config.YB_wuhunjuexing || false;
 	}
 	/**
  * 开局根据初始列表设定重置列表
@@ -211,9 +126,9 @@ const YBSL_rank = function () {
 	lib.translate.ybMagic_charactersInfo = '理论上应该有武将的,但没设计好呢,再等等';
 	lib.translate.yhky_charactersInfo = '永恒刻印,意为永恒的持恒技.不出意外的话,本包武将均为持恒技道心值武将';
 	lib.translate.ybllyz_charactersInfo = '连招宇宙,以夜白自己设计的连招技框架构成';
-	lib.translate.sgstrxs_charactersInfo = sgstrxsstr;
+	lib.translate.sgstrxs_charactersInfo = '三国杀同人小说也是一个丰富的diy宝库,里面不乏优秀或有趣的设计<br>本人在此立下宏愿:每看一本三国杀同人文,都要将其中可以复现的武将都复现出来!<br>提示:右键子将包或查看武将简介可查看作者';
 	lib.translate.YB_one_charactersInfo = '本包本来是我接的单.因金主失联疑似逃单,因此将这组技能代码兼并至此,以期复用';
-	// lib.translate['ybwhjx'+'_charactersInfo']=whjxstr
+
 	lib.translate.ybslc_cardsInfo = `
 		夜白神略主体卡牌包<br>
 		<li>血属性机制:<br>
@@ -249,20 +164,6 @@ const YBSL_rank = function () {
 		当你需要使用或打出牌时,你可以坍缩一张当前形态未坍缩的转换卡并使用或打出之.转换卡无法成为转化的目标牌.转换卡经使用或打出后转换.<br>
 		由于不能变属性,所以看似藤甲有绝对防御,但是朱雀羽扇和火攻也是无限供应……<br>
 	`;
-	// lib.translate['gujian'+'_charactersInfo']='古剑奇谭,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['hearth'+'_charactersInfo']='炉石传说,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['mtg'+'_'+'charactersInfo']='万智牌,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['ow'+'_charactersInfo']='守望先锋,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['swd'+'_charactersInfo']='轩辕剑,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['xianjian'+'_charactersInfo']='仙剑奇侠传,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['yxs'+'_charactersInfo']='英雄杀,原本体卡包,作者水乎,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['gujian'+'_cardsInfo']='古剑奇谭,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['gwent'+'_cardsInfo']='昆特牌,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略<br>图片貌似不能正确引用,以后再修'
-	// lib.translate['hearth'+'_cardsInfo']='炉石传说,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['huanlekapai'+'_cardsInfo']='欢乐卡牌,原本体卡包,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['mtg'+'_cardsInfo']='万智牌,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略<br>图片貌似不能正确引用,以后再修'
-	// lib.translate['swd'+'_cardsInfo']='轩辕剑,水乎扩展,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
+
 	lib.translate.yunchou_cardsInfo = '运筹帷幄,原本体卡包,被本体拆了.为确保引用相关内容的稳定性,夜白把这些包放进了夜白神略';
-	// lib.translate['yxs'+'_cardsInfo']='英雄杀,原本体卡包,作者水乎,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
-	// lib.translate['zhenfa'+'_cardsInfo']='阵法牌,原本体卡包,被本体拆了.为确保引用相关内容的稳定性,夜白这些包放进了夜白神略'
 };

@@ -15,25 +15,26 @@ const dynamicTranslate = {
 		const str8 = '</span>';
 		const str9 = '(若你没有鸾鸣或鸾鸣已使用则改为黑色牌)<br/>';
 		const str10 = '(若你没有鸾鸣或鸾鸣已使用则改为红色牌)<br/>';
+		let str;
 		if (player.storage.ybsl_xianyin == true) {
 			//弦音阳
 			if (player.storage.ybsl_luanming == true) {
 				//鸾鸣阳
 				if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
 					//拥有鸾鸣
-					let str = str0 + str1 + str9 + str6 + str2 + str8 + str9 + str3 + str10 + str5 + str4 + str8 + str10; //√
+					str = str0 + str1 + str9 + str6 + str2 + str8 + str9 + str3 + str10 + str5 + str4 + str8 + str10; //√
 				} else {
 					//--------------------------------无鸾鸣
-					let str = str0 + str1 + str9 + str6 + str2 + str9 + str8 + str3 + str10 + str5 + str4 + str10 + str8; //√
+					str = str0 + str1 + str9 + str6 + str2 + str9 + str8 + str3 + str10 + str5 + str4 + str10 + str8; //√
 				}
 			} else {
 				//-------------------------------------鸾鸣阴
 				if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
 					//拥有鸾鸣
-					let str = str0 + str6 + str1 + str8 + str9 + str2 + str9 + str5 + str3 + str8 + str10 + str4 + str10; //√
+					str = str0 + str6 + str1 + str8 + str9 + str2 + str9 + str5 + str3 + str8 + str10 + str4 + str10; //√
 				} else {
 					//--------------------------------无鸾鸣
-					let str = str0 + str6 + str1 + str9 + str8 + str2 + str9 + str5 + str3 + str10 + str8 + str4 + str10; //√
+					str = str0 + str6 + str1 + str9 + str8 + str2 + str9 + str5 + str3 + str10 + str8 + str4 + str10; //√
 				}
 			}
 		} else {
@@ -42,19 +43,19 @@ const dynamicTranslate = {
 				//鸾鸣阳
 				if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
 					//拥有鸾鸣
-					let str = str0 + str1 + str9 + str5 + str2 + str8 + str9 + str3 + str10 + str6 + str4 + str8 + str10;
+					str = str0 + str1 + str9 + str5 + str2 + str8 + str9 + str3 + str10 + str6 + str4 + str8 + str10;
 				} else {
 					//------------------------------无鸾鸣
-					let str = str0 + str1 + str9 + str5 + str2 + str9 + str8 + str3 + str10 + str6 + str4 + str10 + str8;
+					str = str0 + str1 + str9 + str5 + str2 + str9 + str8 + str3 + str10 + str6 + str4 + str10 + str8;
 				}
 			} else {
 				//---------------------------------鸾鸣阴
 				if (player.hasSkill('ybsl_luanming') && !player.getStat('skill').ybsl_luanming) {
 					//拥有鸾鸣
-					let str = str0 + str5 + str1 + str8 + str9 + str2 + str9 + str6 + str3 + str8 + str10 + str4 + str10;
+					str = str0 + str5 + str1 + str8 + str9 + str2 + str9 + str6 + str3 + str8 + str10 + str4 + str10;
 				} else {
 					//-------------------------------无鸾鸣
-					let str = str0 + str5 + str1 + str9 + str8 + str2 + str9 + str6 + str3 + str10 + str8 + str4 + str10;
+					str = str0 + str5 + str1 + str9 + str8 + str2 + str9 + str6 + str3 + str10 + str8 + str4 + str10;
 				}
 			}
 		}

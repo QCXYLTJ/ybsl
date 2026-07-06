@@ -5,24 +5,6 @@ export { YBSL_trigger };
  */
 const YBSL_trigger = function () {
 	{
-		//夜白创建时机
-		//---------------卡牌伤害时机
-		// lib.skill._YB_cardDamage={
-		// 	trigger:{
-		// 		player:['damage','damageBefore','damageBegin','damageBegin1','damageBegin2','damageBegin3','damageBegin4','damageEnd','damageAfter','die','dying','dieAfter','dieAfter2'],
-		// 		source:['damageSource'],
-		// 	},
-		// 	filter:function(event){
-		// 		return event.card&&lib.card[event.card.name];
-		// 	},
-		// 	popup:false,
-		// 	forced:true,
-		// 	content:function(){
-		// 		var str=event.triggername;
-		// 		trigger.trigger("YBcard_"+str);
-		// 	},
-		// };
-		//---------------每阶段时机
 		lib.skill._YB_any = {
 			trigger: {
 				player: ['phaseZhunbei', 'phaseJudge', 'phaseDraw', 'phaseUse', 'phaseDiscard', 'phaseJieshu'],
@@ -33,7 +15,7 @@ const YBSL_trigger = function () {
 				trigger.trigger('YB_any');
 			},
 		};
-		//---------------每阶段时机开始前
+
 		lib.skill._YB_anyBefore = {
 			trigger: {
 				player: ['phaseZhunbeiBefore', 'phaseJudgeBefore', 'phaseDrawBefore', 'phaseUseBefore', 'phaseDiscardBefore', 'phaseJieshuBefore'],
@@ -44,7 +26,7 @@ const YBSL_trigger = function () {
 				trigger.trigger('YB_anyBefore');
 			},
 		};
-		//---------------每阶段时机开始时
+
 		lib.skill._YB_anyBegin = {
 			trigger: {
 				player: ['phaseZhunbeiBegin', 'phaseJudgeBegin', 'phaseDrawBegin', 'phaseUseBegin', 'phaseDiscardBegin', 'phaseJieshuBegin'],
@@ -55,7 +37,7 @@ const YBSL_trigger = function () {
 				trigger.trigger('YB_anyBegin');
 			},
 		};
-		//---------------每阶段时机结束时
+
 		lib.skill._YB_anyEnd = {
 			trigger: {
 				player: ['phaseZhunbeiEnd', 'phaseJudgeEnd', 'phaseDrawEnd', 'phaseUseEnd', 'phaseDiscardEnd', 'phaseJieshuEnd'],
@@ -66,7 +48,7 @@ const YBSL_trigger = function () {
 				trigger.trigger('YB_anyEnd');
 			},
 		};
-		//---------------每阶段时机结束后
+
 		lib.skill._YB_anyAfter = {
 			trigger: {
 				player: ['phaseZhunbeiAfter', 'phaseJudgeAfter', 'phaseDrawAfter', 'phaseUseAfter', 'phaseDiscardAfter', 'phaseJieshuAfter'],
@@ -77,10 +59,9 @@ const YBSL_trigger = function () {
 				trigger.trigger('YB_anyAfter');
 			},
 		};
-		//---------------每阶段被跳过时
+
 		lib.skill._YB_anySkipped = {
 			trigger: {
-				//'phaseJudgeSkipped','phaseJudgeCancelled'
 				player: ['phaseZhunbeiSkipped', 'phaseJudgeSkipped', 'phaseDrawSkipped', 'phaseUseSkipped', 'phaseDiscardSkipped', 'phaseJieshuSkipped'],
 			},
 			popup: false,
@@ -91,7 +72,6 @@ const YBSL_trigger = function () {
 		};
 		lib.skill._YB_anyCancelled = {
 			trigger: {
-				//'phaseJudgeSkipped','phaseJudgeCancelled'
 				player: ['phaseZhunbeiCancelled', 'phaseJudgeCancelled', 'phaseDrawCancelled', 'phaseUseCancelled', 'phaseDiscardCancelled', 'phaseJieshuCancelled'],
 			},
 			popup: false,
@@ -100,7 +80,7 @@ const YBSL_trigger = function () {
 				trigger.trigger('YB_anyCancelled');
 			},
 		};
-		//---------------因旅心摸牌时
+
 		lib.skill._YB_lvxindraw = {
 			trigger: {
 				player: ['gainEnd'],
@@ -113,13 +93,9 @@ const YBSL_trigger = function () {
 				}
 				return false;
 			},
-			// content:function(){
-			// 	trigger.trigger("YB_lvxindraw");
-			// },
 		};
 	}
 	{
-		//神鬼赐福
 		lib.arenaReady.push(function () {
 			if (lib.config.YB_guixiecifu) {
 				/**
@@ -462,20 +438,18 @@ const YBSL_trigger = function () {
 						const char = list[Math.floor(Math.random() * list.length)];
 						const skills = lib.character[char][3];
 						skills.filter((item) => !player.skills.includes(item));
+						let skill;
 						if (skills.length) {
-							const skill = skills[Math.floor(Math.random() * skills.length)];
+							skill = skills[Math.floor(Math.random() * skills.length)];
 						}
 						function shuffleArray(array) {
 							for (let i = array.length - 1; i > 0; i--) {
-								const j = Math.floor(Math.random() * (i + 1)); // 随机选取 0 到 i 的索引
-								[array[i], array[j]] = [array[j], array[i]]; // 交换元素
+								const j = Math.floor(Math.random() * (i + 1));
+								[array[i], array[j]] = [array[j], array[i]];
 							}
 							return array;
 						}
-						// // 示例
-						// const arr = [1, 2, 3, 4, 5];
-						// shuffleArray(arr);
-						// console.log(arr); // 可能输出:[3, 1, 5, 2, 4](随机顺序)
+
 						const suit = ['spade', 'heart', 'club', 'diamond'];
 						shuffleArray(suit);
 						const list_cifu = [];
@@ -491,7 +465,6 @@ const YBSL_trigger = function () {
 						game.broadcastAll(
 							function (player, id, list_cifu, char) {
 								let str = get.translation(char) + '赐福';
-								let str;
 								if (player == game.me && !_status.auto) {
 									str = get.translation(char) + '赐福:请选择一至两项';
 								} else {
@@ -831,49 +804,36 @@ const YBSL_trigger = function () {
 		});
 	}
 	{
-		//武魂觉醒
 		lib.arenaReady.push(function () {
 			if (lib.config.YB_wuhunjuexing) {
 				function calculateSimilarity(str1, str2) {
-					// 如果其中一个字符串为空,返回0
 					if (str1.length === 0 || str2.length === 0) {
 						return 0;
 					}
-					// 创建一个二维数组来存储中间结果
+
 					const len1 = str1.length;
 					const len2 = str2.length;
 					const distance = Array.from({ length: len1 + 1 }, () => Array(len2 + 1).fill(0));
-					// 初始化第一行和第一列
+
 					for (let i = 0; i <= len1; i++) {
 						distance[i][0] = i;
 					}
 					for (let j = 0; j <= len2; j++) {
 						distance[0][j] = j;
 					}
-					// 填充距离矩阵
+
 					for (let i = 1; i <= len1; i++) {
 						for (let j = 1; j <= len2; j++) {
 							const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
-							distance[i][j] = Math.min(
-								distance[i - 1][j] + 1, // 删除操作
-								distance[i][j - 1] + 1, // 插入操作
-								distance[i - 1][j - 1] + cost, // 替换操作
-							);
+							distance[i][j] = Math.min(distance[i - 1][j] + 1, distance[i][j - 1] + 1, distance[i - 1][j - 1] + cost);
 						}
 					}
-					// 计算相似度得分
+
 					const maxLen = Math.max(len1, len2);
 					const similarityScore = (maxLen - distance[len1][len2]) / maxLen;
 					return similarityScore;
 				}
-				// 示例用法
-				// const text1 = "hello world";
-				// const text2 = "hello world!";
-				// console.log(calculateSimilarity(text1, text2)); // 输出接近1的值,表示高度相似
-				// const text3 = "hello world";
-				// const text4 = "goodbye moon";
-				// console.log(calculateSimilarity(text3, text4)); // 输出较低的值,表示不相似
-				// 算了,这方法不用了
+
 				lib.element.player.YB_addHunli = function (num) {
 					const player = this;
 					player.addMark('_YB_wuhunlevel', num);
@@ -881,15 +841,13 @@ const YBSL_trigger = function () {
 				lib.element.player.YB_maxHunli = function () {
 					const num = 20;
 					const player = this;
-					// if(game.checkMod(event,player,0,'YB_maxHunli',player))num=game.checkMod(event,player,0,'YB_maxHunli',player);
-					// if(game.checkMod(event,player,0,'YB_maxHunliAdd',player))num+=game.checkMod(event,player,0,'YB_maxHunliAdd',player);
+
 					return num;
 				};
 				lib.element.player.YB_maxHunliTrue = function () {
 					const num = 20;
 					const player = this;
-					// if(game.checkMod(event,player,0,'YB_maxHunli',player))num=game.checkMod(event,player,0,'YB_maxHunli',player);
-					// if(game.checkMod(event,player,0,'YB_maxHunliAdd',player))num+=game.checkMod(event,player,0,'YB_maxHunliAdd',player);
+
 					return num;
 				};
 				lib.skill._YB_wuhunlevel = {

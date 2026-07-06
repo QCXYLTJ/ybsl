@@ -17,6 +17,7 @@ export default [
 			'no-unused-vars': 0,
 			'no-undef': 'warn',
 			'no-redeclare': 'warn',
+			'no-fallthrough': 'off',
 		},
 		languageOptions: {
 			ecmaVersion: 13,

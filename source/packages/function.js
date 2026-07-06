@@ -28,7 +28,7 @@ const mergeObjects = function (...objects) {
 		if (currentObj && Object.keys(currentObj).length) {
 			// 遍历当前对象的键值对
 			for (const subKey in currentObj) {
-				if (result.hasOwnProperty(subKey)) {
+				if (Object.hasOwn(result, subKey)) {
 					// 如果目标对象中已经存在该键,则拼接值
 					result[subKey] = result[subKey] + '<br>' + currentObj[subKey];
 				} else {
@@ -54,7 +54,7 @@ const YB_characterIntro = function (str1, str2, str3, str4) {
 		if (Object.keys(currentObj).length) {
 			// 遍历当前对象的键值对
 			for (const subKey in currentObj) {
-				if (result.hasOwnProperty(subKey)) {
+				if (Object.hasOwn(result, subKey)) {
 					// 如果目标对象中已经存在该键,则拼接值
 					result[subKey] = result[subKey] + '<br>' + currentObj[subKey];
 				} else {
@@ -69,11 +69,11 @@ const YB_characterIntro = function (str1, str2, str3, str4) {
 	});
 	// 处理 str4 中没有对应键的情况
 	for (const key in result) {
-		if (!str4.hasOwnProperty(key)) {
+		if (!Object.hasOwn(str4, key)) {
 			// 调用 YBSL_characterIntro 函数生成对应的值
 			const generatedValue = YBSL_characterIntro(key);
 			// 将生成的值拼接到结果中
-			if (result.hasOwnProperty(key)) {
+			if (Object.hasOwn(result, key)) {
 				result[key] = result[key] + '<br>' + generatedValue;
 			} else {
 				result[key] = generatedValue;
@@ -156,7 +156,7 @@ const nodeintro = function (node, simple, evt) {
 	if (node.classList.contains('player') && !node.name) {
 		return uiintro;
 	}
-	let i, translation, intro, str;
+	let i, translation, intro, str, showCardIntro;
 	if (node._nointro) {
 		return;
 	}
@@ -412,15 +412,13 @@ const nodeintro = function (node, simple, evt) {
 			td.innerHTML = node.phaseNumber;
 			tr.appendChild(td);
 			td = document.createElement('td');
-			(function () {
-				num = 0;
-				for (let j = 0; j < node.stat.length; j++) {
-					if (typeof node.stat[j].damage == 'number') {
-						num += node.stat[j].damage;
-					}
+			let num = 0;
+			for (let j = 0; j < node.stat.length; j++) {
+				if (typeof node.stat[j].damage == 'number') {
+					num += node.stat[j].damage;
 				}
-				td.innerHTML = num;
-			})();
+			}
+			td.innerHTML = num;
 			tr.appendChild(td);
 			table.style.width = 'calc(100% - 20px)';
 			table.style.marginLeft = '10px';
@@ -444,8 +442,8 @@ const nodeintro = function (node, simple, evt) {
 			for (let i = 0; i < js.length; i++) {
 				if (js[i].viewAs && js[i].viewAs != js[i].name) {
 					let html = js[i].outerHTML;
-					let cardInfo = lib.card[js[i].viewAs],
-						showCardIntro = true;
+					let cardInfo = lib.card[js[i].viewAs];
+					showCardIntro = true;
 					if (cardInfo.blankCard) {
 						const cardOwner = get.owner(js[i]);
 						if (cardOwner && !cardOwner.isUnderControl(true)) {
@@ -544,19 +542,19 @@ const nodeintro = function (node, simple, evt) {
 			table.style.margin = '0';
 			table.style.width = '100%';
 			table.style.position = 'relative';
-			let listi = ['wine', 'shoe'];
+			let listi1 = ['wine', 'shoe'];
 			if (game.me.storage.zhuSkill_shanli) {
-				listi = ['yuxisx', 'jiasuo'];
+				listi1 = ['yuxisx', 'jiasuo'];
 			}
-			for (let i = 0; i < listi.length; i++) {
+			for (let i = 0; i < listi1.length; i++) {
 				td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 				ui.throwEmotion.add(td);
 				if (_status.throwEmotionWait) {
 					td.classList.add('exclude');
 				}
-				td.link = listi[i];
+				td.link = listi1[i];
 				table.appendChild(td);
-				td.innerHTML = '<span>' + get.translation(listi[i]) + '</span>';
+				td.innerHTML = '<span>' + get.translation(listi1[i]) + '</span>';
 				td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', click);
 			}
 			uiintro.content.appendChild(table);

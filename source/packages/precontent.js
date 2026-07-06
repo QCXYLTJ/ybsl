@@ -1,5 +1,5 @@
 ﻿import { lib, game, ui, get, ai, _status } from '../../../../noname.js';
-// import { YB_update } from './update.js'
+
 import { YBSL_rank } from './precontent/YB_01_rank.js';
 import { YBSL_nature } from './precontent/YB_02_nature.js';
 import { YBSL_trigger } from './precontent/YB_03_trigger.js';
@@ -9,106 +9,25 @@ import { YBSL_starmap } from './precontent/YB_06_starmap.js';
 import { YBSL_qianhuan } from './precontent/YB_07_qianhuan.js';
 import { YBSL_ybslf } from './precontent/YB_08_ybslf.js';
 import { YBSL_update } from './precontent/YB_09_update.js';
-// import { YBSL_destiny } from './precontent/YB_10_destiny.js'
+
 import { YB_11_cardBrowser } from './precontent/YB_11_cardBrowser.js';
-// import { characterIntro,nodeintro } from './function.js';
+
 import { typeimage } from './function.js';
-// import { sgstrxs } from '../sgstrxs.js';
+
 import { sgczk } from '../sgczk/mode.js';
 import { cyyydsgs } from '../pile/cyyydsgs.js';
-// import {ybrpg}from '../ybrpg/mode.js'
+
 export async function precontent() {
-	if (false) {
-		const originalCompatibleMode = lib.config.compatiblemode;
-		// 检测兼容模式并弹窗询问
-		if (originalCompatibleMode === true && lib.config.extension_夜白神略_不再提示关闭兼容模式的弹窗 != true) {
-			// 创建自定义弹窗
-			const dialog = document.createElement('div');
-			dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;display:flex;justify-content:center;align-items:center;';
-			const content = document.createElement('div');
-			content.style.cssText = 'background:#fff;padding:30px;border-radius:10px;min-width:400px;min-height:400px;box-shadow:0 5px 20px rgba(0,0,0,0.3);font-family:sans-serif;';
-			const title = document.createElement('div');
-			title.textContent = '<夜白神略>提示';
-			title.style.cssText = 'font-size:20px;font-weight:bold;margin-bottom:15px;color: #333;top:84px;left: 35%;';
-			const message = document.createElement('div');
-			message.innerHTML = `检测到兼容模式已开启.
-			<br><br>是否关闭兼容模式并重启游戏？
-			<br><br>点击"确定"将关闭兼容模式并重启
-			<br>点击"取消"将保留兼容模式(可能导致功能异常)
-			<br>点击"取消并不再提示"将不再提示(可前往扩展设置中开关)
-			<br><br>开启兼容模式会导致:
-			<br>1.当你出现bug时,你不会收到任何报错,你只知道有技能没生效
-			<br>2.当游戏炸了的时候,你不知道为啥炸,你只知道游戏炸了
-			<br>3.当你开启兼容模式反馈bug时,你会被群友骂
-			`;
-			message.style.cssText = 'margin-bottom:25px;line-height:1.6;color: #f00;    top: 113px;';
-			const buttons = document.createElement('div');
-			buttons.style.cssText = 'display:flex;gap:15px;justify-content:center;';
-			const btnConfirm = document.createElement('button');
-			btnConfirm.textContent = '确定';
-			btnConfirm.style.cssText = 'padding:10px 25px;background:#4CAF50;color: #fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
-			btnConfirm.addEventListener('click', () => {
-				localStorage.setItem('config_compatiblemode', 'false');
-				dialog.remove();
-				setTimeout(() => {
-					game.saveConfig('compatiblemode', false);
-					if (game.download && typeof game.reload === 'function') {
-						game.reload();
-					} else {
-						location.reload();
-					}
-				}, 300);
-			});
-			const btnCancel = document.createElement('button');
-			btnCancel.textContent = '取消';
-			btnCancel.style.cssText = 'padding:10px 25px;background:#f44336;color: #fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
-			btnCancel.addEventListener('click', () => {
-				dialog.remove();
-			});
-			const btnNoPrompt = document.createElement('button');
-			btnNoPrompt.textContent = '取消并不再提示';
-			btnNoPrompt.style.cssText = 'padding:10px 25px;background:#9E9E9E;color: #fff;border:none;border-radius:5px;cursor:pointer;font-size:16px;';
-			btnNoPrompt.addEventListener('click', () => {
-				game.saveConfig('extension_夜白神略_不再提示关闭兼容模式的弹窗', true);
-				dialog.remove();
-			});
-			buttons.appendChild(btnConfirm);
-			buttons.appendChild(btnCancel);
-			buttons.appendChild(btnNoPrompt);
-			content.appendChild(title);
-			content.appendChild(message);
-			content.appendChild(buttons);
-			dialog.appendChild(content);
-			document.body.appendChild(dialog);
-		}
-	}
 	game.getFileList('extension/夜白神略/source/ext', (folders, files) => {
-		// let scriptPaths=[
-		// 	'ext/YB_01_character.js','ext/YB_02_character.js','ext/YB_03_character.js','ext/YB_04_character.js',
-		// 	'ext/YB_05_card.js','ext/YB_06_card.js','ext/YB_07_card.js','ext/YB_08_character.js','ext/YB_09_character.js',
-		// 	'ext/YB_10_character.js','ext/YB_11_character.js','ext/YB_12_character.js','ext/YB_13_character.js',
-		// 	// 'ext/YB_01_character.js'
-		// ];
 		const scriptPaths = files;
 		Promise.all(scriptPaths.map((path) => import('../ext/' + path)))
-			.then((modules) => {})
+			.then((modules) => { })
 			.catch((error) => {
 				alert('error ' + error + '导入失败 !');
 				console.warn(error.message);
 			});
 	});
-	// game.getFileList('extension/夜白神略/source/ontology/character', (folders,files) => {
-	// 	let scriptPaths = files;
-	// 	Promise.all(
-	// 		scriptPaths.map(path => {
-	// 			lib.init.js(lib.assetURL+'extension/夜白神略/source/ontology/character',path.slice(0,-3));
-	// 		})
-	// 	).then(modules => {
-	// 	}).catch(error => {
-	// 		alert('error '+error+'导入失败 !')
-	// 		console.warn(error.message);
-	// 	});
-	// })
+
 	game.getFileList('extension/夜白神略/source/ontology/card', (folders, files) => {
 		const scriptPaths = files;
 		Promise.all(
@@ -116,74 +35,50 @@ export async function precontent() {
 				lib.init.js(lib.assetURL + 'extension/夜白神略/source/ontology/card', path.slice(0, -3));
 			}),
 		)
-			.then((modules) => {})
+			.then((modules) => { })
 			.catch((error) => {
 				alert('error ' + error + '导入失败 !');
 				console.warn(error.message);
 			});
 	});
-	//window.list24
+
 	{
-		// lib.translate.gujian_character_config='古剑奇谭'
-		// lib.translate.hearth_character_config='炉石传说'
-		// lib.translate.mtg_character_config='万智牌'
-		// lib.translate.ow_character_config='守望先锋'
-		// lib.translate.swd_character_config='轩辕剑'
-		// lib.translate.xianjian_character_config='仙剑奇侠传'
-		// lib.translate.yxs_character_config='英雄杀'
-		// lib.translate.gujian_card_config='古剑奇谭'
-		// lib.translate.gwent_card_config='昆特牌'
-		// lib.translate.hearth_card_config='炉石传说'
-		// lib.translate.huanlekapai_card_config='欢乐卡牌'
-		// lib.translate.mtg_card_config='万智牌'
-		// lib.translate.swd_card_config='轩辕剑'
 		lib.translate.yunchou_card_config = '运筹帷幄';
-		// lib.translate.yxs_card_config='英雄杀'
-		// lib.translate.zhenfa_card_config='阵法牌'
 	}
-	// lib.translate.sgstrxs_mode_config = '同人'
-	// {
-	// 	lib.init.js(lib.assetURL+'extension/夜白神略/source/sgstrxs',sgstrxs)
-	// }
+
 	{
-		//css
 		const nor = lib.assetURL + 'extension/夜白神略/source/css';
 		lib.init.css(nor, 'ybcss');
 		{
-			// lib.init.css(nor,'dark')
 			lib.init.css(nor, 'light');
 		}
 	}
 	{
-		//导入数据
 		YBSL_rank();
 		YBSL_nature();
 		YBSL_trigger();
 		YBSL_special();
 		YBSL_pinyin();
 		YBSL_starmap();
-		// YBSL_qianhuan();
+
 		YBSL_ybslf();
 		YBSL_update();
-		// YBSL_destiny();
+
 		YB_11_cardBrowser();
 	}
 	lib.arenaReady.push(function () {
-		//导入数据
 		YBSL_rank();
 		YBSL_nature();
 		YBSL_trigger();
 		YBSL_special();
 		YBSL_pinyin();
 		YBSL_starmap();
-		// YBSL_qianhuan();
+
 		YBSL_ybslf();
 		YBSL_update();
-		// YBSL_destiny();
+
 		YB_11_cardBrowser();
 		{
-			//characterIntro重做
-			//characterIntro重做
 			/**
 			 * 从字符串中提取第一个 HTML/XML 标签及其内容
 			 * @param {string} str - 待处理的字符串,可能包含 HTML/XML 标签
@@ -192,39 +87,36 @@ export async function precontent() {
 			 *   - endTag: {string} 匹配到的结束标签(如 `</div>`),未找到时返回空字符串
 			 *   - content: {string} 去除开始标签和结束标签后的纯文本内容
 			 * @example
-			 * // 返回 { startTag: '<div>', endTag: '</div>', content: 'Hello' }
+			 *
 			 * get.extractFirstTag('<div>Hello</div>');
 			 * @example
-			 * // 返回 { startTag: '', endTag: '', content: 'No tags' }
+			 *
 			 * get.extractFirstTag('No tags');
 			 */
 			get.extractFirstTag = function (str) {
-				// 匹配第一个开始标签(如 <div> 或 <span class="test">)
 				const startTagRegex = /<[^>]+>/;
 				const startTagMatch = str.match(startTagRegex);
-				// 如果没有开始标签,直接返回原始字符串
+
 				if (!startTagMatch) {
 					return { startTag: '', endTag: '', content: str };
 				}
 				const startTag = startTagMatch[0];
-				// 计算开始标签结束后的位置(用于查找结束标签)
+
 				const endTagStart = str.indexOf(startTag) + startTag.length;
-				// 在剩余字符串中匹配第一个结束标签(如 </div>)
+
 				const endTagRegex = /<\/[^>]+>/;
 				const endTagMatch = str.slice(endTagStart).match(endTagRegex);
-				// 如果没有结束标签,返回开始标签和去除标签后的内容
+
 				if (!endTagMatch) {
 					return { startTag: startTag, endTag: '', content: str.replace(startTag, '') };
 				}
 				const endTag = endTagMatch[0];
-				// 去除开始标签和结束标签,得到纯文本内容
+
 				const content = str.replace(startTag, '').replace(endTag, '');
 				return { startTag, endTag, content };
 			};
 			get.copyright = function (name, macg) {
 				if (lib.characterCopyright[name]) {
-					//版权信息
-					//判断是否为对象、字符串、数组
 					let strx = lib.characterCopyright[name];
 					if (macg) {
 						strx = macg;
@@ -240,16 +132,14 @@ export async function precontent() {
 							voice: '配音',
 							icon: '◈',
 						};
+						let startTag, endTag, content;
 						if (lib.characterTitle[name]) {
-							const { startTag, endTag, content } = get.extractFirstTag(lib.characterTitle[name]);
+							({ startTag, endTag, content } = get.extractFirstTag(lib.characterTitle[name]));
 						}
 						if (startTag) {
 							str += startTag;
 						}
-						// if(strx.pack)str+=strx.pack;
-						// if(strx.pack&&strx.num)str+='-';
-						// if(strx.num)str+=strx.num;
-						// if(strx.num&&lib.characterTitle[name])str+='-';
+
 						const strlist = [];
 						if (strx.pack) {
 							strlist.push(strx.pack);
@@ -263,8 +153,7 @@ export async function precontent() {
 						if (strlist.length) {
 							str += strlist.join('-');
 						}
-						// if(content)str+=content;
-						// if(lib.characterTitle[name])str+=lib.characterTitle[name];
+
 						if (endTag) {
 							str += endTag;
 						}
@@ -307,31 +196,25 @@ export async function precontent() {
 						};
 						return get.copyright(name, kkk);
 					}
-					// str += lib.characterCopyright[name];
 				}
 			};
 			const YB_characterIntro = get.characterIntro;
 			get.characterIntro = function (name) {
 				let str = '';
 				if (lib.characterCopyright[name]) {
-					//版权信息
-					// str += lib.characterCopyright[name];
 					const cpright = get.copyright(name);
 					str += cpright;
 					str += '<br>';
 				}
 				if (lib.characterCitetext[name]) {
-					//上引文
 					str += lib.characterCitetext[name];
 					str += '<br>';
 				}
 				if (lib.characterUndertext[name]) {
-					//下引文
 					str += lib.characterUndertext[name];
 					str += '<br>';
 				}
 				if (lib.characterLightext[name] && lib.characterLightext[name](name)) {
-					//缘分点亮
 					str += lib.characterLightext[name](name)[lib.characterLightext[name](name).length - 1];
 					str += '<br>';
 				}
@@ -362,7 +245,6 @@ export async function precontent() {
 			};
 		}
 		{
-			//nodeintro修复
 			const YB_nodeIntro = get.nodeintro;
 			get.nodeintro = function (node, simple, evt) {
 				let YB_intro = ui.create.dialog('hidden', 'notouchscroll');
@@ -400,9 +282,7 @@ export async function precontent() {
 					if (lib.characterLightext[node.name1] && lib.characterLightext[node.name1](node)) {
 						YB_intro.addText(get.colorspan(lib.characterLightext[node.name1](node)[lib.characterLightext[node.name1](node).length - 1]));
 					}
-					// if (lib.characterLightext[node.name1]) {
-					// 	YB_intro.addText(get.colorspan(lib.characterLightext[node.name1]()[lib.characterLightext[node.name1].length]));
-					// }
+
 					if (lib.config.show_sortPack) {
 						for (const packname in lib.characterPack) {
 							if (node.name in lib.characterPack[packname]) {
@@ -567,25 +447,7 @@ export async function precontent() {
 							}
 						}
 					}
-					// if(get.is.phoneLayout()){
-					// 	var storage=node.storage;
-					// 	for(i in storage){
-					// 		if(get.info(i)&&get.info(i).intro){
-					// 			intro=get.info(i).intro;
-					// 			if(node.getSkills().concat(lib.skill.global).includes(i)==false&&!intro.show) continue;
-					// 			var name=intro.name?intro.name:get.translation(i);
-					// 			if(typeof name=='function'){
-					// 				name=name(storage[i],node);
-					// 			}
-					// 			translation='<div><div class="skill">『'+name.slice(0,2)+'』</div><div>';
-					// 			var stint=get.storageintro(intro.content,storage[i],node,null,i);
-					// 			if(stint){
-					// 				translation+=stint+'</div></div>';
-					// 				YB_intro.add(translation);
-					// 			}
-					// 		}
-					// 	}
-					// }
+
 					if (lib.characterUndertext[node.name]) {
 						YB_intro.addText(get.colorspan(lib.characterUndertext[node.name]));
 					}
@@ -630,15 +492,13 @@ export async function precontent() {
 						td.innerHTML = node.phaseNumber;
 						tr.appendChild(td);
 						td = document.createElement('td');
-						(function () {
-							num = 0;
-							for (let j = 0; j < node.stat.length; j++) {
-								if (typeof node.stat[j].damage == 'number') {
-									num += node.stat[j].damage;
-								}
+						let num = 0;
+						for (let j = 0; j < node.stat.length; j++) {
+							if (typeof node.stat[j].damage == 'number') {
+								num += node.stat[j].damage;
 							}
-							td.innerHTML = num;
-						})();
+						}
+						td.innerHTML = num;
 						tr.appendChild(td);
 						table.style.width = 'calc(100% - 20px)';
 						table.style.marginLeft = '10px';
@@ -762,19 +622,19 @@ export async function precontent() {
 						table.style.margin = '0';
 						table.style.width = '100%';
 						table.style.position = 'relative';
-						let listi = ['wine', 'shoe'];
+						let listi1 = ['wine', 'shoe'];
 						if (game.me.storage.zhuSkill_shanli) {
-							listi = ['yuxisx', 'jiasuo'];
+							listi1 = ['yuxisx', 'jiasuo'];
 						}
-						for (let i = 0; i < listi.length; i++) {
+						for (let i = 0; i < listi1.length; i++) {
 							td = ui.create.div('.menubutton.reduce_radius.pointerdiv.tdnode');
 							ui.throwEmotion.add(td);
 							if (_status.throwEmotionWait) {
 								td.classList.add('exclude');
 							}
-							td.link = listi[i];
+							td.link = listi1[i];
 							table.appendChild(td);
-							td.innerHTML = '<span>' + get.translation(listi[i]) + '</span>';
+							td.innerHTML = '<span>' + get.translation(listi1[i]) + '</span>';
 							td.addEventListener(lib.config.touchscreen ? 'touchend' : 'click', click);
 						}
 						YB_intro.content.appendChild(table);
@@ -792,111 +652,6 @@ export async function precontent() {
 						YB_intro.add(addFavourite);
 					}
 					if (!simple || get.is.phoneLayout()) {
-						// if ((lib.config.change_skin || lib.skin) && !node.isUnseen()) {
-						// 	var num = 1;
-						// 	var introadded = false;
-						// 	var createButtons = function (num, avatar2) {
-						// 		if (!introadded) {
-						// 			introadded = true;
-						// 			YB_intro.add('<div class="text center">更改皮肤</div>');
-						// 		}
-						// 		var buttons = ui.create.div(".buttons.smallzoom.scrollbuttons");
-						// 		lib.setMousewheel(buttons);
-						// 		var nameskin = avatar2 ? node.name2 : node.name1;
-						// 		var nameskin2 = nameskin;
-						// 		var gzbool = false;
-						// 		if (nameskin.startsWith("gz_shibing")) {
-						// 			nameskin = nameskin.slice(3, 11);
-						// 		} else if (nameskin.startsWith("gz_")) {
-						// 			nameskin = nameskin.slice(3);
-						// 			gzbool = true;
-						// 		}
-						// 		for (let i = 0; i <= num; i++) {
-						// 			var button = ui.create.div(".button.character.pointerdiv", buttons, function () {
-						// 				if (this._link) {
-						// 					if (avatar2) {
-						// 						lib.config.skin[nameskin] = this._link;
-						// 						node.node.avatar2.style.backgroundImage = this.style.backgroundImage;
-						// 					} else {
-						// 						lib.config.skin[nameskin] = this._link;
-						// 						node.node.avatar.style.backgroundImage = this.style.backgroundImage;
-						// 					}
-						// 				} else {
-						// 					delete lib.config.skin[nameskin];
-						// 					if (avatar2) {
-						// 						if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.node.avatar2.setBackground(nameskin2, "character");
-						// 						else node.node.avatar2.setBackground(nameskin, "character");
-						// 					} else {
-						// 						if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.node.avatar.setBackground(nameskin2, "character");
-						// 						else node.node.avatar.setBackground(nameskin, "character");
-						// 					}
-						// 				}
-						// 				game.saveConfig("skin", lib.config.skin);
-						// 			});
-						// 			button._link = i;
-						// 			if (i) {
-						// 				button.setBackgroundImage("image/skin/" + nameskin + "/" + i + ".jpg");
-						// 			} else {
-						// 				if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) button.setBackground(nameskin2, "character", "noskin");
-						// 				else button.setBackground(nameskin, "character", "noskin");
-						// 			}
-						// 		}
-						// 		YB_intro.add(buttons);
-						// 	};
-						// 	var loadImage = function (avatar2) {
-						// 		var img = new Image();
-						// 		img.onload = function () {
-						// 			num++;
-						// 			loadImage(avatar2);
-						// 		};
-						// 		img.onerror = function () {
-						// 			num--;
-						// 			if (num > 0) {
-						// 				createButtons(num, avatar2);
-						// 			}
-						// 			if (!avatar2) {
-						// 				if (!node.classList.contains("unseen2") && node.name2) {
-						// 					num = 1;
-						// 					loadImage(true);
-						// 				}
-						// 			}
-						// 		};
-						// 		var nameskin = avatar2 ? node.name2 : node.name1;
-						// 		var nameskin2 = nameskin;
-						// 		var gzbool = false;
-						// 		if (nameskin.startsWith("gz_shibing")) {
-						// 			nameskin = nameskin.slice(3, 11);
-						// 		} else if (nameskin.startsWith("gz_")) {
-						// 			nameskin = nameskin.slice(3);
-						// 			gzbool = true;
-						// 		}
-						// 		img.src = lib.assetURL + "image/skin/" + nameskin + "/" + num + ".jpg";
-						// 	};
-						// 	if (lib.config.change_skin) {
-						// 		if (!node.isUnseen(0)) {
-						// 			loadImage();
-						// 		} else if (node.name2) {
-						// 			loadImage(true);
-						// 		}
-						// 	} else {
-						// 		setTimeout(function () {
-						// 			var nameskin1 = node.name1;
-						// 			var nameskin2 = node.name2;
-						// 			if (nameskin1 && nameskin1.startsWith("gz_")) {
-						// 				nameskin1 = nameskin1.slice(3);
-						// 			}
-						// 			if (nameskin2 && nameskin2.startsWith("gz_")) {
-						// 				nameskin2 = nameskin2.slice(3);
-						// 			}
-						// 			if (!node.isUnseen(0) && lib.skin[nameskin1]) {
-						// 				createButtons(lib.skin[nameskin1]);
-						// 			}
-						// 			if (!node.isUnseen(1) && lib.skin[nameskin2]) {
-						// 				createButtons(lib.skin[nameskin2], true);
-						// 			}
-						// 		});
-						// 	}
-						// }
 						const viewInfo = ui.create.div('.text.center.pointerdiv');
 						viewInfo.link = node;
 						viewInfo.innerHTML = '查看资料';
@@ -1099,75 +854,7 @@ export async function precontent() {
 						} else {
 							YB_intro.add(ui.create.div('.placeholder.slim'));
 						}
-						// var addskin = false;
-						// if (node.parentNode?.classList?.includes("menu-buttons")) {
-						// 	addskin = !lib.config.show_charactercard;
-						// } else {
-						// 	addskin = lib.config.change_skin || lib.skin;
-						// }
-						// if (addskin && (!simple || get.is.phoneLayout())) {
-						// 	var num = 1;
-						// 	var introadded = false;
-						// 	var nameskin = node.link;
-						// 	var nameskin2 = nameskin;
-						// 	var gzbool = false;
-						// 	if (nameskin.startsWith("gz_shibing")) {
-						// 		nameskin = nameskin.slice(3, 11);
-						// 	} else if (nameskin.startsWith("gz_")) {
-						// 		nameskin = nameskin.slice(3);
-						// 		gzbool = true;
-						// 	}
-						// 	var createButtons = function (num) {
-						// 		if (!num) return;
-						// 		if (!introadded) {
-						// 			introadded = true;
-						// 			YB_intro.add('<div class="text center">更改皮肤</div>');
-						// 		}
-						// 		var buttons = ui.create.div(".buttons.smallzoom.scrollbuttons");
-						// 		lib.setMousewheel(buttons);
-						// 		for (let i = 0; i <= num; i++) {
-						// 			var button = ui.create.div(".button.character.pointerdiv", buttons, function () {
-						// 				if (this._link) {
-						// 					lib.config.skin[nameskin] = this._link;
-						// 					node.style.backgroundImage = this.style.backgroundImage;
-						// 					game.saveConfig("skin", lib.config.skin);
-						// 				} else {
-						// 					delete lib.config.skin[nameskin];
-						// 					if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) node.setBackground(nameskin2, "character");
-						// 					else node.setBackground(nameskin, "character");
-						// 					game.saveConfig("skin", lib.config.skin);
-						// 				}
-						// 			});
-						// 			button._link = i;
-						// 			if (i) {
-						// 				button.setBackgroundImage("image/skin/" + nameskin + "/" + i + ".jpg");
-						// 			} else {
-						// 				if (gzbool && lib.character[nameskin2].hasSkinInGuozhan && lib.config.mode_config.guozhan.guozhanSkin) button.setBackground(nameskin2, "character", "noskin");
-						// 				else button.setBackground(nameskin, "character", "noskin");
-						// 			}
-						// 		}
-						// 		YB_intro.add(buttons);
-						// 	};
-						// 	var loadImage = function () {
-						// 		var img = new Image();
-						// 		img.onload = function () {
-						// 			num++;
-						// 			loadImage();
-						// 		};
-						// 		img.onerror = function () {
-						// 			num--;
-						// 			createButtons(num);
-						// 		};
-						// 		img.src = lib.assetURL + "image/skin/" + nameskin + "/" + num + ".jpg";
-						// 	};
-						// 	if (lib.config.change_skin) {
-						// 		loadImage();
-						// 	} else {
-						// 		setTimeout(function () {
-						// 			createButtons(lib.skin[nameskin]);
-						// 		});
-						// 	}
-						// }
+
 						if (!simple || get.is.phoneLayout()) {
 							const viewInfo = ui.create.div('.text.center.pointerdiv');
 							viewInfo.link = node.link;
@@ -1185,12 +872,11 @@ export async function precontent() {
 				} else {
 					YB_intro = YB_nodeIntro.apply(this, arguments);
 				}
-				// YB_intro.style.width = '358px'
+
 				return YB_intro;
 			};
 		}
 		{
-			//YB_promot
 			get.YB_prompt2 = function (skill, target, player) {
 				let str = get.prompt.apply(this, arguments);
 				if (!lib.translate[skill + '_info'] && !lib.translate[skill + '_info']) {
@@ -1203,7 +889,6 @@ export async function precontent() {
 			};
 		}
 		{
-			//get.type改写
 			lib.type = {
 				delay: 'trick',
 				law: 'trick',
@@ -1237,30 +922,11 @@ export async function precontent() {
 			};
 		}
 		{
-			// 千幻换肤相关
 			if (!lib.qhlypkg) {
 				lib.qhlypkg = [];
 			}
-			// var packages = [
-			// 	"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
-			// 	// 'YB_one'
-			// ]
-			// var packagesx = [
-			// 	"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
-			// 	// 'YB_one'
-			// ]
+
 			const packagesx = {
-				// 'ybslj':'ybsl001',
-				// 'ybart':'ybsl001',
-				// 'ybxh':'ybsl003',
-				// 'ybnew1':'ybsl004',
-				// 'ybmjz':'ybsl008',
-				// 'ybdd':'ybsl009',
-				// 'ybMagic':'ybsl010',
-				// 'yhky':'ybsl011',
-				// 'sgstrxs':'ybsl012',
-				// 'ybwhjx':'ybsl013',
-				// 'ybnew3':'ybsl004',
 				ybslj: 'ybsl001',
 				ybart: 'ybsl001',
 				ybxh: 'ybsl003',
@@ -1274,61 +940,29 @@ export async function precontent() {
 				cyyydsgs: 'cyyydsgs',
 				jhjx: 'jhjx',
 			};
-			// var listxxxxx= [];
+
 			for (let i in packagesx) {
 				lib.qhlypkg.push({
-					isExt: true, //是否是扩展,一般填true
+					isExt: true,
 					filterCharacter(name) {
-						// var qianzhui=[
-						// 	'dzsl_','dzsp_','ybsl_','ybsp_','db_ybsl_','db_ybsp_',
-						// 	'ybslshen_','sgsh_','ssj_ybxh_','North_','ybnb_','ybart_',
-						// 	'ybmo_','ybhao_','ybdi_','ybhaoshen_','ybsc_',
-						// ];
-						// for(var i=0;i<qianzhui.length;i++){
-						// 	if(name.indexOf(qianzhui[i])==0) return true;
-						// }
 						if (!lib.characterPack[i]) {
 							return;
 						}
 						if (lib.characterPack[i][name]) {
 							return true;
 						}
-						//判断此ID的武将是否属于此皮肤包.推荐用前缀判断.
-						//在这里不判断直接返回true是很没有武德的行为,可能覆盖别人的扩展配置.
 					},
-					prefix: `extension/夜白神略/image/${packagesx[i]}/`, //原皮前缀,标识原皮肤的位置.
+					prefix: `extension/夜白神略/image/${packagesx[i]}/`,
 					skin: {
-						standard: 'extension/夜白神略/skin/standard/', //可切换普通皮肤的前缀
+						standard: 'extension/夜白神略/skin/standard/',
 					},
-					audioOrigin: 'extension/夜白神略/audio/character/', //原技能配音位置
-					audio: 'extension/夜白神略/skin/audio/', //切换皮肤后的技能配音位置
+					audioOrigin: 'extension/夜白神略/audio/character/',
+					audio: 'extension/夜白神略/skin/audio/',
 				});
 			}
-			// lib.qhlypkg.push({
-			// 	isExt:true,//是否是扩展,一般填true
-			// 	filterCharacter:function(name){
-			// 		// var qianzhui=[
-			// 		// 	'dzsl_','dzsp_','ybsl_','ybsp_','db_ybsl_','db_ybsp_',
-			// 		// 	'ybslshen_','sgsh_','ssj_ybxh_','North_','ybnb_','ybart_',
-			// 		// 	'ybmo_','ybhao_','ybdi_','ybhaoshen_','ybsc_',
-			// 		// ];
-			// 		// for(var i=0;i<qianzhui.length;i++){
-			// 		// 	if(name.indexOf(qianzhui[i])==0) return true;
-			// 		// }
-			// 		//判断此ID的武将是否属于此皮肤包.推荐用前缀判断.
-			// 		//在这里不判断直接返回true是很没有武德的行为,可能覆盖别人的扩展配置.
-			// 	},
-			// 	// prefix:'extension/夜白神略/image/character/',//原皮前缀,标识原皮肤的位置.
-			// 	skin:{
-			// 		standard:'extension/夜白神略/skin/standard/',//可切换普通皮肤的前缀
-			// 	},
-			// 	audioOrigin:'extension/夜白神略/audio/character/',//原技能配音位置
-			// 	audio:'extension/夜白神略/skin/audio/',//切换皮肤后的技能配音位置
-			// });
 		}
 	});
-	//嗨梨相关的整理完后挪到对应将包
-	//蓄力点改蓝条
+
 	lib.arenaReady.push(function () {
 		if (lib.config.extension_夜白神略_夜白神略的蓄力点改蓝条 == true) {
 			/**
@@ -1399,16 +1033,7 @@ export async function precontent() {
 				max = game.checkMod(this, max, 'maxCharge', this);
 				return max;
 			};
-			// lib.skill._YB_updateCharge = {
-			// 	ruleSkill:true,
-			// 	direct:true,
-			// 	trigger:{
-			// 		player:['addChargeAfter','removeChargeAfter'],
-			// 	},
-			// 	content(){
-			// 		player.YB_updateCharge();
-			// 	}
-			// }
+
 			/**
 			 * 更新蓄力条
 			 */
@@ -1458,70 +1083,6 @@ export async function precontent() {
 		}
 	});
 	get.typeimage = typeimage;
-	// HTMLDivElement.prototype.ybsl_setBackground = HTMLDivElement.prototype.setBackground;
-	// HTMLDivElement.prototype.setBackground = function (name, type, ext, subfolder) {
-	//   if(type == 'character'){
-	// 	if(this.classList.contains('character') && this.classList.contains('button')){
-	// 	  // @ts-ignore
-	// 	  return this.ybsl_setBackground.apply(this, arguments);
-	// 	}
-	//   }
-	// };
-	// lib.arenaReady.push(function(){
-	// 	var packages = [
-	// 		"ybslj","ybxh","ybdd","ybgod","ybslc","ybart",'ybnew1','ybmjz','yhky','sgstrxs','ybMagic'
-	// 		// 'YB_one'
-	// 	]
-	// 	for(var k of packages){
-	// 		var pagename = lib.characterPack[k];
-	// 		for(var i in pagename){
-	// 			if(Array.isArray(pagename[i])){
-	// 				var infoy = pagename[i][4];
-	// 				for(var infox of infoy){
-	// 					if(infox.startsWith('YB_mjz:')){
-	// 						var char = infox.slice(7);
-	// 						var name = get.YB_characterImage(char);
-	// 						pagename[i].img = `img:${name}`;
-	// 						// pagename.character[i][4].push(`die:../../audio/die/${char}.mp3`);
-	// 					}
-	// 				}
-	// 			}
-	// 			else {
-	// 				if(pagename[i].YB_mjz){
-	// 					var infoy = pagename[i].YB_mjz;
-	// 					var name = get.YB_characterImage(infoy);
-	// 					pagename[i].img = `img:${name}`;
-	// 					// pagename.character[i].die = `ext:../../audio/die/${infoy}.mp3`;
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// })
-	// lib.arenaReady.push(function () {
-	// 	if(lib.brawl){
-	// 		lib.brawl.YB_lieguizhizhan = {
-	// 			name:'猎鬼之战',
-	// 			mode:'versus',
-	// 		}
-	// 	}
-	// })
+
 	cyyydsgs();
-	// ybrpg();
-	// if(lib.config.extension_十周年UI_enable==true){
-	// 	let cards = [];
-	// 	game.getFileList('extension/夜白神略/image/card-skins/caise',(folders,files)=> {
-	// 		var decoration = files;
-	// 		decoration.forEach(function(image){
-	// 			cards.push(image.slice(0,image.length-5));
-	// 		});
-	// 	});
-	// 	// console.log(cards)
-	// 	if(window.registerDecadeCardSkin)window.registerDecadeCardSkin({
-	// 		extensionName:'夜白神略',
-	// 		skinKey:'caise',
-	// 		cardNames:cards,
-	// 		extension:'webp',
-	// 	})
-	// }
-	// sgczk();
 }
