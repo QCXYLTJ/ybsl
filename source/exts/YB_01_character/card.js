@@ -366,7 +366,7 @@ const card = {
 			}
 			('step 1');
 			let list;
-			if (result.bool) {
+			if (result.links?.length) {
 				list = [result.links[0]];
 			} else {
 				list = [];

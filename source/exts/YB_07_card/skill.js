@@ -281,7 +281,7 @@ const skill = {
 					return get.effect(target, card, player, player);
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const target = result.targets[0];
 				player.line(target, 'green');
 				game.log(player, '发动集智冠,令', target, '也成为了', trigger.card, '的目标');

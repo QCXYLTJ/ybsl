@@ -86,7 +86,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						target.lose(result.cards, ui.special);
 						target.$throw(result.cards);
 						game.log(target, '用', result.cards, '替换了', event.button.link);
@@ -123,7 +123,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 					next.set('dialogdisplay', true);
 					next.set('nextSeat', nextSeat);
 					('step 1');
-					if (result && result.bool && result.links && result.links.length) {
+					if (result.links?.length) {
 						for (let i = 0; i < result.buttons.length; i++) {
 							event.dialog.buttons.remove(result.buttons[i]);
 						}
@@ -733,7 +733,7 @@ game.import('card', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						event.card = result.links[[0]];
 						player.chooseCard('h', true, '用一张手牌替换' + get.translation(event.card)).ai = function (card) {
 							return -get.value(card);

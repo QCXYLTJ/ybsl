@@ -2131,7 +2131,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								})
 								.set('judging', trigger.player.judging[0]);
 							('step 1');
-							if (result.bool) {
+							if (result.cards?.length) {
 								player.respond(result.cards, 'yb_wan_rengong', 'highlight', 'noOrdering');
 							} else {
 								event.finish();
@@ -2539,7 +2539,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								'step 0';
 								event.i.chooseCard(true, 'h');
 								('step 1');
-								if (result.bool) {
+								if (result.cards?.length) {
 									event.cardsx.push(result.cards[0]);
 								}
 							});
@@ -3062,7 +3062,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					player.awakenSkill(event.name);
 					('step 1');
 					const targets = player.storage.yb_wan_linzuo;
-					if (targets && targets.length) {
+					if (targets?.length) {
 						for (const i of targets) {
 							if (i.isAlive) {
 								player.storage.yb_wan_linzuo.remove(i);
@@ -3308,7 +3308,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return get.attitude(_status.event.player, tar);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							result.targets[0].draw(2);
 						}
 					} else if (event.triggername == 'phaseJieshuBegin') {
@@ -3319,7 +3319,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 								return get.damageEffect(tar, _status.event.player, _status.event.player);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							result.targets[0].damage(player);
 						}
 					}
@@ -3365,7 +3365,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						const cs = result.cards;
 						player.addToExpansion(cs, player, 'give').gaintag.add('yb_wan_linzuo_mark2');
 					}
@@ -3410,7 +3410,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 					game.cardsGotoOrdering(event.cards);
 					player.chooseCardButton(event.cards, true, num2, '窥天:获得其中' + num2 + '张牌');
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						player.gain(result.links, 'gain2');
 					}
 					const cards2 = event.cards.filter((i) => !result.links.includes(i));
@@ -3485,7 +3485,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.links?.length) {
 						event.cardx = result.links[0];
 						player
 							.chooseTarget(true)
@@ -3560,7 +3560,7 @@ game.import('character', function (lib, game, ui, get, ai, _status) {
 						player.chooseToDiscard('he').set('chooseonly', true).set('prompt2', str);
 					}
 					('step 2');
-					if (result.cards) {
+					if (result.cards?.length) {
 						event.result = {
 							bool: true,
 							cards: result.cards,

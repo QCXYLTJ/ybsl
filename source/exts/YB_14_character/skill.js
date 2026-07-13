@@ -713,7 +713,7 @@ const skill = {
 					game.log(player, '使命失败');
 					player.chooseTarget(true, get.prompt('hairi_zhongxia'), '令一名其他角色获得<终夏>', lib.filter.notMe);
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						target.addSkill('hairi_zhongxia');
 					}
@@ -816,7 +816,7 @@ const skill = {
 										return get.damageEffect(player, target, _status.event.player);
 									})
 									.forResult();
-								if (result.bool) {
+								if (result.targets?.length) {
 									await result.targets[0].damage(player);
 								}
 							});
@@ -869,7 +869,7 @@ const skill = {
 									return get.damageEffect(player, target, _status.event.player);
 								})
 								.forResult();
-							if (result.bool) {
+							if (result.targets?.length) {
 								await result.targets[0].damage(player);
 							}
 						});
@@ -1018,7 +1018,7 @@ const skill = {
 				}
 				let type = get.type2(card),
 					str = get.translation(source);
-				if (targets && targets.length) {
+				if (targets?.length) {
 					str += `对${get.translation(targets)}`;
 				}
 				str += `使用了${get.translation(card)},是否弃置一张${get.translation(type)}为其助战？`;
@@ -1371,7 +1371,7 @@ const skill = {
 				})
 				.set('sourcex', trigger.source);
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				trigger.player.line(target, 'green');
 				target.recover();
@@ -1545,7 +1545,7 @@ const skill = {
 				});
 			event.goto(9);
 			('step 9');
-			if (result.links) {
+			if (result.links?.length) {
 				let name = result.links[0][2];
 				const nature = result.links[0][3];
 
@@ -1783,7 +1783,7 @@ const skill = {
 				});
 			event.goto(9);
 			('step 9');
-			if (result.links) {
+			if (result.links?.length) {
 				let name = result.links[0][2];
 				const nature = result.links[0][3];
 
@@ -2295,7 +2295,7 @@ const skill = {
 						return -1;
 					};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						const targets = result.targets.sortBySeat();
 						const length = targets.length;
 						targets.forEach((target) => {
@@ -2520,7 +2520,7 @@ const skill = {
 				event.finish();
 			}
 			('step 1');
-			if (result.bool && result.links && result.links.length) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2');
 			}
 			event.finish();
@@ -3209,7 +3209,7 @@ const skill = {
 								return players.includes(target);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							await player.discardPlayerCard(result.targets[0], [1, 2], true);
 						}
 					}
@@ -3224,7 +3224,7 @@ const skill = {
 								return players.includes(target);
 							})
 							.forResult();
-						if (result.bool) {
+						if (result.targets?.length) {
 							await result.targets[0].damage(player, 1, 'thunder');
 						}
 					}
@@ -4039,7 +4039,7 @@ const skill = {
 				(card) => get.color(card) == get.color(trigger.card) && target.canRecast(card),
 				(card) => 11 - get.value(card),
 			);
-			if (result.bool) {
+			if (result.cards?.length) {
 				target.recast(result.cards);
 			} else {
 				target.loseHp();
@@ -4058,7 +4058,7 @@ const skill = {
 					break;
 				}
 				const result = await target.chooseCardButton('折折:选择一张牌获得', get.discarded().filterInD('d')).forResult();
-				if (result.bool) {
+				if (result.links?.length) {
 					await target.gain(result.links[0], 'gain2');
 					gains.add(target);
 				}
@@ -4367,7 +4367,7 @@ const skill = {
 					.set('targets', target)
 					.set('filterTarget', (card, player, target) => get.event().targets.includes(target))
 					.forResult();
-				if (result.bool) {
+				if (result.targets?.length) {
 					event.result.targets = result.targets;
 				}
 			}
@@ -5500,7 +5500,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				delete result.cards;
 				event.target = result.targets[0];
 				player.choosePlayerCard(event.target, 'h', [1, Math.min(event.target.countCards('he'), 5, event.target.hp)], '展示一名其他角色的至多Y张手牌(Y为其体力值且至多为5),弃置其中与判定花色相同的牌').set('forceAuto', true);
@@ -5508,7 +5508,7 @@ const skill = {
 				event.finish();
 			}
 			('step 4');
-			if (result.bool) {
+			if (result.cards?.length) {
 				let cards = result.cards,
 					cards2 = [];
 				event.target.showCards(cards);
@@ -6503,7 +6503,7 @@ const skill = {
 				async cost(event, trigger, player) {
 					event.result = { bool: false };
 					let cards = player.getExpansions('ybsl_fengci');
-					if (cards && cards.length) {
+					if (cards?.length) {
 						event.result = await player
 							.chooseCardButton(cards, [1, cards.length])
 							.set('filterButton', function (button) {
@@ -7380,7 +7380,7 @@ const skill = {
 					});
 			}
 			('step 2');
-			if (result.targets) {
+			if (result.targets?.length) {
 				result.targets[0].phase('nodelay');
 			}
 			let evt = _status.event.getParent('phase');
@@ -9150,7 +9150,7 @@ const skill = {
 			let num = get.YB_cardMaxLose(target);
 			player.choosePlayerCard(target, 'h', true, num);
 			('step 1');
-			if (result.links) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2');
 			}
 		},
@@ -9185,7 +9185,7 @@ const skill = {
 			('step 1');
 			player.choosePlayerCard(target, 'h', true);
 			('step 2');
-			if (result.links) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2');
 				event.count++;
 			} else {
@@ -10408,7 +10408,7 @@ const skill = {
 				return get.damageEffect(target, player, player);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage();
 			}
 		},
@@ -10528,7 +10528,6 @@ const skill = {
 			player.line(event.target);
 			event.target.draw('visible');
 			('step 1');
-			let card = result[0];
 			if (card.suit == 'heart') {
 				event.target.recover();
 			}
@@ -11306,7 +11305,7 @@ const skill = {
 				return target.getDamagedHp();
 			});
 			('step 2');
-			if (result.targets) {
+			if (result.targets?.length) {
 				event.target2 = result.targets[0];
 				let list = [];
 				list.push('伤害');

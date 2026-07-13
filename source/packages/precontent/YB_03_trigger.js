@@ -491,7 +491,7 @@ const YBSL_trigger = function () {
 						});
 						('step 2');
 						game.broadcastAll('closeDialog', event.videoId);
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							for (const i of result.links) {
 								if (i == event.list_cifu[0]) {
 									player.gainMaxHp();

@@ -38,7 +38,7 @@ const skill = {
 					.discardPlayerCard('he', target, [1, count], forced)
 					.set('prompt2', `弃置${get.translation(target)}至多${count}张牌？`)
 					.forResult();
-				if (result.cards) {
+				if (result.cards?.length) {
 					cards.push(...result.cards);
 					forced = false;
 					count -= result.cards.length;
@@ -467,7 +467,7 @@ const skill = {
 				}
 			};
 			('step 7');
-			if (result.targets) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 			}
 			player.chooseCard('he', [0, Infinity]).set('ai', function (card) {
@@ -553,7 +553,7 @@ const skill = {
 				event.goto(4);
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const targets = result.targets;
 				player.line2(targets);
 				const gain = targets[0].countMark('North_yhy_minzeng_min');
@@ -589,7 +589,7 @@ const skill = {
 				event.finish();
 			}
 			('step 5');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const targets = result.targets;
 				player.line2(targets);
 				const gain = targets[0].countMark('North_yhy_minzeng_zeng');
@@ -690,7 +690,7 @@ const skill = {
 			trigger.player.removeMark('North_yhy_minzeng_zeng');
 			player.chooseTarget().set('prompt', '是否转移<憎>标记？').set('prompt2', '如放弃转移,则此标记移出游戏,然后你回复2点体力并选择是否获得其一个技能(觉醒技、限定技、主公技除外)');
 			('step 1');
-			if (result.targets) {
+			if (result.targets?.length) {
 				result.targets[0].addMark('North_yhy_minzeng_zeng');
 				event.finish();
 			} else {
@@ -852,7 +852,7 @@ const skill = {
 					return true;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				let name = result.links[0][2];
 				player.storage.North_dy_qingyu_light.push(name);
 				game.log(player, '点亮了【武库】中的', '#y' + get.translation(name));
@@ -1003,7 +1003,7 @@ const skill = {
 					return att / 3;
 				});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				for (let i = 0; i < result.targets.length; i++) {
 					result.targets[i].draw(3);
 					result.targets[i].chooseToDiscard('he', true);
@@ -1024,7 +1024,7 @@ const skill = {
 					return -att / 3;
 				});
 			('step 5');
-			if (result.bool) {
+			if (result.targets?.length) {
 				for (let i = 0; i < result.targets.length; i++) {
 					result.targets[i].link(true);
 				}
@@ -1405,7 +1405,7 @@ const skill = {
 			player.chooseButton(1, list).set('prompt2', '先选择你区域内的一张牌,<br>看好了再选,别选错!!!!!');
 
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.card = result.links[0];
 
 				player
@@ -1427,7 +1427,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				const link = event.card;
 
@@ -1494,7 +1494,7 @@ const skill = {
 				prompt: get.prompt2('North_ssx_lieyuanxx'),
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const thisTarget = result.targets[0];
 				const thisCard = result.cards[0];
 				if (get.type(thisCard) == 'equip') {
@@ -1638,7 +1638,7 @@ const skill = {
 							return get.attitude(_status.event.player, target);
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						result.targets[0].draw();
 					}
 				},
@@ -1808,7 +1808,7 @@ const skill = {
 						event.finish();
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.cards?.length) {
 						player.addToExpansion(result.cards[0], player, 'give', 'log').gaintag.add('North_zgl_qizhu');
 					}
 				},
@@ -1880,7 +1880,7 @@ const skill = {
 				return -get.attitude(_status.event.player, target);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage('fire', 'nocard', event.num);
 			}
 		},
@@ -1919,7 +1919,7 @@ const skill = {
 						return -get.attitude(_status.event.player, target);
 					});
 					('step 2');
-					if (result.targets) {
+					if (result.targets?.length) {
 						for (const i of result.targets) {
 							i.damage('fire', 'nocard', event.num);
 						}
@@ -2000,7 +2000,7 @@ const skill = {
 				return -get.attitude(_status.event.player, target);
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				for (const i of result.targets) {
 					i.damage('fire', 'nocard', 1);
 				}
@@ -2041,7 +2041,7 @@ const skill = {
 						return -get.attitude(_status.event.player, target);
 					});
 					('step 2');
-					if (result.targets) {
+					if (result.targets?.length) {
 						for (const i of result.targets) {
 							i.damage('fire', 'nocard', 2);
 						}
@@ -2137,7 +2137,7 @@ const skill = {
 						.set('prompt', '请选择将牌交给一名角色,令其执行一个额外的摸牌阶段和出牌阶段<br>若其未拥有技能〖忱恂〗,则你回复所有体力并将手牌补至体力上限,令其获得〖忱恂〗直到本次额外的摸牌阶段和出牌阶段结束');
 
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						const tar = result.targets[0];
 						tar.gain(event.card, 'gain2');
 						if (!tar.hasSkill('North_ld_chenxun')) {
@@ -2217,7 +2217,7 @@ const skill = {
 				event.goto(4);
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.give(result.cards, target);
 				if (result.cards.length < 2) {
 					event.goto(6);
@@ -2371,7 +2371,7 @@ const skill = {
 							return num * bl;
 						};
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.target1 = result.targets[0];
 						player.line(event.target1, 'North_smk_shangying');
 						player.gain(event.target1.getEquip(1), event.target1, 'give', 'bySelf');
@@ -2521,7 +2521,7 @@ const skill = {
 				});
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				if (target.isIn()) {
@@ -2653,7 +2653,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				event.list.push(target);
@@ -2958,7 +2958,7 @@ const skill = {
 					return att;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				const list = get.North_bmh_chizhang(target);
 
@@ -3246,7 +3246,7 @@ const skill = {
 				})
 				.set('prompt2', str + '你可以指定1名角色回复1点体力和摸三张牌并选择令其①出牌阶段后额外获得1个摸牌阶段②弃牌阶段结束后额外获得1个出牌阶段③废除判定区');
 			('step 1');
-			if (result.targets) {
+			if (result.targets?.length) {
 				result.targets[0].recover();
 				result.targets[0].draw(3);
 				event.target = result.targets[0];
@@ -3351,7 +3351,7 @@ const skill = {
 					.set('chooseonly', true);
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.addMark('North_cjy_lvzhi', result.links.length);
 				player.discard(result.links);
 			}
@@ -3522,7 +3522,7 @@ const skill = {
 					}
 					player.chooseButton(1, list1).set('prompt2', '先选择其区域内的一张牌,<br>看好了再选,别选错!!!!!');
 					('step 3');
-					if (result.bool) {
+					if (result.links?.length) {
 						event.card = result.links[0];
 						player
 							.chooseTarget(function (card, player, target) {
@@ -3540,7 +3540,7 @@ const skill = {
 						event.finish();
 					}
 					('step 4');
-					if (result.bool) {
+					if (result.targets?.length) {
 						event.target = result.targets[0];
 						const link = event.card;
 						if (get.position(link) == 'e') {
@@ -3598,7 +3598,7 @@ const skill = {
 				})
 				.set('chooseonly', true);
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.discard(result.links[0]);
 				player.addMark('North_cjy_lvzhi');
 			} else {
@@ -3906,7 +3906,7 @@ const skill = {
 							}
 						});
 					('step 1');
-					if (result.bool) {
+					if (result.links?.length) {
 						const cards = result.links;
 						if (get.position(cards[0]) != 'h') {
 							cards.reverse();
@@ -4342,7 +4342,7 @@ const skill = {
 					}
 				})
 				.forResult();
-			if (result.links) {
+			if (result.links?.length) {
 				await player.discard(result.links);
 				if (event.triggername != 'useCard') {
 					trigger.cancel();
@@ -4511,7 +4511,7 @@ const skill = {
 				event.finish();
 			}
 			('step 2');
-			if (result.cards) {
+			if (result.cards?.length) {
 				player.changeZhuanhuanji('North_shh_yuniao');
 				event.cards = result.cards;
 			} else {
@@ -4556,7 +4556,7 @@ const skill = {
 				prompt2: '弃置一张牌,视为对一名其他角色使用一张雷【杀】',
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				player.useCard({ name: 'sha', nature: 'thunder', isCard: false }, result.targets[0], 'North_shh_qingsi', false);
 			}
@@ -4763,7 +4763,7 @@ const skill = {
 					return get.getUseValue(button.link);
 				});
 			('step 3');
-			if (result.bool) {
+			if (result.links?.length) {
 				event.card = result.links[0];
 			}
 
@@ -5080,7 +5080,7 @@ const skill = {
 						return false;
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.targets?.length) {
 					const targets = result.targets;
 					for (const i of targets) {
 						player.storage.North_lf_zhenzhi.push(i);
@@ -5107,7 +5107,7 @@ const skill = {
 						return false;
 					})
 					.forResult();
-				if (result.bool) {
+				if (result.targets?.length) {
 					const targets = result.targets;
 					for (const i of targets) {
 						player.storage.North_lf_zhenzhi.push(i);
@@ -5370,7 +5370,7 @@ const skill = {
 					}
 				});
 			('step 3');
-			if (result.targets) {
+			if (result.targets?.length) {
 				const targets = result.targets.sortBySeat();
 				player.storage.caoyi_miyi = [];
 				player.addTempSkill('caoyi_miyi_add');
@@ -5545,7 +5545,7 @@ const skill = {
 				event.goto(3);
 			}
 			('step 2');
-			if (result.cards) {
+			if (result.cards?.length) {
 				event.tar.give(result.cards, player);
 			} else {
 				event.tar.damage(player);
@@ -5747,7 +5747,7 @@ const skill = {
 						next.set('prompt', '移动场上的一张牌');
 					}
 					('step 2');
-					if (result.bool) {
+					if (result.targets?.length) {
 						player.line2(result.targets, 'green');
 						event.targets = result.targets;
 					} else {
@@ -5832,7 +5832,7 @@ const skill = {
 				})
 				.set('promtp2', '令一名角色摸一张牌');
 			('step 2');
-			if (result.targets) {
+			if (result.targets?.length) {
 				player.line(result.targets[0]);
 				result.targets[0].draw(1);
 			}
@@ -6033,7 +6033,7 @@ const skill = {
 					return get.effect(target, card, player, player);
 				});
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				const targets = result.targets;
 				player.line(targets, 'green');
 				game.log(player, '发动癸隐,令', targets, '也成为了', trigger.card, '的目标');
@@ -6069,7 +6069,7 @@ const skill = {
 			('step 2');
 			player.chooseCard('he', 3, true, '请选择三张牌重铸');
 			('step 3');
-			if (result.cards) {
+			if (result.cards?.length) {
 				player.recast(result.cards);
 			}
 		},
@@ -6128,7 +6128,7 @@ const skill = {
 				})
 				.set('chooseonly', true);
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				if (target.countDiscardableCards(player, 'he')) {
 					player.discardPlayerCard('he', result.cards.length, target, true);

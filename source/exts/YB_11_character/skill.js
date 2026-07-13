@@ -362,7 +362,7 @@ const skill = {
 				});
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.storage.yhky_lzyyanyu = get.type(result.cards[0], 'trick');
 				player.addTempSkill('yhky_lzyyanyu_2', 'phaseUseAfter');
 			}
@@ -1060,7 +1060,7 @@ const skill = {
 
 						.set('ai', (target) => get.recoverEffect(target, _status.event.player, _status.event.player));
 					('step 1');
-					if (result.bool) {
+					if (result.targets?.length) {
 						let target = result.targets[0];
 						target.recover(player);
 						target.draw(2, player);
@@ -1695,7 +1695,7 @@ const skill = {
 				return 0;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				target.judge(function (card) {
@@ -2037,7 +2037,7 @@ const skill = {
 				})
 				.set('target', target)
 				.forResult();
-			if (result.bool) {
+			if (result.links?.length) {
 				const card = new lib.element.VCard({ name: result.links[0][2], nature: result.links[0][3] });
 				if (target.hasUseTarget(card)) {
 					await target.chooseUseTarget(card, true);

@@ -236,7 +236,7 @@ const card = {
 			('step 2');
 			if (event.directcards) {
 				target.give(target.getCards('he'), player);
-			} else if (result.bool && result.cards && result.cards.length) {
+			} else if (result.cards?.length) {
 				target.give(result.cards, player);
 			}
 		},
@@ -665,7 +665,7 @@ const card = {
 					target.getStat().card.jiu--;
 				}
 			} else {
-				if (cards && cards.length) {
+				if (cards?.length) {
 					event.card = cards[0];
 				}
 				game.broadcastAll(

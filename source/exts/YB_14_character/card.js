@@ -41,7 +41,7 @@ const card = {
 				}
 			});
 			('step 4');
-			if (result.cards) {
+			if (result.cards?.length) {
 				target.discard(result.cards);
 			}
 			('step 5');
@@ -58,7 +58,7 @@ const card = {
 				}
 			});
 			('step 8');
-			if (result.cards) {
+			if (result.cards?.length) {
 				target.discard(result.cards);
 			}
 		},

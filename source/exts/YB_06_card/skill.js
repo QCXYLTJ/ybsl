@@ -144,7 +144,7 @@ const skill = {
 					return get.attitude(_status.event.player, target);
 				};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				if (target.group != 'shen') {
@@ -286,7 +286,7 @@ const skill = {
 					.set('ignoreCard', player.hasSkill('shanrangzhaoshu', null, false));
 			}
 			('step 3');
-			if (result.cards && result.cards.length) {
+			if (result.cards?.length) {
 				event.giver.give(result.cards, event.gainner);
 			}
 			('step 4');
@@ -461,7 +461,7 @@ const skill = {
 					return -att;
 				});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.discardPlayerCard(target, 'he', true, num);
 			}
@@ -851,7 +851,7 @@ const skill = {
 					return -get.attitude(_status.event.player, target);
 				};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target);
 				target.damage(2);
@@ -1185,7 +1185,7 @@ const skill = {
 					return true;
 				});
 			('step 2');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.gain(result.links, 'gain2', 'log');
 			}
 		},
@@ -3686,7 +3686,7 @@ const skill = {
 				return get.damageEffect(target, player, player, 'fire');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				player.line(event.target, 'fire');
 				event.target.chooseToDiscard('he', { color: 'red' }, '弃置一张红色牌或受到1点火焰伤害').ai = function (card) {
@@ -4308,7 +4308,7 @@ const skill = {
 				true,
 			);
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.gain(result.cards, trigger.player);
 				trigger.player.$give(1, player);
 			}
@@ -4410,7 +4410,7 @@ const skill = {
 				return 0;
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				let num = result.cards.length;
 				const cnum = get.cnNumber(num);
 				event.num = num;
@@ -4698,7 +4698,7 @@ const skill = {
 				return name == 'nanman' ? 0.8 : 0;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.links?.length) {
 				player.chooseUseTarget(result.links[0][2], true, false);
 			}
 		},
@@ -4820,7 +4820,7 @@ const skill = {
 				}
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.respond(result.cards, 'highlight');
 			} else {
 				event.finish();
@@ -5571,7 +5571,7 @@ const skill = {
 				return get.damageEffect(target, player, player, 'thunder');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage('thunder');
 				player.recover();
 			}
@@ -5596,7 +5596,7 @@ const skill = {
 				return -get.attitude(player, target);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.targets = result.targets;
 				event.num = 0;
 			} else {
@@ -5635,7 +5635,7 @@ const skill = {
 				return get.damageEffect(target, player, player);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage(3);
 			}
 		},
@@ -5773,7 +5773,7 @@ const skill = {
 				return get.damageEffect(target, player, player, 'fire');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage('fire');
 			}
 		},
@@ -5789,7 +5789,7 @@ const skill = {
 				return get.damageEffect(target, player, player, 'thunder');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage('thunder');
 			}
 		},
@@ -5852,7 +5852,7 @@ const skill = {
 				return -att;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].turnOver();
 			}
 		},
@@ -5912,7 +5912,7 @@ const skill = {
 				return get.damageEffect(target, player, player, 'thunder');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				event.target.judge(function (card) {
 					if (get.color(card) == 'black') {
@@ -6064,7 +6064,7 @@ const skill = {
 				return 1;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].goMad();
 			}
 		},
@@ -6239,7 +6239,7 @@ const skill = {
 				return get.damageEffect(target, player, player, 'thunder') + 0.1;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 				event.target.judge(function (card) {
 					return get.color(card) == 'red' ? 0 : -1;
@@ -6296,7 +6296,7 @@ const skill = {
 				prompt: get.prompt('boss_hujia'),
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				if (target.storage.boss_hujia) {
 					target.loseMaxHp();
@@ -6627,7 +6627,7 @@ const skill = {
 				}
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].turnOver();
 			}
 		},
@@ -6909,7 +6909,7 @@ const skill = {
 				return get.attitude(player, target);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				game.asyncDraw(result.targets);
 			}
 		},
@@ -8364,7 +8364,7 @@ const skill = {
 				allowChooseAll: true,
 			});
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.discard(result.cards);
 				trigger.targets.addArray(result.targets);
 			}
@@ -8443,7 +8443,7 @@ const skill = {
 				target.chooseCard('he', true, '将一张牌交给' + get.translation(player));
 			}
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.gain(result.cards, target, 'give');
 			}
 		},
@@ -8484,7 +8484,7 @@ const skill = {
 				return -att;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].turnOver();
 			}
 		},
@@ -8555,7 +8555,7 @@ const skill = {
 				return num;
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].recover();
 			}
 		},
@@ -8627,7 +8627,7 @@ const skill = {
 				return -get.attitude(player, target);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].turnOver();
 			}
 		},
@@ -8647,7 +8647,7 @@ const skill = {
 				return get.damageEffect(target, player, player);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage();
 			}
 		},
@@ -8670,7 +8670,7 @@ const skill = {
 				return get.damageEffect(target, player, player, 'thunder');
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				result.targets[0].damage('thunder');
 			}
 		},
@@ -8694,7 +8694,7 @@ const skill = {
 				return get.effect(target, { name: 'sha' }, player);
 			};
 			('step 1');
-			if (result.bool) {
+			if (result.targets?.length) {
 				player.useCard({ name: 'sha' }, result.targets, false);
 			}
 		},
@@ -9141,7 +9141,7 @@ const skill = {
 				};
 			}
 			('step 2');
-			if (result && result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				event.target = result.targets[0];
 			}
 			if (event.cards2.length) {
@@ -9318,7 +9318,7 @@ const skill = {
 				};
 			}
 			('step 2');
-			if (result.bool && result.targets && result.targets.length) {
+			if (result.targets?.length) {
 				player.line(result.targets, 'green');
 				result.targets[0].loseHp();
 			}

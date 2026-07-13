@@ -579,7 +579,7 @@ const skill = {
 				})
 				.set('att', get.attitude(player, target))
 				.forResult();
-			if (result.cards) {
+			if (result.cards?.length) {
 				await player.gain(result.cards, target);
 				game.log(player, '获得了', target, '的一张牌');
 				if ((trigger.source && trigger.source != target) || !trigger.source) {
@@ -647,7 +647,7 @@ const skill = {
 				})
 				.set('judging', trigger.player.judging[0]);
 			('step 1');
-			if (result.bool) {
+			if (result.cards?.length) {
 				player.respond(result.cards, 'ybmjz_guicai', 'highlight', 'noOrdering');
 			} else {
 				event.finish();
@@ -2460,7 +2460,7 @@ const skill = {
 							event.finish();
 						}
 						('step 1');
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							const card = result.links[0];
 							event.card = card;
 							let cards = target.getCards('h').filter(function (c) {
@@ -2483,7 +2483,7 @@ const skill = {
 							player.chooseCardButton(event.cardsx, 1).set('prompt', '请选择一张牌获得,或者取消,然后获得其藏起来的牌').set('complexCard', true);
 						}
 						('step 4');
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							player.gain(result.links[0], target, 'give');
 						} else {
 							player.gain(card, target, 'give');
@@ -2658,7 +2658,7 @@ const skill = {
 							event.finish();
 						}
 						('step 1');
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							const card = result.links[0];
 							event.card = card;
 							let cards = target.getCards('h').filter(function (c) {
@@ -2681,7 +2681,7 @@ const skill = {
 							player.chooseCardButton(event.cardsx, 1).set('prompt', '请选择一张牌获得,或者取消,然后获得其藏起来的牌').set('complexCard', true);
 						}
 						('step 4');
-						if (result.bool && result.links && result.links.length) {
+						if (result.links?.length) {
 							player.gain(result.links[0], target, 'give');
 						} else {
 							player.gain(card, target, 'give');
@@ -2913,7 +2913,7 @@ const skill = {
 				event.finish();
 			}
 			('step 3');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				event.target = target;
 				player.line(target, 'green');
@@ -2972,7 +2972,7 @@ const skill = {
 				return get.attitude(_status.event.player, target);
 			});
 			('step 2');
-			if (result.bool) {
+			if (result.targets?.length) {
 				let target = result.targets[0];
 				player.line(target, 'green');
 				target.storage.ybmjz_zuoxing = player;
